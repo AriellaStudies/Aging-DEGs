@@ -72,15 +72,119 @@ fit2 <- contrasts.fit(fit, cont.matrix)
 
 # compute statistics and table of top significant genes
 fit2 <- eBayes(fit2, 0.01)
-tT <- topTable(fit2, adjust="fdr", sort.by="B", number=500)
+tT <- topTable(fit2, adjust="fdr", sort.by="B", number=1000)
 
 tT <- subset(tT, select=c("ID","adj.P.Val","P.Value","t","B","logFC","Gene.symbol","Gene.title"))
 ```
-# WRITING AREA
+# WRITING/EXPORTING AREA
 ```{r}
 write.table(tT, file="R_Out_1.26.txt", row.names=F, sep="\t")
 write.csv(tT, file="R_Out_C.csv", row.names=F)
 ```
+
+#SUB IN VALUES TESTING AREA
+```{r}
+
+GSE_number = "GSE38718"
+platform_code = "GPL570"
+group_binaries = "0000000000000011111111"
+
+
+# load series and platform data from GEO
+gset <- getGEO(GSE_number, GSEMatrix =TRUE, AnnotGPL=TRUE)
+if (length(gset) > 1) idx <- grep(platform_code, attr(gset, "names")) else idx <- 1
+gset <- gset[[idx]]
+
+# make proper column names to match toptable 
+fvarLabels(gset) <- make.names(fvarLabels(gset))
+
+# group membership for all samples
+gsms <- group_binaries
+sml <- strsplit(gsms, split="")[[1]]
+
+# log2 transformation
+ex <- exprs(gset)
+qx <- as.numeric(quantile(ex, c(0., 0.25, 0.5, 0.75, 0.99, 1.0), na.rm=T))
+LogC <- (qx[5] > 100) ||
+          (qx[6]-qx[1] > 50 && qx[2] > 0)
+if (LogC) { ex[which(ex <= 0)] <- NaN
+  exprs(gset) <- log2(ex) }
+
+# assign samples to groups and set up design matrix
+gs <- factor(sml)
+groups <- make.names(c("young","old"))
+levels(gs) <- groups
+gset$group <- gs
+design <- model.matrix(~group + 0, gset)
+colnames(design) <- levels(gs)
+
+fit <- lmFit(gset, design)  # fit linear model
+
+# set up contrasts of interest and recalculate model coefficients
+cts <- paste(groups[1], groups[2], sep="-")
+cont.matrix <- makeContrasts(contrasts=cts, levels=design)
+fit2 <- contrasts.fit(fit, cont.matrix)
+
+# compute statistics and table of top significant genes
+fit2 <- eBayes(fit2, 0.01)
+tT <- topTable(fit2, adjust="fdr", sort.by="B", number=50)
+
+tT <- subset(tT, select=c("ID","adj.P.Val","P.Value","t","B","logFC","Gene.symbol","Gene.title"))
+```
+
+
+
+# FUNCTION TESTING AREA
+```{r}
+GEO2R <- function(GSE_number,platform_code,group_binaries){
+  # load series and platform data from GEO
+  gset <- getGEO(GSE_number, GSEMatrix =TRUE, AnnotGPL=TRUE)
+  if (length(gset) > 1) idx <- grep(platform_code, attr(gset, "names")) else idx <- 1
+  gset <- gset[[idx]]
+  
+  # make proper column names to match toptable 
+  fvarLabels(gset) <- make.names(fvarLabels(gset))
+  
+  # group membership for all samples
+  gsms <- group_binaries
+  sml <- strsplit(gsms, split="")[[1]]
+  
+  # log2 transformation
+  ex <- exprs(gset)
+  qx <- as.numeric(quantile(ex, c(0., 0.25, 0.5, 0.75, 0.99, 1.0), na.rm=T))
+  LogC <- (qx[5] > 100) ||
+            (qx[6]-qx[1] > 50 && qx[2] > 0)
+  if (LogC) { ex[which(ex <= 0)] <- NaN
+    exprs(gset) <- log2(ex) }
+  
+  # assign samples to groups and set up design matrix
+  gs <- factor(sml)
+  groups <- make.names(c("young","old"))
+  levels(gs) <- groups
+  gset$group <- gs
+  design <- model.matrix(~group + 0, gset)
+  colnames(design) <- levels(gs)
+  
+  fit <- lmFit(gset, design)  # fit linear model
+  
+  # set up contrasts of interest and recalculate model coefficients
+  cts <- paste(groups[1], groups[2], sep="-")
+  cont.matrix <- makeContrasts(contrasts=cts, levels=design)
+  fit2 <- contrasts.fit(fit, cont.matrix)
+  
+  # compute statistics and table of top significant genes
+  fit2 <- eBayes(fit2, 0.01)
+  tT <- topTable(fit2, adjust="fdr", sort.by="B", number=47)
+  
+  tT <- subset(tT, select=c("ID","adj.P.Val","P.Value","t","B","logFC","Gene.symbol","Gene.title"))
+  return(tT)
+}
+```
+#Execute Function
+```{r}
+tT01 <- GEO2R("GSE38718","GPL570","0000000000000011111111")
+```
+
 
 # TESTING AREA FOR PYTHON
 ```{python}
@@ -108,6 +212,10 @@ print(cc_network) # display the result
 
 # TESTING AREA FOR R
 ```{r}
-?write.table
+new.function <- function(a,b,c)  {
+  a + b + c
+}
+
+new.function(2,3,4)
 ```
 
