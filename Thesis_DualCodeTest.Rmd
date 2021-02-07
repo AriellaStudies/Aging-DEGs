@@ -1,0 +1,113 @@
+---
+title: "ThesisTesting_21.01"
+output: html_document
+---
+
+# Version info: R 3.2.3, Biobase 2.30.0, GEOquery 2.40.0, limma 3.26.8
+################################################################
+#   Differential expression analysis with limma
+# Set Working Directory
+```{r}
+setwd("C:/Users/ariel/OneDrive - Washington University in St. Louis/Biostats Class/Thesis Code Testing")
+```
+
+# Special GEOquery package
+```{r}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("GEOquery")
+```
+# Other Packages
+```{r}
+install.packages('limma')
+install.packages('umap')
+install.packages("reticulate")
+```
+# Open Libraries
+```{r}
+library(GEOquery)
+library(limma)
+library(umap)
+library(reticulate)
+```
+# Code from GEO2R for one set
+# Mods: 250 -> 500, write moved to export
+```{r}
+# load series and platform data from GEO
+
+gset <- getGEO("GSE38718", GSEMatrix =TRUE, AnnotGPL=TRUE)
+if (length(gset) > 1) idx <- grep("GPL570", attr(gset, "names")) else idx <- 1
+gset <- gset[[idx]]
+
+# make proper column names to match toptable 
+fvarLabels(gset) <- make.names(fvarLabels(gset))
+
+# group membership for all samples
+gsms <- "0000000000000011111111"
+sml <- strsplit(gsms, split="")[[1]]
+
+# log2 transformation
+ex <- exprs(gset)
+qx <- as.numeric(quantile(ex, c(0., 0.25, 0.5, 0.75, 0.99, 1.0), na.rm=T))
+LogC <- (qx[5] > 100) ||
+          (qx[6]-qx[1] > 50 && qx[2] > 0)
+if (LogC) { ex[which(ex <= 0)] <- NaN
+  exprs(gset) <- log2(ex) }
+
+# assign samples to groups and set up design matrix
+gs <- factor(sml)
+groups <- make.names(c("young","old"))
+levels(gs) <- groups
+gset$group <- gs
+design <- model.matrix(~group + 0, gset)
+colnames(design) <- levels(gs)
+
+fit <- lmFit(gset, design)  # fit linear model
+
+# set up contrasts of interest and recalculate model coefficients
+cts <- paste(groups[1], groups[2], sep="-")
+cont.matrix <- makeContrasts(contrasts=cts, levels=design)
+fit2 <- contrasts.fit(fit, cont.matrix)
+
+# compute statistics and table of top significant genes
+fit2 <- eBayes(fit2, 0.01)
+tT <- topTable(fit2, adjust="fdr", sort.by="B", number=500)
+
+tT <- subset(tT, select=c("ID","adj.P.Val","P.Value","t","B","logFC","Gene.symbol","Gene.title"))
+```
+# WRITING AREA
+```{r}
+write.table(tT, file="R_Out_1.26.txt", row.names=F, sep="\t")
+write.csv(tT, file="R_Out_C.csv", row.names=F)
+```
+
+# TESTING AREA FOR PYTHON
+```{python}
+cc_network = {} # empty dictionary that will hold the network
+
+# Read in the file and add dictionary entries:
+file = open('yeast_cc_network-Copy1.txt')
+for line in file:
+    entry = line.strip().split('\t')
+    regulator = entry[0]
+    regulated = entry[1]
+    if regulator in cc_network:
+        cc_network[regulator] += [regulated]
+    else:
+        cc_network[regulator] = [regulated]
+        
+file.close()
+
+# YOUR ANSWER HERE
+
+# Remember to close the file after reading the data.
+print(cc_network) # display the result
+```
+
+
+# TESTING AREA FOR R
+```{r}
+?write.table
+```
+
