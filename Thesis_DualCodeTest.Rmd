@@ -32,7 +32,7 @@ library(umap)
 library(reticulate)
 ```
 # Code from GEO2R for one set
-# Mods: 250 -> 500, write moved to export
+# Mods: 250 -> 1000, write moved to export
 ```{r}
 # load series and platform data from GEO
 
@@ -136,7 +136,7 @@ tT <- subset(tT, select=c("ID","adj.P.Val","P.Value","t","B","logFC","Gene.symbo
 
 # FUNCTION TESTING AREA
 ```{r}
-GEO2R <- function(GSE_number,platform_code,group_binaries){
+GEO2R <- function(GSE_number,platform_code,group_binaries,outputs){
   # load series and platform data from GEO
   gset <- getGEO(GSE_number, GSEMatrix =TRUE, AnnotGPL=TRUE)
   if (length(gset) > 1) idx <- grep(platform_code, attr(gset, "names")) else idx <- 1
@@ -174,7 +174,7 @@ GEO2R <- function(GSE_number,platform_code,group_binaries){
   
   # compute statistics and table of top significant genes
   fit2 <- eBayes(fit2, 0.01)
-  tT <- topTable(fit2, adjust="fdr", sort.by="B", number=47)
+  tT <- topTable(fit2, adjust="fdr", sort.by="B", number=outputs)
   
   tT <- subset(tT, select=c("ID","adj.P.Val","P.Value","t","B","logFC","Gene.symbol","Gene.title"))
   return(tT)
@@ -182,7 +182,7 @@ GEO2R <- function(GSE_number,platform_code,group_binaries){
 ```
 #Execute Function
 ```{r}
-tT01 <- GEO2R("GSE38718","GPL570","0000000000000011111111")
+tT01 <- GEO2R("GSE38718","GPL570","0000000000000011111111",48)
 ```
 
 
