@@ -1,25 +1,22 @@
 ---
 title: "ThesisTesting_21.01"
-output: html_document
+output:
+  html_document: default
 ---
 
 # Version info: R 3.2.3, Biobase 2.30.0, GEOquery 2.40.0, limma 3.26.8
 ################################################################
 # Setup
-Set Working Directory
-```{r}
-setwd("C:/Users/ariel/OneDrive - Washington University in St. Louis/Biostats Class/Thesis Code Testing")
-```
 
 Special GEOquery package
-```{r}
+```{r eval=FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
 BiocManager::install("GEOquery")
 ```
 Other Packages
-```{r}
+```{r eval=FALSE}
 install.packages('limma')
 install.packages('umap')
 install.packages("reticulate")
@@ -91,29 +88,35 @@ tT02 <- GEO2R("GSE53890","GPL570","0000000000000XXXXXX1111111111111XXXXXXXXX",46
 ```
 
 # Tasks
+
 ## Fundamental Code Structure
-X Function working with two sets, both human
-O Analyze only adjust p < 0.01
-O Loop to create dictionary of DEG score counts
-O Export dictionary to csv as final product
+
+* X Function working with two sets, both human
+* O Analyze only adjust p < 0.01
+* O Loop to create dictionary of DEG score counts
+* O Export dictionary to csv as final product
+
 ## Expansion to all mammals
-O Function working with mouse set
-O Function working with other mammals
-O Convert all data to human form
+
+* O Function working with mouse set
+* O Function working with other mammals
+* O Convert all data to human form
+
 ## Expansion for flexible analyses
-O Database sets with species and tissue type and age status
-O Automate extracting set info based on species/tissue
+
+* O Database sets with species and tissue type and age status
+* O Automate extracting set info based on species/tissue
 
 # Methods Log
 WRITING/EXPORTING METHOD
-```{r}
+```{r eval=FALSE}
 write.table(tT, file="R_Out_1.26.txt", row.names=F, sep="\t")
 write.csv(tT, file="R_Out_C.csv", row.names=F)
 ```
 
 # Testing Areas
 TESTING AREA FOR PYTHON
-```{python}
+```{python eval=FALSE}
 cc_network = {} # empty dictionary that will hold the network
 
 # Read in the file and add dictionary entries:
@@ -137,7 +140,7 @@ print(cc_network) # display the result
 
 
 TESTING AREA FOR R
-```{r}
+```{r eval=FALSE}
 new.function <- function(a,b,c)  {
   a + b + c
 }
