@@ -149,6 +149,11 @@ GEO2R <- function(GSE_number,platform_code,group_binaries,outputs){
   gsms <- group_binaries
   sml <- strsplit(gsms, split="")[[1]]
   
+  # filter out excluded samples (marked as "X")
+  sel <- which(sml != "X")
+  sml <- sml[sel]
+  gset <- gset[ ,sel]
+  
   # log2 transformation
   ex <- exprs(gset)
   qx <- as.numeric(quantile(ex, c(0., 0.25, 0.5, 0.75, 0.99, 1.0), na.rm=T))
@@ -183,6 +188,7 @@ GEO2R <- function(GSE_number,platform_code,group_binaries,outputs){
 #Execute Function
 ```{r}
 tT01 <- GEO2R("GSE38718","GPL570","0000000000000011111111",48)
+tT02 <- GEO2R("GSE53890","GPL570","1111111111111XXXXXX0000000000000XXXXXXXXX",46)
 ```
 
 
