@@ -5,33 +5,35 @@ output: html_document
 
 # Version info: R 3.2.3, Biobase 2.30.0, GEOquery 2.40.0, limma 3.26.8
 ################################################################
-#   Differential expression analysis with limma
-# Set Working Directory
+# Setup
+Set Working Directory
 ```{r}
 setwd("C:/Users/ariel/OneDrive - Washington University in St. Louis/Biostats Class/Thesis Code Testing")
 ```
 
-# Special GEOquery package
+Special GEOquery package
 ```{r}
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
 BiocManager::install("GEOquery")
 ```
-# Other Packages
+Other Packages
 ```{r}
 install.packages('limma')
 install.packages('umap')
 install.packages("reticulate")
 ```
-# Open Libraries
+Open Libraries
 ```{r}
 library(GEOquery)
 library(limma)
 library(umap)
 library(reticulate)
 ```
-# GEO2R Function
+
+# Functions
+GEO2R Function
 ```{r}
 GEO2R <- function(GSE_number,platform_code,group_binaries,outputs){
   # load series and platform data from GEO
@@ -82,19 +84,35 @@ GEO2R <- function(GSE_number,platform_code,group_binaries,outputs){
   return(tT)
 }
 ```
-#Execute GEO2R Function
+Execute GEO2R Function
 ```{r}
 tT01 <- GEO2R("GSE38718","GPL570","0000000000000011111111",48)
 tT02 <- GEO2R("GSE53890","GPL570","0000000000000XXXXXX1111111111111XXXXXXXXX",46)
 ```
-# WRITING/EXPORTING METHOD
+
+# Tasks
+## Fundamental Code Structure
+X Function working with two sets, both human
+O Analyze only adjust p < 0.01
+O Loop to create dictionary of DEG score counts
+O Export dictionary to csv as final product
+## Expansion to all mammals
+O Function working with mouse set
+O Function working with other mammals
+O Convert all data to human form
+## Expansion for flexible analyses
+O Database sets with species and tissue type and age status
+O Automate extracting set info based on species/tissue
+
+# Methods Log
+WRITING/EXPORTING METHOD
 ```{r}
 write.table(tT, file="R_Out_1.26.txt", row.names=F, sep="\t")
 write.csv(tT, file="R_Out_C.csv", row.names=F)
 ```
 
-## Testing Areas
-# TESTING AREA FOR PYTHON
+# Testing Areas
+TESTING AREA FOR PYTHON
 ```{python}
 cc_network = {} # empty dictionary that will hold the network
 
@@ -118,7 +136,7 @@ print(cc_network) # display the result
 ```
 
 
-# TESTING AREA FOR R
+TESTING AREA FOR R
 ```{r}
 new.function <- function(a,b,c)  {
   a + b + c
