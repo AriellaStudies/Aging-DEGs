@@ -91,12 +91,31 @@ GEO2R <- function(GSE_number,platform_code,group_binaries,outputs){
 ```
 Execute GEO2R Function
 ```{r cache=TRUE, message = FALSE, warning=FALSE}
-tT01 <- GEO2R("GSE38718","GPL570","0000000000000011111111",48)
-tT02 <- GEO2R("GSE53890","GPL570","0000000000000XXXXXX1111111111111XXXXXXXXX",46)
+tT01 <- GEO2R("GSE38718","GPL570","0000000000000011111111",1000)
+tT02 <- GEO2R("GSE53890","GPL570","0000000000000XXXXXX1111111111111XXXXXXXXX",1000)
 
 kable(tT01[1:10,])
 kable(tT02[1:10,])
 ```
+Test filtering out p>0.01 by subsetting
+```{r cache=TRUE}
+tT01_sig <- tT01[tT01$adj.P.Val<0.01,]
+```
+
+Try to unify into one function
+```{r}
+GEO2R_pFiltered <- function(GSE_number,platform_code,group_binaries,outputs){
+  tempTable <- GEO2R(GSE_number,platform_code,group_binaries,outputs)
+  filtTable <- tempTable[tempTable$adj.P.Val<0.01,]
+  return(filtTable)
+}
+```
+
+Execution test
+```{r}
+tT01_filt <- GEO2R_pFiltered("GSE38718","GPL570","0000000000000011111111",1000)
+```
+
 
 # Tasks
 
