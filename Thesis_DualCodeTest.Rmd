@@ -37,7 +37,7 @@ knitr::opts_chunk$set(class.source = "bg-info")
 ```
 
 
-# Functions
+# R Functions
 GEO2R Function
 ```{r cache=TRUE}
 GEO2R <- function(GSE_number,platform_code,group_binaries,outputs){
@@ -99,7 +99,7 @@ kable(tT02[1:10,])
 ```
 
 Function compounded to filter results by adjusted p<0.01
-```{r}
+```{r cache=TRUE}
 GEO2R_pFiltered <- function(GSE_number,platform_code,group_binaries,outputs){
   tempTable <- GEO2R(GSE_number,platform_code,group_binaries,outputs)
   filtTable <- tempTable[tempTable$adj.P.Val<0.01,]
@@ -109,8 +109,15 @@ GEO2R_pFiltered <- function(GSE_number,platform_code,group_binaries,outputs){
 
 Execution test for GEO2R_pFiltered
 (Note that some data-sets have more than 1000 p<0.01)
-```{r}
+```{r cache=TRUE, message = FALSE, warning=FALSE}
 tT01_filt <- GEO2R_pFiltered("GSE38718","GPL570","0000000000000011111111",1000)
+tT02_filt <- GEO2R_pFiltered("GSE53890","GPL570","0000000000000XXXXXX1111111111111XXXXXXXXX",1000)
+```
+
+Write to files
+```{r eval=FALSE}
+write.table(tT01_filt, file="tT01_filt.txt", row.names=F, sep="\t")
+write.table(tT02_filt, file="tT02_filt.txt", row.names=F, sep="\t")
 ```
 
 
@@ -120,7 +127,7 @@ tT01_filt <- GEO2R_pFiltered("GSE38718","GPL570","0000000000000011111111",1000)
 
 * X Establish Rmarkdown, knit, & github work-flow
 * X Function working with two sets, both human
-* O Analyze only adjust p < 0.01
+* X Analyze only adjust p < 0.01
 * O Loop to create dictionary of DEG score counts
 * O Export dictionary to csv as final product
 
