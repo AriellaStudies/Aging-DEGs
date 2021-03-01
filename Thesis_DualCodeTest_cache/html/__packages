@@ -1,0 +1,8 @@
+base
+BiocGenerics
+Biobase
+GEOquery
+limma
+umap
+reticulate
+knitr

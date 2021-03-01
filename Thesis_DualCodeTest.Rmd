@@ -1,7 +1,9 @@
 ---
 title: "ThesisTesting_21.01"
 output:
-  html_document: default
+  html_document:
+    theme: darkly
+    highlight: zenburn
 ---
 
 # Version info: R 3.2.3, Biobase 2.30.0, GEOquery 2.40.0, limma 3.26.8
@@ -22,16 +24,22 @@ install.packages('umap')
 install.packages("reticulate")
 ```
 Open Libraries
-```{r}
+```{r cache = TRUE, include=FALSE}
 library(GEOquery)
 library(limma)
 library(umap)
 library(reticulate)
+library(knitr)
 ```
+Global Options (not in use)
+```{r eval=FALSE}
+knitr::opts_chunk$set(class.source = "bg-info")
+```
+
 
 # Functions
 GEO2R Function
-```{r}
+```{r cache=TRUE}
 GEO2R <- function(GSE_number,platform_code,group_binaries,outputs){
   # load series and platform data from GEO
   gset <- getGEO(GSE_number, GSEMatrix =TRUE, AnnotGPL=TRUE)
@@ -82,15 +90,19 @@ GEO2R <- function(GSE_number,platform_code,group_binaries,outputs){
 }
 ```
 Execute GEO2R Function
-```{r}
+```{r cache=TRUE, message = FALSE, warning=FALSE}
 tT01 <- GEO2R("GSE38718","GPL570","0000000000000011111111",48)
 tT02 <- GEO2R("GSE53890","GPL570","0000000000000XXXXXX1111111111111XXXXXXXXX",46)
+
+kable(tT01[1:10,])
+kable(tT02[1:10,])
 ```
 
 # Tasks
 
 ## Fundamental Code Structure
 
+* X Establish Rmarkdown, knit, & github work-flow
 * X Function working with two sets, both human
 * O Analyze only adjust p < 0.01
 * O Loop to create dictionary of DEG score counts
