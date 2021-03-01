@@ -103,13 +103,14 @@ Function compounded to filter results by adjusted p<0.01
 GEO2R_pFiltered <- function(GSE_number,platform_code,group_binaries,outputs){
   tempTable <- GEO2R(GSE_number,platform_code,group_binaries,outputs)
   filtTable <- tempTable[tempTable$adj.P.Val<0.01,]
-  return(filtTable)
+  dupTable <- filtTable[!duplicated(filtTable$Gene.symbol),]
+  return(dupTable)
 }
 ```
 
 Execution test for GEO2R_pFiltered
 (Note that some data-sets have more than 1000 p<0.01)
-```{r cache=TRUE, message = FALSE, warning=FALSE}
+```{r message = FALSE, warning=FALSE}
 tT01_filt <- GEO2R_pFiltered("GSE38718","GPL570","0000000000000011111111",1000)
 tT02_filt <- GEO2R_pFiltered("GSE53890","GPL570","0000000000000XXXXXX1111111111111XXXXXXXXX",1000)
 ```
@@ -118,6 +119,70 @@ Write to files
 ```{r eval=FALSE}
 write.table(tT01_filt, file="tT01_filt.txt", row.names=F, sep="\t")
 write.table(tT02_filt, file="tT02_filt.txt", row.names=F, sep="\t")
+```
+
+# Python
+
+```{python}
+young_dict = {}
+old_dict = {}
+total_dict = {}
+
+file = open('tT01_filt.txt')
+header = file.readline()
+for line in file:
+  row = line.strip().split('\t')
+  logFC = row[5]
+  geneID = row[6]
+  if logFC > 0:
+    if geneID in young_dict:
+      young_dict[geneID] += 1
+      total_dict[geneID] += 1
+    elif geneID in total_dict:
+      total_dict[geneID] += 1
+      young_dict[geneID] = 1
+    else:
+      young_dict[geneID] = 1
+      total_dict[geneID] = 1
+  if logFC < 0:
+    if geneID in old_dict:
+      old_dict[geneID] += 1
+      total_dict[geneID] += (-1)
+    elif geneID in total_dict:
+      total_dict[geneID] += (-1)
+      old_dict[geneID] = 1
+    else:
+      old_dict[geneID] = 1
+      total_dict[geneID] = 1
+file.close()
+
+file = open('tT02_filt.txt')
+header = file.readline()
+for line in file:
+  row = line.strip().split('\t')
+  logFC = row[5]
+  geneID = row[6]
+  if logFC > 0:
+    if geneID in young_dict:
+      young_dict[geneID] += 1
+      total_dict[geneID] += 1
+    elif geneID in total_dict:
+      total_dict[geneID] += 1
+      young_dict[geneID] = 1
+    else:
+      young_dict[geneID] = 1
+      total_dict[geneID] = 1
+  if logFC < 0:
+    if geneID in old_dict:
+      old_dict[geneID] += 1
+      total_dict[geneID] += (-1)
+    elif geneID in total_dict:
+      total_dict[geneID] += (-1)
+      old_dict[geneID] = 1
+    else:
+      old_dict[geneID] = 1
+      total_dict[geneID] = 1
+file.close()
 ```
 
 
