@@ -132,7 +132,7 @@ file = open('tT01_filt.txt')
 header = file.readline()
 for line in file:
   row = line.strip().split('\t')
-  logFC = row[5]
+  logFC = float(row[5])
   geneID = row[6]
   if logFC > 0:
     if geneID in young_dict:
@@ -160,7 +160,7 @@ file = open('tT02_filt.txt')
 header = file.readline()
 for line in file:
   row = line.strip().split('\t')
-  logFC = row[5]
+  logFC = float(row[5])
   geneID = row[6]
   if logFC > 0:
     if geneID in young_dict:
@@ -193,7 +193,8 @@ file.close()
 * X Establish Rmarkdown, knit, & github work-flow
 * X Function working with two sets, both human
 * X Analyze only adjust p < 0.01
-* O Loop to create dictionary of DEG score counts
+* X Loop to create dictionary of DEG score counts
+* O Convert loop to function
 * O Export dictionary to csv as final product
 
 ## Expansion to all mammals
