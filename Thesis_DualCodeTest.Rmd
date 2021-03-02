@@ -167,7 +167,12 @@ total_dict = {}
 file_to_dict('tT01_filt.txt')
 file_to_dict('tT02_filt.txt')
 
-print(total_dict)
+```
+Convert count dictionary to ordered dataframe
+```{python}
+total_df = pd.DataFrame.from_dict(total_dict, orient='index')
+ordered_df = total_df.sort_values(by=0, ascending=False)
+ordered_df
 ```
 
 
@@ -179,8 +184,8 @@ print(total_dict)
 * X Function working with two sets, both human
 * X Analyze only adjust p < 0.01
 * X Loop to create dictionary of DEG score counts
-* O Convert dictionary to dataframe and/or csv
-* O Convert loop to function
+* X Convert dictionary to dataframe and/or csv
+* X Convert loop to function
 
 ## Expansion to all mammals
 
@@ -211,8 +216,7 @@ total_df.sort_values(by=0, ascending=False)
 TESTING AREA FOR PYTHON
 ```{python}
 #Play here
-total_df = pd.DataFrame.from_dict(total_dict, orient='index')
-total_df
+
 ```
 
 
