@@ -131,7 +131,7 @@ total_dict = {}
 file = open('tT01_filt.txt')
 header = file.readline()
 for line in file:
-  row = line.strip().split('\t')
+  row = line.strip().replace('"', '').split('\t')
   logFC = float(row[5])
   geneID = row[6]
   if logFC > 0:
@@ -159,7 +159,7 @@ file.close()
 file = open('tT02_filt.txt')
 header = file.readline()
 for line in file:
-  row = line.strip().split('\t')
+  row = line.strip().replace('"', '').split('\t')
   logFC = float(row[5])
   geneID = row[6]
   if logFC > 0:
@@ -194,8 +194,8 @@ file.close()
 * X Function working with two sets, both human
 * X Analyze only adjust p < 0.01
 * X Loop to create dictionary of DEG score counts
+* O Convert dictionary to dataframe and/or csv
 * O Convert loop to function
-* O Export dictionary to csv as final product
 
 ## Expansion to all mammals
 
@@ -209,39 +209,32 @@ file.close()
 * O Automate extracting set info based on species/tissue
 
 # Methods Log
-WRITING/EXPORTING METHOD
+WRITING/EXPORTING R TABLES TO TXT OR CSV
 ```{r eval=FALSE}
 write.table(tT, file="R_Out_1.26.txt", row.names=F, sep="\t")
 write.csv(tT, file="R_Out_C.csv", row.names=F)
 ```
 
+CONVERTING DICTIONARIES TO DATAFRAMES IN PYTHON
+```{python}
+
+```
+
+
 # Testing Areas
 TESTING AREA FOR PYTHON
-```{python eval=FALSE}
-cc_network = {} # empty dictionary that will hold the network
+```{python}
+#Play here
+#Can I call a dictionary from a previous python chunk?
+print(len(total_dict))
+#yes
 
-# Read in the file and add dictionary entries:
-file = open('yeast_cc_network-Copy1.txt')
-for line in file:
-    entry = line.strip().split('\t')
-    regulator = entry[0]
-    regulated = entry[1]
-    if regulator in cc_network:
-        cc_network[regulator] += [regulated]
-    else:
-        cc_network[regulator] = [regulated]
-        
-file.close()
-
-# YOUR ANSWER HERE
-
-# Remember to close the file after reading the data.
-print(cc_network) # display the result
 ```
 
 
 TESTING AREA FOR R
 ```{r eval=FALSE}
+#Play here
 new.function <- function(a,b,c)  {
   a + b + c
 }
