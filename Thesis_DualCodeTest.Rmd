@@ -122,67 +122,47 @@ write.table(tT02_filt, file="tT02_filt.txt", row.names=F, sep="\t")
 ```
 
 # Python
-
+Define Reader Function
+```{python}
+def file_to_dict(file_name):
+    file = open(file_name)
+    header = file.readline()
+    for line in file:
+      row = line.strip().replace('"', '').split('\t')
+      logFC = float(row[5])
+      geneID = row[6]
+      if logFC > 0:
+        if geneID in young_dict:
+          young_dict[geneID] += 1
+          total_dict[geneID] += 1
+        elif geneID in total_dict:
+          total_dict[geneID] += 1
+          young_dict[geneID] = 1
+        else:
+          young_dict[geneID] = 1
+          total_dict[geneID] = 1
+      if logFC < 0:
+        if geneID in old_dict:
+          old_dict[geneID] += 1
+          total_dict[geneID] += (-1)
+        elif geneID in total_dict:
+          total_dict[geneID] += (-1)
+          old_dict[geneID] = 1
+        else:
+          old_dict[geneID] = 1
+          total_dict[geneID] = -1
+    file.close()
+```
+Execute Reader Function
 ```{python}
 young_dict = {}
 old_dict = {}
 total_dict = {}
 
-file = open('tT01_filt.txt')
-header = file.readline()
-for line in file:
-  row = line.strip().replace('"', '').split('\t')
-  logFC = float(row[5])
-  geneID = row[6]
-  if logFC > 0:
-    if geneID in young_dict:
-      young_dict[geneID] += 1
-      total_dict[geneID] += 1
-    elif geneID in total_dict:
-      total_dict[geneID] += 1
-      young_dict[geneID] = 1
-    else:
-      young_dict[geneID] = 1
-      total_dict[geneID] = 1
-  if logFC < 0:
-    if geneID in old_dict:
-      old_dict[geneID] += 1
-      total_dict[geneID] += (-1)
-    elif geneID in total_dict:
-      total_dict[geneID] += (-1)
-      old_dict[geneID] = 1
-    else:
-      old_dict[geneID] = 1
-      total_dict[geneID] = -1
-file.close()
+file_to_dict('tT01_filt.txt')
+file_to_dict('tT02_filt.txt')
 
-file = open('tT02_filt.txt')
-header = file.readline()
-for line in file:
-  row = line.strip().replace('"', '').split('\t')
-  logFC = float(row[5])
-  geneID = row[6]
-  if logFC > 0:
-    if geneID in young_dict:
-      young_dict[geneID] += 1
-      total_dict[geneID] += 1
-    elif geneID in total_dict:
-      total_dict[geneID] += 1
-      young_dict[geneID] = 1
-    else:
-      young_dict[geneID] = 1
-      total_dict[geneID] = 1
-  if logFC < 0:
-    if geneID in old_dict:
-      old_dict[geneID] += 1
-      total_dict[geneID] += (-1)
-    elif geneID in total_dict:
-      total_dict[geneID] += (-1)
-      old_dict[geneID] = 1
-    else:
-      old_dict[geneID] = 1
-      total_dict[geneID] = -1
-file.close()
+print(total_dict)
 ```
 
 
@@ -216,8 +196,9 @@ write.csv(tT, file="R_Out_C.csv", row.names=F)
 ```
 
 CONVERTING DICTIONARIES TO DATAFRAMES IN PYTHON
-```{python}
-
+```{python eval=FALSE}
+total_df = pd.DataFrame.from_dict(total_dict, orient='index')
+total_df.sort_values(by=0, ascending=False)
 ```
 
 
