@@ -198,35 +198,3 @@ ordered_df
 * O Database sets with species and tissue type and age status
 * O Automate extracting set info based on species/tissue
 
-# Methods Log
-WRITING/EXPORTING R TABLES TO TXT OR CSV
-```{r eval=FALSE}
-write.table(tT, file="R_Out_1.26.txt", row.names=F, sep="\t")
-write.csv(tT, file="R_Out_C.csv", row.names=F)
-```
-
-CONVERTING DICTIONARIES TO DATAFRAMES IN PYTHON
-```{python eval=FALSE}
-total_df = pd.DataFrame.from_dict(total_dict, orient='index')
-total_df.sort_values(by=0, ascending=False)
-```
-
-
-# Testing Areas
-TESTING AREA FOR PYTHON
-```{python}
-#Play here
-
-```
-
-
-TESTING AREA FOR R
-```{r eval=FALSE}
-#Play here
-new.function <- function(a,b,c)  {
-  a + b + c
-}
-
-new.function(2,3,4)
-```
-
