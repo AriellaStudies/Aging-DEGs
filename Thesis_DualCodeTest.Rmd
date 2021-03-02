@@ -24,16 +24,21 @@ install.packages('umap')
 install.packages("reticulate")
 ```
 Open Libraries
-```{r cache = TRUE, include=FALSE}
+```{r cache=TRUE, include=FALSE}
 library(GEOquery)
 library(limma)
 library(umap)
 library(reticulate)
 library(knitr)
+py_install("pandas")
 ```
 Global Options (not in use)
 ```{r eval=FALSE}
 knitr::opts_chunk$set(class.source = "bg-info")
+```
+Python Packages
+```{python cache=TRUE, include=FALSE}
+import pandas as pd
 ```
 
 
@@ -206,10 +211,8 @@ total_df.sort_values(by=0, ascending=False)
 TESTING AREA FOR PYTHON
 ```{python}
 #Play here
-#Can I call a dictionary from a previous python chunk?
-print(len(total_dict))
-#yes
-
+total_df = pd.DataFrame.from_dict(total_dict, orient='index')
+total_df
 ```
 
 
