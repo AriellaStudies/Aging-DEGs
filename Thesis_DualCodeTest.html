@@ -488,9 +488,10 @@ summary {
 <p>Open Libraries</p>
 <p>Global Options (not in use)</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">class.source =</span> <span class="st">&quot;bg-info&quot;</span>)</span></code></pre></div>
+<p>Python Packages</p>
 </div>
-<div id="functions" class="section level1">
-<h1>Functions</h1>
+<div id="r-functions" class="section level1">
+<h1>R Functions</h1>
 <p>GEO2R Function</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>GEO2R &lt;-<span class="st"> </span><span class="cf">function</span>(GSE_number,platform_code,group_binaries,outputs){</span>
 <span id="cb4-2"><a href="#cb4-2"></a>  <span class="co"># load series and platform data from GEO</span></span>
@@ -540,9 +541,9 @@ summary {
 <span id="cb4-46"><a href="#cb4-46"></a>  tT &lt;-<span class="st"> </span><span class="kw">subset</span>(tT, <span class="dt">select=</span><span class="kw">c</span>(<span class="st">&quot;ID&quot;</span>,<span class="st">&quot;adj.P.Val&quot;</span>,<span class="st">&quot;P.Value&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;logFC&quot;</span>,<span class="st">&quot;Gene.symbol&quot;</span>,<span class="st">&quot;Gene.title&quot;</span>))</span>
 <span id="cb4-47"><a href="#cb4-47"></a>  <span class="kw">return</span>(tT)</span>
 <span id="cb4-48"><a href="#cb4-48"></a>}</span></code></pre></div>
-<p>Execute GEO2R Function</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>tT01 &lt;-<span class="st"> </span><span class="kw">GEO2R</span>(<span class="st">&quot;GSE38718&quot;</span>,<span class="st">&quot;GPL570&quot;</span>,<span class="st">&quot;0000000000000011111111&quot;</span>,<span class="dv">48</span>)</span>
-<span id="cb5-2"><a href="#cb5-2"></a>tT02 &lt;-<span class="st"> </span><span class="kw">GEO2R</span>(<span class="st">&quot;GSE53890&quot;</span>,<span class="st">&quot;GPL570&quot;</span>,<span class="st">&quot;0000000000000XXXXXX1111111111111XXXXXXXXX&quot;</span>,<span class="dv">46</span>)</span>
+<p>Execution test for GEO2R Function on 2 human datasets</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>tT01 &lt;-<span class="st"> </span><span class="kw">GEO2R</span>(<span class="st">&quot;GSE38718&quot;</span>,<span class="st">&quot;GPL570&quot;</span>,<span class="st">&quot;0000000000000011111111&quot;</span>,<span class="dv">1000</span>)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>tT02 &lt;-<span class="st"> </span><span class="kw">GEO2R</span>(<span class="st">&quot;GSE53890&quot;</span>,<span class="st">&quot;GPL570&quot;</span>,<span class="st">&quot;0000000000000XXXXXX1111111111111XXXXXXXXX&quot;</span>,<span class="dv">1000</span>)</span>
 <span id="cb5-3"><a href="#cb5-3"></a></span>
 <span id="cb5-4"><a href="#cb5-4"></a><span class="kw">kable</span>(tT01[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,])</span></code></pre></div>
 <table>
@@ -822,6 +823,76 @@ summary {
 </tr>
 </tbody>
 </table>
+<p>Function compounded to filter results by adjusted p&lt;0.01</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>GEO2R_pFiltered &lt;-<span class="st"> </span><span class="cf">function</span>(GSE_number,platform_code,group_binaries,outputs){</span>
+<span id="cb7-2"><a href="#cb7-2"></a>  tempTable &lt;-<span class="st"> </span><span class="kw">GEO2R</span>(GSE_number,platform_code,group_binaries,outputs)</span>
+<span id="cb7-3"><a href="#cb7-3"></a>  filtTable &lt;-<span class="st"> </span>tempTable[tempTable<span class="op">$</span>adj.P.Val<span class="op">&lt;</span><span class="fl">0.01</span>,]</span>
+<span id="cb7-4"><a href="#cb7-4"></a>  dupTable &lt;-<span class="st"> </span>filtTable[<span class="op">!</span><span class="kw">duplicated</span>(filtTable<span class="op">$</span>Gene.symbol),]</span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="kw">return</span>(dupTable)</span>
+<span id="cb7-6"><a href="#cb7-6"></a>}</span></code></pre></div>
+<p>Execution test for GEO2R_pFiltered (Note that some data-sets have more than 1000 p&lt;0.01)</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>tT01_filt &lt;-<span class="st"> </span><span class="kw">GEO2R_pFiltered</span>(<span class="st">&quot;GSE38718&quot;</span>,<span class="st">&quot;GPL570&quot;</span>,<span class="st">&quot;0000000000000011111111&quot;</span>,<span class="dv">1000</span>)</span>
+<span id="cb8-2"><a href="#cb8-2"></a>tT02_filt &lt;-<span class="st"> </span><span class="kw">GEO2R_pFiltered</span>(<span class="st">&quot;GSE53890&quot;</span>,<span class="st">&quot;GPL570&quot;</span>,<span class="st">&quot;0000000000000XXXXXX1111111111111XXXXXXXXX&quot;</span>,<span class="dv">1000</span>)</span></code></pre></div>
+<p>Write to files</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">write.table</span>(tT01_filt, <span class="dt">file=</span><span class="st">&quot;tT01_filt.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="kw">write.table</span>(tT02_filt, <span class="dt">file=</span><span class="st">&quot;tT02_filt.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+</div>
+<div id="python" class="section level1">
+<h1>Python</h1>
+<p>Define Reader Function</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">def</span> file_to_dict(file_name):</span>
+<span id="cb10-2"><a href="#cb10-2"></a>    <span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(file_name)</span>
+<span id="cb10-3"><a href="#cb10-3"></a>    header <span class="op">=</span> <span class="bu">file</span>.readline()</span>
+<span id="cb10-4"><a href="#cb10-4"></a>    <span class="cf">for</span> line <span class="kw">in</span> <span class="bu">file</span>:</span>
+<span id="cb10-5"><a href="#cb10-5"></a>      row <span class="op">=</span> line.strip().replace(<span class="st">&#39;&quot;&#39;</span>, <span class="st">&#39;&#39;</span>).split(<span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>)</span>
+<span id="cb10-6"><a href="#cb10-6"></a>      logFC <span class="op">=</span> <span class="bu">float</span>(row[<span class="dv">5</span>])</span>
+<span id="cb10-7"><a href="#cb10-7"></a>      geneID <span class="op">=</span> row[<span class="dv">6</span>]</span>
+<span id="cb10-8"><a href="#cb10-8"></a>      <span class="cf">if</span> logFC <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb10-9"><a href="#cb10-9"></a>        <span class="cf">if</span> geneID <span class="kw">in</span> young_dict:</span>
+<span id="cb10-10"><a href="#cb10-10"></a>          young_dict[geneID] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a>          total_dict[geneID] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a>        <span class="cf">elif</span> geneID <span class="kw">in</span> total_dict:</span>
+<span id="cb10-13"><a href="#cb10-13"></a>          total_dict[geneID] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a>          young_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a>        <span class="cf">else</span>:</span>
+<span id="cb10-16"><a href="#cb10-16"></a>          young_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb10-17"><a href="#cb10-17"></a>          total_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb10-18"><a href="#cb10-18"></a>      <span class="cf">if</span> logFC <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb10-19"><a href="#cb10-19"></a>        <span class="cf">if</span> geneID <span class="kw">in</span> old_dict:</span>
+<span id="cb10-20"><a href="#cb10-20"></a>          old_dict[geneID] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb10-21"><a href="#cb10-21"></a>          total_dict[geneID] <span class="op">+=</span> (<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb10-22"><a href="#cb10-22"></a>        <span class="cf">elif</span> geneID <span class="kw">in</span> total_dict:</span>
+<span id="cb10-23"><a href="#cb10-23"></a>          total_dict[geneID] <span class="op">+=</span> (<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb10-24"><a href="#cb10-24"></a>          old_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb10-25"><a href="#cb10-25"></a>        <span class="cf">else</span>:</span>
+<span id="cb10-26"><a href="#cb10-26"></a>          old_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb10-27"><a href="#cb10-27"></a>          total_dict[geneID] <span class="op">=</span> <span class="dv">-1</span></span>
+<span id="cb10-28"><a href="#cb10-28"></a>    <span class="bu">file</span>.close()</span></code></pre></div>
+<p>Execute Reader Function</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>young_dict <span class="op">=</span> {}</span>
+<span id="cb11-2"><a href="#cb11-2"></a>old_dict <span class="op">=</span> {}</span>
+<span id="cb11-3"><a href="#cb11-3"></a>total_dict <span class="op">=</span> {}</span>
+<span id="cb11-4"><a href="#cb11-4"></a></span>
+<span id="cb11-5"><a href="#cb11-5"></a>file_to_dict(<span class="st">&#39;tT01_filt.txt&#39;</span>)</span>
+<span id="cb11-6"><a href="#cb11-6"></a>file_to_dict(<span class="st">&#39;tT02_filt.txt&#39;</span>)</span></code></pre></div>
+<p>Convert count dictionary to ordered dataframe</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>total_df <span class="op">=</span> pd.DataFrame.from_dict(total_dict, orient<span class="op">=</span><span class="st">&#39;index&#39;</span>)</span>
+<span id="cb12-2"><a href="#cb12-2"></a>ordered_df <span class="op">=</span> total_df.sort_values(by<span class="op">=</span><span class="dv">0</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb12-3"><a href="#cb12-3"></a>ordered_df</span></code></pre></div>
+<pre><code>##         0
+## RAD1    2
+## ADCY2   2
+## ZNF41   2
+## ATP5J   2
+## RPRD1A  2
+## ...    ..
+## ZBTB20 -2
+## BBX    -2
+## TNPO1  -2
+## MT1F   -2
+## MT1E   -2
+## 
+## [1181 rows x 1 columns]</code></pre>
 </div>
 <div id="tasks" class="section level1">
 <h1>Tasks</h1>
@@ -830,9 +901,10 @@ summary {
 <ul>
 <li>X Establish Rmarkdown, knit, &amp; github work-flow</li>
 <li>X Function working with two sets, both human</li>
-<li>O Analyze only adjust p &lt; 0.01</li>
-<li>O Loop to create dictionary of DEG score counts</li>
-<li>O Export dictionary to csv as final product</li>
+<li>X Analyze only adjust p &lt; 0.01</li>
+<li>X Loop to create dictionary of DEG score counts</li>
+<li>X Convert dictionary to dataframe and/or csv</li>
+<li>X Convert loop to function</li>
 </ul>
 </div>
 <div id="expansion-to-all-mammals" class="section level2">
@@ -850,41 +922,6 @@ summary {
 <li>O Automate extracting set info based on species/tissue</li>
 </ul>
 </div>
-</div>
-<div id="methods-log" class="section level1">
-<h1>Methods Log</h1>
-<p>WRITING/EXPORTING METHOD</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">write.table</span>(tT, <span class="dt">file=</span><span class="st">&quot;R_Out_1.26.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="kw">write.csv</span>(tT, <span class="dt">file=</span><span class="st">&quot;R_Out_C.csv&quot;</span>, <span class="dt">row.names=</span>F)</span></code></pre></div>
-</div>
-<div id="testing-areas" class="section level1">
-<h1>Testing Areas</h1>
-<p>TESTING AREA FOR PYTHON</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>cc_network <span class="op">=</span> {} <span class="co"># empty dictionary that will hold the network</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="co"># Read in the file and add dictionary entries:</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;yeast_cc_network-Copy1.txt&#39;</span>)</span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="cf">for</span> line <span class="kw">in</span> <span class="bu">file</span>:</span>
-<span id="cb8-6"><a href="#cb8-6"></a>    entry <span class="op">=</span> line.strip().split(<span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>)</span>
-<span id="cb8-7"><a href="#cb8-7"></a>    regulator <span class="op">=</span> entry[<span class="dv">0</span>]</span>
-<span id="cb8-8"><a href="#cb8-8"></a>    regulated <span class="op">=</span> entry[<span class="dv">1</span>]</span>
-<span id="cb8-9"><a href="#cb8-9"></a>    <span class="cf">if</span> regulator <span class="kw">in</span> cc_network:</span>
-<span id="cb8-10"><a href="#cb8-10"></a>        cc_network[regulator] <span class="op">+=</span> [regulated]</span>
-<span id="cb8-11"><a href="#cb8-11"></a>    <span class="cf">else</span>:</span>
-<span id="cb8-12"><a href="#cb8-12"></a>        cc_network[regulator] <span class="op">=</span> [regulated]</span>
-<span id="cb8-13"><a href="#cb8-13"></a>        </span>
-<span id="cb8-14"><a href="#cb8-14"></a><span class="bu">file</span>.close()</span>
-<span id="cb8-15"><a href="#cb8-15"></a></span>
-<span id="cb8-16"><a href="#cb8-16"></a><span class="co"># YOUR ANSWER HERE</span></span>
-<span id="cb8-17"><a href="#cb8-17"></a></span>
-<span id="cb8-18"><a href="#cb8-18"></a><span class="co"># Remember to close the file after reading the data.</span></span>
-<span id="cb8-19"><a href="#cb8-19"></a><span class="bu">print</span>(cc_network) <span class="co"># display the result</span></span></code></pre></div>
-<p>TESTING AREA FOR R</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>new.function &lt;-<span class="st"> </span><span class="cf">function</span>(a,b,c)  {</span>
-<span id="cb9-2"><a href="#cb9-2"></a>  a <span class="op">+</span><span class="st"> </span>b <span class="op">+</span><span class="st"> </span>c</span>
-<span id="cb9-3"><a href="#cb9-3"></a>}</span>
-<span id="cb9-4"><a href="#cb9-4"></a></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="kw">new.function</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span></code></pre></div>
 </div>
 
 
