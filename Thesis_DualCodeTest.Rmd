@@ -46,7 +46,7 @@ import pandas as pd
 import regex as re
 ```
 #Dataset Management (Python)
-NCBI GEO was searched for expression datasets on 03/02/2021 for "aging", filtered to mammalian species, with 104 results. Results were exported as a detailed text file, then parsed into a dataframe using Python below.
+NCBI GEO was searched for expression datasets on 03/02/2021, filtered to mammalian species with age sets, with 221 results. Results were exported as a detailed text file, then parsed into a dataframe using Python below.
 ```{python cache=TRUE, message = FALSE, warning=FALSE}
 pattern_organism = re.compile(r"\bOrganism\w*\b")
 pattern_GSE = re.compile(r"\bPlatform\w*\b")
@@ -72,7 +72,10 @@ print(df_of_lists)
 ```
 #Dataset Management (Manual)
 Fill in manual methods here and then import.
+
+-----------------
 UNDER CONSTRUCTION
+----------------
 
 # Calculate DEGs in each Dataset (R)
 GEO2R Function
