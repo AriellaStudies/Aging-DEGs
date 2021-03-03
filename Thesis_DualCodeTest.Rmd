@@ -45,8 +45,8 @@ Python Packages
 import pandas as pd
 import regex as re
 ```
-
-Database Test
+#Dataset Management (Python)
+NCBI GEO was searched for expression datasets on 03/02/2021 for "aging", filtered to mammalian species, with 104 results. Results were exported as a detailed text file, then parsed into a dataframe using Python below.
 ```{python cache=TRUE, message = FALSE, warning=FALSE}
 pattern_organism = re.compile(r"\bOrganism\w*\b")
 pattern_GSE = re.compile(r"\bPlatform\w*\b")
@@ -65,10 +65,16 @@ with open("gds_result.txt","rt") as myfile:
             list_GSE.append(GSE)
             Platform = line.split("Platform: ")[1].rsplit()[0]
             list_platform.append(Platform)
-print(list_organism, list_GSE, list_platform)
+list_of_lists = [list_GSE, list_organism, list_platform]
+df_of_lists = pd.DataFrame(list_of_lists).transpose()
+df_of_lists.columns = ["GSE","Organism","Platform"]
+print(df_of_lists)
 ```
+#Dataset Management (Manual)
+Fill in manual methods here and then import.
+UNDER CONSTRUCTION
 
-# R Functions
+# Calculate DEGs in each Dataset (R)
 GEO2R Function
 ```{r cache=TRUE}
 GEO2R <- function(GSE_number,platform_code,group_binaries,outputs){
@@ -152,7 +158,7 @@ write.table(tT01_filt, file="tT01_filt.txt", row.names=F, sep="\t")
 write.table(tT02_filt, file="tT02_filt.txt", row.names=F, sep="\t")
 ```
 
-# Python
+# Calculate Counts Across Datasets (Python)
 Define Reader Function
 ```{python}
 def file_to_dict(file_name):
