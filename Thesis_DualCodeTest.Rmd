@@ -150,9 +150,10 @@ GEO2R_pFiltered <- function(GSE_number,platform_code,group_binaries,outputs){
 Execute functions on human datasets
 (Note that some data-sets have more than 1000 p<0.01)
 ```{r cache = TRUE, message = FALSE, warning=FALSE}
-tT009 <- GEO2R_pFiltered("GSE53890","GPL570","0000000000000XXXXXX1111111111111XXXXXXXXX",1000)
+#tT007 <- GEO2R_pFiltered("GSE58015","GPL571","000011111",1000)
+tT009 <- GEO2R_pFiltered("GSE53890","GPL570","XXXXXXXX00000000000XX11111111111XXXXXXXXX",1000)
 tT023 <- GEO2R_pFiltered("GSE38718","GPL570","0000000000000011111111",1000)
-tT044 <- GEO2R_pFiltered("GSE32719","GPL570","00000000000000XXXXX11111111",10)
+tT044 <- GEO2R_pFiltered("GSE32719","GPL570","XXXXXXXXXXXXXX0000011111111",1000)
 ```
 
 Execute function on mouse datasets
