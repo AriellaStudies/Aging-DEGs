@@ -142,6 +142,9 @@ GEO2R_pFiltered <- function(GSE_number,platform_code,group_binaries,outputs){
 }
 ```
 
+**DATASET CONTROL ZONE 1 OF 4**
+(These zones must be updated if adding or commenting out datasets.)
+
 Execute functions on human datasets
 (Note that some data-sets have more than 1000 p<0.01)
 ```{r cache = TRUE, message = FALSE, warning=FALSE}
@@ -168,23 +171,12 @@ M2H <- function(mouse_tT){
 }
 ```
 
+**DATASET CONTROL ZONE 2 OF 4**
 Execution:
 ```{r}
 tT011 <- M2H(tT011M)
 ```
 
-
-Archive:
-```{r}
-MouseSymbols = tT011[,7]
-MouseSymbols
-M2H_Symbols = mouse2human(MouseSymbols)
-M2H_Symbols
-tT011Merge = merge(tT011,M2H_Symbols,by.x = "Gene.symbol",by.y = "mouseGene")
-tT011Merge
-tT011Reordered = tT011Merge[,c(2,3,4,5,6,7,9,8,1)]
-tT011Reordered
-```
 Note: Some gene IDs appear in the results as GeneName1///GeneName2///GeneName3///. I noticed these were not successfully converted to human genes. I performed a test on one such gene where I ran each GeneName individually, and no results were found either, so I conclude homologous genes are not available for those entries regardless of any formatting issue.
 Record of this Test:
 ```{r eval=FALSE}
@@ -195,6 +187,7 @@ dfM1Test #0 Results
 ```
 
 
+**DATASET CONTROL ZONE 3 OF 4**
 Write to files
 ```{r message = FALSE, warning=FALSE}
 write.table(tT009, file="tT009.txt", row.names=F, sep="\t")
@@ -234,6 +227,8 @@ def file_to_dict(file_name):
           total_dict[geneID] = -1
     file.close()
 ```
+
+**DATASET CONTROL ZONE 4 OF 4**
 Execute Reader Function
 ```{python}
 young_dict = {}
