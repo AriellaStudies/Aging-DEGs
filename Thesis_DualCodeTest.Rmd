@@ -32,15 +32,43 @@ library(reticulate)
 library(knitr)
 py_install("pandas")
 ```
+Experimental python installation
+```{r}
+py_install("regex")
+```
+
+
 Global Options (not in use)
-```{r eval=FALSE}
+```{r include=FALSE}
 knitr::opts_chunk$set(class.source = "bg-info")
 ```
 Python Packages
 ```{python cache=TRUE, include=FALSE}
 import pandas as pd
+import regex as re
 ```
 
+Database Test
+```{python}
+pattern_organism = re.compile(r"\bOrganism\w*\b")
+pattern_GSE = re.compile(r"\bPlatform\w*\b")
+
+list_organism = []
+list_GSE = []
+list_platform = []
+with open("gds_result.txt","rt") as myfile:
+    for line in myfile:
+        if pattern_organism.search(line) != None:
+            betterline = line.replace("Organism:\t","")
+            bestline = betterline.replace("\n","")
+            list_organism.append(bestline)
+        if pattern_GSE.search(line) != None:
+            GSE = line.split("Series: ")[1].rsplit()[0]
+            list_GSE.append(GSE)
+            Platform = line.split("Platform: ")[1].rsplit()[0]
+            list_platform.append(Platform)
+print(list_organism, list_GSE, list_platform)
+```
 
 # R Functions
 GEO2R Function
