@@ -7,47 +7,63 @@ Platform: GPL6885 Series: GSE71868 8 Samples
 FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5879/
 DataSet		Accession: GDS5879	ID: 5879
 
-2. Hutchinson Gilford Progeria Syndrome cell line response to oncogenic challenge
-Analysis of skin fibroblasts from Hutchinson Gilford Progeria Syndrome (HGPS) patients challenged by retroviral introduction of telomerase reverse transcriptase (TERT), V12-HRAS and SV40 large and small T antigens. Results provide insight into molecular basis of transformation resistance in HGPS.
+2. Early postnatal skeletal muscle stem cells: time course
+Analysis of myogenic stem cells called satellite cells (mSCs) FACS-sorted from the trunk of Pax3GFP/+ mice at postnatal days 1, 12, and 28, a period when most mSCs are in proliferation and quiescence states. Results provide insight into molecular basis of early postnatal skeletal muscle development.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 3 age, 2 tissue sets
+Platform: GPL1261 Series: GSE65927 11 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5660/
+DataSet		Accession: GDS5660	ID: 5660
+
+3. Epigenetic modifying reagents effect on a progressive hearing loss model: whole cochlea
+Analysis of cochlea from 4 wk old DBA/2J males (a model of progressive hearing loss) injected for 8 wks with a combination of epigenetic modifiers l-methionine and valproic acid. Results provide insight into the effect of epigenetic modifications on the molecular mechanisms underlying hearing loss.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 2 age, 3 protocol sets
+Platform: GPL1261 Series: GSE62173 16 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5624/
+DataSet		Accession: GDS5624	ID: 5624
+
+4. Normal liver developmental stages: embryonic and postnatal
+Analysis of hepatoblasts, immature hepatocytes and hepatocytes from livers at different developmental timepoints (embryonic day 14, embryonic day 18, post-natal day 5, post-natal day 56). Results provide insight into molecular mechanisms underlying normal liver development.
+Organism:	Mus musculus
+Type:		Expression profiling by array, log2 ratio, 4 age, 3 cell type, 2 development stage sets
+Platform: GPL7202 Series: GSE65063 11 Samples
+FTP download: GEO (TXT) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5818/
+DataSet		Accession: GDS5818	ID: 5818
+
+5. Lung from cigarette smoke-related chronic obstructive pulmonary disease model: time course
+Analysis of lung from cigarette smoke (CS)-treated C57BL/6N females at 4 and 6 months of age. Tobacco smoking is a major cause of chronic obstructive pulmonary disease (COPD). Results provide insight into the molecular mechanisms underlying cigarette smoke-induced COPD.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 2 stress sets
+Platform: GPL6885 Series: GSE52509 12 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5438/
+DataSet		Accession: GDS5438	ID: 5438
+
+6. Age effect on corneal endothelium
+Analysis of corneal endothelium from pediatric (4-11 years old) and adult (53-70 years old) donor corneas. Results provide insight into differential molecular expression between pediatric and adult corneal endothelial cells.
 Organism:	Homo sapiens
-Type:		Expression profiling by array, count, 2 disease state, 4 individual, 2 protocol sets
-Platform: GPL570 Series: GSE60518 8 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5426/
-DataSet		Accession: GDS5426	ID: 5426
+Type:		Expression profiling by array, transformed count, 3 age sets
+Platform: GPL11532 Series: GSE58315 9 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5432/
+DataSet		Accession: GDS5432	ID: 5432
 
-3. Dietary vitamin D3  supplementation effect on hippocampus: dose effect
-Analysis of hippocampus from F344 rats fed dietary supplement of cholecalciferol (vitamin D3) at doses of 10,000, 1000 and 100 IU/kg diet for 18 weeks. Results provide insight into molecular mechanisms underlying vitamin D-mediated synaptic function enhancement.
-Organism:	Rattus norvegicus
-Type:		Expression profiling by array, transformed count, 3 dose sets
-Platform: GPL6247 Series: GSE61326 26 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5345/
-DataSet		Accession: GDS5345	ID: 5345
+7. Model for Wilms tumor of the kidney: time course
+Analysis of kidney tumors from Lin28a transgenics at 5 weeks and 4 months of age. Overexpression of heterochronic regulator Lin28 during kidney development promotes Wilms tumor formation. Results provide insight into the role of Lin28 in Wilms tumor formation.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 2 disease state sets
+Platform: GPL6885 Series: GSE56323 8 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5415/
+DataSet		Accession: GDS5415	ID: 5415
 
-4. Conventional cigarette or modified-risk tobacco product smoke effect on lung bronchial epithelium: dose response
-Analysis of left lung bronchi from males that were nose-only exposed for 28 days to smoke from reference cigarette 3R4F at doses up to 23ug nicotine/l or from a modified risk tobacco product (MRTP) at a dose of 23ug nicotine/l. Results provide insight into the reduced biological activity of MRTP.
-Organism:	Rattus norvegicus
-Type:		Expression profiling by array, transformed count, 3 agent, 4 dose sets
-Platform: GPL1355 Series: GSE50254 25 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5063/
-DataSet		Accession: GDS5063	ID: 5063
+8. Monocyte-derived dendritic cells from young and aged donors
+Comparison of dendritic cells (DCs) from young (20 to 27 years) and aged (77 to 87 years) donors. DCs are antigen-presenting cells important in initiating and regulating innate and adaptive immune responses. Results provide insight into the molecular basis of the decline in DC function with age.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 2 age sets
+Platform: GPL571 Series: GSE58015 9 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5286/
+DataSet		Accession: GDS5286	ID: 5286
 
-5. Conventional cigarette or modified-risk tobacco product smoke effect on lung parenchyma: dose response
-Analysis of left lung parenchyma from males that were nose-only exposed for 28 days to smoke from reference cigarette 3R4F at doses up to 23ug nicotine/l or from a modified risk tobacco product (MRTP) at a dose of 23ug nicotine/l. Results provide insight into the reduced biological activity of MRTP.
-Organism:	Rattus norvegicus
-Type:		Expression profiling by array, transformed count, 3 agent, 4 dose sets
-Platform: GPL1355 Series: GSE50254 25 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5062/
-DataSet		Accession: GDS5062	ID: 5062
-
-6. Conventional cigarette or modified-risk tobacco product smoke effect on nasal respiratory epithelium: dose response
-Analysis of nasal epithelia from males that were nose-only exposed for 28 days to smoke from reference cigarette 3R4F at doses up to 23ug nicotine/l or from a modified risk tobacco product (MRTP) at a dose of 23ug nicotine/l. Results provide insight into the reduced biological activity of MRTP.
-Organism:	Rattus norvegicus
-Type:		Expression profiling by array, transformed count, 3 agent, 4 dose sets
-Platform: GPL1355 Series: GSE50254 25 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5061/
-DataSet		Accession: GDS5061	ID: 5061
-
-7. Age effect on skeletal muscle precursor cells
+9. Age effect on skeletal muscle precursor cells
 Analysis of FACS-sorted CD45-Ter119-Sca-1-CD29+Cxcr4+ skeletal muscle precursor (SMP) cells from young, middle-aged, and old C57BL/6 males. Results provide insight into the molecular mechanisms underlying age-related skeletal muscle and stem cell dysfunction.
 Organism:	Mus musculus
 Type:		Expression profiling by array, count, 3 age sets
@@ -55,7 +71,7 @@ Platform: GPL1261 Series: GSE50821 14 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4892/
 DataSet		Accession: GDS4892	ID: 4892
 
-8. Age effect on normal adult brain: frontal cortical region
+10. Age effect on normal adult brain: frontal cortical region
 Analysis of postmortem neuropathologically normal brain samples from the frontal cortical regions of young, middle aged, normal aged and extremely aged adults. Results provide insight into molecular mechanisms of aging in frontal cortical regions of the brain.
 Organism:	Homo sapiens
 Type:		Expression profiling by array, transformed count, 4 age, 2 gender sets
@@ -63,7 +79,15 @@ Platform: GPL570 Series: GSE53890 41 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5204/
 DataSet		Accession: GDS5204	ID: 5204
 
-9. Age effect on respiratory epithelium: distal trachea and carina region
+11. Adult alveolar type 2 and embryonic bipotent progenitor lung cells
+Analysis of adult alveolar type (AT) 2 and E18 bipotent progenitor (BP) lung cells.  During development, AT1 and AT2 cells arise from a BP; after birth, new AT1 cells derive from rare, long-lived, self-renewing mature AT2 cells. Results provide insight into the molecular basis of AT2 self-renewal.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 2 cell type sets
+Platform: GPL1261 Series: GSE49346 6 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5004/
+DataSet		Accession: GDS5004	ID: 5004
+
+12. Age effect on respiratory epithelium: distal trachea and carina region
 Analysis of distal trachea and carina region of young (2 month) and old (14 month) C57Bl/6 females. Aging lungs are associated with a variety of structural and pathologic changes. Results provide insight into molecular mechanisms underlying age-related changes in respiratory epithelium.
 Organism:	Mus musculus
 Type:		Expression profiling by array, count, 2 age sets
@@ -71,7 +95,31 @@ Platform: GPL1261 Series: GSE55162 8 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5412/
 DataSet		Accession: GDS5412	ID: 5412
 
-10. Peroxisome proliferator-γ coactivator-1α deficiency effect on aged gastrocnemius muscle
+13. Tendon development: embryonic limb tendon cells
+Analysis of tendon cells isolated by FACS from forelimbs of embryonic day 11.5, E12.5 and E14.5 scleraxis (Scx)-GFP embryos. Basic helix-loop-helix transcription factor Scx is a specific tendon and ligament marker. Results provide insight into molecular pathways involved in tendon development.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 3 age sets
+Platform: GPL1261 Series: GSE54207 9 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5642/
+DataSet		Accession: GDS5642	ID: 5642
+
+14. Imatinib mesylate effect on bone marrow hematopoietic cells of chronic myeloid leukemia patients
+Analysis of bone marrow hematopoietic cells in chronic myeloid leukemia (CML) patients one month after imatinib mesylate (IM) therapy. CML is caused by expression of the BCR/ABL fusion oncogene. Results provide insight into the molecular consequences of IM blockade of oncoprotein Bcr-Abl in CML.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, transformed count, 10 age, 10 gender, 10 individual, 3 protocol sets
+Platform: GPL570 Series: GSE33075 27 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4869/
+DataSet		Accession: GDS4869	ID: 4869
+
+15. IQGAP2 knockout model of hepatocellular carcinoma: time course
+Analysis of liver from IQ-motif containing GTPase-activating protein 2 (IQGAP2) KOs at 6- and 24-months of age. IQGAP2 is a member of a multidomain scaffolding protein family that also includes IQGAP1 and IQGAP3. Results provide insight into a potential tumor suppressive role for IQGAP2 in liver.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 2 age, 2 genotype/variation sets
+Platform: GPL1261 Series: GSE46646 12 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4874/
+DataSet		Accession: GDS4874	ID: 4874
+
+16. Peroxisome proliferator-γ coactivator-1α deficiency effect on aged gastrocnemius muscle
 Analysis of muscle from aged animals with muscle-specific Pgc-1α depletion. PGC-1alpha is a transcriptional coactivator of the mitochondrial gene program. Results provide insight into the role of Pgc-1α in the glucose intolerance and chronic systemic inflammation associated with aging.
 Organism:	Mus musculus
 Type:		Expression profiling by array, transformed count, 2 age, 2 genotype/variation sets
@@ -79,23 +127,39 @@ Platform: GPL1261 Series: GSE52550 12 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4904/
 DataSet		Accession: GDS4904	ID: 4904
 
-11. Lung response to thoracic irradiation: dose response and time course
-Analysis of total lung from C57Bl/Ncr females exposed to 0, 5, or 17.5 Gy at 2, 4, 8, 16, and 30 weeks after thoracic irradiation. The lungs show extensive fibrosis at 30 weeks after 17.5 Gy. Results provide insight into molecular mechanisms underlying radiation-induced pulmonary fibrosis (RIPF).
-Organism:	Mus musculus
-Type:		Expression profiling by array, transformed count, 3 dose, 5 time sets
-Platform: GPL1261 Series: GSE41789 45 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4822/
-DataSet		Accession: GDS4822	ID: 4822
+17. Mechanistic Indicators of Asthma (MICA) cohort: peripheral blood
+Analysis of peripheral blood from asthmatic and non-asthmatic children (ages 9 to 13), participants of the MICA study conducted by the EPA from 11/2006 to 01/2007 in Detroit, MI. These results, together with clinical biomarker measurements, may help to differentiate asthmatics from non-asthmatics.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, transformed count, 5 age, 3 disease state, 2 gender sets
+Platform: GPL570 Series: GSE35571 131 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5000/
+DataSet		Accession: GDS5000	ID: 5000
 
-12. Post-pneumonectomy lung regeneration: time course
-Analysis of right lung medial lobe, right lung cardiac lobe, and whole right lung following left pneumonectomy. Surgical resection of pulmonary tissue triggers a proregenerative stretch stimulus in the remaining lung. Results provide insight into molecular basis of stretch-induced lung regeneration.
+18. Infarct volume-variant inbred strains at two developmental stages: cerebral cortex
+Analysis of cerebral cortex from C57BL/6J and C3H/J strains at post-natal day 1 and week 11. These strains share similar collateral vessel anatomy but exhibit significantly different infarct volume. Results provide insight into molecular mechanisms modulating infarct volume.
 Organism:	Mus musculus
-Type:		Expression profiling by array, transformed count, 2 protocol, 6 time, 3 tissue sets
-Platform: GPL6246 Series: GSE39817 21 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4784/
-DataSet		Accession: GDS4784	ID: 4784
+Type:		Expression profiling by array, transformed count, 2 age, 2 other, 2 strain sets
+Platform: GPL1261 Series: GSE46443 12 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5270/
+DataSet		Accession: GDS5270	ID: 5270
 
-13. Age-related hearing loss model: cochlea
+19. Allergen inhalation challenge effect on peripheral blood of asthmatic early responders and dual responders
+Analysis of blood collected from asthmatics immediately prior to, and two hours after, cat allergen challenge. Some asthmatics are early responders while others are dual (early plus late) responders. Results provide insight into the molecular mechanisms underlying early and dual asthmatic responses.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, transformed count, 10 age, 2 gender, 14 individual, 2 other, 2 protocol sets
+Platform: GPL6244 Series: GSE40240 28 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5001/
+DataSet		Accession: GDS5001	ID: 5001
+
+20. Neonatal and adult pancreatic beta cells
+Analysis of β-cells from neonatal (postnatal day 2-3) and adult (10 wk old) Wistar rats. Neonatal β-cells are developmentally immature and, therefore, less glucose responsive. Results provide insight into molecular mechanisms underlying the acquisition of mature glucose responsiveness.
+Organism:	Rattus norvegicus
+Type:		Expression profiling by array, count, 2 age, 2 cell type sets
+Platform: GPL1355 Series: GSE47174 11 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4937/
+DataSet		Accession: GDS4937	ID: 4937
+
+21. Age-related hearing loss model: cochlea
 Analysis of cochlea from old CBA females and males with mild or severe age-related hearing loss (presbycusis). The CBA strain it loses its hearing progressively over its lifetime. Results provide insight into the molecular mechanisms underlying presbycusis.
 Organism:	Mus musculus
 Type:		Expression profiling by array, transformed count, 3 age, 4 disease state, 2 gender sets
@@ -103,31 +167,7 @@ Platform: GPL339 Series: GSE49543 41 Samples
 FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4925/
 DataSet		Accession: GDS4925	ID: 4925
 
-14. Corticosterone effect on hippocampus: dose response
-Analysis of hippocampal CA1 from adrenalectomized F344 males maintained for 3 months with implanted corticosterone (CORT) pellets to produce low or intermediate (glucocorticoid receptor-activating) blood levels of CORT. Results provide insight into the effects of chronic CORT on the hippocampus.
-Organism:	Rattus norvegicus
-Type:		Expression profiling by array, transformed count, 4 agent, 4 dose, 2 protocol sets
-Platform: GPL85 Series: GSE37618 39 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4757/
-DataSet		Accession: GDS4757	ID: 4757
-
-15. Mitochondrial protease Clpp knockout effect on various tissues
-Analysis of brain, testis, liver, and heart muscle from C57BL/6 animals deficient in mitochondrial protease Clpp. Loss of Clpp leads to infertility, hearing loss, and growth retardation. Results provide insight into the role of Clpp in growth and survival in a mammalian system.
-Organism:	Mus musculus
-Type:		Expression profiling by array, transformed count, 2 genotype/variation, 4 tissue sets
-Platform: GPL11180 Series: GSE40207 24 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4791/
-DataSet		Accession: GDS4791	ID: 4791
-
-16. Adriamycin in vitro effect on Eµ-myc transgenic lymphoma cells deficient in Suv39h1
-Analysis of lymphoma cells isolated from Eµ-myc mice deficient in H3K9 histone methyltransferase Suv39h1 and treated in vitro with anticancer drug ADR. ADR induces therapy-induced senescence (TIS) in Suv39h1-proficient lymphomas. Results provide insight into the impact of Suv39h1 on TIS induction.
-Organism:	Mus musculus
-Type:		Expression profiling by array, transformed count, 2 agent sets
-Platform: GPL1261 Series: GSE44355 10 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4983/
-DataSet		Accession: GDS4983	ID: 4983
-
-17. Glucose effect on young and aged pancreatic islets: dose response
+22. Glucose effect on young and aged pancreatic islets: dose response
 Analysis of islets isolated from young and aged animals and cultured for 2 days at 3 to 16mM glucose (G3 to G16). Freshly-isolated islets were also examined. Ageing is associated with functional changes in beta cells. Results provide insight into the molecular response of aged islets to glucose.
 Organism:	Mus musculus
 Type:		Expression profiling by array, count, 2 age, 5 dose, 2 protocol sets
@@ -135,15 +175,15 @@ Platform: GPL1261 Series: GSE42591 20 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4939/
 DataSet		Accession: GDS4939	ID: 4939
 
-18. Telomere-elongated, prostate cancer cells
-Analysis of telomere-elongated PC-3 prostate cancer cells in the presence of exogenous human telomerase reverse transcriptase (hTERT). Forced elongation of telomeres promotes PC-3 cell differentiation. Results provide insight into the influence of telomere length on tumor malignancy.
-Organism:	Homo sapiens
-Type:		Expression profiling by array, transformed count, 2 genotype/variation, 2 protocol sets
-Platform: GPL570 Series: GSE41559 16 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4964/
-DataSet		Accession: GDS4964	ID: 4964
+23. Unfolded Protein Response factor CHOP deficiency effect on Charcot-Marie-Tooth 1B sciatic nerves: developmental time course
+Analysis of sciatic nerves from S63del/Chop-null animals from ages 5 days to 4 months. Deletion of serine 63 (P0S63del) causes demyelinating neuropathy similar to Charcot-Marie-Tooth 1B disease in humans. Results provide insight into molecular basis of myelination rescue in S63del/Chop-null nerves.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 3 age, 4 genotype/variation sets
+Platform: GPL8321 Series: GSE40610 24 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4624/
+DataSet		Accession: GDS4624	ID: 4624
 
-19. Skeletal muscles from men and women of various ages
+24. Skeletal muscles from men and women of various ages
 Analysis of biceps brachii muscles from men and women 19 to 28 or 65 to 76 years of age. Results provide insight into the influence of gender on age-related changes in the molecular properties of the skeletal muscle.
 Organism:	Homo sapiens
 Type:		Expression profiling by array, transformed count, 2 age, 2 gender sets
@@ -151,39 +191,159 @@ Platform: GPL570 Series: GSE38718 22 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4858/
 DataSet		Accession: GDS4858	ID: 4858
 
-20. Runt homology domain expression effect on hematopoietic stem cells
-Analysis of c-Kit+Sca-1+Lin- hematopoietic stem cells (HSCs) lacking Runx1 or expressing the runt homology domain, RUNX1 (41-214). RUNX1(41-214) expression induces myelodysplastic syndrome (MDS) in mice. Results provide insight into molecular basis of MDS progression induced by RUNX1 (41-214).
+25. Hematopoietic cell response to Xist deficiency in females: time course
+Analysis of hematopoietic cells from Xist-deficient females before disease (2 months old) and during myeloprolifeative neoplasm/myelodysplastic syndrome and chronic myelomonocytic leukemia-like disease (6 and 12 months old). Results provide insight into role of Xist as a suppressor of blood cancer.
 Organism:	Mus musculus
-Type:		Expression profiling by array, count, 3 genotype/variation sets
-Platform: GPL8321 Series: GSE40155 9 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4441/
-DataSet		Accession: GDS4441	ID: 4441
+Type:		Expression profiling by array, transformed count, 3 age, 4 cell type, 3 genotype/variation sets
+Platform: GPL6246 Series: GSE43961 20 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4755/
+DataSet		Accession: GDS4755	ID: 4755
 
-21. One-Twenty-Two-1 knockout effect on hematopoietic stem cells
-Analysis of Lin- Sca-1+ c-Kit+ (LSK) cells, which include the hematopoietic stem cell (HSC) population, sorted from bone marrow of Ott1 knockouts. HSCs lacking Ott1 are unable to maintain quiescence during proliferative stress. Results provide insight into the role of Ott1 in stress hematopoiesis.
+26. Niemann-Pick Type C disease spleen: time course
+Analysis of spleen across 3 age groups of Npc1−/− Balb/c females with Niemann-Pick Type C (NPC) disease. NPC is a neurodegenerative, lysosomal disorder caused by Npc1 or Npc2 gene dysfunction. Results provide insight into the molecular mechanisms underlying NPC progression.
 Organism:	Mus musculus
-Type:		Expression profiling by array, count, 2 genotype/variation sets
-Platform: GPL8321 Series: GSE37047 6 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4315/
-DataSet		Accession: GDS4315	ID: 4315
+Type:		Expression profiling by array, count, 6 age, 2 genotype/variation sets
+Platform: GPL1261 Series: GSE39621 12 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4428/
+DataSet		Accession: GDS4428	ID: 4428
 
-22. Long-term pioglitazone effect on triple transgenic model of Alzheimer's disease (3xTg-AD): hippocampus
-Analysis of hippocampus from 10 month-old, triple-transgenic AD females treated with the thiazolidinedione pioglitazone (PIO) for 14 weeks. TZDs exert cognitive benefits early in the AD process. Results provide insight into molecular mechanisms underlying the neuroprotective role of PIO in AD.
+27. Niemann-Pick Type C disease liver: time course
+Analysis of liver across 3 age groups of Npc1−/− Balb/c females with Niemann-Pick Type C (NPC) disease. NPC is a neurodegenerative, lysosomal disorder caused by Npc1 or Npc2 gene dysfunction. Results provide insight into the molecular mechanisms underlying NPC progression.
 Organism:	Mus musculus
-Type:		Expression profiling by array, transformed count, 2 agent sets
-Platform: GPL1261 Series: GSE32536 16 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4413/
-DataSet		Accession: GDS4413	ID: 4413
+Type:		Expression profiling by array, count, 6 age, 2 genotype/variation sets
+Platform: GPL1261 Series: GSE39621 12 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4427/
+DataSet		Accession: GDS4427	ID: 4427
 
-23. Lmna G609G knock-in model of Hutchinson-Gilford Progeria Syndrome: liver
-Analysis of liver from Lmna Gly609Gly knock-in C57BL/6 females. These mice accumulate progerin and manifest the main clinical features of human Hutchinson-Gilford progeria syndrome (HGPS). Results provide insight into the molecular mechanisms underlying HGPS.
+28. Niemann-Pick Type C disease brain: time course
+Analysis of brain across 6 age groups of Npc1−/− Balb/c females with Niemann-Pick Type C (NPC) disease. NPC is a neurodegenerative, lysosomal disorder caused by Npc1 or Npc2 gene dysfunction. Results provide insight into the molecular mechanisms underlying NPC progression.
 Organism:	Mus musculus
-Type:		Expression profiling by array, count, 2 genotype/variation sets
-Platform: GPL6246 Series: GSE32609 6 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4490/
-DataSet		Accession: GDS4490	ID: 4490
+Type:		Expression profiling by array, count, 13 age, 3 genotype/variation sets
+Platform: GPL1261 Series: GSE39621 27 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4394/
+DataSet		Accession: GDS4394	ID: 4394
 
-24. Age effect on adipocytes of the bone marrow and epididymis
+29. Primary central nervous system lymphoma patients: brain tumor
+Analysis of brain tumor tissue from primary central nervous system lymphoma (PCNSL) patients. PCNSL is an extranodal form of non-Hodgkin lymphoma that arises in the craniospinal axis. Results provide insight into the molecular mechanisms underlying survival in patients with PCNSL.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, log2 ratio, 21 age, 3 agent, 2 gender, 7 other, 4 time sets
+Platform: GPL570 Series: GSE34771 34 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4464/
+DataSet		Accession: GDS4464	ID: 4464
+
+30. rd1 model of retinal degeneration: time course
+Analysis of rd1 retinas starting at P2 (prior to obvious biochemical/morphological differences) and ending at P8 (early degenerative changes present, but prior to onset of rod photoreceptor cell death). Results provide insight into molecular mechanisms underlying photoreceptor development.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 4 age, 2 genotype/variation sets
+Platform: GPL339 Series: GSE41821 32 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4510/
+DataSet		Accession: GDS4510	ID: 4510
+
+31. Sporadic medulloblastomas
+Analysis of sporadic medulloblastomas (MB), tumor grade IV from pediatric patients. Medulloblastoma is a highly malignant brain tumor occurring predominantly in children. Results provide insight into the molecular mechanisms underlying the pathogenesis of MB.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, transformed count, 3 age, 3 disease state, 2 gender sets
+Platform: GPL6244 Series: GSE41842 19 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4469/
+DataSet		Accession: GDS4469	ID: 4469
+
+32. Glioblastoma brain tumors
+Analysis of glioblastoma (GBM) tumors from different regions of the brain from patients of various ages. Mutations in H3F3A and IDH1 define distinct epigenetic and biological subgroups of GBM. Results provide insight into heterogeneity of GBM and oncogenic pathways leading to gliomagenesis.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 27 age, 7 disease state, 5 genotype/variation, 3 other, 13 tissue sets
+Platform: GPL570 Series: GSE36245 46 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4470/
+DataSet		Accession: GDS4470	ID: 4470
+
+33. Sox9+ pancreatic cells: developmental time course
+Analysis of GFP positive cells from Sox9-EGFP pancreas isolated by FACS at various developmental stages: e10.5, e15.5, p23. Results provide insight into molecular mechanisms underlying differentiatiation of Sox9+ embryonic pancreatic progenitors into adult ductal cells or the endocrine lineage.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 3 age, 3 cell type sets
+Platform: GPL6246 Series: GSE34060 15 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4335/
+DataSet		Accession: GDS4335	ID: 4335
+
+34. Desmin deficiency effect on young and adult skeletal muscles
+Analysis of tibialis anterior muscle from 7-9 week old and 12-14 month old 129/Sv animals deficient in desmin. Skeletal muscle fibrosis develops in response to desmin depletion. Results provide insight into the molecular mechanisms underlying muscle fibrosis.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 2 genotype/variation sets
+Platform: GPL8321 Series: GSE34388 19 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4804/
+DataSet		Accession: GDS4804	ID: 4804
+
+35. Gonadal development: ovaries and testes
+Analysis of gonads from fetal, neonatal and adult C57BL/6 males and females. Events during meiosis I prophase are critical for correct segregation of chromosomes. Defects in these events may contribute to infertility. Results provide insight into molecular mechanisms underlying meiosis I prophase.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 3 age, 2 tissue sets
+Platform: GPL1261 Series: GSE35734 6 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4503/
+DataSet		Accession: GDS4503	ID: 4503
+
+36. Microchimeric fetal cells isolated from maternal lung during late pregnancy
+Analysis of fetal cells collected from C57BL/6J maternal lung in late stages of pregnancy. During pregnancy, fetal cells enter maternal circulation and organs leading to microchimerism. Results provide insight into the microchimeric cell types and the mechanisms by which they affect maternal health.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 4 age sets
+Platform: GPL1261 Series: GSE38188 7 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4591/
+DataSet		Accession: GDS4591	ID: 4591
+
+37. Resistance exercise effect on skeletal muscles of young and old adults
+Analysis of vastus lateralis muscle biopsy samples from young (about 24 years old) and old (about 84 years old) adults before and after 12 weeks of progressive resistance training. Results provide insight into the molecular adaptation of the young and old skeletal muscle to resistance training.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 2 age, 2 gender, 4 time sets
+Platform: GPL570 Series: GSE28422 110 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5218/
+DataSet		Accession: GDS5218	ID: 5218
+
+38. Resistance exercise effect on MHC I and MHC IIa muscle fibers of young and old women
+Analysis of slow-twitch MHC I and fast-twitch MHC IIa muscle fibers from young and old women before and after 12 weeks of progressive resistance training. Fibers obtained from vastus lateralis. Results provide insight into the molecular adaptation of young and old MHC I and IIa fibers to exercise.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 2 age, 14 individual, 4 time, 2 tissue sets
+Platform: GPL570 Series: GSE28392 70 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5217/
+DataSet		Accession: GDS5217	ID: 5217
+
+39. Age effect on the skeletal muscle
+Analysis of vastus lateralis muscle biopsy samples from young (about 25 years old) and old (about 78 years old) adults. Subjects had not taken part in formal exercise. Results provide insight into the effect of age on basal gene expression in the skeletal muscle.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 2 age, 2 gender sets
+Platform: GPL570 Series: GSE25941 36 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5216/
+DataSet		Accession: GDS5216	ID: 5216
+
+40. Models of Neuronal Migration Defects: time course
+Analysis of brains from 4 models of human neuronal migration defects (Lis1, Dcx, Ywhae, Ndel) at 3 developmental stages. Neuronal migration defects (NMDs) are an important cause of severe epilepsy and mental retardation. Results provide insight into molecular mechanisms underlying the NMDs.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 3 age, 12 genotype/variation sets
+Platform: GPL1261 Series: GSE35366 78 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4502/
+DataSet		Accession: GDS4502	ID: 4502
+
+41. Prolonged cardiothoracic surgery effect on diaphragm
+Analysis of paired diaphragm biopsies from 5 patients during cardiothoracic surgery: the 1st as soon as diaphragm was exposed, the 2nd as late in surgery as possible (4.9 ± 1.8 hrs between biopsies). Results provide insight into diaphragm muscle biology after prolonged cardiothoracic procedures.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 5 age, 5 individual, 2 specimen sets
+Platform: GPL570 Series: GSE19533 10 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4308/
+DataSet		Accession: GDS4308	ID: 4308
+
+42. Schizophrenia: postmortem superior temporal cortex
+Analysis of post-mortem tissue from the superior temporal cortex (Brodmann Area 22, BA22) of schizophrenic patients.  The BA22 region mediates the positive pathophysiology of schizophrenia. Results provide insight into molecular mechanisms underlying the positive symptoms of schizophrenia.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 30 age, 2 disease state, 2 gender sets
+Platform: GPL570 Series: GSE21935 42 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4522/
+DataSet		Accession: GDS4522	ID: 4522
+
+43. White adipose tissue development
+Analysis of developing white adipose tissues (WAT) of C57BL/6 animals at ages 15.5 embyronic days to 12 postnatal days. Results provide insight into the molecular mechanisms underlying the regulation of WAT development.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 8 age sets
+Platform: GPL6885 Series: GSE29502 8 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5528/
+DataSet		Accession: GDS5528	ID: 5528
+
+44. Age effect on adipocytes of the bone marrow and epididymis
 Analysis of bone marrow and epididymal adipocytes of 6 to 18 month old C57BL/6J animals. Aging is associated with impaired adipogenesis in various fat depots. An increase in bone marrow adiposity is associated with age-related bone disease.
 Organism:	Mus musculus
 Type:		Expression profiling by array, transformed count, 3 age, 2 cell type sets
@@ -191,7 +351,7 @@ Platform: GPL6246 Series: GSE25905 18 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5226/
 DataSet		Accession: GDS5226	ID: 5226
 
-25. Aging effect on bone marrow hematopoietic stem cells
+45. Aging effect on bone marrow hematopoietic stem cells
 Analysis of bone marrow-derived, hematopoietic stem cells (HSC) from healthy, hematologically normal young and elderly donors. Aged HSCs are increased in frequency and are less quiescent than young HSCs. Results provide insight into molecular mechanisms underlying the hematopoietic aging phenotype.
 Organism:	Homo sapiens
 Type:		Expression profiling by array, transformed count, 3 age sets
@@ -199,31 +359,103 @@ Platform: GPL570 Series: GSE32719 27 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3942/
 DataSet		Accession: GDS3942	ID: 3942
 
-26. Rhabdomyosarcoma model
-Analysis of rhabdomyosarcoma samples from A/J animals that are about 450 days old. A/J animals develop adult pleomorphic type rhabdomyosarcomas at a high frequency over 20 months of age. Results provide insight into the molecular pathogenesis of rhabdomyosarcoma.
+46. MYBL1 transcription factor knockout effect on testes
+Analysis of testis from 14 and 17 day old Mybl1 repro9/repro9 mutants. Mybl1 is highly transcribed in spermatocytes after meiotic entry. Repro9 mutants exhibit male infertility due to arrest of meiosis pachytene stage. Results provide insight in the role of MYBL1 in the regulation of male meiosis.
 Organism:	Mus musculus
-Type:		Expression profiling by array, transformed count, 2 strain, 2 tissue sets
-Platform: GPL6481 Series: GSE29775 12 Samples
-FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5527/
-DataSet		Accession: GDS5527	ID: 5527
+Type:		Expression profiling by array, count, 2 age, 2 cell type, 2 genotype/variation sets
+Platform: GPL1261 Series: GSE28025 18 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4485/
+DataSet		Accession: GDS4485	ID: 4485
 
-27. Long-term heat-stress effect on skeletal muscle
-Analysis of skeletal muscle from eight healthy men following a 10-week application of heat stress (8 hours/day, 4 days/week) on the quadriceps muscles without exercise training. Results provide insight into the molecular mechanisms involved in the muscular adaptation to heat stress.
+47. Autistic children and their father’s age: peripheral blood lymphocytes
+Analysis of peripheral blood lymphocytes of autistic and non-autistic children. Correlation among gene expression changes, paternal age, and autism examined.  
 Organism:	Homo sapiens
-Type:		Expression profiling by array, count, 5 individual, 2 stress sets
-Platform: GPL570 Series: GSE12474 10 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4104/
-DataSet		Accession: GDS4104	ID: 4104
+Type:		Expression profiling by array, count, 30 age, 2 disease state, 2 other sets
+Platform: GPL570 Series: GSE25507 146 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4431/
+DataSet		Accession: GDS4431	ID: 4431
 
-28. Postmortem temporal cortex from Medical Research Council Cognitive Function and Ageing Study (MRC-CFAS) cohort: astrocytes
-Analysis of GFAP+ astrocytes representing different Braak stages and ApoE genotypes, in post-mortem temporal cortex samples. Astrocytes synthesize ApoE, which is involved in the astrocytic clearance of aggregated β-amyloid plaques. Results provide insight into role of ApoE in Alzheimer's pathology.
+48. Polybrominated diphenyl ether effect on the liver
+Analysis of livers collected from postnatal day (PND) 22 and 13-week-old Wistar/Han rats exposed in utero to polybrominated diphenyl ether (PBDE) and directly dosed with PBDE. PBDEs are flame retardants. Results provide insight into the molecular basis of PBDE toxicities.
+Organism:	Rattus norvegicus
+Type:		Expression profiling by array, transformed count, 2 age, 2 agent, 2 gender sets
+Platform: GPL1355 Series: GSE32156 30 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5034/
+DataSet		Accession: GDS5034	ID: 5034
+
+49. Diabetic pregnancy effect on embryonic heart development
+Analysis of pooled E13.5 or E15.5 embryonic heart tissues from diabetic dams. Congenital heart defects (CHD) are one of the most common defects in offspring of diabetic mothers. Results provide insight into molecular changes in embryonic heart contributing to CHD offspring of diabetic pregnancies.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 2 age, 2 disease state sets
+Platform: GPL1261 Series: GSE32078 12 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4594/
+DataSet		Accession: GDS4594	ID: 4594
+
+50. Early and late onset colorectal cancers
+Analysis of primary colorectal cancer (CRC) tumors from patients diagnosed with CRC at an early age (28 to 53 years of age) and patients diagnosed at a later age (69 to 87 years). Results identify genes associated with early onset CRC.
 Organism:	Homo sapiens
-Type:		Expression profiling by array, count, 3 disease state, 2 genotype/variation sets
-Platform: GPL570 Series: GSE29652 18 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4135/
-DataSet		Accession: GDS4135	ID: 4135
+Type:		Expression profiling by array, transformed count, 2 age, 2 gender, 2 tissue sets
+Platform: GPL2986 Series: GSE25071 50 Samples
+FTP download: GEO (TXT) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5232/
+DataSet		Accession: GDS5232	ID: 5232
 
-29. Premature Hematopoietic Aging model: bone marrow hematopoietic stem cells
+51. Progranulin deficiency effect on various brain regions: time course
+Analysis of brain cortices, cerebella, and hippocampi of progranulin (GRN) deficient mutants at ages 2, 6, and 9 months. GRN mutations cause frontotemporal dementia. Results provide insight into the function of GRN in the central nervous system.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 3 age, 2 gender, 3 genotype/variation, 3 tissue sets
+Platform: GPL6885 Series: GSE31840 99 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5501/
+DataSet		Accession: GDS5501	ID: 5501
+
+52. Hungington's disease: whole blood
+Analysis of whole blood from Huntington’s disease (HD) patients and age- and sex-matched healthy controls. To date, a robust and clinically useful blood test for HD has not been developed. Results provide insight into blood biomarkers for HD activity.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 12 age, 2 disease state, 2 gender, 14 individual sets
+Platform: GPL96 Series: GSE24250 14 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4541/
+DataSet		Accession: GDS4541	ID: 4541
+
+53. Various stages of Alzheimer's disease: laser-captured hippocampal CA1 gray matter
+Analysis of laser-captured hippocampal CA1 gray matter from FFPE hippocampal sections of subjects at varying stages (incipient, moderate, severe) of Alzheimer’s disease (AD). Results provide insight into gray matter-specific molecular mechanisms underlying AD.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 19 age, 4 disease state sets
+Platform: GPL570 Series: GSE28146 30 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4136/
+DataSet		Accession: GDS4136	ID: 4136
+
+54. Homeobox transcription factor Dlx5 deficiency effect on embryonic otic vesicle
+Analysis of otic vesicles from E10 and E10.5 embryos deficient for Dlx5. Dlx5 is a homeobox transcription factor that plays a key role in the development of many organ systems. Results provide insight into the role of Dlx5 in the regulation of early inner ear development.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 2 age, 2 genotype/variation sets
+Platform: GPL1261 Series: GSE22381 8 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4443/
+DataSet		Accession: GDS4443	ID: 4443
+
+55. Spatial and temporal development of mammalian salivary glands
+Analysis of highly localized regions of salivary gland epithelia from 12.5-, 13.5-, 14-, and 15-day-old ICR embryos. Development of mouse submandibular salivary gland begins at E11.5. Results provide insight into molecular mechanisms underlying salivary gland development and differentiation.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 4 age, 6 tissue sets
+Platform: GPL7202 Series: GSE22828 84 Samples
+FTP download: GEO (TXT) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3922/
+DataSet		Accession: GDS3922	ID: 3922
+
+56. Core binding factor-acute myeloid leukemia patients: mononuclear cells
+Analysis of mononuclear cells isolated from untreated, CBF-AML patients representing t(8;21) and inv(16)/t(16;16) karyotypes. The CBF-AML samples exhibited differential sensitivity to treatment with ABT-737 and BV6. Results provide insight into molecular basis of sensitivity to inhibitor treatment.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, transformed count, 11 age, 2 disease state, 2 gender, 12 individual, 5 other, 2 tissue sets
+Platform: GPL570 Series: GSE29883 12 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4285/
+DataSet		Accession: GDS4285	ID: 4285
+
+57. Segmented filamentous bacteria gut colonization effect on nonobese diabetic mice: T cells
+Analysis of T cells from spleen and gut of SFB-positive NOD mice. SFB induces a robust T-helper cell type 17 population in small-intestinal lamina propria (SI-LP). Results provide insight into molecular mechanisms underlying the strong cosegregation of SFB positivity and protection from diabetes.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 2 gender, 2 other, 3 tissue sets
+Platform: GPL6246 Series: GSE29806 26 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3987/
+DataSet		Accession: GDS3987	ID: 3987
+
+58. Premature Hematopoietic Aging model: bone marrow hematopoietic stem cells
 Analysis of hematopoietic stem cells (HSCs) from mid-aged mutator females that express a proofreading-defective form of the mitochondrial DNA polymerase gamma (POLG). Results provide insight into the molecular mechanisms underlying multiple aspects of aging accelerated in the mutator model.
 Organism:	Mus musculus
 Type:		Expression profiling by array, count, 3 age, 2 cell type, 5 genotype/variation sets
@@ -231,7 +463,7 @@ Platform: GPL1261 Series: GSE27686 16 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3976/
 DataSet		Accession: GDS3976	ID: 3976
 
-30. Fisher 344 rat model of aging: parietal cortex
+59. Fisher 344 rat model of aging: parietal cortex
 Analysis of parietal cortices of young and aged F344 males implanted with telemetry devices to measure sleep architecture. Animals were trained in the Morris water maze to assess cognitive function. Results provide insight into possible mechanistic links between sleep changes and cognitive aging.
 Organism:	Rattus norvegicus
 Type:		Expression profiling by array, count, 2 age, 6 specimen sets
@@ -239,7 +471,23 @@ Platform: GPL1355 Series: GSE24515 12 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3939/
 DataSet		Accession: GDS3939	ID: 3939
 
-31. Model of cerebral aging and Alzheimer's disease: temporal cortex
+60. Early events in of DBA/2J model of glaucoma
+Analysis of optic nerve head and retina from 10.5-month-old, DBA/2J females at various stages of glaucoma. The DBA/2J strain is an inherited, later-onset, complex, and chronic model of glaucoma. Results provide insight into molecular mechanisms underlying the early stages of glaucoma.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 2 age, 5 disease state, 2 strain, 2 tissue sets
+Platform: GPL1261 Series: GSE26299 108 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3899/
+DataSet		Accession: GDS3899	ID: 3899
+
+61. BPH/J2 model of neurogenic hypertension: hypothalamus
+Analysis of hypothalamus from young (6 week-old) and adult (26 week-old) BPH/2J hypertensive males and age-/gender-matched normotensive BPN/3J controls. Results provide insight into molecular mechanisms underlying early and established neurogenic hypertension in hypothalamus.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 2 age, 2 disease state, 2 strain sets
+Platform: GPL6246 Series: GSE25076 24 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3895/
+DataSet		Accession: GDS3895	ID: 3895
+
+62. Model of cerebral aging and Alzheimer's disease: temporal cortex
 Analysis of temporal cortex of young adult, old healthy, and Alzheimer’s disease (AD-like) animals. AD-like animals presented ß-amyloid plaques and cortical atrophy, which are signs of AD in humans. Results provided insight into molecular basis of physiological versus pathological brain aging.
 Organism:	Homo sapiens; Microcebus murinus
 Type:		Expression profiling by array, count, 2 age, 2 disease state, 2 gender sets
@@ -247,71 +495,111 @@ Platform: GPL570 Series: GSE21779 18 Samples
 FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4128/
 DataSet		Accession: GDS4128	ID: 4128
 
-32. Social isolation effect on peripheral blood mononuclear cells
-Analysis of PBMCs from chronically lonely, older adults. Lack of close social ties is a well-established risk factor for diseases involving the immune system and inflammation.  Results provide insight into the molecular mechanisms underlying those effects.
-Organism:	Homo sapiens
-Type:		Expression profiling by array, count, 2 individual sets
-Platform: GPL6883 Series: GSE25837 93 Samples
-FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3898/
-DataSet		Accession: GDS3898	ID: 3898
-
-33. Induced pluripotent stem cell-based accelerated aging model
-Analysis of iPSCs generated from fibroblasts from patients with Hutchinson-Gilford progeria syndrome (HGPS), a rare and fatal premature aging disease. Premature aging was recapitulated by differentiation of the HGPS-iPSCs. Results provide insight into molecular mechanisms underlying premature aging.
-Organism:	Homo sapiens
-Type:		Expression profiling by array, transformed count, 3 cell line, 2 genotype/variation sets
-Platform: GPL570 Series: GSE24487 10 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3892/
-DataSet		Accession: GDS3892	ID: 3892
-
-34. Differentiating glioblastoma-initiating cells
-Analysis of cultures of progenitor and 4-day differentiated glioblastoma cells (GICs) derived from surgical specimens.  Following induction of differentiation, NFκB is activated in GICs. Results provide insight into molecular mechanisms underlying the control of differentiation of GICs.
-Organism:	Homo sapiens
-Type:		Expression profiling by array, transformed count, 2 cell type, 3 specimen sets
-Platform: GPL570 Series: GSE20736 6 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4535/
-DataSet		Accession: GDS4535	ID: 4535
-
-35. Oral mucosal fibroblast response to artificial wounding stimulus
-Temporal analysis of oral mucosal (OM) fibroblasts and patient-matched skin fibroblasts following serum starvation/induction. OM fibroblasts exhibit a preferential wound-healing response compared to that of dermis. Results provide insight into molecular basis of OM fibroblast wound healing response.
-Organism:	Homo sapiens
-Type:		Expression profiling by array, count, 2 cell type, 4 individual, 2 protocol, 2 time sets
-Platform: GPL96 Series: GSE21648 15 Samples
-FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3856/
-DataSet		Accession: GDS3856	ID: 3856
-
-36. Zinc metalloproteinase Zmpste24 deficiency effect on embryonic fibroblasts in vitro
-Analysis of cultured, early passage (P3) embryonic fibroblasts deficient in Zmpste24. ZMPSTE24-null mutants have a short lifespan and show some signs of accelerated ageing. Results provide insight into the role of Zmpste24 in the aging process. 
+63. Lung development
+Analysis of lung from ICR females over a time course beginning at embryonic day 12 and continuing into adulthood, encompassing all recognized stages of lung development. These results, together with miRNA profiling results, provide insight into molecular mechanisms underlying lung organogenesis.
 Organism:	Mus musculus
-Type:		Expression profiling by array, count, 2 genotype/variation sets
-Platform: GPL1261 Series: GSE25257 6 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3775/
-DataSet		Accession: GDS3775	ID: 3775
+Type:		Expression profiling by array, transformed count, 7 age sets
+Platform: GPL1261 Series: GSE21053 14 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3950/
+DataSet		Accession: GDS3950	ID: 3950
 
-37. Neonatal ovarian xenobiotic cultures
-Analysis of ovaries from Swiss neonates cultured in media containing xenobiotics: 4-vinylcyclohexene diepoxide, methoxychlor, menadione. Non-renewing follicles are vulnerable to xenobiotic insult. Results provide insight into molecular mechanisms underlying xenobiotic-induced preantral ovotoxicity.
+64. Ciliopathy-based photoreceptor degeneration model: time course
+Analysis of retina from PKD-2-247 (TGR) males at 1 and 3 months of age (i.e., before and after retinal vasoregression). The TGR model develops primary photoreceptor degeneration and secondary vasoregression. Results provide insight into molecular mechanisms underlying development of vasoregression.
+Organism:	Rattus norvegicus
+Type:		Expression profiling by array, transformed count, 2 age, 2 genotype/variation, 2 strain sets
+Platform: GPL1355 Series: GSE20967 12 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3846/
+DataSet		Accession: GDS3846	ID: 3846
+
+65. SP-C/c-raf transgenic model of lung cancer: adenocarcinomas
+Analysis of lung tumor cells and transgenic but morphologically unaltered lung cells, both harvested from SP-C/c-raf transgenics. Normal lung from non-transgenic littermates also examined. Results provide insight into molecular mechanisms underlying the progression from lung dysplasia to cancer.
 Organism:	Mus musculus
-Type:		Expression profiling by array, count, 4 agent sets
-Platform: GPL1261 Series: GSE23725 12 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4171/
-DataSet		Accession: GDS4171	ID: 4171
+Type:		Expression profiling by array, count, 7 age, 3 disease state, 2 gender, 2 genotype/variation sets
+Platform: GPL1261 Series: GSE14277 15 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3826/
+DataSet		Accession: GDS3826	ID: 3826
 
-38. High fat diet effect on C57BL/6J quadriceps muscle
-Analysis of skeletal muscle of C57BL/6J males fed a high fat diet (HFD) for 8 weeks to induce obesity and insulin resistance. Results provide insight into the molecular mechanisms underlying the development of diet-induced obesity and insulin resistance.
+66. SP-C/c-raf transgenic model of lung cancer: dysplasia
+Analysis of dysplastic lung cells and transgenic but morphologically unaltered lung cells, both harvested from SP-C/c-raf transgenics. Normal lung from non-transgenic littermates also examined. Results provide insight into molecular mechanisms underlying an early stage of lung cancer development.
 Organism:	Mus musculus
-Type:		Expression profiling by array, count, 2 growth protocol, 2 time sets
-Platform: GPL7546 Series: GSE17576 30 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4015/
-DataSet		Accession: GDS4015	ID: 4015
+Type:		Expression profiling by array, count, 3 age, 3 disease state, 2 gender, 2 genotype/variation sets
+Platform: GPL1261 Series: GSE13963 15 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3825/
+DataSet		Accession: GDS3825	ID: 3825
 
-39. Lamin A exon 9 deletion effect on fibroblasts
-Analysis of fibroblasts from mutants deleted for exon 9 of Lamin A (LMNA). Mutant deleted for exon 9 of LMNA is a model for the segmental premature aging disease Hutchinson-Gilford Progeria (HGPS). Results provide insight into the molecular etiology and pathology of HGPS.
+67. Indolent B-cell lymphoma and very early chronic lymphocytic leukemia: peripheral blood CD4+ Tcells
+Analysis of in vitro-stimulated CD4+ Tcells from patients with indolent B-cell malignancies (follicular lymphoma, extranodal marginal zone lymphoma) and chronic lymphocytic leukemia. Results provide insight into molecular basis of lymphoma-associated aberrant stimulation response of T helper cells.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 26 age, 5 disease state sets
+Platform: GPL570 Series: GSE23293 41 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3869/
+DataSet		Accession: GDS3869	ID: 3869
+
+68. Polyubiquitin knockout effect on testis: time course
+Analysis of testes from Ubb knockouts at 7 to 28 days postpartum (dpp). Loss of Ubb leads to infertility, with germ cells arrested at meiotic prophase I. Results provide insight into molecular mechanisms underlying mammalian fertility.
 Organism:	Mus musculus
-Type:		Expression profiling by array, transformed count, 2 genotype/variation sets
-Platform: GPL1261 Series: GSE23495 6 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5235/
-DataSet		Accession: GDS5235	ID: 5235
+Type:		Expression profiling by array, count, 4 age, 2 genotype/variation sets
+Platform: GPL1261 Series: GSE27568 16 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3906/
+DataSet		Accession: GDS3906	ID: 3906
 
-40. Thiazolidinedione pioglitazone effect on Fischer 344 model of aging: hippocampus
+69. Williams-Beuren Syndrome: fibroblast cell lines
+Analysis of primary skin fibroblasts of 8 Williams-Beuren Syndrome (WBS) and 9 control Caucasian females aged 3 to 8 years. WBS is a neurodevelopmental disorder associated with a microdeletion within the 7q11.23 chromosomal band. Results provide insight into the molecular basis of the WBS phenotype.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, transformed count, 5 age, 2 disease state sets
+Platform: GPL570 Series: GSE16715 17 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3830/
+DataSet		Accession: GDS3830	ID: 3830
+
+70. Non-small cell lung carcinoma in female nonsmokers
+Analysis of paired tumor and adjacent normal lung tissue specimens obtained from nonsmoking female non-small cell lung carcinoma (NSCLC) patients in Taiwan. Results provide insight into potential prognostic biomarkers and therapeutic targets for NSCLC.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, transformed count, 32 age, 2 disease state, 60 individual, 10 other sets
+Platform: GPL570 Series: GSE19804 120 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3837/
+DataSet		Accession: GDS3837	ID: 3837
+
+71. Bisphenol A effect on the fetal urogenital sinus: time course
+Analysis of urogenital sinuses (UGS) of male fetuses exposed to bisphenol A. BPA is a ubiquitous, estrogenic chemical used in the production of polycarbonate plastics.   UGS examined at embryonic days 17 and 18, and postnatal day 0. Results provide insight into the molecular effects of BPA on UGS.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 3 age, 3 agent sets
+Platform: GPL1261 Series: GSE24928 9 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS5nnn/GDS5233/
+DataSet		Accession: GDS5233	ID: 5233
+
+72. Type 2 diabetic pancreatic islets of Langerhans
+Analysis of islet of Langerhans isolated from type 2 diabetic (T2D) organ donors. Phosphoinositide 3-kinases (PI3Ks) are critical regulators of pancreatic β cell mass and survival. Results provide insight into a role for class II PI3Ks in insulin secretion in pancreatic β cells.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, transformed count, 9 age, 2 disease state, 2 gender sets
+Platform: GPL96 Series: GSE25724 13 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3882/
+DataSet		Accession: GDS3882	ID: 3882
+
+73. Notch1 promoter deletion effect on Ikaros-deficient model of T-cell acute lymphoblastic leukemia: thymic lymphoma
+Analysis of thymic tumors from Ikaros-deficient (IkL/L) mice with a Notch promoter/exon1 deletion. The deletion of Notch1 promoter results in oncogenic activation of Notch1 and significantly accelerates leukemogenesis. Results provide insight into role of Notch activation in pathogenesis of T-ALL.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 2 genotype/variation sets
+Platform: GPL1261 Series: GSE23972 6 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4174/
+DataSet		Accession: GDS4174	ID: 4174
+
+74. Uroplakin II promoter-SV40Tag transgenic model for invasive bladder cancer: time course
+Analysis of urothelium from UPII-SV40Tag transgenics at 3, 6, 20, 30 weeks of age, corresponding to premalignant, carcinoma in situ, early and later stage invasive transitional cell carcinoma of the bladder (TCC), respectively. Results provide insight into molecular basis of early TCC development. 
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 4 age, 2 genotype/variation sets
+Platform: GPL1261 Series: GSE23845 15 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3887/
+DataSet		Accession: GDS3887	ID: 3887
+
+75. Embryonic pharyngeal arch and embryonic heart
+Analysis of second heart field (SHF)-containing pharyngeal arch from E10.5 embryos and heart from E12.5 embryos. These results, together with results from P19CL6 cells induced to differentiate into a cardiac lineage, provide insight into Nkx2.5 target genes relevant specifically to the SHF.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 2 tissue sets
+Platform: GPL339 Series: GSE17936 10 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3803/
+DataSet		Accession: GDS3803	ID: 3803
+
+76. Thiazolidinedione pioglitazone effect on Fischer 344 model of aging: hippocampus
 Analysis of hippocampus of aged F344 males fed a thiazolidinedione (TZD) pioglitazone-containing diet. TZDs have benefits in age-related conditions such as type 2 diabetes mellitus and Alzheimer's disease.  Results provide insight into PIO's potentially beneficial actions in normal aging.
 Organism:	Rattus norvegicus
 Type:		Expression profiling by array, count, 2 age, 2 agent sets
@@ -319,7 +607,15 @@ Platform: GPL1355 Series: GSE20219 29 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4019/
 DataSet		Accession: GDS4019	ID: 4019
 
-41. Aging effect on hippocampal regions critical for memory and cognition
+77. Hypothalamus development: hypothalamic and preoptic area tissues
+Analysis of the hypothalamus and preoptic area from C57Bl/6 and CD-1 males and females across 9 embryonic/3 postnatal time points. The hypothalamus is a central regulator of many behaviors essential for survival. Results provide insight into molecular pathways mediating hypothalamic development.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 12 age, 2 gender, 2 strain sets
+Platform: GPL1261 Series: GSE21278 48 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3847/
+DataSet		Accession: GDS3847	ID: 3847
+
+78. Aging effect on hippocampal regions critical for memory and cognition
 Analysis of hippocampal cornu ammonis and dentate gyrus from young and aged female simians. Aging rhesus monkeys develop Metabolic Syndrome (MetS) symptoms and age-related cognitive decline similar to humans. Results provide insight into MetS-associated brain dysfunction in aging.
 Organism:	Macaca mulatta
 Type:		Expression profiling by array, count, 2 age, 2 tissue sets
@@ -327,7 +623,87 @@ Platform: GPL3535 Series: GSE11697 23 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4215/
 DataSet		Accession: GDS4215	ID: 4215
 
-42. Aging and cognitive decline: hippocampus
+79. Aged, lupus-prone MRL/Faslpr model: splenic CD4 T cells
+Analysis of CD4 T cells isolated from spleens of aged (16-24 wks) MRL/Faslpr females and sorted into 3 populations: CD62Lhi/PSGL1hi, CD62Llo/PSGL1hi, and CD62Llo/PSGL1lo. MRL/Faslpr animals exhibit lupus disease traits from 12-16 wks.  Results provide insight into molecular basis of lupus onset.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 2 age, 2 cell type, 4 genotype/variation sets
+Platform: GPL1261 Series: GSE20735 12 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4190/
+DataSet		Accession: GDS4190	ID: 4190
+
+80. Balanced and unbalanced chromosomal translocations: lymphoblastoid cell lines
+Analysis of lymphoblastoid cell lines established from individuals with the t(11;22)(q23;q11)-balanced translocation (carriers) or the +der(22)t(11;22)(q23;q11) karyotype (Emanuel syndrome patients). Results provide insight into the effect of balanced chromosomal rearrangements on the transcriptome.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, transformed count, 24 age, 3 disease state, 2 gender, 3 genotype/variation, 8 other sets
+Platform: GPL570 Series: GSE13122 26 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4264/
+DataSet		Accession: GDS4264	ID: 4264
+
+81. Snord116del mutant hypothalamus response to neonatal starvation
+Analysis of P5 and P13 hypothalami from Snord116del animals, a model for Prader-Willi syndrome, a disease that involves infantile feeding difficulties and failure to thrive. P5 neonates subjected to 6h starvation. Results provide insight into the role of Snord116 in feeding regulation in neonates.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 2 age, 2 genotype/variation, 2 stress sets
+Platform: GPL6103 Series: GSE14984 16 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3786/
+DataSet		Accession: GDS3786	ID: 3786
+
+82. Huntington disease model: brain striatum (Ref-6 V1)
+Analysis of brain striata from YAC128 trangenic animals at 12 and 24 months of age. The YAC128 transgenic animal is a model for Huntington disease (HD). Results provide insight into the pathogenesis of HD.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 2 genotype/variation sets
+Platform: GPL6333 Series: GSE19677 18 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3621/
+DataSet		Accession: GDS3621	ID: 3621
+
+83. Huntington disease model: brain striatum (430 2.0)
+Analysis of brain striata from YAC128 trangenic animals at 12 and 24 months of age. The YAC128 transgenic animal is a model for Huntington disease (HD). Results provide insight into the pathogenesis of HD.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 2 age, 2 genotype/variation sets
+Platform: GPL1261 Series: GSE19677 18 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3620/
+DataSet		Accession: GDS3620	ID: 3620
+
+84. Age effect on healthy composite bone marrow
+Analysis of composite bone marrow (BM) from healthy children and adults. Normal BM constitutes a complex tissue of blood progenitor cells changing in composition with age. Results provide insight into molecular mechanisms associated with changes in the total precursor B-cell compartment with age.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, transformed count, 25 age sets
+Platform: GPL570 Series: GSE11504 25 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4263/
+DataSet		Accession: GDS4263	ID: 4263
+
+85. Egr-1 deficiency effect on retina during eye development
+Analysis of retinas of Egr-1 deficient animals at post-natal days 30 and 42. 42 day-old Egr-1 knockout animals have longer eyes and a more myopic refractive error compared to wild-types. Results provide insight into the molecular mechanisms regulating axial eye growth.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 2 genotype/variation sets
+Platform: GPL1261 Series: GSE16974 16 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3607/
+DataSet		Accession: GDS3607	ID: 3607
+
+86. Fetal epithelial intestine-stomach boundary formation: time course
+Analysis of stomach, pylorus and duodenum from E14.5 and E16.5 embryos. In adults, distinct morphological differences separate stomach from intestinal epithelium. This discrete junction is established at E16.5. Results provide insight into the molecular basis of epithelial pyloric border formation. 
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 2 age, 3 tissue sets
+Platform: GPL1261 Series: GSE15872 18 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3764/
+DataSet		Accession: GDS3764	ID: 3764
+
+87. Streptozotocin-induced diabetic model with acute myocardial infarction: time course
+Analysis of remote zone tissues of left ventricular (LV) free wall up to 56 days post- acute myocardial infarction (AMI) in a STZ-induced diabetic model of myocardial infarction (MI) without any glucose control or reperfusion.  Results provide insight into time course effects of hyperglycemia on MI.
+Organism:	Rattus norvegicus
+Type:		Expression profiling by array, count, 5 age, 2 disease state sets
+Platform: GPL1355 Series: GSE12639 12 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4025/
+DataSet		Accession: GDS4025	ID: 4025
+
+88. Schizophrenia: postmortem anterior prefrontal cortex
+Analysis of post-mortem tissue from the anterior prefrontal cortex (Brodmann Area 10, BA10) of schizophrenic patients.  The BA10 region mediates the negative pathophysiology of schizophrenia. Results provide insight into molecular mechanisms underlying the negative symptoms of schizophrenia.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 33 age, 2 disease state, 2 gender sets
+Platform: GPL570 Series: GSE17612 51 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4523/
+DataSet		Accession: GDS4523	ID: 4523
+
+89. Aging and cognitive decline: hippocampus
 Analysis of hippocampi from F344 males, at 5 age points across the adult lifespan, tested on the Morris water maze (MWM) task.  MWM is a dorsal hippocampal-dependent, spatial memory task. MWM performance showed an age effect. Results provide insight into the molecular basis of cognitive aging.
 Organism:	Rattus norvegicus
 Type:		Expression profiling by array, count, 5 age sets
@@ -335,23 +711,31 @@ Platform: GPL341 Series: GSE9990 49 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3915/
 DataSet		Accession: GDS3915	ID: 3915
 
-43. Fasting effect on the liver
-Analysis of livers from male FVB animals fasting for up to 72 hours. Results provide insight into the adaptive response of the liver to fasting.
-Organism:	Mus musculus
-Type:		Expression profiling by array, log ratio, 4 time sets
-Platform: GPL922 Series: GSE10653 12 Samples
-FTP download: GEO (TIFF, TXT) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3642/
-DataSet		Accession: GDS3642	ID: 3642
-
-44. Senescent activated hepatic stellate cells
-Analysis of activated hepatic stellate cells (HSCs) induced to senesce by treatment with a DNA-damaging agent. Upon activation in response to liver damage, HSCs proliferate and produce the extracellular matrix deposited in the fibrotic scar. Senescence of activated HSCs limits liver fibrosis.  
+90. Schizophrenia: endothelial and neuronal cells from postmortem dorsolateral prefrontal cortex tissue
+Analysis of LCM-captured microvascular endothelial cells and neurons from post mortem brain tissue from schizophrenia patients, bipolar disorder patients, and healthy controls. Results provide insight into molecular mechanisms underlying the pathophysiology of schizophrenia.
 Organism:	Homo sapiens
-Type:		Expression profiling by array, transformed count, 2 cell type sets
-Platform: GPL570 Series: GSE11954 4 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3492/
-DataSet		Accession: GDS3492	ID: 3492
+Type:		Expression profiling by array, transformed count, 18 age, 2 cell type, 3 disease state, 2 gender sets
+Platform: GPL570 Series: GSE12679 32 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3502/
+DataSet		Accession: GDS3502	ID: 3502
 
-45. Age and diet effect on canine skeletal muscles
+91. Lupus nephritis model response to sirolimus-induced mTOR inhibition (Mu11KsubA)
+Analysis of kidney from sirolimus-treated NZB/W F1 females at 36 and 42 weeks of age. Sirolimus, a mammalian target of rapamycin (mTOR) inhibitor, has been efficacious in the NZB/W model of lupus nephritis. Results provide insight into role of the mTOR pathway in autoimmune lupus nephritis.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 3 age, 2 agent, 2 disease state sets
+Platform: GPL75 Series: GSE12024 16 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4186/
+DataSet		Accession: GDS4186	ID: 4186
+
+92. von Hippel-Lindau (VHL) tumor suppressor protein deficiency effect on pancreatic islet cells
+Analysis of pancreatic islet cells deficient for the von Hippel-Lindau tumor suppressor protein from 18 to 26 wk-old animals.  Loss of Vhlh in beta-cells leads to impaired glucose tolerance and to abnormal insulin secretion. Results provide insight into the role of Vhlh in pancreatic beta cells.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 3 age, 2 gender, 2 genotype/variation sets
+Platform: GPL1261 Series: GSE11484 6 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3800/
+DataSet		Accession: GDS3800	ID: 3800
+
+93. Age and diet effect on canine skeletal muscles
 Analysis of skeletal muscles from 1 and 12 year old female beagles fed an animal-protein based or plant-protein based diet for 12 months. Results provide insight into the molecular mechanisms in the skeletal muscle affected by age and diet.
 Organism:	Canis lupus familiaris
 Type:		Expression profiling by array, transformed count, 2 age, 2 protocol sets
@@ -359,7 +743,39 @@ Platform: GPL3979 Series: GSE12502 12 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3538/
 DataSet		Accession: GDS3538	ID: 3538
 
-46. Age-associated aneuploidy model
+94. Thyroid carcinoma models
+Analysis of 2, 6, and 10 month old transgenic (Tg) thyroids expressing RET/PTC3 fusion gene or E7 human papillomavirus 16 oncoprotein. The two Tg populations with different initiating mutations both develop thyroid carcinoma. Results provide insight into the different steps leading to carcinoma.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 3 age, 3 strain sets
+Platform: GPL1261 Series: GSE10743 9 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3319/
+DataSet		Accession: GDS3319	ID: 3319
+
+95. Visual cortex during the critical period for ocular dominance (MG-U74C)
+Analysis of visual cortices before the critical period for ocular dominance plasticity opens [postnatal day 14 (P14)], at the peak sensitivity of the critical period (P28), and after the critical period (P60). Results provide insight into the molecular mechanisms associated with the critical period.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 3 age sets
+Platform: GPL83 Series: GSE11764 10 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3382/
+DataSet		Accession: GDS3382	ID: 3382
+
+96. Visual cortex during the critical period for ocular dominance (MG-U74B)
+Analysis of visual cortices before the critical period for ocular dominance plasticity opens [postnatal day 14 (P14)], at the peak sensitivity of the critical period (P28), and after the critical period (P60). Results provide insight into the molecular mechanisms associated with the critical period.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 3 age sets
+Platform: GPL82 Series: GSE11764 10 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3376/
+DataSet		Accession: GDS3376	ID: 3376
+
+97. Visual cortex during the critical period for ocular dominance (MG-U74A)
+Analysis of visual cortices before the critical period for ocular dominance plasticity opens [postnatal day 14 (P14)], at the peak sensitivity of the critical period (P28), and after the critical period (P60). Results provide insight into the molecular mechanisms associated with the critical period.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 3 age sets
+Platform: GPL81 Series: GSE11764 10 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3375/
+DataSet		Accession: GDS3375	ID: 3375
+
+98. Age-associated aneuploidy model
 Analysis of germinal vesicle (GV)-intact oocytes and metaphase II (MII) eggs obtained from young and old females. An increased incidence of aneuploidy is observed with increasing maternal age. Results provide insight into the molecular basis underlying the age-associated increase in aneuploidy.
 Organism:	Mus musculus
 Type:		Expression profiling by array, count, 2 age, 2 development stage sets
@@ -367,31 +783,71 @@ Platform: GPL1261 Series: GSE11667 16 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3295/
 DataSet		Accession: GDS3295	ID: 3295
 
-47. Progerin expression in a hTERT-immortalized skin fibroblast cell line: time course
-Analysis of skin fibroblasts induced to express GFP-progerin for up to 10 days. Progerin is a mutant form of lamin A and the causal agent of premature-ageing disease Hutchinson-Gilford Progeria Syndrome (HGPS). Results provide insight into molecular mechanisms underlying this pathological effect.
-Organism:	Homo sapiens
-Type:		Expression profiling by array, count, 2 protocol, 3 time sets
-Platform: GPL2895 Series: GSE10123 12 Samples
-FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3495/
-DataSet		Accession: GDS3495	ID: 3495
-
-48. Apelin knockout effect on the heart
-Analysis of hearts from Apelin knockouts (KO) subjected to pressure overload by aortic banding (AB). Banded Apelin KOs develop severe and progressive heart failure. Results provide insight into the role of Apelin in maintaining cardiovascular homeostasis on pressure overload.
+99. Embryonic brain development
+Analysis of brains at embryonic days (E) 9.5, 11.5, and 13.5. Mostly undifferentiated neural progenitor cells (NPCs) are present at E9.5, NPCs begin to differentiate into neurons at E11.5, and neurogenesis peaks at E13.5. Results provide insight into the molecular mechanisms underlying neurogenesis.
 Organism:	Mus musculus
-Type:		Expression profiling by array, count, 2 genotype/variation, 2 protocol sets
-Platform: GPL1261 Series: GSE7781 12 Samples
-FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3228/
-DataSet		Accession: GDS3228	ID: 3228
+Type:		Expression profiling by array, count, 3 age sets
+Platform: GPL1261 Series: GSE8091 16 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3442/
+DataSet		Accession: GDS3442	ID: 3442
 
-49. Oxidative-stress induced neurodegeneration in Harlequin mutant: olfactory epithelium
-Analysis of olfactory epithelium from Harlequin mutant, a model of oxidative stress (OS)-induced neurodegeneration. OS in the olfactory system is a major factor associated with age-related olfactory impairment. Results provide insight into the molecular basis of OS-associated olfactory aging.
+100. Lung development (Mu11K-B)
+Analysis of lungs from embryonic day 12 to adulthood. Results provide insight into the molecular mechanisms governing normal lung development.
 Organism:	Mus musculus
-Type:		Expression profiling by array, count, 2 genotype/variation sets
-Platform: GPL1261 Series: GSE6485 6 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3365/
-DataSet		Accession: GDS3365	ID: 3365
+Type:		Expression profiling by array, count, 11 age sets
+Platform: GPL76 Series: GSE10889 11 Samples
+FTP download: GEO (CEL, EXP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3448/
+DataSet		Accession: GDS3448	ID: 3448
 
-50. Young and aged skeletal muscles response to long-term vigorous endurance exercise
+101. Lung development (Mu11K-A)
+Analysis of lungs from embryonic day 12 to adulthood. Results provide insight into the molecular mechanisms governing normal lung development.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 11 age sets
+Platform: GPL75 Series: GSE10889 11 Samples
+FTP download: GEO (CEL, EXP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3447/
+DataSet		Accession: GDS3447	ID: 3447
+
+102. Amyotrophic lateral sclerosis model
+Analysis of motor neurons of 60, 90, and 120 day old SOD1 G93A transgenics, a model for familial amyotrophic lateral sclerosis (ALS). ALS is an adult-onset neurodegenerative disease characterized by degeneration of upper and lower motor neurons. Results provide insight into the pathogenesis of ALS.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 3 age, 2 strain sets
+Platform: GPL339 Series: GSE10953 18 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3408/
+DataSet		Accession: GDS3408	ID: 3408
+
+103. Newborn intestinal tissues response to Shigella flexineri infection
+Analysis of intestinal tissues from  4- or 7-day-old animals infected with Shigella flexineri strains for 2 or 4 hr. Animals >1 wk old are no longer susceptible to infection by Shigella. Results provide insight into the molecular basis of the switch from disease susceptibility to resistance.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 3 infection, 3 time sets
+Platform: GPL339 Series: GSE9785 36 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3392/
+DataSet		Accession: GDS3392	ID: 3392
+
+104. Inherited cryptorchidism model: fetal testis
+Analysis of testis of cryptorchid (orl) fetuses at at various gestational days up to GD19. The orl strain is at high risk for cryptorchidism, or undescended testis, one of the most common congenital anomalies in humans. Results provide insight into molecular mechanisms underlying cryptorchidism.
+Organism:	Rattus norvegicus
+Type:		Expression profiling by array, transformed count, 2 age, 2 strain sets
+Platform: GPL341 Series: GSE7755 20 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3157/
+DataSet		Accession: GDS3157	ID: 3157
+
+105. Inherited cryptorchidism model: fetal gubernaculum
+Analysis of gubernaculum of cryptorchid (orl) fetuses at various gestational days up to GD20. The orl strain is at high risk for cryptorchidism, or undescended testis, one of the most common congenital anomalies in humans. Results provide insight into molecular mechanisms underlying cryptorchidism.
+Organism:	Rattus norvegicus
+Type:		Expression profiling by array, transformed count, 3 age, 2 gender, 3 other, 2 strain sets
+Platform: GPL341 Series: GSE7755 34 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3156/
+DataSet		Accession: GDS3156	ID: 3156
+
+106. Spinocerebellar ataxia type 1 knock-in model: cerebellum
+Analysis of cerebella from spinocerebellar ataxia type 1 (SCA1) knockin animals at an early symptomatic disease stage. SCA1 is a neurodegenerative disorder caused by expansion of a glutamine tract in ataxin-1. Results provide insight into the molecular basis of cerebellar pathogenesis in SCA1.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 3 age, 2 genotype/variation sets
+Platform: GPL339 Series: GSE9914 12 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3544/
+DataSet		Accession: GDS3544	ID: 3544
+
+107. Young and aged skeletal muscles response to long-term vigorous endurance exercise
 Analysis of skeletal muscles from young and aged individuals undergoing vigorous endurance exercise training for over 4 years. Results provide insight into the effects of endurance exercise on age-related insulin resistance and mitochondrial dysfunction.
 Organism:	Homo sapiens
 Type:		Expression profiling by array, count, 2 age, 2 protocol sets
@@ -399,7 +855,7 @@ Platform: GPL570 Series: GSE9103 37 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3182/
 DataSet		Accession: GDS3182	ID: 3182
 
-51. Age-related aortic vasculopathy model
+108. Age-related aortic vasculopathy model
 Analysis of thoracic aortas (TAs) of Fischer 344/Brown Norway F1 hybrids (F344xBN) at 3 to 28 months of age. Age is a risk factor for vascular disease. The TAs of F344xBN animals exhibit age-related pathologies. Results provide insight into the mechanisms underlying age-mediated vascular pathology.
 Organism:	Rattus norvegicus
 Type:		Expression profiling by array, count, 4 age sets
@@ -407,7 +863,7 @@ Platform: GPL85 Series: GSE7281 16 Samples
 FTP download: GEO (CEL, EXP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3077/
 DataSet		Accession: GDS3077	ID: 3077
 
-52. Caloric restriction effect on the aged heart and adipose tissue
+109. Caloric restriction effect on the aged heart and adipose tissue
 Analysis of hearts and white adipose tissues of 28 month old male animals fed a calorie restricted diet since 4 months of age. Sustained caloric restriction (CR) extends lifespan in animal models. Results provide insight into the molecular basis of CR-induced lifespan extension.
 Organism:	Rattus norvegicus
 Type:		Expression profiling by array, count, 2 age, 2 growth protocol, 2 tissue sets
@@ -415,7 +871,7 @@ Platform: GPL1355 Series: GSE6718 39 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3102/
 DataSet		Accession: GDS3102	ID: 3102
 
-53. Age-related hearing loss model: cochlea
+110. Age-related hearing loss model: cochlea
 Analysis of cochleas of 7 and 36 week old DBA/2J animals. The DBA/2J animal suffers from age-related hearing loss (AHL), a progressive disease characterized by an age-associated loss of hair cells and spiral ganglion cells in the cochlea. Results provide insight into the molecular basis of AHL.
 Organism:	Mus musculus
 Type:		Expression profiling by array, count, 2 age, 2 disease state sets
@@ -423,7 +879,23 @@ Platform: GPL339 Series: GSE6045 6 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3028/
 DataSet		Accession: GDS3028	ID: 3028
 
-54. Vitamin E supplementation effect on aged brain
+111. Adult and juvenile streptozocin-induced diabetic littermates: kidney cortex
+Analysis of cortex from adult and juvenile Sprague-Dawley males 6 weeks after injection of STZ to induce diabetes. Puberty unmasks or accelerates the diabetic nephropathy. Results provide insight into molecular mechanisms underlying pubertal acceleration or unmasking of kidney disease in diabetes.
+Organism:	Rattus norvegicus
+Type:		Expression profiling by array, count, 2 age, 2 disease state, 2 protocol sets
+Platform: GPL1355 Series: GSE7253 12 Samples
+FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4038/
+DataSet		Accession: GDS4038	ID: 4038
+
+112. Neural retina leucine zipper deficiency effect on retinas: time course
+Analysis of retinas of mutants lacking the rod photoreceptor-specific neural retina leucine zipper protein (Nrl), at up to 2 months of age. In the absence of Nrl, rods are missing and cones increase in number. Results provide insight into the differences between the two photoreceptor subtypes.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 3 age, 2 genotype/variation sets
+Platform: GPL81 Series: GSE8972 24 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2936/
+DataSet		Accession: GDS2936	ID: 2936
+
+113. Vitamin E supplementation effect on aged brain
 Analysis of brains of aged (30-month-old) B6C3F1 animals fed a diet containing alpha-tocopherol alone or in combination with gamma-tocopherol. Both of these vitamin E homologs exhibit anti-inflammatory properties. Results provide insight into the effects of vitamin E supplementation on aged brain.  
 Organism:	Mus musculus
 Type:		Expression profiling by array, count, 2 age, 3 agent sets
@@ -431,7 +903,7 @@ Platform: GPL1261 Series: GSE8150 20 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2973/
 DataSet		Accession: GDS2973	ID: 2973
 
-55. Vitamin E supplementation effect on aged heart
+114. Vitamin E supplementation effect on aged heart
 Analysis of hearts of 30-month-old B6C3F1 animals fed a diet supplemented with alpha-tocopherol alone or in combination with gamma-tocopherol. Vitamin E supplementation initiated at 15 months of age.
 Organism:	Mus musculus
 Type:		Expression profiling by array, count, 2 age, 3 agent sets
@@ -439,7 +911,7 @@ Platform: GPL81 Series: GSE8146 20 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2972/
 DataSet		Accession: GDS2972	ID: 2972
 
-56. Aging lungs and genetic background
+115. Aging lungs and genetic background
 Analysis of lungs of C57BL/6J and DBA/2J animals at up to 26 months of age. Aging lungs of C57BL/6J and DBA/2J strains differ in physiology and morphometry. Results provide insight into the influence of genetic background on the variability of age-dependent changes in lung structure and function.
 Organism:	Mus musculus
 Type:		Expression profiling by array, count, 3 age, 2 strain sets
@@ -447,23 +919,55 @@ Platform: GPL1261 Series: GSE6591 15 Samples
 FTP download: GEO (CEL, EXP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2929/
 DataSet		Accession: GDS2929	ID: 2929
 
-57. Creatine effect on the brain
-Analysis of brains of C57Bl/6J animals fed a creatine supplemented diet for 6 months. Creatine has a neuroprotective effect in animal models of neurodegenerative diseases. Results provide insight into the molecular basis of this neuroprotective effect.
+116. Huntington's disease transgenic model: time course
+Analysis of brains of R6/1 transgenic animals at 18 to 27 weeks of age. The R6/1 transgenic animal expresses exon 1 of the mutant human huntingtin gene that contains 115 CAG trinucleotide repeats. Results provide insight into the early pathogenesis of HD. 
 Organism:	Mus musculus
-Type:		Expression profiling by array, count, 2 agent sets
-Platform: GPL1261 Series: GSE5140 13 Samples
-FTP download: GEO (CEL, XML) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2765/
-DataSet		Accession: GDS2765	ID: 2765
+Type:		Expression profiling by array, count, 3 age, 2 strain sets
+Platform: GPL1261 Series: GSE3621 18 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2912/
+DataSet		Accession: GDS2912	ID: 2912
 
-58. Cochlea response to mitochondrial DNA mutations
-Analysis of cochleas of animals carrying a mutator allele of the mitochondrial (mt) Polg DNA polymerase. Accumulation of mtDNA mutations is associated with age-related hearing loss. Results provide insight into the role of mtDNA mutations in the pathogenesis of age-related hearing loss.
+117. Small intestine postnatal development
+Analysis of ilea from animals at postnatal days 4 to 32. During the early postnatal period, lymphocytes migrate into the small intestine. Results provide insight into the molecular response of small intestinal epithelial to postnatal lymphocytic migration into the small intestinal mucosa.
 Organism:	Mus musculus
-Type:		Expression profiling by array, count, 2 genotype/variation sets
-Platform: GPL1261 Series: GSE4866 10 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3162/
-DataSet		Accession: GDS3162	ID: 3162
+Type:		Expression profiling by array, transformed count, 6 age sets
+Platform: GPL1261 Series: GSE8065 18 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2989/
+DataSet		Accession: GDS2989	ID: 2989
 
-59. Male and female thymi response to aging and caloric restriction (B)
+118. Pancreatic development (MG-U74C)
+Analysis of pancreatic tissues from NMRI animals from embryonic day E12.5 to E16.5. Results provide insight into the molecular mechanisms underlying the development of the pancreas.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 5 age sets
+Platform: GPL83 Series: GSE8070 10 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2950/
+DataSet		Accession: GDS2950	ID: 2950
+
+119. Pancreatic development (MG-U74B)
+Analysis of pancreatic tissues from NMRI animals from embryonic day E12.5 to E16.5. Results provide insight into the molecular mechanisms underlying the development of the pancreas.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 5 age sets
+Platform: GPL82 Series: GSE8070 10 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2949/
+DataSet		Accession: GDS2949	ID: 2949
+
+120. Pancreatic development (MG-U74A)
+Analysis of pancreatic tissues from NMRI animals from embryonic day E12.5 to E16.5. Results provide insight into the molecular mechanisms underlying the development of the pancreas.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 5 age sets
+Platform: GPL81 Series: GSE8070 10 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2948/
+DataSet		Accession: GDS2948	ID: 2948
+
+121. Nuclear factor I-A deficiency effect on brain development
+Analysis of embryonic (E18) and postnatal (P16) brains of mutants lacking the transcription/replication protein nuclear factor I-A (NFI-A). NFI-A null mutants exhibit neurological defects. Results provide insight into mechanisms regulated by NFI-A during brain development.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 2 genotype/variation sets
+Platform: GPL81 Series: GSE4623 12 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2775/
+DataSet		Accession: GDS2775	ID: 2775
+
+122. Male and female thymi response to aging and caloric restriction (B)
 Analysis of thymi from 17 to 743 day-old males and females on a calorie-restricted or ad libitum diet. Results provide insight into the molecular basis of the loss of thymic function with age and the influence of gender and diet on this loss.
 Organism:	Mus musculus
 Type:		Expression profiling by array, transformed count, 37 age, 2 gender, 2 protocol sets
@@ -471,7 +975,7 @@ Platform: GPL782 Series: GSE7829 67 Samples
 FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2962/
 DataSet		Accession: GDS2962	ID: 2962
 
-60. Male and female thymi response to aging and caloric restriction (A)
+123. Male and female thymi response to aging and caloric restriction (A)
 Analysis of thymi from 17 to 743 day-old males and females on a calorie-restricted or ad libitum diet. Results provide insight into the molecular basis of the loss of thymic function with age and the influence of gender and diet on this loss.    
 Organism:	Mus musculus
 Type:		Expression profiling by array, transformed count, 37 age, 2 gender, 2 protocol sets
@@ -479,7 +983,23 @@ Platform: GPL738 Series: GSE7829 67 Samples
 FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2961/
 DataSet		Accession: GDS2961	ID: 2961
 
-61. Caloric restriction effect on aged cochlea
+124. Topoisomerase IIbeta deficiency effect on the developing embryonic brain
+Anlaysis of brains from topoisomerase IIbeta (TopIIbeta) deficient embryos at various ages up to embryonic day 18.5. TopIIbeta null animals exhibit a perinatal death phenotype. Results provide insight into the role of TopIIbeta at the late stages of neuronal differentiation.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 3 age, 2 genotype/variation sets
+Platform: GPL81 Series: GSE5458 6 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2702/
+DataSet		Accession: GDS2702	ID: 2702
+
+125. Pubertal mammary gland development
+Analysis of mammary glands of animals from pre-puberty to post-puberty. Results provide insight into the mechanisms underlying mammary gland development during puberty.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 5 age, 3 development stage sets
+Platform: GPL339 Series: GSE6453 14 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2721/
+DataSet		Accession: GDS2721	ID: 2721
+
+126. Caloric restriction effect on aged cochlea
 Analysis of cochleas of 15 month old C57BL/6 (B6) animals on a calorie restricted diet. The B6 strain is a model of age-related hearing loss or presbycusis. Caloric restriction (CR) prevents late-onset presbycusis in B6. Results provide insight into the molecular basis of this effect of CR. 
 Organism:	Mus musculus
 Type:		Expression profiling by array, count, 2 age, 2 protocol sets
@@ -487,7 +1007,7 @@ Platform: GPL1261 Series: GSE4786 9 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2681/
 DataSet		Accession: GDS2681	ID: 2681
 
-62. Aging and cognitive impairment: hippocampus
+127. Aging and cognitive impairment: hippocampus
 Analysis of hippocampi from aged learning-impaired animals on the last day of training in the Morris water maze (MWZ) or 21 days post-training. The MWZ task is a dorsal hippocampal-dependent task. Results provide insight into the molecular basis of aging-related cognitive impairment.   
 Organism:	Rattus norvegicus
 Type:		Expression profiling by array, count, 2 age, 3 disease state, 3 protocol sets
@@ -495,15 +1015,15 @@ Platform: GPL341 Series: GSE5666 78 Samples
 FTP download: GEO (CEL, EXP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2639/
 DataSet		Accession: GDS2639	ID: 2639
 
-63. Sequestosome 1 and dipeptidylpeptidase III overexpression effect on neuroblastoma cell line
-Analysis of IMR-32 neuroblastoma cells overexpressing sequestosome 1 (SQSTM1) or dipeptidylpeptidase III (DPP3). SQSTM1 and DPP3 activate the antioxidant response element (ARE). Results provide insight into mechanisms regulating the activation of the ARE.
-Organism:	Homo sapiens
-Type:		Expression profiling by array, count, 3 protocol sets
-Platform: GPL570 Series: GSE6451 6 Samples
-FTP download: GEO (CEL, EXP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2653/
-DataSet		Accession: GDS2653	ID: 2653
+128. Cdk7 complex subunit menage-a-trois 1 deficiency effect on hearts
+Analysis of 2 and 4 week old hearts ablated for menage-a-trois 1 (MAT1), a subunit of the cdk7/cyclin H/MAT1 heterotrimer. Results provide insight into the role of the cdk7/cyclin H/MAT1 complex in cardiac metabolism.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 2 protocol sets
+Platform: GPL81 Series: GSE6662 15 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2561/
+DataSet		Accession: GDS2561	ID: 2561
 
-64. Neurological aging models: retinas and hippocampi
+129. Neurological aging models: retinas and hippocampi
 Analysis of retinas and hippocampi of SAMP8 and SAMP10 animals at 3 and 16 months of age.  SAMP8 and SAMP10 are inbred animal models of accelerated neurological senescence. Results provide insight into the molecular mechanisms underlying neurological aging.
 Organism:	Mus musculus
 Type:		Expression profiling by array, count, 2 age, 2 disease state, 3 strain, 2 tissue sets
@@ -511,15 +1031,31 @@ Platform: GPL81 Series: GSE6238 27 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2654/
 DataSet		Accession: GDS2654	ID: 2654
 
-65. Bone morphogenic protein 6 effect on an endothelial cell line: time course
-Analysis of endothelial cells treated for up to 24 hours with bone morphogenic protein 6 (BMP6). BMP proteins participate in the regulation of angiogenesis in physiological and pathological conditions. Results provide insight into the mechanisms that contribute to BMP-dependent angiogenic signaling.
-Organism:	Mus musculus
-Type:		Expression profiling by array, log2 ratio, 2 agent, 4 time sets
-Platform: GPL922 Series: GSE4909 12 Samples
-FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2571/
-DataSet		Accession: GDS2571	ID: 2571
+130. Basal plate of the placenta from midgestation to term (HG-U133B)
+Analysis of the basal plate of the placenta from midgestation to term. The basal plate is the region where maternal and fetal cells coexist. Its proper formation is required for pregnancy. Results provide insight into the molecular basis of the unique cell-cell interactions in the basal plate.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, transformed count, 12 age, 2 development stage sets
+Platform: GPL97 Series: GSE5999 36 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2529/
+DataSet		Accession: GDS2529	ID: 2529
 
-66. Aging liver
+131. Basal plate of the placenta from midgestation to term (HG-U133A)
+Analysis of the basal plate of the placenta from midgestation to term. The basal plate is the region where maternal and fetal cells coexist. Its proper formation is required for pregnancy. Results provide insight into the molecular basis of the unique cell-cell interactions in the basal plate.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, transformed count, 12 age, 2 development stage sets
+Platform: GPL96 Series: GSE5999 36 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2528/
+DataSet		Accession: GDS2528	ID: 2528
+
+132. Early-early stage Duchenne muscular dystrophy: quadriceps 
+Analysis of skeletal muscles from 1.5 to 61 month old children with Duchenne muscular dystrophy (DMD). DMD is a degenerative skeletal muscle disease caused by mutations in the dystrophin gene. Results provide insight into the early phases of DMD pathogenesis and pathophysiology.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, transformed count, 22 age, 2 disease state, 2 gender sets
+Platform: GPL96 Series: GSE6011 37 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3027/
+DataSet		Accession: GDS3027	ID: 3027
+
+133. Aging liver
 Analysis of livers of Fisher F344/N males at 32, 58, and 84 weeks of age. Results provide insight into age-associated changes in the capacity of the liver to metabolize xenobiotic compounds. 
 Organism:	Rattus norvegicus
 Type:		Expression profiling by array, log ratio, 3 age sets
@@ -527,7 +1063,7 @@ Platform: GPL890 Series: GSE4270 38 Samples
 FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2915/
 DataSet		Accession: GDS2915	ID: 2915
 
-67. Caloric restriction effect on aged skeletal muscle
+134. Caloric restriction effect on aged skeletal muscle
 Analysis of aged skeletal muscles of C57BL/6NHsd animals fed a calorie-restricted diet. Caloric restriction extends the life of this strain by 40%. Results provide insight into the molecular basis of mammalian aging.
 Organism:	Mus musculus
 Type:		Expression profiling by array, count, 2 age, 2 protocol sets
@@ -535,15 +1071,15 @@ Platform: GPL339 Series: GSE6323 15 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2612/
 DataSet		Accession: GDS2612	ID: 2612
 
-68. Resveratrol and high-fat high-calorie diet effect on liver
-Analysis of liver of C57BL/6 males maintained on a high-fat high-calorie diet supplemented with 0.04% resveratrol, a compound in red wine that extends lifespan of diverse species. Results provide insight into molecular basis of increased lifespan and improved health associated with resveratrol.
+135. Polyglutamine expansion disease model: retina
+Analysis of retinas from R7E animals expressing the mutant ataxin-7, which harbors 90 glutamines. Polyglutamine expansion in ataxin-7 causes spinocerebellar ataxia type 7 (SCA7). Results provide insight into the molecular and cellular pathways involved in polyglutamine-induced retinal degeneration.
 Organism:	Mus musculus
-Type:		Expression profiling by array, Z-score, 3 protocol sets
-Platform: GPL2872 Series: GSE6089 14 Samples
-FTP download: GEO (TXT) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2413/
-DataSet		Accession: GDS2413	ID: 2413
+Type:		Expression profiling by array, count, 2 age, 4 cell type sets
+Platform: GPL339 Series: GSE3634 30 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2464/
+DataSet		Accession: GDS2464	ID: 2464
 
-69. Aged marrow-derived stromal cells response to dexamethasone 
+136. Aged marrow-derived stromal cells response to dexamethasone 
 Analysis of cultured marrow-derived stromal cells (MSCs) from 3 or 15 month old animals following ex vivo treatment of the cells with dexamethasone. Results provide insight into molecular mechanisms regulating MSC differentiation in young and aged animals.
 Organism:	Rattus norvegicus
 Type:		Expression profiling by array, count, 2 age, 2 agent, 2 gender sets
@@ -551,7 +1087,71 @@ Platform: GPL341 Series: GSE3339 5 Samples
 FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2231/
 DataSet		Accession: GDS2231	ID: 2231
 
-70. Age effect on the hippocampus
+137. Ovary development
+Analysis of the ovary of animals at various ages from gestational day 12 to post-natal day 2. Results provide insight into the molecular events involved in ovary development.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 7 age, 2 tissue sets
+Platform: GPL1261 Series: GSE5334 19 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2203/
+DataSet		Accession: GDS2203	ID: 2203
+
+138. Epididymis development
+Analysis of the epidididymis of animals at various ages from gestational day 12 to post-natal day 2. Results provide insight into the molecular events involved in testicular development.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 6 age, 2 tissue sets
+Platform: GPL1261 Series: GSE5333 16 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2202/
+DataSet		Accession: GDS2202	ID: 2202
+
+139. Nemaline myopathy model: various skeletal muscles
+Analysis of various skeletal muscles of trangenics expressing the human Met9Arg alpha-tropomyosin slow mutant gene, a model of nemaline myopathy (NM). NM, a non-dystrophic congenital myopathy, is a variably severe neuromuscular disorder. Results provide insight into the pathogenesis of NM.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 2 disease state, 5 tissue sets
+Platform: GPL81 Series: GSE3384 36 Samples
+FTP download: GEO (CEL, EXP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2312/
+DataSet		Accession: GDS2312	ID: 2312
+
+140. Spleens of males and females at puberty
+Comparison of male and female spleens at pre-puberty, puberty, and post-puberty. Results provide insight into the differences in immune responses between males and females during puberty.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 3 age, 3 development stage, 2 gender sets
+Platform: GPL81 Series: GSE5306 12 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2150/
+DataSet		Accession: GDS2150	ID: 2150
+
+141. Type 1 diabetes model: autoimmune target organs (MG-U74C)
+Analysis of pancreata and submandibular and lacrimal glands from 6-, 9-, and 15-week-old NOD/scid animals, respectively, before the onset of autoimmune destruction of the tissues. The NOD/scid animal is a model for type 1 diabetes. The three organs examined are autoimmune targets in type 1 diabetes.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 3 age, 2 strain, 3 tissue sets
+Platform: GPL83 Series: GSE4953 39 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2179/
+DataSet		Accession: GDS2179	ID: 2179
+
+142. Type 1 diabetes model: autoimmune target organs (MG-U74B)
+Analysis of pancreata and submandibular and lacrimal glands from 6-, 9-, and 15-week-old NOD/scid animals, respectively, before the onset of autoimmune destruction of the tissues. The NOD/scid animal is a model for type 1 diabetes. The three organs examined are autoimmune targets in type 1 diabetes.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 3 age, 2 strain, 3 tissue sets
+Platform: GPL82 Series: GSE4953 39 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2178/
+DataSet		Accession: GDS2178	ID: 2178
+
+143. Type 1 diabetes model: autoimmune target organs (MG-U74A)
+Analysis of pancreata and submandibular and lacrimal glands from 6-, 9-, and 15-week-old NOD/scid animals, respectively, before the onset of autoimmune destruction of the tissues. The NOD/scid animal is a model for type 1 diabetes. The three organs examined are autoimmune targets in type 1 diabetes.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 3 age, 2 strain, 3 tissue sets
+Platform: GPL81 Series: GSE4953 39 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2177/
+DataSet		Accession: GDS2177	ID: 2177
+
+144. Heart failure in obesity model
+Analysis of left heart ventricles of 4 and 10-month old SHHF obese animals homozygous for leptin receptor (ObR) mutation. This mutant is obese at 4 months of age and prone to heart failure after 14 months. Results provide insight into molecular basis of the contribution of obesity to heart failure.
+Organism:	Rattus norvegicus
+Type:		Expression profiling by array, count, 2 age, 2 disease state sets
+Platform: GPL2580 Series: GSE2876 20 Samples
+FTP download: GEO (XLS) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2542/
+DataSet		Accession: GDS2542	ID: 2542
+
+145. Age effect on the hippocampus
 Analysis of hippocampi of 2-month-old young and 15-month-old middle-aged animals. The hippocampal formation is one of the brain areas most affected by aging. Results provide insight into molecular changes accompanying the early stages of age-related memory decline.
 Organism:	Mus musculus
 Type:		Expression profiling by array, count, 2 age sets
@@ -559,15 +1159,71 @@ Platform: GPL81 Series: GSE5078 23 Samples
 FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2082/
 DataSet		Accession: GDS2082	ID: 2082
 
-71. Vascular endothelial cell differentiation in vitro
-Analysis of VEGF receptor Flk1-expressing cells isolated from embryoid bodies up to 8 days post-differentiation. Flk1-expressing cells have developmental potential uniquely restricted to hematopoietic and endothelial lineages. Results provide insight into early vascular development.
+146. Ribonucleoprotein- and polysome-associated mRNAs of the testis: time-course
+Analysis of ribonucleoprotein (RNP) and polysome fractions of prepuberal and adult testes. Protein synthesis occurs on polysomes and translationally inactive mRNAs are sequestered as RNPs. Results provide insight into the translation state of individual mRNAs as spermatogenesis proceeds.
 Organism:	Mus musculus
-Type:		Expression profiling by array, log2 ratio, 2 genotype/variation, 3 time sets
-Platform: GPL922 Series: GSE3757 24 Samples
-FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2322/
-DataSet		Accession: GDS2322	ID: 2322
+Type:		Expression profiling by array, count, 3 age, 2 development stage, 2 other sets
+Platform: GPL339 Series: GSE4711 18 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2277/
+DataSet		Accession: GDS2277	ID: 2277
 
-72. Age effect on hematopoietic stem cells
+147. Prefrontal cortex postnatal development: time course
+Analysis of prefrontal cortex (PFC) of animals at 2 to 10 weeks of age. Although the basic laminar structure of the PFC is established in utero, extensive remodeling continues into adolescence. Results map the overall pattern of changes in cortical gene transcripts during postnatal development.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 5 age sets
+Platform: GPL339 Series: GSE4675 23 Samples
+FTP download: GEO (CEL, EXP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2135/
+DataSet		Accession: GDS2135	ID: 2135
+
+148. Hoxa11/Hoxd11 null mutation effect on embryonic kidney development (MG-430B)
+Analysis of kidneys from Hoxa11/Hoxd11 double null mutants at various embryonic ages up to E16.5. Hox11 genes play critical roles in kidney development. Results provide insight into the molecular mechanisms of Hox11 function in kidney development.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 4 age, 2 genotype/variation sets
+Platform: GPL340 Series: GSE3808 14 Samples
+FTP download: GEO (CEL, EXP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2031/
+DataSet		Accession: GDS2031	ID: 2031
+
+149. Hoxa11/Hoxd11 null mutation effect on embryonic kidney development (MG-430A)
+Analysis of kidneys from Hoxa11/Hoxd11 double null mutants at various embryonic ages up to E16.5. Hox11 genes play critical roles in kidney development. Results provide insight into the molecular mechanisms of Hox11 function in kidney development. 
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 4 age, 2 genotype/variation sets
+Platform: GPL339 Series: GSE3808 14 Samples
+FTP download: GEO (CEL, EXP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2030/
+DataSet		Accession: GDS2030	ID: 2030
+
+150. Mdr2 knockout model of hepatocellular carcinoma at precancerous stages
+Analysis of livers of 3 and 12-month-old Mdr2 knockout (Mdr2-KO) mutants. Mdr2-KO mutants lack the liver P-glycoprotein responsible for phosphatidylcholine transport across the canalicular membrane, and develop hepatocellular carcinoma between the ages of 12 and 15 months.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 2 genotype/variation sets
+Platform: GPL339 Series: GSE4612 12 Samples
+FTP download: GEO (CEL, EXP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1990/
+DataSet		Accession: GDS1990	ID: 1990
+
+151. Skeletal muscle types (HG-U133B)
+Analysis of tibialis anterior, deltoid, quadriceps, and gastrocnemius muscles obtained at autopsy from pediatric and geriatric subjects unaffected by neuromuscular disease. Results provide insight into the molecular basis of the selective involvement of different muscles in muscular dystrophies.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 2 age, 9 individual, 4 tissue sets
+Platform: GPL97 Series: GSE4667 35 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2056/
+DataSet		Accession: GDS2056	ID: 2056
+
+152. Skeletal muscle types (HG-U133A)
+Analysis of tibialis anterior, deltoid, quadriceps, and gastrocnemius muscles obtained at autopsy from pediatric and geriatric subjects unaffected by neuromuscular disease. Results provide insight into the molecular basis of the selective involvement of different muscles in muscular dystrophies.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 2 age, 9 individual, 4 tissue sets
+Platform: GPL96 Series: GSE4667 35 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2055/
+DataSet		Accession: GDS2055	ID: 2055
+
+153. Cystic fibrosis transmembrane conductance regulator CFTR deficiency effect on lungs: time course
+Expression profiling of lungs from animals lacking the cystic fibrosis transmembrane conductance regulator gene (CFTR). Animals examined at 3, 6, and 11 weeks of age. Mutations in CFTR cause cystic fibrosis, an autosomal recessive monogenic disorder.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 3 age, 2 genotype/variation sets
+Platform: GPL81 Series: GSE4513 10 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1843/
+DataSet		Accession: GDS1843	ID: 1843
+
+154. Age effect on hematopoietic stem cells
 Analysis of highly purified long-term hematopoietic stem cells  from young and old C57BL/6s at 2 to 3 months and 22 to 24 months of age, respectively.  Results provide insight into the cellular and molecular changes underlying hematopoietic stem cell aging.
 Organism:	Mus musculus
 Type:		Expression profiling by array, count, 2 age sets
@@ -575,63 +1231,87 @@ Platform: GPL1261 Series: GSE4332 8 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1803/
 DataSet		Accession: GDS1803	ID: 1803
 
-73. Growth hormone effect on bone: time course
-Analysis of femurs and tibias of growth hormone (GH) deficient animals at 6 and 24 hours following treatment with 4 mg/kg body weight GH. Results provide insight into the insulin-like growth factor-I dependent and independent pathways that mediate the action of GH in bone.
+155. Kainate-induced status epilepticus effect on immature hippocampus: time course
+Analysis of the hippocampus of immature animals up to 240 hours following kainite (KA) induced status epilepticus (SE). Unlike adults, KA-induced SE in immature animals causes neither cell death nor recurrent spontaneous seizures. Results provide insight into the molecular basis of these responses.
+Organism:	Rattus norvegicus
+Type:		Expression profiling by array, count, 2 age, 2 agent, 5 time sets
+Platform: GPL85 Series: GSE4236 60 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1642/
+DataSet		Accession: GDS1642	ID: 1642
+
+156. RPE65 null mutant model of Leber's congenital amaurosis 
+Analysis of retinas of RPE65 null mutants at 2, 4 and 6 months of age. RPE65 is highly expressed in retinal pigment epithelial cells. Mutations in REP65 cause 10-15% of Leber's congenital amaurosis (LCA) cases, a severe form of retinal dystrophy. Results provide insight into early LCA progression.
 Organism:	Mus musculus
-Type:		Expression profiling by array, log2 ratio, 2 time sets
-Platform: GPL922 Series: GSE3689 6 Samples
-FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1929/
-DataSet		Accession: GDS1929	ID: 1929
+Type:		Expression profiling by array, transformed count, 3 age, 2 genotype/variation sets
+Platform: GPL1261 Series: GSE3249 18 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1647/
+DataSet		Accession: GDS1647	ID: 1647
 
-74. Hutchinson-Gilford progeria syndrome: fibroblast  (HG-U133B)
-Expression profiling of three fibroblast cell lines derived from Hutchinson-Gilford progeria syndrome (HGPS) patients. Identified changes in gene expression may provide clues to potential risk factors or factors influencing disease progression.
-Organism:	Homo sapiens
-Type:		Expression profiling by array, count, 6 cell line, 2 disease state sets
-Platform: GPL97 Series: GSE3860 18 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1504/
-DataSet		Accession: GDS1504	ID: 1504
-
-75. Hutchinson-Gilford progeria syndrome: fibroblast (HG-U133A)
-Expression profiling of three fibroblast cell lines derived from Hutchinson-Gilford progeria syndrome (HGPS) patients. Identified changes in gene expression may provide clues to potential risk factors or factors influencing disease progression.
-Organism:	Homo sapiens
-Type:		Expression profiling by array, count, 6 cell line, 2 disease state sets
-Platform: GPL96 Series: GSE3860 18 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1503/
-DataSet		Accession: GDS1503	ID: 1503
-
-76. Werner syndrome protein and poly(ADP-ribose) polymerase-1 null mutants
-Analysis of embryonic fibroblast cells lacking Werner syndrome (WS) protein (Wrn), or poly(ADP-ribose) polymerase-1 (PARP-1), or both. Mutations in Wrn or PARP-1 result in genomic instability. Results provide insight into tumor progression, senescence, oxidative stress and aging.
+157. ErbB2/Neu and luteinizing hormone overexpression effect on the mammary gland: time course
+Analysis of mammary glands of 5 and 10-week-old bitransgenics overexpressing oncogenic ErbB2/Neu and luteinizing hormone (LH). Results provide insight into the effect of chronic trophic maintenance of the mammary epithelial cells, induced by LH, on ErbB2/Neu-initiated tumorigenesis.
 Organism:	Mus musculus
-Type:		Expression profiling by array, log ratio, 3 genotype/variation sets
-Platform: GPL891 Series: GSE3359 6 Samples
-FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1675/
-DataSet		Accession: GDS1675	ID: 1675
+Type:		Expression profiling by array, count, 2 age sets
+Platform: GPL1261 Series: GSE3501 6 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1924/
+DataSet		Accession: GDS1924	ID: 1924
 
-77. Various muscle diseases (HG-U133B)
-Analysis of muscle biopsy specimens from patients with various muscle diseases.  Results provide insight into the diagnosis and pathogenesis of muscle diseases.
-Organism:	Homo sapiens
-Type:		Expression profiling by array, count, 11 disease state sets
-Platform: GPL97 Series: GSE3307 119 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2855/
-DataSet		Accession: GDS2855	ID: 2855
-
-78. Various muscle diseases (HG-U133A)
-Analysis of muscle biopsy specimens from patients with various muscle diseases. Results provide insight into the diagnosis and pathogenesis of muscle diseases.
-Organism:	Homo sapiens
-Type:		Expression profiling by array, count, 12 disease state sets
-Platform: GPL96 Series: GSE3307 121 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1956/
-DataSet		Accession: GDS1956	ID: 1956
-
-79. Triple-fusion reporter gene effect on embryonic stem cells
-Analysis of embryonic stem (ES) cells stably-transduced with a triple-fusion (TF) construct consisting of fluorescence, bioluminescence, and positron emission tomography reporter genes. Results provide insight into the feasibility of using the TF construct to track cells in vivo.
+158. Gonadal somatic cells during the critical period of sex determination: time course
+Analysis of gonadal somatic cells from male and female embryos at 10.5 and 11.5 days post coitum (dpc), which span the critical period of male sex determination. Results provide insight into sex determination and gonad differentiation, and identify candidate genes for sexual dysgenesis syndromes.
 Organism:	Mus musculus
-Type:		Expression profiling by array, log ratio, 2 protocol sets
-Platform: GPL1307 Series: GSE3432 7 Samples
-FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2187/
-DataSet		Accession: GDS2187	ID: 2187
+Type:		Expression profiling by array, count, 2 age, 2 gender sets
+Platform: GPL1261 Series: GSE3463 12 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1724/
+DataSet		Accession: GDS1724	ID: 1724
 
-80. Age effect on central and peripheral nervous systems
+159. DBA/2J model of glaucoma: retina
+Analysis of retinas from strain DBA/2J with elevated intraocular pressure (IOP). A model for glaucoma, DBA/2J has mutations that lead to iris atrophy and pigment dispersion. These conditions result in increased IOP. Results provide insight into the molecular changes associated with IOP elevation.
+Organism:	Mus musculus
+Type:		Expression profiling by array, transformed count, 2 age, 2 disease state sets
+Platform: GPL1261 Series: GSE3554 6 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1728/
+DataSet		Accession: GDS1728	ID: 1728
+
+160. Cochlear nucleus postnatal development
+Analysis of cochlear nucleus (CN) at postnatal days 7 (P7), 14, and 21. Deprivation of auditory nerve input from P7 to P14 results in neuron death in the anteroventral CN. Results provide insight into the molecular basis underlying this critical period of susceptibility to loss of afferent input.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 3 age sets
+Platform: GPL339 Series: GSE2390 8 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2144/
+DataSet		Accession: GDS2144	ID: 2144
+
+161. Androgen effect on spermatogenesis: time course
+Analysis of testis from Sertoli cell-selective androgen receptor knockouts (SCARKO) between postnatal day 8 and 20. Results provide insight into molecular consequences of selective absence of androgen action in Sertoli cells at onset of spermatogenesis.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 5 age, 2 strain sets
+Platform: GPL8321 Series: GSE2259 10 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1367/
+DataSet		Accession: GDS1367	ID: 1367
+
+162. Oocyte development (MOE430B)
+Analysis of oocytes from follicles at the primordial to large antral stages of development, collected from B6SJLF1 animals at 2 to 22 days of age. Provides insight into the development of eggs of high meiotic and developmental competence.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 5 age, 5 development stage sets
+Platform: GPL340 Series: GSE3351 20 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1266/
+DataSet		Accession: GDS1266	ID: 1266
+
+163. Oocyte development (MOE430A)
+Analysis of oocytes from follicles at the primordial to large antral stages of development, collected from B6SJLF1 animals at 2 to 22 days of age. Provides insight into the development of eggs of high meiotic and developmental competence.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 5 age, 5 development stage sets
+Platform: GPL339 Series: GSE3351 20 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1265/
+DataSet		Accession: GDS1265	ID: 1265
+
+164. SOD1-G93A transgenic model of amyotrophic lateral sclerosis: oculomotor nucleus
+Analysis of oculomotor motor neurons (OMNs) of SOD1-G93A transgenic model of amyotrophic lateral sclerosis (ALS) at 6 and 10 weeks of age. ALS spares the ocular neurons suggesting they are intrinsically protected against ALS. Results instead suggest OMNs actively adapt to the ALS-inducing mutation.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 2 genotype/variation, 2 tissue sets
+Platform: GPL339 Series: GSE3343 18 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1716/
+DataSet		Accession: GDS1716	ID: 1716
+
+165. Age effect on central and peripheral nervous systems
 Comparison of gene expression in the oculomotor nucleus (OMN) to that in the spinal cord. Animals 6, 18, and 30 months of age examined. Provides insight into the mechanisms underlying the divergent effects of age on the central and peripheral nervous systems.
 Organism:	Rattus norvegicus
 Type:		Expression profiling by array, count, 3 age, 2 tissue sets
@@ -639,7 +1319,7 @@ Platform: GPL341 Series: GSE3305 18 Samples
 FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1280/
 DataSet		Accession: GDS1280	ID: 1280
 
-81. Age effect on extraocular muscles
+166. Age effect on extraocular muscles
 Expression profiling of extraocular muscle (EOM) from animals 6, 18, and 30 months of age. Extensor digitorum longus (EDL) muscles also examined. Results provide insight into the effect of age on EOM.
 Organism:	Rattus norvegicus
 Type:		Expression profiling by array, count, 3 age, 2 tissue sets
@@ -647,7 +1327,7 @@ Platform: GPL85 Series: GSE3309 24 Samples
 FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1279/
 DataSet		Accession: GDS1279	ID: 1279
 
-82. Age effect on laryngeal muscle
+167. Age effect on laryngeal muscle
 Expression profiling of laryngeal posterior cricoarytenoid muscle from animals 6, 18, and 30 months of age. Results provide insight into the effect of age and sarcopenia on non-locomotive muscles.
 Organism:	Rattus norvegicus
 Type:		Expression profiling by array, count, 3 age sets
@@ -655,15 +1335,23 @@ Platform: GPL85 Series: GSE3310 9 Samples
 FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1278/
 DataSet		Accession: GDS1278	ID: 1278
 
-83. Age effect on lipopolysaccharide-induced neuroinflammation and sickness behavior
-Analysis of aged brain after activation of the peripheral innate immune system by intraperitoneal injection of E. coli lipopolysaccharide (LPS).  Results provide insight into molecular events underlying severe behavioral deficits (delirium) common in older adults with systemic infections.
+168. Nuclear and extranuclear mutant huntingtin exon 1 protein effect on cerebellum
+Analysis of cerebella of transgenics expressing mutant huntingtin (htt) exon 1 protein in nucleus only or in both nucleus and cytoplasm. The polyglutamine (polyQ) expansion in htt results in Huntington's disease (HD). Results provide insight into the impact of subcellular location of polyQ in HD.
 Organism:	Mus musculus
-Type:		Expression profiling by array, count, 2 agent, 2 development stage sets
-Platform: GPL1261 Series: GSE3253 12 Samples
-FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1311/
-DataSet		Accession: GDS1311	ID: 1311
+Type:		Expression profiling by array, count, 6 age, 3 agent, 5 strain sets
+Platform: GPL81 Series: GSE3248 48 Samples
+FTP download: GEO (CEL, EXP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2169/
+DataSet		Accession: GDS2169	ID: 2169
 
-84. Age effect on livers of long-lived Snell dwarf mutants
+169. Exercise effect on aged muscle
+Expression profiling of vastus lateralis muscles from 6 healthy, elderly, sedentary males after 3 months of exercise at 80% of maximal capacity.  Results provide insight into the molecular changes induced by exercise in sedentary skeletal muscles. 
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 6 age, 6 individual, 2 protocol sets
+Platform: GPL96 Series: GSE1786 12 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1340/
+DataSet		Accession: GDS1340	ID: 1340
+
+170. Age effect on livers of long-lived Snell dwarf mutants
 Analysis of livers from 6 and 22-month-old Snell dwarf mice which live 40% longer than wild types. Snell animals have a mutation in the Pit1 gene which prevents the development of anterior pituitary cells that produce growth hormone, thyroid stimulating hormone, and prolactin. 
 Organism:	Mus musculus
 Type:		Expression profiling by array, count, 2 age, 2 genotype/variation sets
@@ -671,47 +1359,55 @@ Platform: GPL81 Series: GSE3129 14 Samples
 FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2019/
 DataSet		Accession: GDS2019	ID: 2019
 
-85. mTert overexpression
-Expression profiling of embryonic fibroblasts overexpressing mTert, the catalytic subunit of telomerase. Results identify potential downstream targets of telomerase.
+171. Intermediate filament protein GFAP transgene overexpression effect on olfactory bulb: time course
+Analysis of olfactory bulb of 23 day and 4 month old transgenics overexpressing human intermediate filament protein GFAP. GFAP missense mutations result in Alexander disease, a neurodegenerative disease. GFAP overexpression results in an encephalopathy similar to that resulting from GFAP mutations.
 Organism:	Mus musculus
-Type:		Expression profiling by array, count, 2 agent sets
-Platform: GPL339 Series: GSE2684 4 Samples
-FTP download: GEO (CEL, CHP, EXP, RPT, TXT) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1211/
-DataSet		Accession: GDS1211	ID: 1211
+Type:		Expression profiling by array, count, 2 age, 2 genotype/variation sets
+Platform: GPL81 Series: GSE977 12 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1488/
+DataSet		Accession: GDS1488	ID: 1488
 
-86. Oncogene-induced sensescence in vitro model
-Analysis of transformed cell lines that either exhibit oncogene-induced senescence (OIS) triggered by MEK activation or bypass OIS. Senescent cells exist in premalignant tumors but not in malignant ones. Results provide insight into the molecular basis of OIS.
-Organism:	Homo sapiens
-Type:		Expression profiling by array, count, 5 cell line, 3 disease state sets
-Platform: GPL96 Series: GSE2487 10 Samples
-FTP download: GEO (CEL, EXP, RPT) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1637/
-DataSet		Accession: GDS1637	ID: 1637
+172. CAG repeat knock-in model of spinocerebellar ataxia type 1 progression
+Analysis of cerebellum and forebrain tissue of knock-in mice carrying 154 CAG repeats in the spinocerebellar ataxia type 1 (SCA1) locus at 4 and 12 weeks of age. Results provide insight into the pathophysiology of the neurodegenerative disease SCA1.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 2 genotype/variation, 2 tissue sets
+Platform: GPL339 Series: GSE2867 20 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1756/
+DataSet		Accession: GDS1756	ID: 1756
 
-87. Calcineurin overexpression effect on astrocytes
-Analysis of primary hippocampal culture cells overexpressing an activated form of calcineurin that lacks part of its C terminus and an autoinhibitory domain. The hippocampal cultures contain neurons and astroglia. Results provide insight into the role of calcineurin in astrocyte activation.
+173. Left ventricular hypertrophy in spontaneously hypertensive model: time course
+Analysis of progressive left ventricular hypertrophy (LVH) in spontaneously hypertensive (SHR) males at 12, 16, and 20 months of age. LVH impairs diastolic relaxation, which decreases cardiac output and leads to heart failure (HF). Provides insight into pathogenesis of hypertrophy and LV remodeling.
 Organism:	Rattus norvegicus
-Type:		Expression profiling by array, count, 3 agent sets
-Platform: GPL85 Series: GSE1978 23 Samples
-FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1491/
-DataSet		Accession: GDS1491	ID: 1491
+Type:		Expression profiling by array, count, 3 age, 2 strain sets
+Platform: GPL85 Series: GSE2116 23 Samples
+FTP download: GEO (CEL, EXP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1264/
+DataSet		Accession: GDS1264	ID: 1264
 
-88. Manganese superoxide dismutase deficiency effect on hearts
-Analysis of hearts from C57BL/6 mutants lacking manganese superoxide dismutase (MnSOD). MnSOD deficiency confined to heart and muscle. Mutants developed progressive congestive heart failure with dilated cardiomyopathy. Results provide insight into the effect of excess oxidative stress on the heart. 
-Organism:	Mus musculus
-Type:		Expression profiling by array, count, 2 genotype/variation sets
-Platform: GPL1261 Series: GSE2236 4 Samples
-FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1080/
-DataSet		Accession: GDS1080	ID: 1080
+174. Telomerase reverse transcriptase overexpression effect on CD4+ lymphocytes
+Analysis of CD4+ T cells overexpressing green fluorescent protein telomerase reverse transcriptase fusion protein (GFP-hTERT). hTERT encodes catalytic reverse transcriptase subunit of telomerase. Provides insight into long-term consequences of hTERT overexpression in T lymphocytes.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 4 age, 3 agent sets
+Platform: GPL96 Series: GSE2230 4 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1325/
+DataSet		Accession: GDS1325	ID: 1325
 
-89. GH/IGF-1 signaling disruption and caloric restriction additive effect
-Analysis of livers from growth hormone/insulin-like growth factor-1 signaling defective Ames dwarfs (DF) subjected to caloric restriction (CR). DF and CR in combination additively extend life span. Results provide insight into the mechanisms underlying this additive effect.
-Organism:	Mus musculus
-Type:		Expression profiling by array, count, 2 genotype/variation, 2 protocol sets
-Platform: GPL81 Series: GSE1093 31 Samples
-FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1261/
-DataSet		Accession: GDS1261	ID: 1261
+175. Iron deficiency effect on duodenum: time course (RAE230B)
+Analysis of effect of dietary iron deprivation on duodenum. Sprague Dawleys examined at various post-natal ages up to 36 weeks. Results identify iron-responsive genes, which include those involved in intestinal iron transport, during the course of post-natal development.    
+Organism:	Rattus norvegicus
+Type:		Expression profiling by array, count, 5 age, 2 dose sets
+Platform: GPL342 Series: GSE1892 30 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1055/
+DataSet		Accession: GDS1055	ID: 1055
 
-90. Age effect on myoblast progenitors
+176. Iron deficiency effect on duodenum: time course (RAE230A)
+Analysis of effect of dietary iron deprivation on duodenum. Sprague Dawleys examined at various post-natal ages up to 36 weeks. Results identify iron-responsive genes, which include those involved in intestinal iron transport, during the course of post-natal development.    
+Organism:	Rattus norvegicus
+Type:		Expression profiling by array, count, 5 age, 2 dose sets
+Platform: GPL341 Series: GSE1892 30 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1054/
+DataSet		Accession: GDS1054	ID: 1054
+
+177. Age effect on myoblast progenitors
 Analysis of primary myoblast progenitor (MP) cultures from 8 and 23 month old DBA/2JNIA females. MPs are responsible for the growth, repair, and maintenance of skeletal muscle. Results provide insight into age-related alterations in MP function that contribute to changes in muscle composition.
 Organism:	Mus musculus
 Type:		Expression profiling by array, count, 2 age sets
@@ -719,7 +1415,7 @@ Platform: GPL81 Series: GSE273 4 Samples
 FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1079/
 DataSet		Accession: GDS1079	ID: 1079
 
-91. Hippocampal aging and cognitive impairment
+178. Hippocampal aging and cognitive impairment
 Identification of aging-dependent cognitive decline gene expression. Hippocampal CA1 tissue collected from 4, 14, and 24 month old male Fischer 344 rats after 7 days training on water maze and object memory task.
 Organism:	Rattus norvegicus
 Type:		Expression profiling by array, count, 3 age sets
@@ -727,7 +1423,87 @@ Platform: GPL85 Series: GSE854 29 Samples
 FTP download: GEO (CEL, TXT) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS520/
 DataSet		Accession: GDS520	ID: 520
 
-92. Aging brain: frontal cortex expression profiles at various ages
+179. Thioredoxin interacting protein mutant model of hepatocellular carcinoma
+Analysis of hepatocellular carcinoma  (HCC) tumors from thioredoxin interacting protein (Txnip) deficient mutants. Txnip deficiency leads to HCC in mice. Results provide insight into the role of Txnip in the pathogenesis of HCC.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 3 age, 3 disease state sets
+Platform: GPL339 Series: GSE2127 15 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2006/
+DataSet		Accession: GDS2006	ID: 2006
+
+180. Lethal congenital contracture syndrome
+Analysis of spinal cord from fetuses with lethal congenital contracture syndrome (LCCS). LCCS is autosomal recessive, causes death in 32nd gestational week, and involves degeneration of anterior horn motor neurons in spinal cord. Results provide insight into pathways active in motoneuron disease.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 4 age, 2 disease state sets
+Platform: GPL96 Series: GSE1481 5 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1295/
+DataSet		Accession: GDS1295	ID: 1295
+
+181. Dystrophin deficiency effect on cardiac muscles: time course
+Analysis of cardiac muscles from 8-week and 10.5-month-old mdx animals that lack dystrophin. The mdx animal is a model for Duchenne muscular dystrophy. Results provide insight into the molecular mechanisms underlying the pathogenesis of muscular dystrophy.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 2 genotype/variation sets
+Platform: GPL339 Series: GSE1471 12 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2996/
+DataSet		Accession: GDS2996	ID: 2996
+
+182. Segmental trisomy Ts1Cje model for Down syndrome
+Expression profiling of brain cerebella from Ts1Cje males at postnatal days 0, 15, and 30.  RNA pooled from 3 males at each developmental stage. Results provide insight into the molecular changes contributing to the pathogenesis of Down syndrome.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 3 age, 2 strain sets
+Platform: GPL81 Series: GSE1611 12 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS994/
+DataSet		Accession: GDS994	ID: 994
+
+183. Postnatal day 7 and adult cerebellum: glycoconjugate expression profile
+Analysis of cerebellums of postnatal day 7 (P7) and adult animals using an array focusing on glycoconjugates. P7 was chosen for comparison as many differentiation events are peaking at this time. Glycoconjugates are widely distributed throughout the CNS and play an essential role in its development.
+Organism:	Homo sapiens; Mus musculus
+Type:		Expression profiling by array, count, 2 age sets
+Platform: GPL1420 Series: GSE1712 6 Samples
+FTP download: GEO (CEL, EXP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1854/
+DataSet		Accession: GDS1854	ID: 1854
+
+184. Non-diseased lung tissue
+Analysis of non-diseased lungs from 23 multi-organ donors.  Upper and lower lobe peripheral sections of the lung were examined. Donors varied in age, sex, smoking history, and ethnicity. Results provide a reference for microarray studies of pulmonary disease.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 6 age, 2 gender, 3 other, 3 stress, 2 tissue sets
+Platform: GPL570 Series: GSE1643 40 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1673/
+DataSet		Accession: GDS1673	ID: 1673
+
+185. Peripheral myelin protein 22 gene dosage and point mutation effect on sciatic nerve
+Analysis of sciatic nerve from postnatal day 4 and 60 mutants overexpressing peripheral myelin protein 22 (PMP22), lacking PMP22, or expressing the Trembler PMP22 point mutation. Results provide insight into normal function of PMP22, myelination, and neuropathies caused by PMP22 misexpression.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 4 genotype/variation sets
+Platform: GPL81 Series: GSE1947 21 Samples
+FTP download: GEO (CEL, EXP) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1371/
+DataSet		Accession: GDS1371	ID: 1371
+
+186. Hair follicle development: time course
+Expression profiling of back skin excised from CB6F1 animals at various ages up to 1 year.  Difference between synchronously and asynchronously growing hair used to identify hair cycle genes.  Results provide insight into the mechanisms regulating hair follicle morphogenesis.  
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 8 age sets
+Platform: GPL81 Series: GSE1912 25 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS912/
+DataSet		Accession: GDS912	ID: 912
+
+187. Age effect on healing femoral fractures: time course
+Analysis of healing femurs of 6, 26, and 52-week-old Sprague-Dawley females at various time points up to 6 weeks after fracture. 6, 26, and 52-week-old animals regain normal skeletal biomechanics 4 weeks, 10 weeks, and 6 months after fracture, respectively.
+Organism:	Rattus norvegicus
+Type:		Expression profiling by array, count, 3 age, 2 protocol, 6 time sets
+Platform: GPL85 Series: GSE1371 18 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1995/
+DataSet		Accession: GDS1995	ID: 1995
+
+188. Glycine receptor beta subunit mutant model for hyperekplexia
+Analysis of spinal cords from glycine receptor beta subunit mutants with alleviating or severe spastic symptoms. Mutants at various ages up to 6 months examined. Results provide insight into the basis for tendency of hyperekplexia (startle disease) symptoms to alleviate with age.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 6 age, 4 disease state, 2 gender sets
+Platform: GPL81 Series: GSE1800 16 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS967/
+DataSet		Accession: GDS967	ID: 967
+
+189. Aging brain: frontal cortex expression profiles at various ages
 Analysis of gene expression profiles obtained from the postmortem frontal cortex of 18 normal males and 12 normal females at 26 to 106 years of age.  Results provide insight into molecular events underlying the onset of brain aging.    
 Organism:	Homo sapiens
 Type:		Expression profiling by array, count, 5 age, 2 gender sets
@@ -735,31 +1511,135 @@ Platform: GPL8300 Series: GSE1572 30 Samples
 FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS707/
 DataSet		Accession: GDS707	ID: 707
 
-93. Alzheimer's disease at various stages of severity
-Expression profiling of brain hippocampi from 22 postmortem subjects with Alzheimer's disease (AD) at various stages of severity.  7, 8, and 7 subjects diagnosed with incipient, moderate, and severe AD respectively.  Results provide insight into mechanisms underlying the early pathogenesis of AD.
-Organism:	Homo sapiens
-Type:		Expression profiling by array, count, 4 disease state sets
-Platform: GPL96 Series: GSE1297 31 Samples
-FTP download: GEO (CEL, EXP, RPT, TXT) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS810/
-DataSet		Accession: GDS810	ID: 810
-
-94. Smooth muscle cell differentiation induced by retinoic acid: time course
-Expression profiling of A404 cells at 48 and 96 hours following 1 umol/L all trans-retinoic acid (RA) treatment to induce differentiation into smooth muscle cells (SMCs).  A set of cells treated with RA for 96 hours was subsequently treated with 0.5 ug/ml puromycin to enrich for SMCs.
+190. Neurofibromatosis and neurodevelopment
+Examination of hippocampus from 10 to 32 day old NF1 heterozygotes. NF1+/- mice develop learning and memory difficulties mimicking cognitive deficits in human neurofibromatosis.
 Organism:	Mus musculus
-Type:		Expression profiling by array, log ratio, 2 agent, 2 growth protocol, 3 time sets
-Platform: GPL1307 Series: GSE1506 23 Samples
-FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS799/
-DataSet		Accession: GDS799	ID: 799
+Type:		Expression profiling by array, count, 6 age, 2 strain sets
+Platform: GPL81 Series: GSE1482 30 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS604/
+DataSet		Accession: GDS604	ID: 604
 
-95. Aging of cultured myotubes and glucose metabolism
-Examination of aging myotubes from a muscle biopsy incubated in glucose.  Myotubes in 25 mM glucose at 2, 3, 4, 5, and 7 weeks, and in 10 mM glucose at 4 weeks examined in reference to 0 mM glucose control at 1 week.
-Organism:	Homo sapiens
-Type:		Expression profiling by array, count, 3 growth protocol, 6 time sets
-Platform: GPL8300 Series: GSE1144 7 Samples
-FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS647/
-DataSet		Accession: GDS647	ID: 647
+191. Retinitis pigmentosa 1 gene knockout effect on retinas: time course
+Analysis of retinas of animals disrupted for the retinitis pigmentosa 1 (RP1) gene. Animals examined up to postnatal day 21. Results provide insight into mechanisms underlying autosomal dominant progressive RP caused by RP1 mutations and identify molecules involved early in the disease process.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 5 age, 2 genotype/variation sets
+Platform: GPL81 Series: GSE128 30 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1845/
+DataSet		Accession: GDS1845	ID: 1845
 
-96. Muscle function and aging - female (HG-U133B)
+192. Extraocular and hindlimb muscle development
+Analysis of hindlimb and extraocular muscle (EOM) between birth and postnatal day 45. Dissecting allotype-specific regulatory mechanisms may help explain differential muscle group sensitivity to a variety of metabolic and neuromuscular diseases.
+Organism:	Rattus norvegicus
+Type:		Expression profiling by array, count, 6 age, 2 tissue sets
+Platform: GPL85 Series: GSE903 36 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS621/
+DataSet		Accession: GDS621	ID: 621
+
+193. Spinal cord development
+Comparison of L4-L6 spinal cord sections of 2 and 12 day old animals.  Results provide insight into development of motoneurons and their synaptic inputs.
+Organism:	Rattus norvegicus
+Type:		Expression profiling by array, count, 2 age sets
+Platform: GPL85 Series: GSE1130 4 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS659/
+DataSet		Accession: GDS659	ID: 659
+
+194. Zucker diabetic fatty model of type 2 diabetes: various insulin-sensitive tissues
+Analysis of adipose, skeletal muscle, and liver tissues of Zucker diabetic fatty animals at pre-diabetic and diabetic stages. ZDF animals have a mutated leptin receptor. Results provide insight into the molecular mechanisms responsible for insulin resistance and progression to type 2 diabetes. 
+Organism:	Rattus norvegicus
+Type:		Expression profiling by array, log ratio, 2 age, 3 tissue sets
+Platform: GPL1002 Series: GSE1080 24 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1767/
+DataSet		Accession: GDS1767	ID: 1767
+
+195. Schwann cell development: neural crest stem cells to mature Schwann cells
+Expression profiling of neural crest stem cells at embryonic day (E) 9.5 and developing Schwann cells (SC) at E12, E14, E16, E18, and mature SCs at birth. Cells isolated by FACS from proteolipid-GFP transgenics. Results provide insight into stem cell regulation and Schwann cell development.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 6 age, 3 development stage sets
+Platform: GPL81 Series: GSE972 19 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS890/
+DataSet		Accession: GDS890	ID: 890
+
+196. Dystrophin-deficient mdx hindlimb muscle development time course
+Temporal analysis of hindlimb gastrocnemius/soleus muscle from dystrophin-deficient mdx mice, a Duchenne muscular dystrophy (DMD) model. Postnatal ages 7 to 112 days examined. Results provide insight into mechanisms of muscular dystrophy pathogenesis.  
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 6 age, 2 strain sets
+Platform: GPL81 Series: GSE1025 36 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS639/
+DataSet		Accession: GDS639	ID: 639
+
+197. Dystrophin-deficient mdx diaphram muscle development time course
+Temporal analysis of diaphram muscle from dystrophin-deficient mdx mice, a Duchenne muscular dystrophy (DMD) model. Postnatal ages 7 to 112 days examined. Results provide insight into mechanisms of muscular dystrophy pathogenesis.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 6 age, 2 strain sets
+Platform: GPL81 Series: GSE1026 36 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS638/
+DataSet		Accession: GDS638	ID: 638
+
+198. Dystrophin-deficient mdx extraocular muscle development time course
+Analysis of extraocular muscle (EOM) from dystrophin-deficient mdx mice, a Duchenne muscular dystrophy (DMD) model. Postnatal ages 14, 28, 56, and 112 days examined. EOM is unaffected in DMD, so results provide insight into mdx EOM protective mechanisms.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 4 age, 2 strain sets
+Platform: GPL81 Series: GSE1008 24 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS614/
+DataSet		Accession: GDS614	ID: 614
+
+199. Spermatogenesis and testis development time course (MG-U74C)
+Spermatogenesis time course generated from BL/6-129 testis collected from birth through adulthood. Provides insight into genes implicated in maturation, maintenance, and function of testis and the integrated process of spermatogenesis.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 11 age sets
+Platform: GPL83 Series: GSE926 22 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS607/
+DataSet		Accession: GDS607	ID: 607
+
+200. Spermatogenesis and testis development time course (MG-U74B)
+Spermatogenesis time course generated from BL/6-129 testis collected from birth through adulthood. Provides insight into genes implicated in maturation, maintenance, and function of testis and the integrated process of spermatogenesis.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 11 age sets
+Platform: GPL82 Series: GSE926 22 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS606/
+DataSet		Accession: GDS606	ID: 606
+
+201. Spermatogenesis and  testis development time course (MG-U74A)
+Spermatogenesis time course generated from BL/6-129 testis collected from birth through adulthood. Provides insight into genes implicated in maturation, maintenance, and function of testis and the integrated process of spermatogenesis.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 11 age sets
+Platform: GPL81 Series: GSE926 22 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS605/
+DataSet		Accession: GDS605	ID: 605
+
+202. Fracture healing timecourse and the effect of age
+Temporal analysis of gene expression following femoral fracture. Female Sprague-Dawleys at 6 (young), 26 (adult) and 52 (older) weeks of age at time of fracture. Samples analyzed at 0, 3 days, 1, 2, 4, and 6 weeks after fracture.  
+Organism:	Rattus norvegicus
+Type:		Expression profiling by array, count, 3 age, 6 time sets
+Platform: GPL85 Series: GSE594 36 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS509/
+DataSet		Accession: GDS509	ID: 509
+
+203. Spermatogenesis time course (MG-U74C)
+Analysis of C57BL/6 testis from day 1 to adult. Determination of transcripts expressed specifically by male germ cells late in spermatogenesis (postmeiotic) reveals many candidates for contraceptive targeting and fertilization participants.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 11 age, 3 tissue sets
+Platform: GPL83 Series: GSE640 17 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS410/
+DataSet		Accession: GDS410	ID: 410
+
+204. Spermatogenesis time course (MG-U74B)
+Analysis of C57BL/6 testis from day 1 to adult. Determination of transcripts expressed specifically by male germ cells late in spermatogenesis (postmeiotic) reveals many candidates for contraceptive targeting and fertilization participants.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 11 age, 3 tissue sets
+Platform: GPL82 Series: GSE640 17 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS409/
+DataSet		Accession: GDS409	ID: 409
+
+205. Spermatogenesis time course (MG-U74A)
+Analysis of C57BL/6 testis from day 1 to adult. Determination of transcripts expressed specifically by male germ cells late in spermatogenesis (postmeiotic) reveals many candidates for contraceptive targeting and fertilization participants.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 11 age, 3 tissue sets
+Platform: GPL81 Series: GSE640 17 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS401/
+DataSet		Accession: GDS401	ID: 401
+
+206. Muscle function and aging - female (HG-U133B)
 Comparison of gene expression in vastus lateralis skeletal muscle biopsies in healthy young (20-29 year old) and older (65-71 year old) women  
 Organism:	Homo sapiens
 Type:		Expression profiling by array, count, 2 age sets
@@ -767,7 +1647,7 @@ Platform: GPL97 Series: GSE674 15 Samples
 FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS473/
 DataSet		Accession: GDS473	ID: 473
 
-97. Muscle function and aging - female (HG-U133A)
+207. Muscle function and aging - female (HG-U133A)
 Comparison of gene expression in vastus lateralis skeletal muscle biopsies in healthy young (20-29 year old) and older (65-71 year old) women  
 Organism:	Homo sapiens
 Type:		Expression profiling by array, count, 2 age sets
@@ -775,7 +1655,15 @@ Platform: GPL96 Series: GSE674 15 Samples
 FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS472/
 DataSet		Accession: GDS472	ID: 472
 
-98. Cardiac aging
+208. Type 2 diabetes and renal function
+Kidney tissue from a genetic model of non-insulin-dependent diabetes mellitus (NIDDM) type 2 diabetic db/db mice compared with control nondiabetic db/m littermates. 8 and 16 week old mice examined. Renal failure is common with diabetes.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 2 disease state sets
+Platform: GPL81 Series: GSE642 12 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS402/
+DataSet		Accession: GDS402	ID: 402
+
+209. Cardiac aging
 Comparison of young (3-4 month) and aged (20-22 month) male Fischer-344 heart ventricle. Reduced adrenergic signaling in the aged heart investigated.
 Organism:	Rattus norvegicus
 Type:		Expression profiling by array, count, 2 age sets
@@ -783,7 +1671,63 @@ Platform: GPL85 Series: GSE421 11 Samples
 FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS399/
 DataSet		Accession: GDS399	ID: 399
 
-99. Calorie restriction and aging (Mu11K-B)
+210. Duchenne muscular dystrophy (HG-U95B)
+Examination of muscle biopsies from Duchenne muscular dystrophy patients and normal subjects of various age groups. Both mixed groups of patients (5 patient biopsies per group) and individual biopsies analyzed.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 2 age, 2 disease state sets
+Platform: GPL92 Series: GSE465 4 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS270/
+DataSet		Accession: GDS270	ID: 270
+
+211. Duchenne muscular dystrophy (HG-U95E)
+Examination of muscle biopsies from Duchenne muscular dystrophy patients and normal subjects of various age groups. Both mixed groups of patients (5 patient biopsies per group) and individual biopsies analyzed.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 2 age, 2 disease state sets
+Platform: GPL95 Series: GSE465 5 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS265/
+DataSet		Accession: GDS265	ID: 265
+
+212. Duchenne muscular dystrophy (HG-U95D)
+Examination of muscle biopsies from Duchenne muscular dystrophy patients and normal subjects of various age groups. Both mixed groups of patients (5 patient biopsies per group) and individual biopsies analyzed.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 2 age, 2 disease state sets
+Platform: GPL94 Series: GSE465 5 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS264/
+DataSet		Accession: GDS264	ID: 264
+
+213. Duchenne muscular dystrophy (HG-U95A)
+Examination of muscle biopsies from Duchenne muscular dystrophy patients and normal subjects of various age groups. Both mixed groups of patients (5 patient biopsies per group) and individual biopsies analyzed.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 4 age, 2 disease state sets
+Platform: GPL91 Series: GSE465 7 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS262/
+DataSet		Accession: GDS262	ID: 262
+
+214. Duchenne muscular dystrophy (MuscleChip)
+Examination of muscle biopsies from Duchenne muscular dystrophy patients and normal subjects of various age groups.  Both mixed groups of patients (5 patient biopsies per group) and individual biopsies analyzed. 
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 4 age, 2 disease state sets
+Platform: GPL246 Series: GSE465 30 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS214/
+DataSet		Accession: GDS214	ID: 214
+
+215. Granulosa cell tumorigenesis (Mu11K-B)
+Comparison of global changes in ovarian transcriptomes uniquely associated with either granulosa cell tumors or luteomas, and identification of new markers for this tumor phenotype. Luteinizing hormone hypersecreting mice studied.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 4 strain sets
+Platform: GPL76 Series: GSE499 9 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS48/
+DataSet		Accession: GDS48	ID: 48
+
+216. Granulosa cell tumorigenesis  (Mu11K-A)
+Comparison of global changes in ovarian transcriptomes uniquely associated with either granulosa cell tumors or luteomas, and identification of new markers for this tumor phenotype. Luteinizing hormone hypersecreting mice studied.
+Organism:	Mus musculus
+Type:		Expression profiling by array, count, 2 age, 4 strain sets
+Platform: GPL75 Series: GSE499 9 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS47/
+DataSet		Accession: GDS47	ID: 47
+
+217. Calorie restriction and aging (Mu11K-B)
 Investigation of the effect of calorie restriction on the aging process. Gene expression profiles generated for control-fed 5 month, control-fed 30 month and calorie restricted 30 month C57BL/6 mice. Kidney tissue analyzed.
 Organism:	Mus musculus
 Type:		Expression profiling by array, count, 2 age, 2 protocol sets
@@ -791,7 +1735,7 @@ Platform: GPL76 Series: GSE459 15 Samples
 FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS356/
 DataSet		Accession: GDS356	ID: 356
 
-100. Calorie restriction and aging (Mu11K-A)
+218. Calorie restriction and aging (Mu11K-A)
 Investigation of the effect of calorie restriction on the aging process. Gene expression profiles generated for control-fed 5 month, control-fed 30 month and calorie restricted 30 month C57BL/6 mice. Kidney tissue analyzed.
 Organism:	Mus musculus
 Type:		Expression profiling by array, count, 2 age, 2 protocol sets
@@ -799,7 +1743,7 @@ Platform: GPL75 Series: GSE459 15 Samples
 FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS355/
 DataSet		Accession: GDS355	ID: 355
 
-101. Muscle function and aging - male (HG-U133B)
+219. Muscle function and aging - male (HG-U133B)
 Comparison of gene expression in vastus lateralis skeletal muscle biopsies in healthy young (21-27 year old) and older (67-75 year old) men.
 Organism:	Homo sapiens
 Type:		Expression profiling by array, count, 2 age sets
@@ -807,7 +1751,7 @@ Platform: GPL97 Series: GSE362 15 Samples
 FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS288/
 DataSet		Accession: GDS288	ID: 288
 
-102. Muscle function and aging - male (HG-U133A)
+220. Muscle function and aging - male (HG-U133A)
 Comparison of gene expression in vastus lateralis skeletal muscle biopsies in healthy young (21-27 year old) and older (67-75 year old) men
 Organism:	Homo sapiens
 Type:		Expression profiling by array, count, 2 age sets
@@ -815,18 +1759,10 @@ Platform: GPL96 Series: GSE362 15 Samples
 FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS287/
 DataSet		Accession: GDS287	ID: 287
 
-103. Muscle function and aging (HG-U95A)
+221. Muscle function and aging (HG-U95A)
 Comparison of gene expression in vastus lateralis skeletal muscle biopsies in healthy young (21-31 year old) and older (62-77 year old) men. Sample RNAs isolated from individuals and pooled into groups of 8.
 Organism:	Homo sapiens
 Type:		Expression profiling by array, count, 2 age sets
 Platform: GPL91 Series: GSE80 12 Samples
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS156/
 DataSet		Accession: GDS156	ID: 156
-
-104. Cardiac development, maturation and aging
-Benchmark gene expression profile of heart ventricle at various ages to monitor changes in cardiac development. Examined embryonic stages through adolescence and adulthood.
-Organism:	Mus musculus
-Type:		Expression profiling by array, count, 7 development stage, 3 gender sets
-Platform: GPL32 Series: GSE75 24 Samples
-FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDSnnn/GDS40/
-DataSet		Accession: GDS40	ID: 40
