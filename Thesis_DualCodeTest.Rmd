@@ -283,6 +283,17 @@ young_counts.to_csv("Young_Counts.csv")
 old_counts.to_csv("Old_Counts.csv")
 ```
 
+# 5. Post-Count Analysis (R)
+Import Data
+```{r}
+TotalCounts_byGene <- read.csv("Total_Counts.csv")
+TotalCounts_numbers <- TotalCounts_byGene[,2]
+hist(TotalCounts_numbers)
+hist
+```
+
+Histogram of counts
+
 
 # Tasks
 
