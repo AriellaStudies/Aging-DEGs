@@ -275,6 +275,13 @@ old_df = pd.DataFrame.from_dict(old_dict, orient='index')
 old_counts = old_df.sort_values(by=0, ascending=False)
 old_counts
 ```
+Export all counts to CSV files
+```{python}
+ordered_df.to_csv("Total_Counts.csv")
+young_counts.to_csv("Young_Counts.csv")
+old_counts.to_csv("Old_Counts.csv")
+```
+
 
 # Tasks
 
