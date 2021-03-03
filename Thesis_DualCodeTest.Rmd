@@ -129,14 +129,6 @@ GEO2R <- function(GSE_number,platform_code,group_binaries,outputs){
   return(tT)
 }
 ```
-Execution test for GEO2R Function on 2 human datasets
-```{r cache=TRUE, message = FALSE, warning=FALSE}
-tT01 <- GEO2R("GSE38718","GPL570","0000000000000011111111",1000)
-tT02 <- GEO2R("GSE53890","GPL570","0000000000000XXXXXX1111111111111XXXXXXXXX",1000)
-
-kable(tT01[1:10,])
-kable(tT02[1:10,])
-```
 
 Function compounded to filter results by adjusted p<0.01
 ```{r cache=TRUE}
@@ -148,17 +140,17 @@ GEO2R_pFiltered <- function(GSE_number,platform_code,group_binaries,outputs){
 }
 ```
 
-Execution test for GEO2R_pFiltered
+Execute functions on human datasets
 (Note that some data-sets have more than 1000 p<0.01)
-```{r message = FALSE, warning=FALSE}
-tT01_filt <- GEO2R_pFiltered("GSE38718","GPL570","0000000000000011111111",1000)
-tT02_filt <- GEO2R_pFiltered("GSE53890","GPL570","0000000000000XXXXXX1111111111111XXXXXXXXX",1000)
+```{r cache=TRUE, message = FALSE, warning=FALSE}
+tT009 <- GEO2R_pFiltered("GSE53890","GPL570","0000000000000XXXXXX1111111111111XXXXXXXXX",1000)
+tT023 <- GEO2R_pFiltered("GSE38718","GPL570","0000000000000011111111",1000)
 ```
 
 Write to files
 ```{r eval=FALSE}
-write.table(tT01_filt, file="tT01_filt.txt", row.names=F, sep="\t")
-write.table(tT02_filt, file="tT02_filt.txt", row.names=F, sep="\t")
+write.table(tT009, file="tT009.txt", row.names=F, sep="\t")
+write.table(tT023, file="tT023.txt", row.names=F, sep="\t")
 ```
 
 # Calculate Counts Across Datasets (Python)
