@@ -253,13 +253,23 @@ file_to_dict('tT000.txt')
 file_to_dict('tT011.txt')
 
 ```
+**RESULTS**
 Convert count dictionary to ordered dataframe
 ```{python}
 total_df = pd.DataFrame.from_dict(total_dict, orient='index')
 ordered_df = total_df.sort_values(by=0, ascending=False)
 ordered_df
 ```
+Record dataframes for separate young and old counts too
+```{python}
+young_df = pd.DataFrame.from_dict(young_dict, orient='index')
+young_counts = young_df.sort_values(by=0, ascending=False)
+young_counts
 
+old_df = pd.DataFrame.from_dict(old_dict, orient='index')
+old_counts = old_df.sort_values(by=0, ascending=False)
+old_counts
+```
 
 # Tasks
 
