@@ -159,6 +159,7 @@ tT044 <- GEO2R_pFiltered("GSE32719","GPL570","XXXXXXXXXXXXXX0000011111111",1000)
 Execute function on mouse datasets
 ```{r cache = TRUE, message = FALSE, warning=FALSE}
 tT000M <- GEO2R_pFiltered("GSE71868","GPL6885","11110000",1000)
+tT008M <- GEO2R_pFiltered("GSE50821","GPL1261","00000XXXX11111",1000)
 tT011M <- GEO2R_pFiltered("GSE55162","GPL1261","11110000",100)
 ```
 
@@ -179,6 +180,7 @@ M2H <- function(mouse_tT){
 Execution:
 ```{r cache = TRUE, message = FALSE, warning = FALSE}
 tT000 <- M2H(tT000M)
+tT008 <- M2H(tT008M)
 tT011 <- M2H(tT011M)
 ```
 
@@ -201,6 +203,7 @@ write.table(tT023, file="tT023.txt", row.names=F, sep="\t")
 write.table(tT044, file="tT044.txt", row.names=F, sep="\t")
 #Mouse:
 write.table(tT000, file="tT000.txt", row.names=F, sep="\t")
+write.table(tT008, file="tT008.txt", row.names=F, sep="\t")
 write.table(tT011, file="tT011.txt", row.names=F, sep="\t")
 ```
 
@@ -251,6 +254,7 @@ file_to_dict('tT044.txt')
 
 #Mouse
 file_to_dict('tT000.txt')
+file_to_dict('tT008.txt')
 file_to_dict('tT011.txt')
 
 ```
