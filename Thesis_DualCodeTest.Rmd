@@ -23,6 +23,7 @@ install.packages('limma')
 install.packages('umap')
 install.packages("reticulate")
 install.packages("homologene")
+install.packages('ggplot2')
 ```
 Open Libraries
 ```{r include=FALSE}
@@ -32,6 +33,7 @@ library(umap)
 library(reticulate)
 library(knitr)
 library(homologene)
+library(ggplot2)
 ```
 Install Python Packages
 ```{r cache=TRUE, eval=FALSE}
