@@ -604,10 +604,12 @@ summary {
 <span id="cb8-6"><a href="#cb8-6"></a>}</span></code></pre></div>
 <p>Execute functions on human datasets (Note that some data-sets have more than 1000 p&lt;0.01)</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r bg-info"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>tT009 &lt;-<span class="st"> </span><span class="kw">GEO2R_pFiltered</span>(<span class="st">&quot;GSE53890&quot;</span>,<span class="st">&quot;GPL570&quot;</span>,<span class="st">&quot;0000000000000XXXXXX1111111111111XXXXXXXXX&quot;</span>,<span class="dv">1000</span>)</span>
-<span id="cb9-2"><a href="#cb9-2"></a>tT023 &lt;-<span class="st"> </span><span class="kw">GEO2R_pFiltered</span>(<span class="st">&quot;GSE38718&quot;</span>,<span class="st">&quot;GPL570&quot;</span>,<span class="st">&quot;0000000000000011111111&quot;</span>,<span class="dv">1000</span>)</span></code></pre></div>
+<span id="cb9-2"><a href="#cb9-2"></a>tT023 &lt;-<span class="st"> </span><span class="kw">GEO2R_pFiltered</span>(<span class="st">&quot;GSE38718&quot;</span>,<span class="st">&quot;GPL570&quot;</span>,<span class="st">&quot;0000000000000011111111&quot;</span>,<span class="dv">1000</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a>tT044 &lt;-<span class="st"> </span><span class="kw">GEO2R_pFiltered</span>(<span class="st">&quot;GSE32719&quot;</span>,<span class="st">&quot;GPL570&quot;</span>,<span class="st">&quot;00000000000000XXXXX11111111&quot;</span>,<span class="dv">1000</span>)</span></code></pre></div>
 <p>Write to files</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r bg-info"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">write.table</span>(tT009, <span class="dt">file=</span><span class="st">&quot;tT009.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="kw">write.table</span>(tT023, <span class="dt">file=</span><span class="st">&quot;tT023.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="kw">write.table</span>(tT023, <span class="dt">file=</span><span class="st">&quot;tT023.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="kw">write.table</span>(tT044, <span class="dt">file=</span><span class="st">&quot;tT044.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
 </div>
 <div id="calculate-counts-across-datasets-python" class="section level1">
 <h1>Calculate Counts Across Datasets (Python)</h1>
@@ -646,25 +648,26 @@ summary {
 <span id="cb12-3"><a href="#cb12-3"></a>total_dict <span class="op">=</span> {}</span>
 <span id="cb12-4"><a href="#cb12-4"></a></span>
 <span id="cb12-5"><a href="#cb12-5"></a>file_to_dict(<span class="st">&#39;tT009.txt&#39;</span>)</span>
-<span id="cb12-6"><a href="#cb12-6"></a>file_to_dict(<span class="st">&#39;tT023.txt&#39;</span>)</span></code></pre></div>
+<span id="cb12-6"><a href="#cb12-6"></a>file_to_dict(<span class="st">&#39;tT023.txt&#39;</span>)</span>
+<span id="cb12-7"><a href="#cb12-7"></a>file_to_dict(<span class="st">&#39;tT044.txt&#39;</span>)</span></code></pre></div>
 <p>Convert count dictionary to ordered dataframe</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode python bg-info"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>total_df <span class="op">=</span> pd.DataFrame.from_dict(total_dict, orient<span class="op">=</span><span class="st">&#39;index&#39;</span>)</span>
 <span id="cb13-2"><a href="#cb13-2"></a>ordered_df <span class="op">=</span> total_df.sort_values(by<span class="op">=</span><span class="dv">0</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb13-3"><a href="#cb13-3"></a>ordered_df</span></code></pre></div>
 <pre><code>##                        0
 ## ARHGEF7                2
-## ARFGEF1                2
+## ATP5J                  2
 ## CALM3///CALM2///CALM1  2
 ## PENK                   2
 ## ZNF41                  2
 ## ...                   ..
-## MT1F                  -2
 ## BBX                   -2
+## MT1E                  -2
+## MT1X                  -2
 ## MT1H                  -2
-## MT1HL1                -2
-## TNPO1                 -2
+## ZBTB20                -2
 ## 
-## [1181 rows x 1 columns]</code></pre>
+## [1183 rows x 1 columns]</code></pre>
 </div>
 <div id="tasks" class="section level1">
 <h1>Tasks</h1>

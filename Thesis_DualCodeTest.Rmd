@@ -24,7 +24,7 @@ install.packages('umap')
 install.packages("reticulate")
 ```
 Open Libraries
-```{r cache=TRUE, include=FALSE}
+```{r include=FALSE}
 library(GEOquery)
 library(limma)
 library(umap)
@@ -131,7 +131,7 @@ GEO2R <- function(GSE_number,platform_code,group_binaries,outputs){
 ```
 
 Function compounded to filter results by adjusted p<0.01
-```{r cache=TRUE}
+```{r}
 GEO2R_pFiltered <- function(GSE_number,platform_code,group_binaries,outputs){
   tempTable <- GEO2R(GSE_number,platform_code,group_binaries,outputs)
   filtTable <- tempTable[tempTable$adj.P.Val<0.01,]
@@ -142,15 +142,17 @@ GEO2R_pFiltered <- function(GSE_number,platform_code,group_binaries,outputs){
 
 Execute functions on human datasets
 (Note that some data-sets have more than 1000 p<0.01)
-```{r cache=TRUE, message = FALSE, warning=FALSE}
+```{r message = FALSE, warning=FALSE}
 tT009 <- GEO2R_pFiltered("GSE53890","GPL570","0000000000000XXXXXX1111111111111XXXXXXXXX",1000)
 tT023 <- GEO2R_pFiltered("GSE38718","GPL570","0000000000000011111111",1000)
+tT044 <- GEO2R_pFiltered("GSE32719","GPL570","00000000000000XXXXX11111111",1000)
 ```
 
 Write to files
-```{r eval=FALSE}
+```{r message = FALSE, warning=FALSE}
 write.table(tT009, file="tT009.txt", row.names=F, sep="\t")
 write.table(tT023, file="tT023.txt", row.names=F, sep="\t")
+write.table(tT044, file="tT044.txt", row.names=F, sep="\t")
 ```
 
 # Calculate Counts Across Datasets (Python)
@@ -193,6 +195,7 @@ total_dict = {}
 
 file_to_dict('tT009.txt')
 file_to_dict('tT023.txt')
+file_to_dict('tT044.txt')
 
 ```
 Convert count dictionary to ordered dataframe
