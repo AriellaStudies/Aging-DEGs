@@ -8,7 +8,7 @@ output:
 
 # Version info: R 3.2.3, Biobase 2.30.0, GEOquery 2.40.0, limma 3.26.8
 ################################################################
-# Setup
+# 0. Setup
 
 Special GEOquery package
 ```{r eval=FALSE}
@@ -47,7 +47,8 @@ Python Packages
 import pandas as pd
 import regex as re
 ```
-# Dataset Management (Python)
+
+# 1. Dataset Management (Python)
 NCBI GEO was searched for expression datasets on 03/02/2021, filtered to mammalian species with age sets, with 221 results. Results were exported as a detailed text file, then parsed into a dataframe using Python below.
 ```{python message = FALSE, warning=FALSE}
 pattern_organism = re.compile(r"\bOrganism\w*\b")
@@ -72,14 +73,15 @@ df_of_lists = pd.DataFrame(list_of_lists).transpose()
 df_of_lists.columns = ["GSE","Organism","Platform"]
 print(df_of_lists)
 ```
-# Dataset Management (Manual)
+# 2. Dataset Management (Manual)
 Fill in manual methods here and then import.
 
 -----------------
 UNDER CONSTRUCTION
 ----------------
 
-# Calculate DEGs in each Dataset (R)
+# 3. Calculate DEGs in each Dataset (R)
+
 GEO2R Function
 ```{r cache=TRUE}
 GEO2R <- function(GSE_number,platform_code,group_binaries,outputs){
@@ -143,7 +145,7 @@ GEO2R_pFiltered <- function(GSE_number,platform_code,group_binaries,outputs){
 ```
 
 **DATASET CONTROL ZONE 1 OF 4**
-(These zones must be updated if adding or commenting out datasets.)
+*(These zones must be updated if adding or commenting out datasets.)*
 
 Execute functions on human datasets
 (Note that some data-sets have more than 1000 p<0.01)
@@ -171,7 +173,7 @@ M2H <- function(mouse_tT){
 }
 ```
 
-**DATASET CONTROL ZONE 2 OF 4**
+**DATASET CONTROL ZONE 2 OF 4 (MOUSE ONLY)**
 Execution:
 ```{r}
 tT011 <- M2H(tT011M)
@@ -190,12 +192,15 @@ dfM1Test #0 Results
 **DATASET CONTROL ZONE 3 OF 4**
 Write to files
 ```{r message = FALSE, warning=FALSE}
+#Human:
 write.table(tT009, file="tT009.txt", row.names=F, sep="\t")
 write.table(tT023, file="tT023.txt", row.names=F, sep="\t")
 write.table(tT044, file="tT044.txt", row.names=F, sep="\t")
+#Mouse:
+write.table(tT011, file="tT011.txt", row.names=F, sep="\t")
 ```
 
-# Calculate Counts Across Datasets (Python)
+# 4. Calculate Counts Across Datasets (Python)
 Define Reader Function
 ```{python}
 def file_to_dict(file_name):
@@ -235,9 +240,13 @@ young_dict = {}
 old_dict = {}
 total_dict = {}
 
+#Human
 file_to_dict('tT009.txt')
 file_to_dict('tT023.txt')
 file_to_dict('tT044.txt')
+
+#Mouse
+file_to_dict('tT011.txt')
 
 ```
 Convert count dictionary to ordered dataframe
