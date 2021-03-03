@@ -145,7 +145,7 @@ GEO2R_pFiltered <- function(GSE_number,platform_code,group_binaries,outputs){
 ```
 
 **DATASET CONTROL ZONE 1 OF 4**
-*(These zones must be updated if adding or commenting out datasets.)*
+*(These zones must be updated if adding datasets.)*
 
 Execute functions on human datasets
 (Note that some data-sets have more than 1000 p<0.01)
@@ -157,6 +157,7 @@ tT044 <- GEO2R_pFiltered("GSE32719","GPL570","00000000000000XXXXX11111111",10)
 
 Execute function on mouse datasets
 ```{r cache = TRUE, message = FALSE, warning=FALSE}
+tT000M <- GEO2R_pFiltered("GSE71868","GPL6885","11110000",1000)
 tT011M <- GEO2R_pFiltered("GSE55162","GPL1261","11110000",100)
 ```
 
@@ -175,7 +176,8 @@ M2H <- function(mouse_tT){
 
 **DATASET CONTROL ZONE 2 OF 4 (MOUSE ONLY)**
 Execution:
-```{r}
+```{r cache = TRUE, message = FALSE, warning = FALSE}
+tT000 <- M2H(tT000M)
 tT011 <- M2H(tT011M)
 ```
 
@@ -197,6 +199,7 @@ write.table(tT009, file="tT009.txt", row.names=F, sep="\t")
 write.table(tT023, file="tT023.txt", row.names=F, sep="\t")
 write.table(tT044, file="tT044.txt", row.names=F, sep="\t")
 #Mouse:
+write.table(tT000, file="tT000.txt", row.names=F, sep="\t")
 write.table(tT011, file="tT011.txt", row.names=F, sep="\t")
 ```
 
@@ -246,6 +249,7 @@ file_to_dict('tT023.txt')
 file_to_dict('tT044.txt')
 
 #Mouse
+file_to_dict('tT000.txt')
 file_to_dict('tT011.txt')
 
 ```
