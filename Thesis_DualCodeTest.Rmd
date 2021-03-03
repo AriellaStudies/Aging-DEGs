@@ -47,7 +47,7 @@ import regex as re
 ```
 #Dataset Management (Python)
 NCBI GEO was searched for expression datasets on 03/02/2021, filtered to mammalian species with age sets, with 221 results. Results were exported as a detailed text file, then parsed into a dataframe using Python below.
-```{python cache=TRUE, message = FALSE, warning=FALSE}
+```{python message = FALSE, warning=FALSE}
 pattern_organism = re.compile(r"\bOrganism\w*\b")
 pattern_GSE = re.compile(r"\bPlatform\w*\b")
 
