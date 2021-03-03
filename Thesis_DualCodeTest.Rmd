@@ -30,26 +30,24 @@ library(limma)
 library(umap)
 library(reticulate)
 library(knitr)
-py_install("pandas")
 ```
-Experimental python installation
-```{r}
+Install Python Packages
+```{r cache=TRUE, eval=FALSE}
+py_install("pandas")
 py_install("regex")
 ```
-
-
 Global Options (not in use)
 ```{r include=FALSE}
 knitr::opts_chunk$set(class.source = "bg-info")
 ```
 Python Packages
-```{python cache=TRUE, include=FALSE}
+```{python cache=TRUE, message = FALSE, warning=FALSE}
 import pandas as pd
 import regex as re
 ```
 
 Database Test
-```{python}
+```{python cache=TRUE, message = FALSE, warning=FALSE}
 pattern_organism = re.compile(r"\bOrganism\w*\b")
 pattern_GSE = re.compile(r"\bPlatform\w*\b")
 
