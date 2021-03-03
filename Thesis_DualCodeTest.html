@@ -475,7 +475,7 @@ summary {
 </div>
 </div>
 <div id="setup" class="section level1">
-<h1>Setup</h1>
+<h1>0. Setup</h1>
 <p>Special GEOquery package</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">requireNamespace</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>))</span>
 <span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
@@ -484,7 +484,8 @@ summary {
 <p>Other Packages</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">install.packages</span>(<span class="st">&#39;limma&#39;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="kw">install.packages</span>(<span class="st">&#39;umap&#39;</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">install.packages</span>(<span class="st">&quot;reticulate&quot;</span>)</span></code></pre></div>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">install.packages</span>(<span class="st">&quot;reticulate&quot;</span>)</span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="kw">install.packages</span>(<span class="st">&quot;homologene&quot;</span>)</span></code></pre></div>
 <p>Open Libraries</p>
 <p>Install Python Packages</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">py_install</span>(<span class="st">&quot;pandas&quot;</span>)</span>
@@ -495,7 +496,7 @@ summary {
 <span id="cb4-2"><a href="#cb4-2"></a><span class="im">import</span> regex <span class="im">as</span> re</span></code></pre></div>
 </div>
 <div id="dataset-management-python" class="section level1">
-<h1>Dataset Management (Python)</h1>
+<h1>1. Dataset Management (Python)</h1>
 <p>NCBI GEO was searched for expression datasets on 03/02/2021, filtered to mammalian species with age sets, with 221 results. Results were exported as a detailed text file, then parsed into a dataframe using Python below.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python bg-info"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>pattern_organism <span class="op">=</span> re.<span class="bu">compile</span>(<span class="vs">r&quot;\bOrganism\w*\b&quot;</span>)</span>
 <span id="cb5-2"><a href="#cb5-2"></a>pattern_GSE <span class="op">=</span> re.<span class="bu">compile</span>(<span class="vs">r&quot;\bPlatform\w*\b&quot;</span>)</span>
@@ -534,7 +535,7 @@ summary {
 ## [221 rows x 3 columns]</code></pre>
 </div>
 <div id="dataset-management-manual" class="section level1">
-<h1>Dataset Management (Manual)</h1>
+<h1>2. Dataset Management (Manual)</h1>
 <p>Fill in manual methods here and then import.</p>
 <table>
 <tbody>
@@ -545,7 +546,7 @@ summary {
 </table>
 </div>
 <div id="calculate-degs-in-each-dataset-r" class="section level1">
-<h1>Calculate DEGs in each Dataset (R)</h1>
+<h1>3. Calculate DEGs in each Dataset (R)</h1>
 <p>GEO2R Function</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r bg-info"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>GEO2R &lt;-<span class="st"> </span><span class="cf">function</span>(GSE_number,platform_code,group_binaries,outputs){</span>
 <span id="cb7-2"><a href="#cb7-2"></a>  <span class="co"># load series and platform data from GEO</span></span>
@@ -598,76 +599,102 @@ summary {
 <p>Function compounded to filter results by adjusted p&lt;0.01</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r bg-info"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>GEO2R_pFiltered &lt;-<span class="st"> </span><span class="cf">function</span>(GSE_number,platform_code,group_binaries,outputs){</span>
 <span id="cb8-2"><a href="#cb8-2"></a>  tempTable &lt;-<span class="st"> </span><span class="kw">GEO2R</span>(GSE_number,platform_code,group_binaries,outputs)</span>
-<span id="cb8-3"><a href="#cb8-3"></a>  filtTable &lt;-<span class="st"> </span>tempTable[tempTable<span class="op">$</span>adj.P.Val<span class="op">&lt;</span><span class="fl">0.01</span>,]</span>
+<span id="cb8-3"><a href="#cb8-3"></a>  filtTable &lt;-<span class="st"> </span>tempTable[tempTable<span class="op">$</span>adj.P.Val<span class="op">&lt;</span><span class="fl">0.05</span>,]</span>
 <span id="cb8-4"><a href="#cb8-4"></a>  dupTable &lt;-<span class="st"> </span>filtTable[<span class="op">!</span><span class="kw">duplicated</span>(filtTable<span class="op">$</span>Gene.symbol),]</span>
 <span id="cb8-5"><a href="#cb8-5"></a>  <span class="kw">return</span>(dupTable)</span>
 <span id="cb8-6"><a href="#cb8-6"></a>}</span></code></pre></div>
+<p><strong>DATASET CONTROL ZONE 1 OF 4</strong> <em>(These zones must be updated if adding or commenting out datasets.)</em></p>
 <p>Execute functions on human datasets (Note that some data-sets have more than 1000 p&lt;0.01)</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r bg-info"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>tT009 &lt;-<span class="st"> </span><span class="kw">GEO2R_pFiltered</span>(<span class="st">&quot;GSE53890&quot;</span>,<span class="st">&quot;GPL570&quot;</span>,<span class="st">&quot;0000000000000XXXXXX1111111111111XXXXXXXXX&quot;</span>,<span class="dv">1000</span>)</span>
 <span id="cb9-2"><a href="#cb9-2"></a>tT023 &lt;-<span class="st"> </span><span class="kw">GEO2R_pFiltered</span>(<span class="st">&quot;GSE38718&quot;</span>,<span class="st">&quot;GPL570&quot;</span>,<span class="st">&quot;0000000000000011111111&quot;</span>,<span class="dv">1000</span>)</span>
-<span id="cb9-3"><a href="#cb9-3"></a>tT044 &lt;-<span class="st"> </span><span class="kw">GEO2R_pFiltered</span>(<span class="st">&quot;GSE32719&quot;</span>,<span class="st">&quot;GPL570&quot;</span>,<span class="st">&quot;00000000000000XXXXX11111111&quot;</span>,<span class="dv">1000</span>)</span></code></pre></div>
-<p>Write to files</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r bg-info"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">write.table</span>(tT009, <span class="dt">file=</span><span class="st">&quot;tT009.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="kw">write.table</span>(tT023, <span class="dt">file=</span><span class="st">&quot;tT023.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="kw">write.table</span>(tT044, <span class="dt">file=</span><span class="st">&quot;tT044.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+<span id="cb9-3"><a href="#cb9-3"></a>tT044 &lt;-<span class="st"> </span><span class="kw">GEO2R_pFiltered</span>(<span class="st">&quot;GSE32719&quot;</span>,<span class="st">&quot;GPL570&quot;</span>,<span class="st">&quot;00000000000000XXXXX11111111&quot;</span>,<span class="dv">10</span>)</span></code></pre></div>
+<p>Execute function on mouse datasets</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r bg-info"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>tT011M &lt;-<span class="st"> </span><span class="kw">GEO2R_pFiltered</span>(<span class="st">&quot;GSE55162&quot;</span>,<span class="st">&quot;GPL1261&quot;</span>,<span class="st">&quot;11110000&quot;</span>,<span class="dv">100</span>)</span></code></pre></div>
+<p>Convert mouse gene symbols to human gene symbols</p>
+<p>Function:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r bg-info"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>M2H &lt;-<span class="st"> </span><span class="cf">function</span>(mouse_tT){</span>
+<span id="cb11-2"><a href="#cb11-2"></a>  MouseSymbols =<span class="st"> </span>mouse_tT[,<span class="dv">7</span>]</span>
+<span id="cb11-3"><a href="#cb11-3"></a>  M2H_Symbols =<span class="st"> </span><span class="kw">mouse2human</span>(MouseSymbols)</span>
+<span id="cb11-4"><a href="#cb11-4"></a>  tTMerge =<span class="st"> </span><span class="kw">merge</span>(mouse_tT,M2H_Symbols,<span class="dt">by.x =</span> <span class="st">&quot;Gene.symbol&quot;</span>,<span class="dt">by.y =</span> <span class="st">&quot;mouseGene&quot;</span>)</span>
+<span id="cb11-5"><a href="#cb11-5"></a>  tTReordered =<span class="st"> </span>tTMerge[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">9</span>,<span class="dv">8</span>,<span class="dv">1</span>)]</span>
+<span id="cb11-6"><a href="#cb11-6"></a>  <span class="kw">return</span>(tTReordered)</span>
+<span id="cb11-7"><a href="#cb11-7"></a>}</span></code></pre></div>
+<p><strong>DATASET CONTROL ZONE 2 OF 4 (MOUSE ONLY)</strong> Execution:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r bg-info"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>tT011 &lt;-<span class="st"> </span><span class="kw">M2H</span>(tT011M)</span></code></pre></div>
+<p>Note: Some gene IDs appear in the results as GeneName1///GeneName2///GeneName3///. I noticed these were not successfully converted to human genes. I performed a test on one such gene where I ran each GeneName individually, and no results were found either, so I conclude homologous genes are not available for those entries regardless of any formatting issue. Record of this Test:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r bg-info"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>M1Test =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;LOC100503923&quot;</span>,<span class="st">&quot;Gm15433&quot;</span>,<span class="st">&quot;LOC100041903&quot;</span>,<span class="st">&quot;Gm2666&quot;</span>,<span class="st">&quot;Gm7609&quot;</span>,<span class="st">&quot;Csprs&quot;</span>)</span>
+<span id="cb13-2"><a href="#cb13-2"></a>M1Test</span>
+<span id="cb13-3"><a href="#cb13-3"></a>dfM1Test =<span class="st"> </span><span class="kw">mouse2human</span>(M1Test)</span>
+<span id="cb13-4"><a href="#cb13-4"></a>dfM1Test <span class="co">#0 Results</span></span></code></pre></div>
+<p><strong>DATASET CONTROL ZONE 3 OF 4</strong> Write to files</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r bg-info"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">#Human:</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="kw">write.table</span>(tT009, <span class="dt">file=</span><span class="st">&quot;tT009.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="kw">write.table</span>(tT023, <span class="dt">file=</span><span class="st">&quot;tT023.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="kw">write.table</span>(tT044, <span class="dt">file=</span><span class="st">&quot;tT044.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="co">#Mouse:</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a><span class="kw">write.table</span>(tT011, <span class="dt">file=</span><span class="st">&quot;tT011.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
 </div>
 <div id="calculate-counts-across-datasets-python" class="section level1">
-<h1>Calculate Counts Across Datasets (Python)</h1>
+<h1>4. Calculate Counts Across Datasets (Python)</h1>
 <p>Define Reader Function</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python bg-info"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">def</span> file_to_dict(file_name):</span>
-<span id="cb11-2"><a href="#cb11-2"></a>    <span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(file_name)</span>
-<span id="cb11-3"><a href="#cb11-3"></a>    header <span class="op">=</span> <span class="bu">file</span>.readline()</span>
-<span id="cb11-4"><a href="#cb11-4"></a>    <span class="cf">for</span> line <span class="kw">in</span> <span class="bu">file</span>:</span>
-<span id="cb11-5"><a href="#cb11-5"></a>      row <span class="op">=</span> line.strip().replace(<span class="st">&#39;&quot;&#39;</span>, <span class="st">&#39;&#39;</span>).split(<span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>)</span>
-<span id="cb11-6"><a href="#cb11-6"></a>      logFC <span class="op">=</span> <span class="bu">float</span>(row[<span class="dv">5</span>])</span>
-<span id="cb11-7"><a href="#cb11-7"></a>      geneID <span class="op">=</span> row[<span class="dv">6</span>]</span>
-<span id="cb11-8"><a href="#cb11-8"></a>      <span class="cf">if</span> logFC <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb11-9"><a href="#cb11-9"></a>        <span class="cf">if</span> geneID <span class="kw">in</span> young_dict:</span>
-<span id="cb11-10"><a href="#cb11-10"></a>          young_dict[geneID] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb11-11"><a href="#cb11-11"></a>          total_dict[geneID] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb11-12"><a href="#cb11-12"></a>        <span class="cf">elif</span> geneID <span class="kw">in</span> total_dict:</span>
-<span id="cb11-13"><a href="#cb11-13"></a>          total_dict[geneID] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb11-14"><a href="#cb11-14"></a>          young_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb11-15"><a href="#cb11-15"></a>        <span class="cf">else</span>:</span>
-<span id="cb11-16"><a href="#cb11-16"></a>          young_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb11-17"><a href="#cb11-17"></a>          total_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb11-18"><a href="#cb11-18"></a>      <span class="cf">if</span> logFC <span class="op">&lt;</span> <span class="dv">0</span>:</span>
-<span id="cb11-19"><a href="#cb11-19"></a>        <span class="cf">if</span> geneID <span class="kw">in</span> old_dict:</span>
-<span id="cb11-20"><a href="#cb11-20"></a>          old_dict[geneID] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb11-21"><a href="#cb11-21"></a>          total_dict[geneID] <span class="op">+=</span> (<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb11-22"><a href="#cb11-22"></a>        <span class="cf">elif</span> geneID <span class="kw">in</span> total_dict:</span>
-<span id="cb11-23"><a href="#cb11-23"></a>          total_dict[geneID] <span class="op">+=</span> (<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb11-24"><a href="#cb11-24"></a>          old_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb11-25"><a href="#cb11-25"></a>        <span class="cf">else</span>:</span>
-<span id="cb11-26"><a href="#cb11-26"></a>          old_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb11-27"><a href="#cb11-27"></a>          total_dict[geneID] <span class="op">=</span> <span class="dv">-1</span></span>
-<span id="cb11-28"><a href="#cb11-28"></a>    <span class="bu">file</span>.close()</span></code></pre></div>
-<p>Execute Reader Function</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python bg-info"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>young_dict <span class="op">=</span> {}</span>
-<span id="cb12-2"><a href="#cb12-2"></a>old_dict <span class="op">=</span> {}</span>
-<span id="cb12-3"><a href="#cb12-3"></a>total_dict <span class="op">=</span> {}</span>
-<span id="cb12-4"><a href="#cb12-4"></a></span>
-<span id="cb12-5"><a href="#cb12-5"></a>file_to_dict(<span class="st">&#39;tT009.txt&#39;</span>)</span>
-<span id="cb12-6"><a href="#cb12-6"></a>file_to_dict(<span class="st">&#39;tT023.txt&#39;</span>)</span>
-<span id="cb12-7"><a href="#cb12-7"></a>file_to_dict(<span class="st">&#39;tT044.txt&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python bg-info"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">def</span> file_to_dict(file_name):</span>
+<span id="cb15-2"><a href="#cb15-2"></a>    <span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(file_name)</span>
+<span id="cb15-3"><a href="#cb15-3"></a>    header <span class="op">=</span> <span class="bu">file</span>.readline()</span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="cf">for</span> line <span class="kw">in</span> <span class="bu">file</span>:</span>
+<span id="cb15-5"><a href="#cb15-5"></a>      row <span class="op">=</span> line.strip().replace(<span class="st">&#39;&quot;&#39;</span>, <span class="st">&#39;&#39;</span>).split(<span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>)</span>
+<span id="cb15-6"><a href="#cb15-6"></a>      logFC <span class="op">=</span> <span class="bu">float</span>(row[<span class="dv">5</span>])</span>
+<span id="cb15-7"><a href="#cb15-7"></a>      geneID <span class="op">=</span> row[<span class="dv">6</span>]</span>
+<span id="cb15-8"><a href="#cb15-8"></a>      <span class="cf">if</span> logFC <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb15-9"><a href="#cb15-9"></a>        <span class="cf">if</span> geneID <span class="kw">in</span> young_dict:</span>
+<span id="cb15-10"><a href="#cb15-10"></a>          young_dict[geneID] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a>          total_dict[geneID] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb15-12"><a href="#cb15-12"></a>        <span class="cf">elif</span> geneID <span class="kw">in</span> total_dict:</span>
+<span id="cb15-13"><a href="#cb15-13"></a>          total_dict[geneID] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb15-14"><a href="#cb15-14"></a>          young_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a>        <span class="cf">else</span>:</span>
+<span id="cb15-16"><a href="#cb15-16"></a>          young_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb15-17"><a href="#cb15-17"></a>          total_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb15-18"><a href="#cb15-18"></a>      <span class="cf">if</span> logFC <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb15-19"><a href="#cb15-19"></a>        <span class="cf">if</span> geneID <span class="kw">in</span> old_dict:</span>
+<span id="cb15-20"><a href="#cb15-20"></a>          old_dict[geneID] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb15-21"><a href="#cb15-21"></a>          total_dict[geneID] <span class="op">+=</span> (<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb15-22"><a href="#cb15-22"></a>        <span class="cf">elif</span> geneID <span class="kw">in</span> total_dict:</span>
+<span id="cb15-23"><a href="#cb15-23"></a>          total_dict[geneID] <span class="op">+=</span> (<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb15-24"><a href="#cb15-24"></a>          old_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb15-25"><a href="#cb15-25"></a>        <span class="cf">else</span>:</span>
+<span id="cb15-26"><a href="#cb15-26"></a>          old_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb15-27"><a href="#cb15-27"></a>          total_dict[geneID] <span class="op">=</span> <span class="dv">-1</span></span>
+<span id="cb15-28"><a href="#cb15-28"></a>    <span class="bu">file</span>.close()</span></code></pre></div>
+<p><strong>DATASET CONTROL ZONE 4 OF 4</strong> Execute Reader Function</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python bg-info"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>young_dict <span class="op">=</span> {}</span>
+<span id="cb16-2"><a href="#cb16-2"></a>old_dict <span class="op">=</span> {}</span>
+<span id="cb16-3"><a href="#cb16-3"></a>total_dict <span class="op">=</span> {}</span>
+<span id="cb16-4"><a href="#cb16-4"></a></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="co">#Human</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a>file_to_dict(<span class="st">&#39;tT009.txt&#39;</span>)</span>
+<span id="cb16-7"><a href="#cb16-7"></a>file_to_dict(<span class="st">&#39;tT023.txt&#39;</span>)</span>
+<span id="cb16-8"><a href="#cb16-8"></a>file_to_dict(<span class="st">&#39;tT044.txt&#39;</span>)</span>
+<span id="cb16-9"><a href="#cb16-9"></a></span>
+<span id="cb16-10"><a href="#cb16-10"></a><span class="co">#Mouse</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a>file_to_dict(<span class="st">&#39;tT011.txt&#39;</span>)</span></code></pre></div>
 <p>Convert count dictionary to ordered dataframe</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python bg-info"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>total_df <span class="op">=</span> pd.DataFrame.from_dict(total_dict, orient<span class="op">=</span><span class="st">&#39;index&#39;</span>)</span>
-<span id="cb13-2"><a href="#cb13-2"></a>ordered_df <span class="op">=</span> total_df.sort_values(by<span class="op">=</span><span class="dv">0</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb13-3"><a href="#cb13-3"></a>ordered_df</span></code></pre></div>
-<pre><code>##                        0
-## ARHGEF7                2
-## ATP5J                  2
-## CALM3///CALM2///CALM1  2
-## PENK                   2
-## ZNF41                  2
-## ...                   ..
-## BBX                   -2
-## MT1E                  -2
-## MT1X                  -2
-## MT1H                  -2
-## ZBTB20                -2
+<div class="sourceCode" id="cb17"><pre class="sourceCode python bg-info"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>total_df <span class="op">=</span> pd.DataFrame.from_dict(total_dict, orient<span class="op">=</span><span class="st">&#39;index&#39;</span>)</span>
+<span id="cb17-2"><a href="#cb17-2"></a>ordered_df <span class="op">=</span> total_df.sort_values(by<span class="op">=</span><span class="dv">0</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb17-3"><a href="#cb17-3"></a>ordered_df</span></code></pre></div>
+<pre><code>##          0
+## UCHL5    2
+## AP4S1    2
+## ARHGEF7  2
+## EIF4E3   2
+## TIMM17A  2
+## ...     ..
+## EFHD1   -2
+## TNPO1   -2
+## MT1X    -2
+## BBX     -2
+## MT2A    -2
 ## 
-## [1183 rows x 1 columns]</code></pre>
+## [1555 rows x 1 columns]</code></pre>
 </div>
 <div id="tasks" class="section level1">
 <h1>Tasks</h1>
