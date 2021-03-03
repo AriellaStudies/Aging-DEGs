@@ -8,6 +8,9 @@ output:
 
 # Version info: R 3.2.3, Biobase 2.30.0, GEOquery 2.40.0, limma 3.26.8
 ################################################################
+# ARCHIVAL R-ONLY BRANCH
+Record of main branch before initiating steps to export from R and employ Python
+
 # Setup
 
 Special GEOquery package
@@ -140,39 +143,5 @@ WRITING/EXPORTING METHOD
 ```{r eval=FALSE}
 write.table(tT, file="R_Out_1.26.txt", row.names=F, sep="\t")
 write.csv(tT, file="R_Out_C.csv", row.names=F)
-```
-
-# Testing Areas
-TESTING AREA FOR PYTHON
-```{python eval=FALSE}
-cc_network = {} # empty dictionary that will hold the network
-
-# Read in the file and add dictionary entries:
-file = open('yeast_cc_network-Copy1.txt')
-for line in file:
-    entry = line.strip().split('\t')
-    regulator = entry[0]
-    regulated = entry[1]
-    if regulator in cc_network:
-        cc_network[regulator] += [regulated]
-    else:
-        cc_network[regulator] = [regulated]
-        
-file.close()
-
-# YOUR ANSWER HERE
-
-# Remember to close the file after reading the data.
-print(cc_network) # display the result
-```
-
-
-TESTING AREA FOR R
-```{r eval=FALSE}
-new.function <- function(a,b,c)  {
-  a + b + c
-}
-
-new.function(2,3,4)
 ```
 
