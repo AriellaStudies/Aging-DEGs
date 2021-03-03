@@ -41,11 +41,11 @@ Global Options (not in use)
 knitr::opts_chunk$set(class.source = "bg-info")
 ```
 Python Packages
-```{python cache=TRUE, message = FALSE, warning=FALSE}
+```{python}
 import pandas as pd
 import regex as re
 ```
-#Dataset Management (Python)
+# Dataset Management (Python)
 NCBI GEO was searched for expression datasets on 03/02/2021, filtered to mammalian species with age sets, with 221 results. Results were exported as a detailed text file, then parsed into a dataframe using Python below.
 ```{python message = FALSE, warning=FALSE}
 pattern_organism = re.compile(r"\bOrganism\w*\b")
@@ -70,7 +70,7 @@ df_of_lists = pd.DataFrame(list_of_lists).transpose()
 df_of_lists.columns = ["GSE","Organism","Platform"]
 print(df_of_lists)
 ```
-#Dataset Management (Manual)
+# Dataset Management (Manual)
 Fill in manual methods here and then import.
 
 -----------------

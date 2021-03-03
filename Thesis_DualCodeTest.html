@@ -493,7 +493,10 @@ summary {
 <p>Python Packages</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python bg-info"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="im">import</span> regex <span class="im">as</span> re</span></code></pre></div>
-<p>Database Test</p>
+</div>
+<div id="dataset-management-python" class="section level1">
+<h1>Dataset Management (Python)</h1>
+<p>NCBI GEO was searched for expression datasets on 03/02/2021, filtered to mammalian species with age sets, with 221 results. Results were exported as a detailed text file, then parsed into a dataframe using Python below.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python bg-info"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>pattern_organism <span class="op">=</span> re.<span class="bu">compile</span>(<span class="vs">r&quot;\bOrganism\w*\b&quot;</span>)</span>
 <span id="cb5-2"><a href="#cb5-2"></a>pattern_GSE <span class="op">=</span> re.<span class="bu">compile</span>(<span class="vs">r&quot;\bPlatform\w*\b&quot;</span>)</span>
 <span id="cb5-3"><a href="#cb5-3"></a></span>
@@ -511,11 +514,38 @@ summary {
 <span id="cb5-15"><a href="#cb5-15"></a>            list_GSE.append(GSE)</span>
 <span id="cb5-16"><a href="#cb5-16"></a>            Platform <span class="op">=</span> line.split(<span class="st">&quot;Platform: &quot;</span>)[<span class="dv">1</span>].rsplit()[<span class="dv">0</span>]</span>
 <span id="cb5-17"><a href="#cb5-17"></a>            list_platform.append(Platform)</span>
-<span id="cb5-18"><a href="#cb5-18"></a><span class="bu">print</span>(list_organism, list_GSE, list_platform)</span></code></pre></div>
-<pre><code>## [&#39;Mus musculus&#39;, &#39;Homo sapiens&#39;, &#39;Rattus norvegicus&#39;, &#39;Rattus norvegicus&#39;, &#39;Rattus norvegicus&#39;, &#39;Rattus norvegicus&#39;, &#39;Mus musculus&#39;, &#39;Homo sapiens&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Rattus norvegicus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Homo sapiens&#39;, &#39;Homo sapiens&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Homo sapiens&#39;, &#39;Mus musculus&#39;, &#39;Homo sapiens&#39;, &#39;Homo sapiens&#39;, &#39;Mus musculus&#39;, &#39;Rattus norvegicus&#39;, &#39;Homo sapiens; Microcebus murinus&#39;, &#39;Homo sapiens&#39;, &#39;Homo sapiens&#39;, &#39;Homo sapiens&#39;, &#39;Homo sapiens&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Rattus norvegicus&#39;, &#39;Macaca mulatta&#39;, &#39;Rattus norvegicus&#39;, &#39;Mus musculus&#39;, &#39;Homo sapiens&#39;, &#39;Canis lupus familiaris&#39;, &#39;Mus musculus&#39;, &#39;Homo sapiens&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Homo sapiens&#39;, &#39;Rattus norvegicus&#39;, &#39;Rattus norvegicus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Rattus norvegicus&#39;, &#39;Homo sapiens&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Rattus norvegicus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Rattus norvegicus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Homo sapiens&#39;, &#39;Homo sapiens&#39;, &#39;Mus musculus&#39;, &#39;Homo sapiens&#39;, &#39;Homo sapiens&#39;, &#39;Mus musculus&#39;, &#39;Rattus norvegicus&#39;, &#39;Rattus norvegicus&#39;, &#39;Rattus norvegicus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Homo sapiens&#39;, &#39;Rattus norvegicus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Rattus norvegicus&#39;, &#39;Homo sapiens&#39;, &#39;Homo sapiens&#39;, &#39;Mus musculus&#39;, &#39;Homo sapiens&#39;, &#39;Homo sapiens&#39;, &#39;Homo sapiens&#39;, &#39;Rattus norvegicus&#39;, &#39;Mus musculus&#39;, &#39;Mus musculus&#39;, &#39;Homo sapiens&#39;, &#39;Homo sapiens&#39;, &#39;Homo sapiens&#39;, &#39;Mus musculus&#39;] [&#39;GSE71868&#39;, &#39;GSE60518&#39;, &#39;GSE61326&#39;, &#39;GSE50254&#39;, &#39;GSE50254&#39;, &#39;GSE50254&#39;, &#39;GSE50821&#39;, &#39;GSE53890&#39;, &#39;GSE55162&#39;, &#39;GSE52550&#39;, &#39;GSE41789&#39;, &#39;GSE39817&#39;, &#39;GSE49543&#39;, &#39;GSE37618&#39;, &#39;GSE40207&#39;, &#39;GSE44355&#39;, &#39;GSE42591&#39;, &#39;GSE41559&#39;, &#39;GSE38718&#39;, &#39;GSE40155&#39;, &#39;GSE37047&#39;, &#39;GSE32536&#39;, &#39;GSE32609&#39;, &#39;GSE25905&#39;, &#39;GSE32719&#39;, &#39;GSE29775&#39;, &#39;GSE12474&#39;, &#39;GSE29652&#39;, &#39;GSE27686&#39;, &#39;GSE24515&#39;, &#39;GSE21779&#39;, &#39;GSE25837&#39;, &#39;GSE24487&#39;, &#39;GSE20736&#39;, &#39;GSE21648&#39;, &#39;GSE25257&#39;, &#39;GSE23725&#39;, &#39;GSE17576&#39;, &#39;GSE23495&#39;, &#39;GSE20219&#39;, &#39;GSE11697&#39;, &#39;GSE9990&#39;, &#39;GSE10653&#39;, &#39;GSE11954&#39;, &#39;GSE12502&#39;, &#39;GSE11667&#39;, &#39;GSE10123&#39;, &#39;GSE7781&#39;, &#39;GSE6485&#39;, &#39;GSE9103&#39;, &#39;GSE7281&#39;, &#39;GSE6718&#39;, &#39;GSE6045&#39;, &#39;GSE8150&#39;, &#39;GSE8146&#39;, &#39;GSE6591&#39;, &#39;GSE5140&#39;, &#39;GSE4866&#39;, &#39;GSE7829&#39;, &#39;GSE7829&#39;, &#39;GSE4786&#39;, &#39;GSE5666&#39;, &#39;GSE6451&#39;, &#39;GSE6238&#39;, &#39;GSE4909&#39;, &#39;GSE4270&#39;, &#39;GSE6323&#39;, &#39;GSE6089&#39;, &#39;GSE3339&#39;, &#39;GSE5078&#39;, &#39;GSE3757&#39;, &#39;GSE4332&#39;, &#39;GSE3689&#39;, &#39;GSE3860&#39;, &#39;GSE3860&#39;, &#39;GSE3359&#39;, &#39;GSE3307&#39;, &#39;GSE3307&#39;, &#39;GSE3432&#39;, &#39;GSE3305&#39;, &#39;GSE3309&#39;, &#39;GSE3310&#39;, &#39;GSE3253&#39;, &#39;GSE3129&#39;, &#39;GSE2684&#39;, &#39;GSE2487&#39;, &#39;GSE1978&#39;, &#39;GSE2236&#39;, &#39;GSE1093&#39;, &#39;GSE273&#39;, &#39;GSE854&#39;, &#39;GSE1572&#39;, &#39;GSE1297&#39;, &#39;GSE1506&#39;, &#39;GSE1144&#39;, &#39;GSE674&#39;, &#39;GSE674&#39;, &#39;GSE421&#39;, &#39;GSE459&#39;, &#39;GSE459&#39;, &#39;GSE362&#39;, &#39;GSE362&#39;, &#39;GSE80&#39;, &#39;GSE75&#39;] [&#39;GPL6885&#39;, &#39;GPL570&#39;, &#39;GPL6247&#39;, &#39;GPL1355&#39;, &#39;GPL1355&#39;, &#39;GPL1355&#39;, &#39;GPL1261&#39;, &#39;GPL570&#39;, &#39;GPL1261&#39;, &#39;GPL1261&#39;, &#39;GPL1261&#39;, &#39;GPL6246&#39;, &#39;GPL339&#39;, &#39;GPL85&#39;, &#39;GPL11180&#39;, &#39;GPL1261&#39;, &#39;GPL1261&#39;, &#39;GPL570&#39;, &#39;GPL570&#39;, &#39;GPL8321&#39;, &#39;GPL8321&#39;, &#39;GPL1261&#39;, &#39;GPL6246&#39;, &#39;GPL6246&#39;, &#39;GPL570&#39;, &#39;GPL6481&#39;, &#39;GPL570&#39;, &#39;GPL570&#39;, &#39;GPL1261&#39;, &#39;GPL1355&#39;, &#39;GPL570&#39;, &#39;GPL6883&#39;, &#39;GPL570&#39;, &#39;GPL570&#39;, &#39;GPL96&#39;, &#39;GPL1261&#39;, &#39;GPL1261&#39;, &#39;GPL7546&#39;, &#39;GPL1261&#39;, &#39;GPL1355&#39;, &#39;GPL3535&#39;, &#39;GPL341&#39;, &#39;GPL922&#39;, &#39;GPL570&#39;, &#39;GPL3979&#39;, &#39;GPL1261&#39;, &#39;GPL2895&#39;, &#39;GPL1261&#39;, &#39;GPL1261&#39;, &#39;GPL570&#39;, &#39;GPL85&#39;, &#39;GPL1355&#39;, &#39;GPL339&#39;, &#39;GPL1261&#39;, &#39;GPL81&#39;, &#39;GPL1261&#39;, &#39;GPL1261&#39;, &#39;GPL1261&#39;, &#39;GPL782&#39;, &#39;GPL738&#39;, &#39;GPL1261&#39;, &#39;GPL341&#39;, &#39;GPL570&#39;, &#39;GPL81&#39;, &#39;GPL922&#39;, &#39;GPL890&#39;, &#39;GPL339&#39;, &#39;GPL2872&#39;, &#39;GPL341&#39;, &#39;GPL81&#39;, &#39;GPL922&#39;, &#39;GPL1261&#39;, &#39;GPL922&#39;, &#39;GPL97&#39;, &#39;GPL96&#39;, &#39;GPL891&#39;, &#39;GPL97&#39;, &#39;GPL96&#39;, &#39;GPL1307&#39;, &#39;GPL341&#39;, &#39;GPL85&#39;, &#39;GPL85&#39;, &#39;GPL1261&#39;, &#39;GPL81&#39;, &#39;GPL339&#39;, &#39;GPL96&#39;, &#39;GPL85&#39;, &#39;GPL1261&#39;, &#39;GPL81&#39;, &#39;GPL81&#39;, &#39;GPL85&#39;, &#39;GPL8300&#39;, &#39;GPL96&#39;, &#39;GPL1307&#39;, &#39;GPL8300&#39;, &#39;GPL97&#39;, &#39;GPL96&#39;, &#39;GPL85&#39;, &#39;GPL76&#39;, &#39;GPL75&#39;, &#39;GPL97&#39;, &#39;GPL96&#39;, &#39;GPL91&#39;, &#39;GPL32&#39;]</code></pre>
+<span id="cb5-18"><a href="#cb5-18"></a>list_of_lists <span class="op">=</span> [list_GSE, list_organism, list_platform]</span>
+<span id="cb5-19"><a href="#cb5-19"></a>df_of_lists <span class="op">=</span> pd.DataFrame(list_of_lists).transpose()</span>
+<span id="cb5-20"><a href="#cb5-20"></a>df_of_lists.columns <span class="op">=</span> [<span class="st">&quot;GSE&quot;</span>,<span class="st">&quot;Organism&quot;</span>,<span class="st">&quot;Platform&quot;</span>]</span>
+<span id="cb5-21"><a href="#cb5-21"></a><span class="bu">print</span>(df_of_lists)</span></code></pre></div>
+<pre><code>##           GSE      Organism Platform
+## 0    GSE71868  Mus musculus  GPL6885
+## 1    GSE65927  Mus musculus  GPL1261
+## 2    GSE62173  Mus musculus  GPL1261
+## 3    GSE65063  Mus musculus  GPL7202
+## 4    GSE52509  Mus musculus  GPL6885
+## ..        ...           ...      ...
+## 216    GSE459  Mus musculus    GPL76
+## 217    GSE459  Mus musculus    GPL75
+## 218    GSE362  Homo sapiens    GPL97
+## 219    GSE362  Homo sapiens    GPL96
+## 220     GSE80  Homo sapiens    GPL91
+## 
+## [221 rows x 3 columns]</code></pre>
 </div>
-<div id="r-functions" class="section level1">
-<h1>R Functions</h1>
+<div id="dataset-management-manual" class="section level1">
+<h1>Dataset Management (Manual)</h1>
+<p>Fill in manual methods here and then import.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>UNDER CONSTRUCTION</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="calculate-degs-in-each-dataset-r" class="section level1">
+<h1>Calculate DEGs in each Dataset (R)</h1>
 <p>GEO2R Function</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r bg-info"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>GEO2R &lt;-<span class="st"> </span><span class="cf">function</span>(GSE_number,platform_code,group_binaries,outputs){</span>
 <span id="cb7-2"><a href="#cb7-2"></a>  <span class="co"># load series and platform data from GEO</span></span>
@@ -565,344 +595,62 @@ summary {
 <span id="cb7-46"><a href="#cb7-46"></a>  tT &lt;-<span class="st"> </span><span class="kw">subset</span>(tT, <span class="dt">select=</span><span class="kw">c</span>(<span class="st">&quot;ID&quot;</span>,<span class="st">&quot;adj.P.Val&quot;</span>,<span class="st">&quot;P.Value&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;logFC&quot;</span>,<span class="st">&quot;Gene.symbol&quot;</span>,<span class="st">&quot;Gene.title&quot;</span>))</span>
 <span id="cb7-47"><a href="#cb7-47"></a>  <span class="kw">return</span>(tT)</span>
 <span id="cb7-48"><a href="#cb7-48"></a>}</span></code></pre></div>
-<p>Execution test for GEO2R Function on 2 human datasets</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r bg-info"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>tT01 &lt;-<span class="st"> </span><span class="kw">GEO2R</span>(<span class="st">&quot;GSE38718&quot;</span>,<span class="st">&quot;GPL570&quot;</span>,<span class="st">&quot;0000000000000011111111&quot;</span>,<span class="dv">1000</span>)</span>
-<span id="cb8-2"><a href="#cb8-2"></a>tT02 &lt;-<span class="st"> </span><span class="kw">GEO2R</span>(<span class="st">&quot;GSE53890&quot;</span>,<span class="st">&quot;GPL570&quot;</span>,<span class="st">&quot;0000000000000XXXXXX1111111111111XXXXXXXXX&quot;</span>,<span class="dv">1000</span>)</span>
-<span id="cb8-3"><a href="#cb8-3"></a></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="kw">kable</span>(tT01[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,])</span></code></pre></div>
-<table>
-<colgroup>
-<col width="7%"></col>
-<col width="7%"></col>
-<col width="6%"></col>
-<col width="4%"></col>
-<col width="6%"></col>
-<col width="6%"></col>
-<col width="6%"></col>
-<col width="14%"></col>
-<col width="40%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left"></th>
-<th align="left">ID</th>
-<th align="right">adj.P.Val</th>
-<th align="right">P.Value</th>
-<th align="right">t</th>
-<th align="right">B</th>
-<th align="right">logFC</th>
-<th align="left">Gene.symbol</th>
-<th align="left">Gene.title</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">224752_at</td>
-<td align="left">224752_at</td>
-<td align="right">0.0000503</td>
-<td align="right">0</td>
-<td align="right">9.770238</td>
-<td align="right">11.703223</td>
-<td align="right">0.7040850</td>
-<td align="left">LOC101930655///C7orf73</td>
-<td align="left">uncharacterized LOC101930655///chromosome 7 open reading frame 73</td>
-</tr>
-<tr class="even">
-<td align="left">209956_s_at</td>
-<td align="left">209956_s_at</td>
-<td align="right">0.0000503</td>
-<td align="right">0</td>
-<td align="right">9.353793</td>
-<td align="right">11.002993</td>
-<td align="right">1.4105806</td>
-<td align="left">CAMK2B</td>
-<td align="left">calcium/calmodulin dependent protein kinase II beta</td>
-</tr>
-<tr class="odd">
-<td align="left">45714_at</td>
-<td align="left">45714_at</td>
-<td align="right">0.0000503</td>
-<td align="right">0</td>
-<td align="right">9.332515</td>
-<td align="right">10.966511</td>
-<td align="right">1.4948942</td>
-<td align="left">HCFC1R1</td>
-<td align="left">host cell factor C1 regulator 1</td>
-</tr>
-<tr class="even">
-<td align="left">222105_s_at</td>
-<td align="left">222105_s_at</td>
-<td align="right">0.0000516</td>
-<td align="right">0</td>
-<td align="right">9.174468</td>
-<td align="right">10.693363</td>
-<td align="right">0.8142771</td>
-<td align="left">NKIRAS2</td>
-<td align="left">NFKB inhibitor interacting Ras like 2</td>
-</tr>
-<tr class="odd">
-<td align="left">228622_s_at</td>
-<td align="left">228622_s_at</td>
-<td align="right">0.0001371</td>
-<td align="right">0</td>
-<td align="right">8.582974</td>
-<td align="right">9.636768</td>
-<td align="right">0.7457396</td>
-<td align="left">DNAJC4</td>
-<td align="left">DnaJ heat shock protein family (Hsp40) member C4</td>
-</tr>
-<tr class="even">
-<td align="left">201949_x_at</td>
-<td align="left">201949_x_at</td>
-<td align="right">0.0001799</td>
-<td align="right">0</td>
-<td align="right">8.339175</td>
-<td align="right">9.185294</td>
-<td align="right">0.6713991</td>
-<td align="left">CAPZB</td>
-<td align="left">capping actin protein of muscle Z-line beta subunit</td>
-</tr>
-<tr class="odd">
-<td align="left">211801_x_at</td>
-<td align="left">211801_x_at</td>
-<td align="right">0.0001799</td>
-<td align="right">0</td>
-<td align="right">8.267309</td>
-<td align="right">9.050416</td>
-<td align="right">0.6118528</td>
-<td align="left">MFN1</td>
-<td align="left">mitofusin 1</td>
-</tr>
-<tr class="even">
-<td align="left">218537_at</td>
-<td align="left">218537_at</td>
-<td align="right">0.0001799</td>
-<td align="right">0</td>
-<td align="right">8.228185</td>
-<td align="right">8.976645</td>
-<td align="right">1.2338151</td>
-<td align="left">HCFC1R1</td>
-<td align="left">host cell factor C1 regulator 1</td>
-</tr>
-<tr class="odd">
-<td align="left">211997_x_at</td>
-<td align="left">211997_x_at</td>
-<td align="right">0.0002725</td>
-<td align="right">0</td>
-<td align="right">-7.941842</td>
-<td align="right">8.429329</td>
-<td align="right">-0.7015653</td>
-<td align="left">MIR4738///H3F3B///H3F3A</td>
-<td align="left">microRNA 4738///H3 histone, family 3B///H3 histone, family 3A</td>
-</tr>
-<tr class="even">
-<td align="left">208786_s_at</td>
-<td align="left">208786_s_at</td>
-<td align="right">0.0002725</td>
-<td align="right">0</td>
-<td align="right">7.929048</td>
-<td align="right">8.404570</td>
-<td align="right">0.5633097</td>
-<td align="left">MAP1LC3B</td>
-<td align="left">microtubule associated protein 1 light chain 3 beta</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r bg-info"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">kable</span>(tT02[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,])</span></code></pre></div>
-<table>
-<colgroup>
-<col width="7%"></col>
-<col width="7%"></col>
-<col width="6%"></col>
-<col width="5%"></col>
-<col width="5%"></col>
-<col width="6%"></col>
-<col width="6%"></col>
-<col width="7%"></col>
-<col width="45%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left"></th>
-<th align="left">ID</th>
-<th align="right">adj.P.Val</th>
-<th align="right">P.Value</th>
-<th align="right">t</th>
-<th align="right">B</th>
-<th align="right">logFC</th>
-<th align="left">Gene.symbol</th>
-<th align="left">Gene.title</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">213496_at</td>
-<td align="left">213496_at</td>
-<td align="right">0.0000384</td>
-<td align="right">0</td>
-<td align="right">8.627756</td>
-<td align="right">11.207842</td>
-<td align="right">0.8877847</td>
-<td align="left">PLPPR4</td>
-<td align="left">phospholipid phosphatase related 4</td>
-</tr>
-<tr class="even">
-<td align="left">238663_x_at</td>
-<td align="left">238663_x_at</td>
-<td align="right">0.0000384</td>
-<td align="right">0</td>
-<td align="right">8.618048</td>
-<td align="right">11.186924</td>
-<td align="right">0.9810268</td>
-<td align="left">GRIA4</td>
-<td align="left">glutamate ionotropic receptor AMPA type subunit 4</td>
-</tr>
-<tr class="odd">
-<td align="left">218309_at</td>
-<td align="left">218309_at</td>
-<td align="right">0.0000384</td>
-<td align="right">0</td>
-<td align="right">8.594058</td>
-<td align="right">11.135168</td>
-<td align="right">0.6386952</td>
-<td align="left">CAMK2N1</td>
-<td align="left">calcium/calmodulin dependent protein kinase II inhibitor 1</td>
-</tr>
-<tr class="even">
-<td align="left">204995_at</td>
-<td align="left">204995_at</td>
-<td align="right">0.0000384</td>
-<td align="right">0</td>
-<td align="right">8.570752</td>
-<td align="right">11.084803</td>
-<td align="right">0.4465245</td>
-<td align="left">CDK5R1</td>
-<td align="left">cyclin dependent kinase 5 regulatory subunit 1</td>
-</tr>
-<tr class="odd">
-<td align="left">202823_at</td>
-<td align="left">202823_at</td>
-<td align="right">0.0000902</td>
-<td align="right">0</td>
-<td align="right">8.123268</td>
-<td align="right">10.101535</td>
-<td align="right">0.6314488</td>
-<td align="left">TCEB1</td>
-<td align="left">transcription elongation factor B subunit 1</td>
-</tr>
-<tr class="even">
-<td align="left">223672_at</td>
-<td align="left">223672_at</td>
-<td align="right">0.0000909</td>
-<td align="right">0</td>
-<td align="right">7.983532</td>
-<td align="right">9.788218</td>
-<td align="right">0.6098770</td>
-<td align="left">SGIP1</td>
-<td align="left">SH3 domain GRB2 like endophilin interacting protein 1</td>
-</tr>
-<tr class="odd">
-<td align="left">224649_x_at</td>
-<td align="left">224649_x_at</td>
-<td align="right">0.0000909</td>
-<td align="right">0</td>
-<td align="right">7.926712</td>
-<td align="right">9.659970</td>
-<td align="right">0.7254923</td>
-<td align="left">CCNY</td>
-<td align="left">cyclin Y</td>
-</tr>
-<tr class="even">
-<td align="left">211379_x_at</td>
-<td align="left">211379_x_at</td>
-<td align="right">0.0000909</td>
-<td align="right">0</td>
-<td align="right">7.910807</td>
-<td align="right">9.623984</td>
-<td align="right">0.8961368</td>
-<td align="left">B3GALNT1</td>
-<td align="left">beta-1,3-N-acetylgalactosaminyltransferase 1 (globoside blood group)</td>
-</tr>
-<tr class="odd">
-<td align="left">1557180_at</td>
-<td align="left">1557180_at</td>
-<td align="right">0.0000909</td>
-<td align="right">0</td>
-<td align="right">7.880637</td>
-<td align="right">9.555619</td>
-<td align="right">1.6912267</td>
-<td align="left">C11orf87</td>
-<td align="left">chromosome 11 open reading frame 87</td>
-</tr>
-<tr class="even">
-<td align="left">221696_s_at</td>
-<td align="left">221696_s_at</td>
-<td align="right">0.0001009</td>
-<td align="right">0</td>
-<td align="right">7.794959</td>
-<td align="right">9.360727</td>
-<td align="right">0.7497604</td>
-<td align="left">STYK1</td>
-<td align="left">serine/threonine/tyrosine kinase 1</td>
-</tr>
-</tbody>
-</table>
 <p>Function compounded to filter results by adjusted p&lt;0.01</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r bg-info"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>GEO2R_pFiltered &lt;-<span class="st"> </span><span class="cf">function</span>(GSE_number,platform_code,group_binaries,outputs){</span>
-<span id="cb10-2"><a href="#cb10-2"></a>  tempTable &lt;-<span class="st"> </span><span class="kw">GEO2R</span>(GSE_number,platform_code,group_binaries,outputs)</span>
-<span id="cb10-3"><a href="#cb10-3"></a>  filtTable &lt;-<span class="st"> </span>tempTable[tempTable<span class="op">$</span>adj.P.Val<span class="op">&lt;</span><span class="fl">0.01</span>,]</span>
-<span id="cb10-4"><a href="#cb10-4"></a>  dupTable &lt;-<span class="st"> </span>filtTable[<span class="op">!</span><span class="kw">duplicated</span>(filtTable<span class="op">$</span>Gene.symbol),]</span>
-<span id="cb10-5"><a href="#cb10-5"></a>  <span class="kw">return</span>(dupTable)</span>
-<span id="cb10-6"><a href="#cb10-6"></a>}</span></code></pre></div>
-<p>Execution test for GEO2R_pFiltered (Note that some data-sets have more than 1000 p&lt;0.01)</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r bg-info"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>tT01_filt &lt;-<span class="st"> </span><span class="kw">GEO2R_pFiltered</span>(<span class="st">&quot;GSE38718&quot;</span>,<span class="st">&quot;GPL570&quot;</span>,<span class="st">&quot;0000000000000011111111&quot;</span>,<span class="dv">1000</span>)</span>
-<span id="cb11-2"><a href="#cb11-2"></a>tT02_filt &lt;-<span class="st"> </span><span class="kw">GEO2R_pFiltered</span>(<span class="st">&quot;GSE53890&quot;</span>,<span class="st">&quot;GPL570&quot;</span>,<span class="st">&quot;0000000000000XXXXXX1111111111111XXXXXXXXX&quot;</span>,<span class="dv">1000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r bg-info"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>GEO2R_pFiltered &lt;-<span class="st"> </span><span class="cf">function</span>(GSE_number,platform_code,group_binaries,outputs){</span>
+<span id="cb8-2"><a href="#cb8-2"></a>  tempTable &lt;-<span class="st"> </span><span class="kw">GEO2R</span>(GSE_number,platform_code,group_binaries,outputs)</span>
+<span id="cb8-3"><a href="#cb8-3"></a>  filtTable &lt;-<span class="st"> </span>tempTable[tempTable<span class="op">$</span>adj.P.Val<span class="op">&lt;</span><span class="fl">0.01</span>,]</span>
+<span id="cb8-4"><a href="#cb8-4"></a>  dupTable &lt;-<span class="st"> </span>filtTable[<span class="op">!</span><span class="kw">duplicated</span>(filtTable<span class="op">$</span>Gene.symbol),]</span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="kw">return</span>(dupTable)</span>
+<span id="cb8-6"><a href="#cb8-6"></a>}</span></code></pre></div>
+<p>Execute functions on human datasets (Note that some data-sets have more than 1000 p&lt;0.01)</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r bg-info"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>tT009 &lt;-<span class="st"> </span><span class="kw">GEO2R_pFiltered</span>(<span class="st">&quot;GSE53890&quot;</span>,<span class="st">&quot;GPL570&quot;</span>,<span class="st">&quot;0000000000000XXXXXX1111111111111XXXXXXXXX&quot;</span>,<span class="dv">1000</span>)</span>
+<span id="cb9-2"><a href="#cb9-2"></a>tT023 &lt;-<span class="st"> </span><span class="kw">GEO2R_pFiltered</span>(<span class="st">&quot;GSE38718&quot;</span>,<span class="st">&quot;GPL570&quot;</span>,<span class="st">&quot;0000000000000011111111&quot;</span>,<span class="dv">1000</span>)</span></code></pre></div>
 <p>Write to files</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r bg-info"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">write.table</span>(tT01_filt, <span class="dt">file=</span><span class="st">&quot;tT01_filt.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="kw">write.table</span>(tT02_filt, <span class="dt">file=</span><span class="st">&quot;tT02_filt.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r bg-info"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">write.table</span>(tT009, <span class="dt">file=</span><span class="st">&quot;tT009.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="kw">write.table</span>(tT023, <span class="dt">file=</span><span class="st">&quot;tT023.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
 </div>
-<div id="python" class="section level1">
-<h1>Python</h1>
+<div id="calculate-counts-across-datasets-python" class="section level1">
+<h1>Calculate Counts Across Datasets (Python)</h1>
 <p>Define Reader Function</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python bg-info"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">def</span> file_to_dict(file_name):</span>
-<span id="cb13-2"><a href="#cb13-2"></a>    <span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(file_name)</span>
-<span id="cb13-3"><a href="#cb13-3"></a>    header <span class="op">=</span> <span class="bu">file</span>.readline()</span>
-<span id="cb13-4"><a href="#cb13-4"></a>    <span class="cf">for</span> line <span class="kw">in</span> <span class="bu">file</span>:</span>
-<span id="cb13-5"><a href="#cb13-5"></a>      row <span class="op">=</span> line.strip().replace(<span class="st">&#39;&quot;&#39;</span>, <span class="st">&#39;&#39;</span>).split(<span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>)</span>
-<span id="cb13-6"><a href="#cb13-6"></a>      logFC <span class="op">=</span> <span class="bu">float</span>(row[<span class="dv">5</span>])</span>
-<span id="cb13-7"><a href="#cb13-7"></a>      geneID <span class="op">=</span> row[<span class="dv">6</span>]</span>
-<span id="cb13-8"><a href="#cb13-8"></a>      <span class="cf">if</span> logFC <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb13-9"><a href="#cb13-9"></a>        <span class="cf">if</span> geneID <span class="kw">in</span> young_dict:</span>
-<span id="cb13-10"><a href="#cb13-10"></a>          young_dict[geneID] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb13-11"><a href="#cb13-11"></a>          total_dict[geneID] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb13-12"><a href="#cb13-12"></a>        <span class="cf">elif</span> geneID <span class="kw">in</span> total_dict:</span>
-<span id="cb13-13"><a href="#cb13-13"></a>          total_dict[geneID] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb13-14"><a href="#cb13-14"></a>          young_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb13-15"><a href="#cb13-15"></a>        <span class="cf">else</span>:</span>
-<span id="cb13-16"><a href="#cb13-16"></a>          young_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb13-17"><a href="#cb13-17"></a>          total_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb13-18"><a href="#cb13-18"></a>      <span class="cf">if</span> logFC <span class="op">&lt;</span> <span class="dv">0</span>:</span>
-<span id="cb13-19"><a href="#cb13-19"></a>        <span class="cf">if</span> geneID <span class="kw">in</span> old_dict:</span>
-<span id="cb13-20"><a href="#cb13-20"></a>          old_dict[geneID] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb13-21"><a href="#cb13-21"></a>          total_dict[geneID] <span class="op">+=</span> (<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb13-22"><a href="#cb13-22"></a>        <span class="cf">elif</span> geneID <span class="kw">in</span> total_dict:</span>
-<span id="cb13-23"><a href="#cb13-23"></a>          total_dict[geneID] <span class="op">+=</span> (<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb13-24"><a href="#cb13-24"></a>          old_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb13-25"><a href="#cb13-25"></a>        <span class="cf">else</span>:</span>
-<span id="cb13-26"><a href="#cb13-26"></a>          old_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb13-27"><a href="#cb13-27"></a>          total_dict[geneID] <span class="op">=</span> <span class="dv">-1</span></span>
-<span id="cb13-28"><a href="#cb13-28"></a>    <span class="bu">file</span>.close()</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python bg-info"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">def</span> file_to_dict(file_name):</span>
+<span id="cb11-2"><a href="#cb11-2"></a>    <span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(file_name)</span>
+<span id="cb11-3"><a href="#cb11-3"></a>    header <span class="op">=</span> <span class="bu">file</span>.readline()</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="cf">for</span> line <span class="kw">in</span> <span class="bu">file</span>:</span>
+<span id="cb11-5"><a href="#cb11-5"></a>      row <span class="op">=</span> line.strip().replace(<span class="st">&#39;&quot;&#39;</span>, <span class="st">&#39;&#39;</span>).split(<span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>)</span>
+<span id="cb11-6"><a href="#cb11-6"></a>      logFC <span class="op">=</span> <span class="bu">float</span>(row[<span class="dv">5</span>])</span>
+<span id="cb11-7"><a href="#cb11-7"></a>      geneID <span class="op">=</span> row[<span class="dv">6</span>]</span>
+<span id="cb11-8"><a href="#cb11-8"></a>      <span class="cf">if</span> logFC <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb11-9"><a href="#cb11-9"></a>        <span class="cf">if</span> geneID <span class="kw">in</span> young_dict:</span>
+<span id="cb11-10"><a href="#cb11-10"></a>          young_dict[geneID] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a>          total_dict[geneID] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a>        <span class="cf">elif</span> geneID <span class="kw">in</span> total_dict:</span>
+<span id="cb11-13"><a href="#cb11-13"></a>          total_dict[geneID] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb11-14"><a href="#cb11-14"></a>          young_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb11-15"><a href="#cb11-15"></a>        <span class="cf">else</span>:</span>
+<span id="cb11-16"><a href="#cb11-16"></a>          young_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb11-17"><a href="#cb11-17"></a>          total_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb11-18"><a href="#cb11-18"></a>      <span class="cf">if</span> logFC <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb11-19"><a href="#cb11-19"></a>        <span class="cf">if</span> geneID <span class="kw">in</span> old_dict:</span>
+<span id="cb11-20"><a href="#cb11-20"></a>          old_dict[geneID] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb11-21"><a href="#cb11-21"></a>          total_dict[geneID] <span class="op">+=</span> (<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb11-22"><a href="#cb11-22"></a>        <span class="cf">elif</span> geneID <span class="kw">in</span> total_dict:</span>
+<span id="cb11-23"><a href="#cb11-23"></a>          total_dict[geneID] <span class="op">+=</span> (<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb11-24"><a href="#cb11-24"></a>          old_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb11-25"><a href="#cb11-25"></a>        <span class="cf">else</span>:</span>
+<span id="cb11-26"><a href="#cb11-26"></a>          old_dict[geneID] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb11-27"><a href="#cb11-27"></a>          total_dict[geneID] <span class="op">=</span> <span class="dv">-1</span></span>
+<span id="cb11-28"><a href="#cb11-28"></a>    <span class="bu">file</span>.close()</span></code></pre></div>
 <p>Execute Reader Function</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python bg-info"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>young_dict <span class="op">=</span> {}</span>
-<span id="cb14-2"><a href="#cb14-2"></a>old_dict <span class="op">=</span> {}</span>
-<span id="cb14-3"><a href="#cb14-3"></a>total_dict <span class="op">=</span> {}</span>
-<span id="cb14-4"><a href="#cb14-4"></a></span>
-<span id="cb14-5"><a href="#cb14-5"></a>file_to_dict(<span class="st">&#39;tT01_filt.txt&#39;</span>)</span>
-<span id="cb14-6"><a href="#cb14-6"></a>file_to_dict(<span class="st">&#39;tT02_filt.txt&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python bg-info"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>young_dict <span class="op">=</span> {}</span>
+<span id="cb12-2"><a href="#cb12-2"></a>old_dict <span class="op">=</span> {}</span>
+<span id="cb12-3"><a href="#cb12-3"></a>total_dict <span class="op">=</span> {}</span>
+<span id="cb12-4"><a href="#cb12-4"></a></span>
+<span id="cb12-5"><a href="#cb12-5"></a>file_to_dict(<span class="st">&#39;tT01_filt.txt&#39;</span>)</span>
+<span id="cb12-6"><a href="#cb12-6"></a>file_to_dict(<span class="st">&#39;tT02_filt.txt&#39;</span>)</span></code></pre></div>
 <p>Convert count dictionary to ordered dataframe</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python bg-info"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>total_df <span class="op">=</span> pd.DataFrame.from_dict(total_dict, orient<span class="op">=</span><span class="st">&#39;index&#39;</span>)</span>
-<span id="cb15-2"><a href="#cb15-2"></a>ordered_df <span class="op">=</span> total_df.sort_values(by<span class="op">=</span><span class="dv">0</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb15-3"><a href="#cb15-3"></a>ordered_df</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python bg-info"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>total_df <span class="op">=</span> pd.DataFrame.from_dict(total_dict, orient<span class="op">=</span><span class="st">&#39;index&#39;</span>)</span>
+<span id="cb13-2"><a href="#cb13-2"></a>ordered_df <span class="op">=</span> total_df.sort_values(by<span class="op">=</span><span class="dv">0</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-3"><a href="#cb13-3"></a>ordered_df</span></code></pre></div>
 <pre><code>##         0
 ## RAD1    2
 ## ADCY2   2
