@@ -163,6 +163,7 @@ Execute function on mouse datasets
 tT000M <- GEO2R_pFiltered("GSE71868","GPL6885","11110000",1000)
 tT008M <- GEO2R_pFiltered("GSE50821","GPL1261","00000XXXX11111",1000)
 tT011M <- GEO2R_pFiltered("GSE55162","GPL1261","11110000",100)
+tT014M <- GEO2R_pFiltered("GSE46646","GPL1261","XXXXXX000111",1000)
 ```
 
 Convert mouse gene symbols to human gene symbols
@@ -184,6 +185,7 @@ Execution:
 tT000 <- M2H(tT000M)
 tT008 <- M2H(tT008M)
 tT011 <- M2H(tT011M)
+tT014 <- M2H(tT014M)
 ```
 
 Note: Some gene IDs appear in the results as GeneName1///GeneName2///GeneName3///. I noticed these were not successfully converted to human genes. I performed a test on one such gene where I ran each GeneName individually, and no results were found either, so I conclude homologous genes are not available for those entries regardless of any formatting issue.
@@ -207,6 +209,7 @@ write.table(tT044, file="tT044.txt", row.names=F, sep="\t")
 write.table(tT000, file="tT000.txt", row.names=F, sep="\t")
 write.table(tT008, file="tT008.txt", row.names=F, sep="\t")
 write.table(tT011, file="tT011.txt", row.names=F, sep="\t")
+write.table(tT014, file="tT014.txt", row.names=F, sep="\t")
 ```
 
 # 4. Calculate Counts Across Datasets (Python)
@@ -259,6 +262,7 @@ file_to_dict('tT044.txt')
 file_to_dict('tT000.txt')
 file_to_dict('tT008.txt')
 file_to_dict('tT011.txt')
+file_to_dict('tT014.txt')
 
 ```
 **RESULTS**
@@ -298,6 +302,7 @@ YoungCounts_byGene <- read.csv("Young_Counts.csv")
 YoungCounts_numbers <- YoungCounts_byGene[,2]
 colnames(YoungCounts_byGene)<-c("Gene","Young_Count")
 
+#adjust HERE to change histogram left limit (1 of 2):
 YC2 <- YoungCounts_byGene[which(YoungCounts_byGene$Young_Count > 1),]
 YC2L <- YC2[,2]
 
@@ -305,6 +310,7 @@ OldCounts_byGene <- read.csv("Old_Counts.csv")
 OldCounts_numbers <- OldCounts_byGene[,2]
 colnames(OldCounts_byGene)<-c("Gene","Old_Count")
 
+#adjust HERE to change histogram left limit (2 of 2):
 OC2 <- OldCounts_byGene[which(OldCounts_byGene$Old_Count > 1),]
 OC2L <- OC2[,2]
 
