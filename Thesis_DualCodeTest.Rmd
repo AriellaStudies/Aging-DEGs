@@ -286,42 +286,43 @@ old_counts.to_csv("Old_Counts.csv")
 ```
 
 # 5. Post-Count Analysis (R)
-Import counts data and arrange in dataframes and lists
+Import counts data and arrange in various dataframes and lists
 ```{r}
 TotalCounts_byGene <- read.csv("Total_Counts.csv")
 colnames(TotalCounts_byGene)<-c("Gene","Total_Count")
 TotalCounts_numbers <- TotalCounts_byGene[,2]
 
+TC2 <- TotalCounts_byGene[which(TotalCounts_byGene$Total_Count > 1 | TotalCounts_byGene$Total_Count < -1),]
+
 YoungCounts_byGene <- read.csv("Young_Counts.csv")
 YoungCounts_numbers <- YoungCounts_byGene[,2]
 colnames(YoungCounts_byGene)<-c("Gene","Young_Count")
+
+YC2 <- YoungCounts_byGene[which(YoungCounts_byGene$Young_Count > 1),]
+YC2L <- YC2[,2]
 
 OldCounts_byGene <- read.csv("Old_Counts.csv")
 OldCounts_numbers <- OldCounts_byGene[,2]
 colnames(OldCounts_byGene)<-c("Gene","Old_Count")
 
-YoungAndTotal = merge(TotalCounts_byGene,YoungCounts_byGene)
-OldAndTotal = merge(TotalCounts_byGene,OldCounts_byGene)
-AllCounts = merge(YoungAndTotal,OldCounts_byGene,by="Gene",all.x = TRUE,all.y = TRUE)
+OC2 <- OldCounts_byGene[which(OldCounts_byGene$Old_Count > 1),]
+OC2L <- OC2[,2]
+
+YC2$Type <- "Young"
+OC2$Type <- "Old"
+colnames(YC2) <- c("Gene", "Count", "Type")
+colnames(OC2) <- c("Gene", "Count", "Type")
+HistoCounts <- rbind(YC2, OC2)
 ```
 
 Histogram of counts
 ```{r}
-ggplot(TotalCounts_byGene, aes(x=Total_Count)) +
-  geom_histogram(binwidth = 1, color="black", fill="white")
+ggplot(HistoCounts, aes(Count, fill = Type)) +
+  geom_histogram(alpha = 0.5, color = "black", binwidth = 1, position = "identity") +
+  theme_minimal()
 
 ggplot
 ```
-Density plot of counts
-```{r}
-ggplot(AllCounts, aes(x=x) ) +
-  geom_histogram( aes(x = Young_Count, y = ..density..), fill="#69b3a2", binwidth = 1 ) +
-  geom_label( aes(x=4.5, y=0.25, label="variable1"), color="#69b3a2") +
-  geom_histogram( aes(x = Old_Count, y = -..density..), fill= "#404080" , binwidth = 1 ) +
-  geom_label( aes(x=4.5, y=-0.25, label="variable2"), color="#404080") +
-  scale_x_continuous(limits = c(2,5))
-```
-
 
 # Tasks
 
