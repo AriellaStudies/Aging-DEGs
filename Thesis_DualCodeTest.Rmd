@@ -76,11 +76,13 @@ df_of_lists.columns = ["GSE","Organism","Platform"]
 print(df_of_lists)
 ```
 # 2. Dataset Management (Manual)
-Fill in manual methods here and then import.
 
------------------
-UNDER CONSTRUCTION
-----------------
+Each of the 221 candidate datasets are manually reviewed.
+[IN PROGRESS] 
+
+Datasets were excluded if two adult age-sets are not available, such as if the study is investigating a developmental process in the embryonic, postnatal, or juvenile period. Specifically, humans under 18yo, rats under 6mo, and mice under 3mo were not accepted. When more than two age-sets were available -- such as "young," "middle," and "old" -- comparisons between "middle" and "old" were prioritized. When a continuous set of ages were available, buffer regions were implemented, e.g. human age 30yo-60yo vs 70yo-90yo with 61-69yo excluded as a buffer region. Other, less common reasons were exclusion included datasets where control/untreated/wild-type groups were not available or when "age-sets" were actually time-points in short time-course experiments.
+
+For all remaining datasets, the samples were categorized as young (0), old (1), or excluded (X) for the purposes of further processing. In addition, the tissue type under study was manually noted.
 
 # 3. Calculate DEGs in each Dataset (R)
 
@@ -337,5 +339,16 @@ ggplot(HistoCounts, aes(Count, fill = Type)) +
 ggplot
 ```
 
+# 6. Dataset Characteristics
+
+Number of DEGs per dataset
+```{r}
+DS <- read.csv("221_Datasets.csv")
+boxplot(DS$DEGs, horizontal=TRUE, main="Number of DEGs per Dataset")
+text(x=fivenum(DS$DEGs), labels =fivenum(DS$DEGs), y=1.25)
+#Note the middle value is median (50th percentile), not mean.
+#Lower hinge is 25th percentile, upper is 75th percentile
+
+```
 
 
