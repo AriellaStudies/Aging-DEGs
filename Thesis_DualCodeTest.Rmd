@@ -379,7 +379,7 @@ ggplot
 
 # 6. Dataset Characteristics (R and Python)
 
-Number of DEGs per dataset
+Number of DEGs per dataset (R)
 ```{r}
 DS <- read.csv("221_Datasets.csv")
 boxplot(DS$DEGs, horizontal=TRUE, main="Number of DEGs per Dataset")
@@ -388,13 +388,13 @@ text(x=fivenum(DS$DEGs), labels =fivenum(DS$DEGs), y=1.25)
 #Lower hinge is 25th percentile, upper is 75th percentile
 
 ```
-Number of datasets evaluated
+Number of datasets evaluated (R)
 ```{r}
 DS_Progress = DS[which(DS$DEGs >0),]
 length(DS_Progress$DEGs)
 write.csv(DS_Progress,"DatasetsToDate.csv")
 ```
-Further details in Python
+Tissue counts in Python
 ```{python}
 file = open("DatasetsToDate.csv")
 header = file.readline()
@@ -407,8 +407,24 @@ for line in file:
   else:
     tissue_dict[tissue] = 1
 file.close()
-print(tissue_dict)
-    
+
+Tissue_df = pd.DataFrame.from_dict(tissue_dict, orient='index')
+Tissue_df = Tissue_df.sort_values(by=0, ascending=False)
+print(Tissue_df)
+
+Tissue_df.to_csv("Tissue_DF.csv")
 ```
 
+Tissue graph in R
+```{r}
+Tissue_DF <- read.csv("Tissue_DF.csv")
+colnames(Tissue_DF) <- c("Tissue", "Count")
+ggplot(Tissue_DF, aes(x=Tissue, y=Count, fill=Tissue))+
+  geom_bar(stat="identity")+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 90, hjust=1))+
+  xlab("")+
+  guides(fill=FALSE)+
+  scale_y_continuous(minor_breaks = NULL)
+```
 
