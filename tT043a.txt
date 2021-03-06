@@ -1,0 +1,3 @@
+"ID"	"adj.P.Val"	"P.Value"	"t"	"B"	"logFC"	"humanGene"	"Gene.title"	"Gene.symbol"
+10500272	0.0261343286127094	7.35018804497395e-07	16.100908597235	4.65500395228764	1.99966666666667	"CIART"	"circadian associated repressor of transcription"	"Ciart"
+10523701	0.0499912739193821	1.68718440497409e-05	10.187704459731	2.97303339163094	1.90839666666667	"IBSP"	"integrin binding sialoprotein"	"Ibsp"
