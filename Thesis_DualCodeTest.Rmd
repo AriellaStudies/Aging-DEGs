@@ -377,7 +377,7 @@ ggplot(HistoCounts, aes(Count, fill = Type)) +
 ggplot
 ```
 
-# 6. Dataset Characteristics
+# 6. Dataset Characteristics (R and Python)
 
 Number of DEGs per dataset
 ```{r}
@@ -388,11 +388,27 @@ text(x=fivenum(DS$DEGs), labels =fivenum(DS$DEGs), y=1.25)
 #Lower hinge is 25th percentile, upper is 75th percentile
 
 ```
-Number and type of datasets evaluated
+Number of datasets evaluated
 ```{r}
 DS_Progress = DS[which(DS$DEGs >0),]
 length(DS_Progress$DEGs)
-DS_Progress$Tissue
+write.csv(DS_Progress,"DatasetsToDate.csv")
+```
+Further details in Python
+```{python}
+file = open("DatasetsToDate.csv")
+header = file.readline()
+tissue_dict = {}
+for line in file:
+  row = line.strip().split(',')
+  tissue = row[7]
+  if tissue in tissue_dict:
+    tissue_dict[tissue] += 1
+  else:
+    tissue_dict[tissue] = 1
+file.close()
+print(tissue_dict)
+    
 ```
 
 
