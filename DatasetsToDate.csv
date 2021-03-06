@@ -13,6 +13,8 @@
 "45",43,"GSE25905","Mus musculus","GPL6246","XXX000XXXXXXXXX111",NA,"Fat","Peripheral adipocytes",571,"6mo vs 18mo"
 "46",44,"GSE32719","Homo sapiens","GPL570","XXXXXXXXXXXXXX0000011111111",NA,"Immune","BM-HSCs",317,"Chose middle vs old (not ""young"") -- We analyzed a total of 15 elderly (ages 65–85), 28 young (ages 20–31), and 5 midage (ages 42–61)"
 "59",57,"GSE27686","Mus musculus","GPL1261","111XXXXXX000XXXX",NA,"Immune","HSCs",783,"8 months vs 24 months; labeling a bit sketchy but seems like able to get WT in both groups"
+"60",58,"GSE24515","Rattus norvegicus","GPL1355","000000111111",NA,"Brain","Parietal Cortex",3,""
 "83",81,"GSE19677","Mus musculus","GPL6333","0000XXXXX1111XXXXX",NA,"Brain","Striatum",571,"12 vs 24 mo"
 "84",82,"GSE19677","Mus musculus","GPL1261","XXXX00001X1XX1XXX1",NA,"Brain","Striatum",709,"Same GSE, different platform?"
+"90",88,"GSE9990","Rattus norvegicus","GPL341","XXXXXXXXXXXXXXXXXXXXXXXXXXX0000000001111111111111",NA,"Brain","Hippocampus",4,"12 vs 32mo"
 "94",92,"GSE12502","Canis lupus familiaris","GPL3979","111111000000",NA,"Muscle","Skeletal Muscle, Biceps Femoris",55,"Animal and plant diets -- group all together? Include dog? Skeletal Muscle"

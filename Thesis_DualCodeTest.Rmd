@@ -186,6 +186,8 @@ tT082M <- GEO2R_pFiltered("GSE19677","GPL1261","XXXX00001X1XX1XXX1",1000)
 ```
 Non-mouse, non-human datasets:
 ```{r cache = TRUE, message = FALSE, warning=FALSE}
+tT058X <- GEO2R_pFiltered("GSE24515","GPL1355","000000111111",1000)
+tT088X <- GEO2R_pFiltered("GSE9990","GPL341","XXXXXXXXXXXXXXXXXXXXXXXXXXX0000000001111111111111",1000)
 tT092X <- GEO2R_pFiltered("GSE12502","GPL3979","111111000000",1000)
 ```
 
@@ -234,6 +236,8 @@ tT082 <- M2H(tT082M)
 
 Execution for non-mouse:
 ```{r cache = TRUE, message = FALSE, warning = FALSE}
+tT058 <- X2H(tT058X,10116)
+tT088 <- X2H(tT088X,10116)
 tT092 <- X2H(tT092X,9615)
 ```
 
@@ -271,6 +275,8 @@ write.table(tT057, file="tT057.txt", row.names=F, sep="\t")
 write.table(tT081, file="tT081.txt", row.names=F, sep="\t")
 write.table(tT082, file="tT082.txt", row.names=F, sep="\t")
 #Other:
+write.table(tT058, file="tT058.txt", row.names=F, sep="\t")
+write.table(tT088, file="tT088.txt", row.names=F, sep="\t")
 write.table(tT092, file="tT092.txt", row.names=F, sep="\t")
 ```
 
@@ -336,6 +342,8 @@ file_to_dict('tT081.txt')
 file_to_dict('tT082.txt')
 
 #Other:
+file_to_dict('tT058.txt')
+file_to_dict('tT088.txt')
 file_to_dict('tT092.txt')
 
 ```
