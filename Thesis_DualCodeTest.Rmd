@@ -337,25 +337,5 @@ ggplot(HistoCounts, aes(Count, fill = Type)) +
 ggplot
 ```
 
-# Tasks
 
-## Fundamental Code Structure
-
-* X Establish Rmarkdown, knit, & github work-flow
-* X Function working with two sets, both human
-* X Analyze only adjust p < 0.01
-* X Loop to create dictionary of DEG score counts
-* X Convert dictionary to dataframe and/or csv
-* X Convert loop to function
-
-## Expansion to all mammals
-
-* O Function working with mouse set
-* O Function working with other mammals
-* O Convert all data to human form
-
-## Expansion for flexible analyses
-
-* O Database sets with species and tissue type and age status
-* O Automate extracting set info based on species/tissue
 
