@@ -158,6 +158,8 @@ Execute functions on human datasets
 tT009 <- GEO2R_pFiltered("GSE53890","GPL570","XXXXXXXX00000000000XX11111111111XXXXXXXXX",1000)
 tT023 <- GEO2R_pFiltered("GSE38718","GPL570","0000000000000011111111",1000)
 tT036 <- GEO2R_pFiltered("GSE28422","GPL570","00000000XXXXXXXXXXXXXXXXXXXXXXXX111111XXXXXXXXXXXXXXXXXX0000000XXXXXXXXXXXXXXXXXXXXXXX111111XXXXXXXXXXXXXXXXXX",1000)
+tT037 <- GEO2R_pFiltered("GSE28392","GPL570","00000XXXXXXXXXXXXXXXX1111XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",1000)
+tT038 <- GEO2R_pFiltered("GSE25941","GPL570","000000001111111111100000001111111111",1000)
 tT044 <- GEO2R_pFiltered("GSE32719","GPL570","XXXXXXXXXXXXXX0000011111111",1000)
 ```
 
@@ -210,6 +212,8 @@ Write to files
 write.table(tT009, file="tT009.txt", row.names=F, sep="\t")
 write.table(tT023, file="tT023.txt", row.names=F, sep="\t")
 write.table(tT036, file="tT036.txt", row.names=F, sep="\t")
+write.table(tT037, file="tT037.txt", row.names=F, sep="\t")
+write.table(tT038, file="tT038.txt", row.names=F, sep="\t")
 write.table(tT044, file="tT044.txt", row.names=F, sep="\t")
 #Mouse:
 write.table(tT000, file="tT000.txt", row.names=F, sep="\t")
@@ -264,6 +268,8 @@ total_dict = {}
 file_to_dict('tT009.txt')
 file_to_dict('tT023.txt')
 file_to_dict('tT036.txt')
+file_to_dict('tT037.txt')
+file_to_dict('tT038.txt')
 file_to_dict('tT044.txt')
 
 #Mouse
@@ -312,7 +318,7 @@ YoungCounts_numbers <- YoungCounts_byGene[,2]
 colnames(YoungCounts_byGene)<-c("Gene","Young_Count")
 
 #adjust HERE to change histogram left limit (1 of 2):
-YC2 <- YoungCounts_byGene[which(YoungCounts_byGene$Young_Count > 1),]
+YC2 <- YoungCounts_byGene[which(YoungCounts_byGene$Young_Count > 2),]
 YC2L <- YC2[,2]
 
 OldCounts_byGene <- read.csv("Old_Counts.csv")
@@ -320,7 +326,7 @@ OldCounts_numbers <- OldCounts_byGene[,2]
 colnames(OldCounts_byGene)<-c("Gene","Old_Count")
 
 #adjust HERE to change histogram left limit (2 of 2):
-OC2 <- OldCounts_byGene[which(OldCounts_byGene$Old_Count > 1),]
+OC2 <- OldCounts_byGene[which(OldCounts_byGene$Old_Count > 2),]
 OC2L <- OC2[,2]
 
 YC2$Type <- "Young"

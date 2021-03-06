@@ -6,7 +6,7 @@ Index,GSE,Organism,Platform,Samples,Exclusion,Tissue,Subtype,DEGs,Notes
 4,GSE52509,Mus musculus,GPL6885,NA,Time-Course,,,,
 5,GSE58315,Homo sapiens,GPL11532,NA,Developmental,,,,
 6,GSE56323,Mus musculus,GPL6885,NA,Developmental,,,,
-7,GSE58015,Homo sapiens,GPL571,11111,NA,Immune,Monocyte-derived dendritic cells,0,
+7,GSE58015,Homo sapiens,GPL571,000011111,NA,Immune,Monocyte-derived dendritic cells,0,
 8,GSE50821,Mus musculus,GPL1261,00000XXXX11111,NA,Muscle,Purified skeletal muscle satellite cells,416,"Young vs. old, excluded small middle-age group"
 9,GSE53890,Homo sapiens,GPL570,XXXXXXXX00000000000XX11111111111XXXXXXXXX,NA,Brain,Frontal Cortex,793,Can choose individual ages; Decided on 30-60 vs 70-90 (excluded 61-69)
 10,GSE49346,Mus musculus,GPL1261,NA,Developmental,,,,
@@ -22,7 +22,7 @@ Index,GSE,Organism,Platform,Samples,Exclusion,Tissue,Subtype,DEGs,Notes
 20,GSE49543,Mus musculus,GPL339,XXXXXXXXX00000000000000000111111111111111,NA,Cochlea,,99,"Chose ""middle-age"" (12mo) vs ""Old"" (30 mo), exclude ""young"" (3.5mo); ignored level of hearing loss in old group and grouped them all together"
 21,GSE42591,Mus musculus,GPL1261,NA,Control-Low,,,,"Only n=2 for each control group, no adj p<0.05 under those circumstances"
 22,GSE40610,Mus musculus,GPL8321,NA,Developmental,,,,
-23,GSE38718,Homo sapiens,GPL570,11111111,NA,Muscle,Skeletal Muscle,794,
+23,GSE38718,Homo sapiens,GPL570,0000000000000011111111,NA,Muscle,Skeletal Muscle,794,
 24,GSE43961,Mus musculus,GPL6246,NA,Control-Absent,,,,All mutant mice
 25,GSE39621,Mus musculus,GPL1261,NA,Developmental,,,,
 26,GSE39621,Mus musculus,GPL1261,NA,^^^,,,,
@@ -36,8 +36,8 @@ Index,GSE,Organism,Platform,Samples,Exclusion,Tissue,Subtype,DEGs,Notes
 34,GSE35734,Mus musculus,GPL1261,NA,Developmental,,,,
 35,GSE38188,Mus musculus,GPL1261,NA,Developmental,,,,
 36,GSE28422,Homo sapiens,GPL570,00000000XXXXXXXXXXXXXXXXXXXXXXXX111111XXXXXXXXXXXXXXXXXX0000000XXXXXXXXXXXXXXXXXXXXXXX111111XXXXXXXXXXXXXXXXXX,NA,Muscle,Skeletal Muscle (Vastus Lateralis),76,"Pre-intervention (pre-exercise, untrained) samples were used"
-37,GSE28392,Homo sapiens,GPL570,,,,,,
-38,GSE25941,Homo sapiens,GPL570,,,,,,
+37,GSE28392,Homo sapiens,GPL570,00000XXXXXXXXXXXXXXXX1111XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX,NA,Muscle,"Skeletal Muscle, Vastus Lateralis, Type 1 (slow) fibers only",2,"Similar to above but all female and isolated type 1 and type 2 fibers for separate analysis. Only enough pre-exercise, untrained samples to compare type 1 (slow) fibers, not type 2 (fast)."
+38,GSE25941,Homo sapiens,GPL570,000000001111111111100000001111111111,NA,Muscle,Skeletal Muscle (Vastus Lateralis),732,Same authors as above but this time purposely comparing lots of young and old samples
 39,GSE35366,Mus musculus,GPL1261,,,,,,
 40,GSE19533,Homo sapiens,GPL570,,,,,,
 41,GSE21935,Homo sapiens,GPL570,,,,,,
