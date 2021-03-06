@@ -162,7 +162,7 @@ tT037 <- GEO2R_pFiltered("GSE28392","GPL570","00000XXXXXXXXXXXXXXXX1111XXXXXXXXX
 tT038 <- GEO2R_pFiltered("GSE25941","GPL570","000000001111111111100000001111111111",1000)
 tT044 <- GEO2R_pFiltered("GSE32719","GPL570","XXXXXXXXXXXXXX0000011111111",1000)
 ```
-More human datasets
+Primate datasets using human microarray platforms?
 ```{r}
 
 ```
@@ -181,6 +181,9 @@ More mouse datasets
 ```{r cache = TRUE, message = FALSE, warning=FALSE}
 tT043aM <- GEO2R_pFiltered("GSE25905","GPL6246","000XXXXXXXXX111XXX",1000)
 tT043bM <- GEO2R_pFiltered("GSE25905","GPL6246","XXX000XXXXXXXXX111",1000)
+tT057M <- GEO2R_pFiltered("GSE27686","GPL1261","111XXXXXX000XXXX",1000)
+tT081M <- GEO2R_pFiltered("GSE19677","GPL6333","0000XXXXX1111XXXXX",1000)
+tT082M <- GEO2R_pFiltered("GSE19677","GPL1261","XXXX00001X1XX1XXX1",1000)
 ```
 
 
@@ -207,6 +210,9 @@ tT014 <- M2H(tT014M)
 tT020 <- M2H(tT020M)
 tT043a <- M2H(tT043aM)
 tT043b <- M2H(tT043bM)
+tT057 <- M2H(tT057M)
+tT081 <- M2H(tT081M)
+tT082 <- M2H(tT082M)
 ```
 
 Note: Some gene IDs appear in the results as GeneName1///GeneName2///GeneName3///. I noticed these were not successfully converted to human genes. I performed a test on one such gene where I ran each GeneName individually, and no results were found either, so I conclude homologous genes are not available for those entries regardless of any formatting issue.
@@ -237,6 +243,9 @@ write.table(tT014, file="tT014.txt", row.names=F, sep="\t")
 write.table(tT020, file="tT020.txt", row.names=F, sep="\t")
 write.table(tT043a, file="tT043a.txt", row.names=F, sep="\t")
 write.table(tT043b, file="tT043b.txt", row.names=F, sep="\t")
+write.table(tT057, file="tT057.txt", row.names=F, sep="\t")
+write.table(tT081, file="tT081.txt", row.names=F, sep="\t")
+write.table(tT082, file="tT082.txt", row.names=F, sep="\t")
 ```
 
 # 4. Calculate Counts Across Datasets (Python)
@@ -296,6 +305,9 @@ file_to_dict('tT014.txt')
 file_to_dict('tT020.txt')
 file_to_dict('tT043a.txt')
 file_to_dict('tT043b.txt')
+file_to_dict('tT057.txt')
+file_to_dict('tT081.txt')
+file_to_dict('tT082.txt')
 
 ```
 **RESULTS**
@@ -358,7 +370,9 @@ Histogram of counts
 ```{r}
 ggplot(HistoCounts, aes(Count, fill = Type)) +
   geom_histogram(alpha = 0.5, color = "black", binwidth = 1, position = "identity") +
-  theme_minimal()
+  theme_minimal() +
+  scale_x_continuous(name = "Score", breaks = 3:15, minor_breaks = NULL) +
+  scale_y_continuous(name = "# DEGs Achieving Score", minor_breaks = 1:100)
 
 ggplot
 ```
@@ -373,6 +387,12 @@ text(x=fivenum(DS$DEGs), labels =fivenum(DS$DEGs), y=1.25)
 #Note the middle value is median (50th percentile), not mean.
 #Lower hinge is 25th percentile, upper is 75th percentile
 
+```
+Number and type of datasets evaluated
+```{r}
+DS_Progress = DS[which(DS$DEGs >0),]
+length(DS_Progress$DEGs)
+DS_Progress$Tissue
 ```
 
 
