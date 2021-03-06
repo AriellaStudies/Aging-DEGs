@@ -51,15 +51,15 @@ Index,GSE,Organism,Platform,Samples,Exclusion,Tissue,Subtype,DEGs,Notes
 48,GSE32078,Mus musculus,GPL1261,NA,Developmental,,,,
 49,GSE25071,Homo sapiens,GPL2986,NA,Control_Absent,,,,
 50,GSE31840,Mus musculus,GPL6885,NA,Developmental,,,,
-51,GSE24250,Homo sapiens,GPL96,NA,Control_Low,,,,"Participants ranged from 32 to 63 yo, not a wide enough distribution."
-52,GSE28146,Homo sapiens,GPL570,NA,Control_Low,,,,Youngest subject 75yo
+51,GSE24250,Homo sapiens,GPL96,NA,Narrow_Age,,,,"Participants ranged from 32 to 63 yo, not a wide enough distribution."
+52,GSE28146,Homo sapiens,GPL570,NA,Narrow_Age,,,,Youngest subject 75yo
 53,GSE22381,Mus musculus,GPL1261,NA,Developmental,,,,
 54,GSE22828,Mus musculus,GPL7202,NA,Developmental,,,,
 55,GSE29883,Homo sapiens,GPL570,NA,Control_Absent,,,,Leukemia only
 56,GSE29806,Mus musculus,GPL6246,NA,Control_Absent,,,,
 57,GSE27686,Mus musculus,GPL1261,111XXXXXX000XXXX,NA,Immune,HSCs,783,8 months vs 24 months; labeling a bit sketchy but seems like able to get WT in both groups
 58,GSE24515,Rattus norvegicus,GPL1355,,,,,,Rat brain -- include?
-59,GSE26299,Mus musculus,GPL1261,NA,Control_Low,,,,4.5mo and 10mo; also labeling on samples is very sketchy/confusing; also DBA/2J mice
+59,GSE26299,Mus musculus,GPL1261,NA,Narrow_Age,,,,4.5mo and 10mo; also labeling on samples is very sketchy/confusing; also DBA/2J mice
 60,GSE25076,Mus musculus,GPL6246,NA,Developmental,,,,
 61,GSE21779,Microcebus murinus,GPL570,110101110011011110,Zero_DEGs,,,,Zero DEG results regardless of whether including 2 AD-like samples in the old category. Brain > Temporal Cortex.
 62,GSE21053,Mus musculus,GPL1261,NA,Developmental,,,,
@@ -89,10 +89,10 @@ Index,GSE,Organism,Platform,Samples,Exclusion,Tissue,Subtype,DEGs,Notes
 86,GSE12639,Rattus norvegicus,GPL1355,NA,Time_Course,,,,
 87,GSE17612,Homo sapiens,GPL570,NA,Zero_DEGs,,,,Continous age. Tried same as previously: 30-60 vs 70-90. Zero results. Brain > Brodman area. Similar to previous entry #41.
 88,GSE9990,Rattus norvegicus,GPL341,,,,,,Rat hippocampus - high quality - include?
-89,GSE12679,Homo sapiens,GPL570,,,,,,
-90,GSE12024,Mus musculus,GPL75,,,,,,
-91,GSE11484,Mus musculus,GPL1261,,,,,,
-92,GSE12502,Canis lupus familiaris,GPL3979,,,,,,
+89,GSE12679,Homo sapiens,GPL570,NA,Narrow_Age,,,,All middle age
+90,GSE12024,Mus musculus,GPL75,NA,Control_Absent,,,,All lupus mice
+91,GSE11484,Mus musculus,GPL1261,NA,Control_Absent,,,,
+92,GSE12502,Canis lupus familiaris,GPL3979,,,,,,Animal and plant diets -- group all together? Include dog? Skeletal Muscle
 93,GSE10743,Mus musculus,GPL1261,,,,,,
 94,GSE11764,Mus musculus,GPL83,,,,,,
 95,GSE11764,Mus musculus,GPL82,,,,,,
