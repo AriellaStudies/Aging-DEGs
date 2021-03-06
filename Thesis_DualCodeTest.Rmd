@@ -86,6 +86,8 @@ For all remaining datasets, the samples were categorized as young (0), old (1), 
 
 # 3. Calculate DEGs in each Dataset (R)
 
+## 3.1 Set Functions
+
 GEO2R Function
 ```{r cache=TRUE}
 GEO2R <- function(GSE_number,platform_code,group_binaries,outputs){
@@ -148,6 +150,8 @@ GEO2R_pFiltered <- function(GSE_number,platform_code,group_binaries,outputs){
 }
 ```
 
+## 3.2 Import Datasets
+
 **DATASET CONTROL ZONE 1 OF 4**
 *(These zones must be updated if adding datasets.)*
 
@@ -162,11 +166,6 @@ tT037 <- GEO2R_pFiltered("GSE28392","GPL570","00000XXXXXXXXXXXXXXXX1111XXXXXXXXX
 tT038 <- GEO2R_pFiltered("GSE25941","GPL570","000000001111111111100000001111111111",1000)
 tT044 <- GEO2R_pFiltered("GSE32719","GPL570","XXXXXXXXXXXXXX0000011111111",1000)
 ```
-More human datasets?
-```{r}
-
-```
-
 
 Execute function on mouse datasets
 ```{r cache = TRUE, message = FALSE, warning=FALSE}
@@ -185,11 +184,16 @@ tT057M <- GEO2R_pFiltered("GSE27686","GPL1261","111XXXXXX000XXXX",1000)
 tT081M <- GEO2R_pFiltered("GSE19677","GPL6333","0000XXXXX1111XXXXX",1000)
 tT082M <- GEO2R_pFiltered("GSE19677","GPL1261","XXXX00001X1XX1XXX1",1000)
 ```
+Non-mouse, non-human datasets:
+```{r cache = TRUE, message = FALSE, warning=FALSE}
+tT092X <- GEO2R_pFiltered("GSE12502","GPL3979","111111000000",1000)
+```
 
+## 3.3 Non-human gene conversions
 
-Convert mouse gene symbols to human gene symbols
+Convert non-human gene symbols to human gene symbols
 
-Function:
+Function for mouse:
 ```{r}
 M2H <- function(mouse_tT){
   MouseSymbols = mouse_tT[,7]
@@ -200,8 +204,21 @@ M2H <- function(mouse_tT){
 }
 ```
 
-**DATASET CONTROL ZONE 2 OF 4 (MOUSE ONLY)**
-Execution:
+Function for non-mouse:
+```{r}
+X2H <- function(animal_tT,TaxID){
+  AnimalSymbols = animal_tT[,7]
+  X2H_Symbols = homologene(AnimalSymbols, inTax = TaxID, outTax = 9606)
+  taxonomy = toString(TaxID)
+  tTMerge = merge(animal_tT,X2H_Symbols,by.x = "Gene.symbol",by.y = taxonomy)
+  tTReordered = tTMerge[,c(2,3,4,5,6,7,9,8,1)]
+  return(tTReordered)
+}
+```
+
+
+**DATASET CONTROL ZONE 2 OF 4 (NONHUMAN ONLY)**
+Execution for mouse:
 ```{r cache = TRUE, message = FALSE, warning = FALSE}
 tT000 <- M2H(tT000M)
 tT008 <- M2H(tT008M)
@@ -215,6 +232,12 @@ tT081 <- M2H(tT081M)
 tT082 <- M2H(tT082M)
 ```
 
+Execution for non-mouse:
+```{r cache = TRUE, message = FALSE, warning = FALSE}
+tT092 <- X2H(tT092X,9615)
+```
+
+
 Note: Some gene IDs appear in the results as GeneName1///GeneName2///GeneName3///. I noticed these were not successfully converted to human genes. I performed a test on one such gene where I ran each GeneName individually, and no results were found either, so I conclude homologous genes are not available for those entries regardless of any formatting issue.
 Record of this Test:
 ```{r eval=FALSE}
@@ -224,6 +247,7 @@ dfM1Test = mouse2human(M1Test)
 dfM1Test #0 Results
 ```
 
+## 3.4 Export Results
 
 **DATASET CONTROL ZONE 3 OF 4**
 Write to files
@@ -246,6 +270,8 @@ write.table(tT043b, file="tT043b.txt", row.names=F, sep="\t")
 write.table(tT057, file="tT057.txt", row.names=F, sep="\t")
 write.table(tT081, file="tT081.txt", row.names=F, sep="\t")
 write.table(tT082, file="tT082.txt", row.names=F, sep="\t")
+#Other:
+write.table(tT092, file="tT092.txt", row.names=F, sep="\t")
 ```
 
 # 4. Calculate Counts Across Datasets (Python)
@@ -308,6 +334,9 @@ file_to_dict('tT043b.txt')
 file_to_dict('tT057.txt')
 file_to_dict('tT081.txt')
 file_to_dict('tT082.txt')
+
+#Other:
+file_to_dict('tT092.txt')
 
 ```
 **RESULTS**
@@ -425,6 +454,6 @@ ggplot(Tissue_DF, aes(x=Tissue, y=Count, fill=Tissue))+
   theme(axis.text.x = element_text(angle = 90, hjust=1))+
   xlab("")+
   guides(fill=FALSE)+
-  scale_y_continuous(minor_breaks = NULL)
+  scale_y_continuous(breaks = 1:10, minor_breaks = NULL)
 ```
 

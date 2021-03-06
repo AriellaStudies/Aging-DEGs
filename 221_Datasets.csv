@@ -92,7 +92,7 @@ Index,GSE,Organism,Platform,Samples,Exclusion,Tissue,Subtype,DEGs,Notes
 89,GSE12679,Homo sapiens,GPL570,NA,Narrow_Age,,,,All middle age
 90,GSE12024,Mus musculus,GPL75,NA,Control_Absent,,,,All lupus mice
 91,GSE11484,Mus musculus,GPL1261,NA,Control_Absent,,,,
-92,GSE12502,Canis lupus familiaris,GPL3979,,,,,,Animal and plant diets -- group all together? Include dog? Skeletal Muscle
+92,GSE12502,Canis lupus familiaris,GPL3979,111111000000,NA,Muscle,"Skeletal Muscle, Biceps Femoris",55,Animal and plant diets -- group all together? Include dog? Skeletal Muscle
 93,GSE10743,Mus musculus,GPL1261,,,,,,
 94,GSE11764,Mus musculus,GPL83,,,,,,
 95,GSE11764,Mus musculus,GPL82,,,,,,

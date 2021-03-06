@@ -15,3 +15,4 @@
 "59",57,"GSE27686","Mus musculus","GPL1261","111XXXXXX000XXXX",NA,"Immune","HSCs",783,"8 months vs 24 months; labeling a bit sketchy but seems like able to get WT in both groups"
 "83",81,"GSE19677","Mus musculus","GPL6333","0000XXXXX1111XXXXX",NA,"Brain","Striatum",571,"12 vs 24 mo"
 "84",82,"GSE19677","Mus musculus","GPL1261","XXXX00001X1XX1XXX1",NA,"Brain","Striatum",709,"Same GSE, different platform?"
+"94",92,"GSE12502","Canis lupus familiaris","GPL3979","111111000000",NA,"Muscle","Skeletal Muscle, Biceps Femoris",55,"Animal and plant diets -- group all together? Include dog? Skeletal Muscle"
