@@ -2,9 +2,9 @@
 """Muscle""",6
 """Brain""",6
 """Immune""",3
-"""Fat""",2
+"""Fat""",3
+"""Liver""",2
+"""Heart""",2
 """Trachea""",1
-"""Liver""",1
 """Cochlea""",1
 """Reproduction""",1
-"""Heart""",1
