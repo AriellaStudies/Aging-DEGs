@@ -201,6 +201,10 @@ Non-mouse, non-human datasets:
 tT058X <- GEO2R_pFiltered("GSE24515","GPL1355","000000111111",1000)
 tT088X <- GEO2R_pFiltered("GSE9990","GPL341","XXXXXXXXXXXXXXXXXXXXXXXXXXX0000000001111111111111",1000)
 tT092X <- GEO2R_pFiltered("GSE12502","GPL3979","111111000000",1000)
+
+tT108aX <- GEO2R_pFiltered("GSE6718","GPL1355","1111111000000XXXXXXXXXXXXXXXXXXXXXXXXXX",1000)
+tT108bX <- GEO2R_pFiltered("GSE6718","GPL1355","XXXXXXXXXXXXXXXXXXXXXX11000X00XXX11100X",1000)
+tT132X <- GEO2R_pFiltered("GSE4270","GPL890","XXXXXXXXXXXXXXX00000000001111111111111",1000)
 ```
 
 ## 3.3 Non-human gene conversions
@@ -254,6 +258,10 @@ Execution for non-mouse:
 tT058 <- X2H(tT058X,10116)
 tT088 <- X2H(tT088X,10116)
 tT092 <- X2H(tT092X,9615)
+
+tT108a <- X2H(tT108aX,10116)
+tT108b <- X2H(tT108bX,10116)
+tT132 <- X2H(tT132X,10116)
 ```
 
 
@@ -296,6 +304,9 @@ write.table(tT113, file="tT113.txt", row.names=F, sep="\t")
 write.table(tT058, file="tT058.txt", row.names=F, sep="\t")
 write.table(tT088, file="tT088.txt", row.names=F, sep="\t")
 write.table(tT092, file="tT092.txt", row.names=F, sep="\t")
+write.table(tT108a, file="tT108a.txt", row.names=F, sep="\t")
+write.table(tT108b, file="tT108b.txt", row.names=F, sep="\t")
+write.table(tT132, file="tT132.txt", row.names=F, sep="\t")
 ```
 
 # 4. Calculate Counts Across Datasets (Python)
@@ -366,6 +377,9 @@ file_to_dict('tT113.txt')
 file_to_dict('tT058.txt')
 file_to_dict('tT088.txt')
 file_to_dict('tT092.txt')
+file_to_dict('tT108a.txt')
+file_to_dict('tT108b.txt')
+file_to_dict('tT132.txt')
 
 ```
 **RESULTS**
@@ -406,7 +420,7 @@ YoungCounts_numbers <- YoungCounts_byGene[,2]
 colnames(YoungCounts_byGene)<-c("Gene","Young_Count")
 
 #adjust HERE to change histogram left limit (1 of 2):
-YC2 <- YoungCounts_byGene[which(YoungCounts_byGene$Young_Count > 2),]
+YC2 <- YoungCounts_byGene[which(YoungCounts_byGene$Young_Count > 3),]
 YC2L <- YC2[,2]
 
 OldCounts_byGene <- read.csv("Old_Counts.csv")
@@ -414,7 +428,7 @@ OldCounts_numbers <- OldCounts_byGene[,2]
 colnames(OldCounts_byGene)<-c("Gene","Old_Count")
 
 #adjust HERE to change histogram left limit (2 of 2):
-OC2 <- OldCounts_byGene[which(OldCounts_byGene$Old_Count > 2),]
+OC2 <- OldCounts_byGene[which(OldCounts_byGene$Old_Count > 3),]
 OC2L <- OC2[,2]
 
 YC2$Type <- "Young"
