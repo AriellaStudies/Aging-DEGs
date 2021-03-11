@@ -24,6 +24,7 @@ install.packages('umap')
 install.packages("reticulate")
 install.packages("homologene")
 install.packages('ggplot2')
+install.packages('dplyr')
 ```
 Open Libraries
 ```{r include=FALSE}
@@ -34,6 +35,7 @@ library(reticulate)
 library(knitr)
 library(homologene)
 library(ggplot2)
+library(dplyr)
 ```
 Install Python Packages
 ```{r cache=TRUE, eval=FALSE}
@@ -449,7 +451,7 @@ ggplot(HistoCounts, aes(Count, fill = Type)) +
 ggplot
 ```
 
-# 6. Dataset Characteristics (R and Python)
+# 6. Dataset Characteristics (R)
 
 Number of DEGs per dataset (R)
 ```{r}
@@ -466,7 +468,39 @@ DS_Progress = DS[which(DS$DEGs >0),]
 length(DS_Progress$DEGs)
 write.csv(DS_Progress,"DatasetsToDate.csv")
 ```
-Tissue counts in Python
+Tissue counts (R)
+```{r}
+agg <- count(DS_Progress,Tissue,Organism)
+ggplot(agg) +
+  geom_col(aes(x = Tissue, y = n, fill = Organism)) +
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 70, hjust=1))+
+  scale_y_continuous(breaks = 1:10, minor_breaks = NULL)
+```
+
+DEG counts (R)
+```{r}
+DS_Progress %>%
+  group_by(Tissue) %>%
+  summarise(sum_DEGs = sum(DEGs), mean_DEGs = mean(DEGs))
+```
+Graph of DEG counts (R)
+```{r}
+DS_Progress %>%
+  group_by(Tissue) %>%
+  summarise(Sum_DEGs = sum(DEGs), mean_DEGs = mean(DEGs)) %>%
+  ggplot(aes(x=Tissue, y = Sum_DEGs, fill = Tissue)) +
+  geom_bar(stat="identity")+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 90, hjust=1))+
+  xlab("")+
+  guides(fill=FALSE)
+```
+
+
+#7. Archived Code (Temporary Section)
+
+DEG Counts in Python
 ```{python}
 file = open("DatasetsToDate.csv")
 header = file.readline()
@@ -474,29 +508,16 @@ tissue_dict = {}
 for line in file:
   row = line.strip().split(',')
   tissue = row[7]
+  DEGnum = int(row[9])
   if tissue in tissue_dict:
-    tissue_dict[tissue] += 1
+    tissue_dict[tissue] += DEGnum
   else:
-    tissue_dict[tissue] = 1
+    tissue_dict[tissue] = DEGnum
 file.close()
 
-Tissue_df = pd.DataFrame.from_dict(tissue_dict, orient='index')
-Tissue_df = Tissue_df.sort_values(by=0, ascending=False)
-print(Tissue_df)
-
-Tissue_df.to_csv("Tissue_DF.csv")
+DEGbyTissue_df = pd.DataFrame.from_dict(tissue_dict, orient='index')
+DEGbyTissue_df = DEGbyTissue_df.sort_values(by=0, ascending=False)
+print(DEGbyTissue_df)
 ```
 
-Tissue graph in R
-```{r}
-Tissue_DF <- read.csv("Tissue_DF.csv")
-colnames(Tissue_DF) <- c("Tissue", "Count")
-ggplot(Tissue_DF, aes(x=Tissue, y=Count, fill=Tissue))+
-  geom_bar(stat="identity")+
-  theme_minimal()+
-  theme(axis.text.x = element_text(angle = 90, hjust=1))+
-  xlab("")+
-  guides(fill=FALSE)+
-  scale_y_continuous(breaks = 1:10, minor_breaks = NULL)
-```
 
