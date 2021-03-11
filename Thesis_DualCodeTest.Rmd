@@ -497,11 +497,22 @@ DS_Progress %>%
   guides(fill=FALSE)
 ```
 
+# 7. Worm Orthologs
 
-#7. Archived Code (Temporary Section)
+```{r}
+OrthoList <- read.csv("ortholist_master.csv")
+OrthoDEGs <- merge(TotalCounts_byGene,OrthoList,by.x = "Gene", by.y = "HGNC.Symbol", all.x = TRUE)
+subset_by_counts <- OrthoDEGs[which(OrthoDEGs$Total_Count > 3 | OrthoDEGs$Total_Count < -3),]
+DEG_Orthologs <- subset_by_counts[,c("Gene","Total_Count","Locus.ID","Common.Name","No..of.Programs","Ahringer.RNAi.Clone.Location")]
+colnames(DEG_Orthologs) <- c("Human.Gene","DE.Score","Worm.Gene","Name","Programs","RNAi")
+DEG_Orthologs
+```
+
+
+#Archived Code (Temporary Section)
 
 DEG Counts in Python
-```{python}
+```{python eval = FALSE}
 file = open("DatasetsToDate.csv")
 header = file.readline()
 tissue_dict = {}
