@@ -466,6 +466,12 @@ DS_Progress = DS[which(DS$DEGs >0),]
 length(DS_Progress$DEGs)
 write.csv(DS_Progress,"DatasetsToDate.csv")
 ```
+Tissue counts (R)
+```{r}
+
+```
+
+
 Tissue counts in Python
 ```{python}
 file = open("DatasetsToDate.csv")
