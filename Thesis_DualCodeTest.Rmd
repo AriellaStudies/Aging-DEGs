@@ -408,7 +408,7 @@ young_counts.to_csv("Young_Counts.csv")
 old_counts.to_csv("Old_Counts.csv")
 ```
 
-# 5. Post-Count Analysis (R)
+# 5. Score Analysis (R)
 Import counts data and arrange in various dataframes and lists
 ```{r}
 TotalCounts_byGene <- read.csv("Total_Counts.csv")
@@ -509,8 +509,7 @@ DEG_Orthologs
 write.csv(DEG_Orthologs,"DEG_Orthologs.csv")
 ```
 
-
-Outcome:
+Percent of mammalian gene hits for which worm orthologs are available:
 ```{r}
 no.hum<-length(subset_by_counts$Gene)
 cat("Number of human genes queried:",no.hum)
@@ -527,3 +526,12 @@ pie_labels <- c("No_Ortholog","Has_Ortholog")
 pie(pie_slices,labels=pie_labels)
 ```
 
+Print human gene names for online searches:
+```{r}
+paste(DEG_Orthologs$Human.Gene, collapse = ", ")
+```
+
+Print c. elegans gene names for online searches:
+```{r}
+paste(DEG_Orthologs$Name, collapse = ", ")
+```
