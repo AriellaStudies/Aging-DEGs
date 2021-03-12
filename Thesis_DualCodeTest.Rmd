@@ -146,11 +146,11 @@ GEO2R <- function(GSE_number,platform_code,group_binaries,outputs){
 }
 ```
 
-Function compounded to filter results by adjusted p<0.5
+Function compounded to filter results by specified p value
 ```{r}
 GEO2R_pFiltered <- function(GSE_number,platform_code,group_binaries,outputs){
   tempTable <- GEO2R(GSE_number,platform_code,group_binaries,outputs)
-  filtTable <- tempTable[tempTable$adj.P.Val<0.05,]
+  filtTable <- tempTable[tempTable$adj.P.Val<0.1,]
   dupTable <- filtTable[!duplicated(filtTable$Gene.symbol),]
   return(dupTable)
 }
@@ -162,7 +162,7 @@ GEO2R_pFiltered <- function(GSE_number,platform_code,group_binaries,outputs){
 *(These zones must be updated if adding datasets.)*
 
 Execute functions on human datasets
-(Note that some data-sets have more than 1000 p<0.05)
+(Note that a few data-sets have more than 1000 p<0.01)
 ```{r cache = TRUE, message = FALSE, warning=FALSE}
 #tT007 <- GEO2R_pFiltered("GSE58015","GPL571","000011111",1000)
 tT009 <- GEO2R_pFiltered("GSE53890","GPL570","XXXXXXXX00000000000XX11111111111XXXXXXXXX",1000)
@@ -456,6 +456,7 @@ ggplot
 ```
 
 # 6. Dataset Characteristics (R)
+**NOTE** Before running these next sessions, it's necessary to manually fill in the # DEGs column in the datasets csv file in excel. Can make this automatic in the future, but while the datasets are in flux, it is easier to manage this part manually.
 
 Number of DEGs per dataset (R)
 ```{r}
