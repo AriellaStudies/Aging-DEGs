@@ -24,3 +24,4 @@
 "115",112,"GSE8150","Mus musculus","GPL1261","0000011111XXXXXXXXXX",NA,"Brain","Neocortex",711,"5 month vs 30 month",NA
 "116",113,"GSE8146","Mus musculus","GPL81","0000011111XXXXXXXXXX",NA,"Heart",NA,71,"5 month vs 30 month",NA
 "135",132,"GSE4270","Rattus norvegicus","GPL890","XXXXXXXXXXXXXXX00000000001111111111111",NA,"Liver",NA,618,"6, 12, 18 months -- chose 12 mo vs 18mo",NA
+"136",133,"GSE6323","Mus musculus","GPL339","0000011111XXXXX","","Muscle","Skeletal Muscle > gastrocnemius",6,"5 month vs 25 month",NA

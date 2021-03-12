@@ -146,7 +146,7 @@ GEO2R <- function(GSE_number,platform_code,group_binaries,outputs){
 }
 ```
 
-Function compounded to filter results by adjusted p<0.01
+Function compounded to filter results by adjusted p<0.5
 ```{r}
 GEO2R_pFiltered <- function(GSE_number,platform_code,group_binaries,outputs){
   tempTable <- GEO2R(GSE_number,platform_code,group_binaries,outputs)
@@ -162,7 +162,7 @@ GEO2R_pFiltered <- function(GSE_number,platform_code,group_binaries,outputs){
 *(These zones must be updated if adding datasets.)*
 
 Execute functions on human datasets
-(Note that some data-sets have more than 1000 p<0.01)
+(Note that some data-sets have more than 1000 p<0.05)
 ```{r cache = TRUE, message = FALSE, warning=FALSE}
 #tT007 <- GEO2R_pFiltered("GSE58015","GPL571","000011111",1000)
 tT009 <- GEO2R_pFiltered("GSE53890","GPL570","XXXXXXXX00000000000XX11111111111XXXXXXXXX",1000)
@@ -189,6 +189,7 @@ tT043bM <- GEO2R_pFiltered("GSE25905","GPL6246","XXX000XXXXXXXXX111",1000)
 tT057M <- GEO2R_pFiltered("GSE27686","GPL1261","111XXXXXX000XXXX",1000)
 tT081M <- GEO2R_pFiltered("GSE19677","GPL6333","0000XXXXX1111XXXXX",1000)
 tT082M <- GEO2R_pFiltered("GSE19677","GPL1261","XXXX00001X1XX1XXX1",1000)
+tT133M <- GEO2R_pFiltered("GSE6323","GPL339","0000011111XXXXX",1000)
 ```
 
 More mouse datasets:
@@ -253,6 +254,7 @@ tT082 <- M2H(tT082M)
 tT097 <- M2H(tT097M)
 tT112 <- M2H(tT112M)
 tT113 <- M2H(tT113M)
+tT133 <- M2H(tT133M)
 ```
 
 Execution for non-mouse:
@@ -302,6 +304,7 @@ write.table(tT082, file="tT082.txt", row.names=F, sep="\t")
 write.table(tT097, file="tT097.txt", row.names=F, sep="\t")
 write.table(tT112, file="tT112.txt", row.names=F, sep="\t")
 write.table(tT113, file="tT113.txt", row.names=F, sep="\t")
+write.table(tT133, file="tT133.txt", row.names=F, sep="\t")
 #Other:
 write.table(tT058, file="tT058.txt", row.names=F, sep="\t")
 write.table(tT088, file="tT088.txt", row.names=F, sep="\t")
@@ -374,6 +377,7 @@ file_to_dict('tT082.txt')
 file_to_dict('tT097.txt')
 file_to_dict('tT112.txt')
 file_to_dict('tT113.txt')
+file_to_dict('tT133.txt')
 
 #Other:
 file_to_dict('tT058.txt')
@@ -520,11 +524,15 @@ cat("\nNumber without orthologs:",no.notworm)
 no.worm <- no.hum - no.notworm
 percent.worm <- no.worm/no.hum
 cat("\nFraction with orthologs:",percent.worm)
+```
 
+Pie Chart
+```{r}
 pie_slices <- c(no.notworm,no.worm)
 pie_labels <- c("No_Ortholog","Has_Ortholog")
 pie(pie_slices,labels=pie_labels)
 ```
+
 
 Print human gene names for online searches:
 ```{r}
