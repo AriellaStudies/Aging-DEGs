@@ -405,6 +405,14 @@ old_df = pd.DataFrame.from_dict(old_dict, orient='index')
 old_counts = old_df.sort_values(by=0, ascending=False)
 old_counts
 ```
+Determine tissue types for top hits
+```{python}
+subset_counts = ordered_df[(ordered_df[0]>3) | (ordered_df[0]<-3)]
+subset_counts
+
+```
+
+
 Export all counts to CSV files
 ```{python}
 ordered_df.to_csv("Total_Counts.csv")
@@ -419,7 +427,8 @@ TotalCounts_byGene <- read.csv("Total_Counts.csv")
 colnames(TotalCounts_byGene)<-c("Gene","Total_Count")
 TotalCounts_numbers <- TotalCounts_byGene[,2]
 
-TC2 <- TotalCounts_byGene[which(TotalCounts_byGene$Total_Count > 1 | TotalCounts_byGene$Total_Count < -1),]
+#ajust HERE to change the score limit moving forward
+TC2 <- TotalCounts_byGene[which(TotalCounts_byGene$Total_Count > 3 | TotalCounts_byGene$Total_Count < -3),]
 
 YoungCounts_byGene <- read.csv("Young_Counts.csv")
 YoungCounts_numbers <- YoungCounts_byGene[,2]
@@ -526,7 +535,7 @@ write.csv(DEG_Orthologs,"DEG_Orthologs.csv")
 
 Percent of mammalian gene hits for which worm orthologs are available:
 ```{r}
-no.hum<-length(subset_by_counts$Gene)
+no.hum<-length(TC2$Gene)
 cat("Number of human genes queried:",no.hum)
 
 no.notworm <- sum(is.na(DEG_Orthologs$Worm.Gene))
