@@ -95,7 +95,7 @@ For all remaining datasets, the samples were categorized as young (0), old (1), 
 ## 3.1 Set Functions
 
 GEO2R Function
-```{r cache=TRUE}
+```{r }
 GEO2R <- function(GSE_number,platform_code,group_binaries,outputs){
   # load series and platform data from GEO
   gset <- getGEO(GSE_number, GSEMatrix =TRUE, AnnotGPL=TRUE)
@@ -163,7 +163,7 @@ GEO2R_pFiltered <- function(GSE_number,platform_code,group_binaries,outputs){
 
 Execute functions on human datasets
 (Note that a few data-sets have more than 1000 p<0.01)
-```{r cache = TRUE, message = FALSE, warning=FALSE}
+```{r message = FALSE, warning=FALSE}
 #tT007 <- GEO2R_pFiltered("GSE58015","GPL571","000011111",1000)
 tT009 <- GEO2R_pFiltered("GSE53890","GPL570","XXXXXXXX00000000000XX11111111111XXXXXXXXX",1000)
 tT023 <- GEO2R_pFiltered("GSE38718","GPL570","0000000000000011111111",1000)
@@ -174,7 +174,7 @@ tT044 <- GEO2R_pFiltered("GSE32719","GPL570","XXXXXXXXXXXXXX0000011111111",1000)
 ```
 
 Execute function on mouse datasets
-```{r cache = TRUE, message = FALSE, warning=FALSE}
+```{r message = FALSE, warning=FALSE}
 tT000M <- GEO2R_pFiltered("GSE71868","GPL6885","11110000",1000)
 tT008M <- GEO2R_pFiltered("GSE50821","GPL1261","00000XXXX11111",1000)
 tT011M <- GEO2R_pFiltered("GSE55162","GPL1261","11110000",100)
@@ -183,7 +183,7 @@ tT020M <- GEO2R_pFiltered("GSE49543","GPL339","XXXXXXXXX000000000000000001111111
 ```
 
 More mouse datasets
-```{r cache = TRUE, message = FALSE, warning=FALSE}
+```{r message = FALSE, warning=FALSE}
 tT043aM <- GEO2R_pFiltered("GSE25905","GPL6246","000XXXXXXXXX111XXX",1000)
 tT043bM <- GEO2R_pFiltered("GSE25905","GPL6246","XXX000XXXXXXXXX111",1000)
 tT057M <- GEO2R_pFiltered("GSE27686","GPL1261","111XXXXXX000XXXX",1000)
@@ -193,14 +193,14 @@ tT133M <- GEO2R_pFiltered("GSE6323","GPL339","0000011111XXXXX",1000)
 ```
 
 More mouse datasets:
-```{r cache = TRUE, message = FALSE, warning=FALSE}
+```{r message = FALSE, warning=FALSE}
 tT097M <- GEO2R_pFiltered("GSE11667","GPL1261","11110000XXXXXXXX",1000)
 tT112M <- GEO2R_pFiltered("GSE8150","GPL1261","0000011111XXXXXXXXXX",1000)
 tT113M <- GEO2R_pFiltered("GSE8146","GPL81","0000011111XXXXXXXXXX",1000)
 ```
 
 Non-mouse, non-human datasets:
-```{r cache = TRUE, message = FALSE, warning=FALSE}
+```{r message = FALSE, warning=FALSE}
 tT058X <- GEO2R_pFiltered("GSE24515","GPL1355","000000111111",1000)
 tT088X <- GEO2R_pFiltered("GSE9990","GPL341","XXXXXXXXXXXXXXXXXXXXXXXXXXX0000000001111111111111",1000)
 tT092X <- GEO2R_pFiltered("GSE12502","GPL3979","111111000000",1000)
@@ -240,7 +240,7 @@ X2H <- function(animal_tT,TaxID){
 
 **DATASET CONTROL ZONE 2 OF 4 (NONHUMAN ONLY)**
 Execution for mouse:
-```{r cache = TRUE, message = FALSE, warning = FALSE}
+```{r message = FALSE, warning = FALSE}
 tT000 <- M2H(tT000M)
 tT008 <- M2H(tT008M)
 tT011 <- M2H(tT011M)
@@ -258,7 +258,7 @@ tT133 <- M2H(tT133M)
 ```
 
 Execution for non-mouse:
-```{r cache = TRUE, message = FALSE, warning = FALSE}
+```{r message = FALSE, warning = FALSE}
 tT058 <- X2H(tT058X,10116)
 tT088 <- X2H(tT088X,10116)
 tT092 <- X2H(tT092X,9615)
