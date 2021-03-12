@@ -41,6 +41,7 @@ Install Python Packages
 ```{r cache=TRUE, eval=FALSE}
 py_install("pandas")
 py_install("regex")
+py_install("seaborn")
 ```
 Global Options (not in use)
 ```{r include=FALSE}
@@ -50,6 +51,7 @@ Python Packages
 ```{python}
 import pandas as pd
 import regex as re
+import seaborn as sns
 ```
 
 # 1. Dataset Management (Python)
@@ -512,6 +514,34 @@ tissues_for_hits('tT132.txt')
 
 for key in gene_complex_dictionary:
   print(key, gene_complex_dictionary[key])
+```
+Visualizing gene by tissue heatmap preparation
+
+**ALERT** If brand new tissue type is added, make sure to add to dictionary below.
+```{python}
+simpleGCD = {}
+for key in gene_complex_dictionary:
+  simpleGCD[key] = gene_complex_dictionary[key]['tissue']
+
+simpleGCD2 = {}
+for key in simpleGCD:
+  new_dict = {
+  'Trachea':0,'Reproduction':0,'Muscle':0,'Liver':0,'Immune':0,'Heart':0,'Fat':0,'Cochlea':0,'Brain':0
+  }
+  for item in simpleGCD[key]:
+    if item in new_dict:
+      new_dict[item] += 1
+    else:
+      new_dict[item] = 1
+  simpleGCD2[key] = new_dict
+
+simpleGCD_df = pd.DataFrame.from_dict(simpleGCD2,orient='index')
+simpleGCD_df
+```
+Visualizing gene by tissue heatmap
+```{python}
+ax = sns.heatmap(simpleGCD_df, cmap="YlGnBu", xticklabels=True, yticklabels=True)
+ax
 ```
 
 
