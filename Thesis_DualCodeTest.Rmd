@@ -480,7 +480,8 @@ ggplot(agg) +
   geom_col(aes(x = Tissue, y = n, fill = Organism)) +
   theme_minimal()+
   theme(axis.text.x = element_text(angle = 70, hjust=1))+
-  scale_y_continuous(breaks = 1:10, minor_breaks = NULL)
+  scale_y_continuous(breaks = 1:10, minor_breaks = NULL)+
+  coord_flip()
 ```
 
 DEG counts (R)
@@ -499,7 +500,16 @@ DS_Progress %>%
   theme_minimal()+
   theme(axis.text.x = element_text(angle = 90, hjust=1))+
   xlab("")+
-  guides(fill=FALSE)
+  guides(fill=FALSE)+
+  coord_flip()
+```
+Graph of DEG counts (R)
+```{r}
+ggplot(DS_Progress, aes(x=Tissue,y=DEGs, fill=Organism))+
+  geom_dotplot(binaxis = 'y',stackdir = 'center',dotsize=1.5)+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 90, hjust=1))+
+  coord_flip()
 ```
 
 # 7. Worm Orthologs
