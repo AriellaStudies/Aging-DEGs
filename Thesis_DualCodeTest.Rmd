@@ -405,11 +405,187 @@ old_df = pd.DataFrame.from_dict(old_dict, orient='index')
 old_counts = old_df.sort_values(by=0, ascending=False)
 old_counts
 ```
-Determine tissue types for top hits
+Show genes with high scores
 ```{python}
 subset_counts = ordered_df[(ordered_df[0]>3) | (ordered_df[0]<-3)]
 subset_counts
+```
+Show tissue types for high-scoring genes
+```{python}
+gene_index = subset_counts.index
+gene_index = list(gene_index)
+#for gene in gene_index:
+#  gene_complex_dictionary[gene]=
+#for item in gene_index:
+#  print(item) #PLACE FUNCTION CODE HERE?
+```
+WORK AREA:
+```{python}
+file = open("221_Datasets.csv")
+header = file.readline()
+indices = [] #0
+animals = [] #2
+tissues = [] #6
+for line in file:
+  row = line.strip().split(',')
+  index = row[0]
+  animal = row[2]
+  tissue = row[6]
+  indices.append(index)
+  animals.append(animal)
+  tissues.append(tissue)
+file.close()
+print(indices,animals,tissues)
+```
+WORK AREA 2:
+```{python}
+def tissues_for_hits(file_name):
+  file_index = file_name.strip("tT").strip(".tx")
+  
+  if file_index == '043a':
+    file_index = 43
+  elif file_index == '043b':
+    file_index = 44
+  elif file_index == '108a':
+    file_index = 108
+  elif file_index == '108b':
+    file_index = 109
+  
+  file_index = int(file_index)
+  if file_index > 109:
+    file_index = file_index + 2
+  elif file_index > 44:
+    file_index = file_index + 1
+  file = open(file_name)
+  header = file.readline()
+  geneIDs = []
+  for line in file:
+    row = line.strip().replace('"','').split('\t')
+    geneID = row[6]
+    geneIDs.append(geneID)
+  for gene in gene_index:
+    if gene in geneIDs and gene not in gene_complex_dictionary:
+      gene_complex_dictionary[gene] = [indices[file_index],tissues[file_index],animals[file_index]]
+    elif gene in geneIDs and gene in gene_complex_dictionary:
+      gene_complex_dictionary[gene] += [indices[file_index],tissues[file_index],animals[file_index]]
+  file.close()
+```
 
+WORK AREA 2.5:
+```{python}
+def tissues_for_hits(file_name):
+  file_index = file_name.strip("tT").strip(".tx")
+  
+  if file_index == '043a':
+    file_index = 43
+  elif file_index == '043b':
+    file_index = 44
+  elif file_index == '108a':
+    file_index = 108
+  elif file_index == '108b':
+    file_index = 109
+  
+  file_index = int(file_index)
+  if file_index > 109:
+    file_index = file_index + 2
+  elif file_index > 44:
+    file_index = file_index + 1
+  file = open(file_name)
+  header = file.readline()
+  geneIDs = []
+  for line in file:
+    row = line.strip().replace('"','').split('\t')
+    geneID = row[6]
+    geneIDs.append(geneID)
+  for gene in gene_index:
+    if gene in geneIDs and gene not in gene_complex_dictionary:
+      gene_complex_dictionary[gene] = {'index':indices[file_index],'tissue':tissues[file_index],'animal':animals[file_index]}
+
+
+    elif gene in geneIDs and gene in gene_complex_dictionary:
+      gene_complex_dictionary[gene]['index'] += indices[file_index]
+      gene_complex_dictionary[gene]['tissue'] += tissues[file_index]
+      gene_complex_dictionary[gene]['animal'] += animals[file_index]
+  file.close()
+```
+
+WORK AREA 2.6:
+```{python}
+def tissues_for_hits(file_name):
+  file_index = file_name.strip("tT").strip(".tx")
+  
+  if file_index == '043a':
+    file_index = 43
+  elif file_index == '043b':
+    file_index = 44
+  elif file_index == '108a':
+    file_index = 108
+  elif file_index == '108b':
+    file_index = 109
+  
+  file_index = int(file_index)
+  if file_index > 109:
+    file_index = file_index + 2
+  elif file_index > 44:
+    file_index = file_index + 1
+  file = open(file_name)
+  header = file.readline()
+  geneIDs = []
+  for line in file:
+    row = line.strip().replace('"','').split('\t')
+    geneID = row[6]
+    geneIDs.append(geneID)
+  for gene in gene_index:
+    if gene in geneIDs and gene not in gene_complex_dictionary:
+      gene_complex_dictionary[gene] = {'index':[indices[file_index]],'tissue':[tissues[file_index]],'animal':[animals[file_index]]}
+
+
+    elif gene in geneIDs and gene in gene_complex_dictionary:
+      gene_complex_dictionary[gene]['index'] += [indices[file_index]]
+      gene_complex_dictionary[gene]['tissue'] += [tissues[file_index]]
+      gene_complex_dictionary[gene]['animal'] += [animals[file_index]]
+  file.close()
+```
+
+
+WORK AREA 3:
+```{python}
+gene_complex_dictionary = {}
+
+#Human
+tissues_for_hits('tT009.txt')
+tissues_for_hits('tT023.txt')
+tissues_for_hits('tT036.txt')
+tissues_for_hits('tT037.txt')
+tissues_for_hits('tT038.txt')
+tissues_for_hits('tT044.txt')
+
+#Mouse
+tissues_for_hits('tT000.txt')
+tissues_for_hits('tT008.txt')
+tissues_for_hits('tT011.txt')
+tissues_for_hits('tT014.txt')
+tissues_for_hits('tT020.txt')
+tissues_for_hits('tT043a.txt')
+tissues_for_hits('tT043b.txt')
+tissues_for_hits('tT057.txt')
+#tissues_for_hits('tT081.txt') excluded as a repeat
+tissues_for_hits('tT082.txt')
+tissues_for_hits('tT097.txt')
+tissues_for_hits('tT112.txt')
+tissues_for_hits('tT113.txt')
+tissues_for_hits('tT133.txt')
+
+#Other:
+tissues_for_hits('tT058.txt')
+tissues_for_hits('tT088.txt')
+tissues_for_hits('tT092.txt')
+tissues_for_hits('tT108a.txt')
+tissues_for_hits('tT108b.txt')
+tissues_for_hits('tT132.txt')
+
+for key in gene_complex_dictionary:
+  print(key, gene_complex_dictionary[key])
 ```
 
 
