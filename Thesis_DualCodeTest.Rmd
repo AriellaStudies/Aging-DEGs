@@ -511,9 +511,6 @@ tissues_for_hits('tT092.txt')
 tissues_for_hits('tT108a.txt')
 tissues_for_hits('tT108b.txt')
 tissues_for_hits('tT132.txt')
-
-for key in gene_complex_dictionary:
-  print(key, gene_complex_dictionary[key])
 ```
 Visualizing gene by tissue heatmap preparation
 
@@ -546,7 +543,7 @@ ax
 
 
 Export all counts to CSV files
-```{python}
+```{python eval=FALSE}
 ordered_df.to_csv("Total_Counts.csv")
 young_counts.to_csv("Young_Counts.csv")
 old_counts.to_csv("Old_Counts.csv")
