@@ -447,15 +447,16 @@ def tissues_for_hits(file_name):
   elif file_index == '043b':
     file_index = 44
   elif file_index == '108a':
-    file_index = 108
-  elif file_index == '108b':
     file_index = 109
-  
-  file_index = int(file_index)
-  if file_index > 109:
-    file_index = file_index + 2
-  elif file_index > 44:
-    file_index = file_index + 1
+  elif file_index == '108b':
+    file_index = 110
+  else:
+    file_index = int(file_index)
+    if file_index > 108:
+      file_index = file_index + 2
+    elif file_index > 43 and file_index < 108:
+      file_index = file_index + 1
+
   file = open(file_name)
   header = file.readline()
   geneIDs = []
@@ -526,14 +527,12 @@ for key in simpleGCD:
   'Trachea':0,'Reproduction':0,'Muscle':0,'Liver':0,'Immune':0,'Heart':0,'Fat':0,'Cochlea':0,'Brain':0
   }
   for item in simpleGCD[key]:
-    if item in new_dict:
-      new_dict[item] += 1
-    else:
-      new_dict[item] = 1
+    new_dict[item] += 1
   simpleGCD2[key] = new_dict
 
 simpleGCD_df = pd.DataFrame.from_dict(simpleGCD2,orient='index')
 simpleGCD_df
+pd.DataFrame.to_csv(simpleGCD_df,"simpleGCD.csv")
 ```
 Visualizing gene by tissue heatmap
 ```{python}
