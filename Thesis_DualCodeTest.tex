@@ -1,0 +1,1350 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={ThesisTesting\_21.01},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{ThesisTesting\_21.01}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\hypertarget{version-info-r-3.2.3-biobase-2.30.0-geoquery-2.40.0-limma-3.26.8}{%
+\section{Version info: R 3.2.3, Biobase 2.30.0, GEOquery 2.40.0, limma
+3.26.8}\label{version-info-r-3.2.3-biobase-2.30.0-geoquery-2.40.0-limma-3.26.8}}
+
+\hypertarget{setup}{%
+\section{0. Setup}\label{setup}}
+
+Special GEOquery package
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\KeywordTok{requireNamespace}\NormalTok{(}\StringTok{"BiocManager"}\NormalTok{, }\DataTypeTok{quietly =} \OtherTok{TRUE}\NormalTok{))}
+    \KeywordTok{install.packages}\NormalTok{(}\StringTok{"BiocManager"}\NormalTok{)}
+
+\NormalTok{BiocManager}\OperatorTok{::}\KeywordTok{install}\NormalTok{(}\StringTok{"GEOquery"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Other Packages
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{'limma'}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{'umap'}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"reticulate"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"homologene"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{'ggplot2'}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{'dplyr'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Open Libraries
+
+Install Python Packages
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{py_install}\NormalTok{(}\StringTok{"pandas"}\NormalTok{)}
+\KeywordTok{py_install}\NormalTok{(}\StringTok{"regex"}\NormalTok{)}
+\KeywordTok{py_install}\NormalTok{(}\StringTok{"seaborn"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Global Options (not in use)
+
+Python Packages
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\ImportTok{import}\NormalTok{ regex }\ImportTok{as}\NormalTok{ re}
+\ImportTok{import}\NormalTok{ seaborn }\ImportTok{as}\NormalTok{ sns}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{dataset-management-python}{%
+\section{1. Dataset Management
+(Python)}\label{dataset-management-python}}
+
+NCBI GEO was searched for expression datasets on 03/02/2021, filtered to
+mammalian species with age sets, with 221 results. Results were exported
+as a detailed text file, then parsed into a dataframe using Python
+below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pattern_organism }\OperatorTok{=}\NormalTok{ re.}\BuiltInTok{compile}\NormalTok{(}\VerbatimStringTok{r"\textbackslash{}bOrganism\textbackslash{}w*\textbackslash{}b"}\NormalTok{)}
+\NormalTok{pattern_GSE }\OperatorTok{=}\NormalTok{ re.}\BuiltInTok{compile}\NormalTok{(}\VerbatimStringTok{r"\textbackslash{}bPlatform\textbackslash{}w*\textbackslash{}b"}\NormalTok{)}
+
+\NormalTok{list_organism }\OperatorTok{=}\NormalTok{ []}
+\NormalTok{list_GSE }\OperatorTok{=}\NormalTok{ []}
+\NormalTok{list_platform }\OperatorTok{=}\NormalTok{ []}
+\ControlFlowTok{with} \BuiltInTok{open}\NormalTok{(}\StringTok{"gds_result.txt"}\NormalTok{,}\StringTok{"rt"}\NormalTok{) }\ImportTok{as}\NormalTok{ myfile:}
+    \ControlFlowTok{for}\NormalTok{ line }\KeywordTok{in}\NormalTok{ myfile:}
+        \ControlFlowTok{if}\NormalTok{ pattern_organism.search(line) }\OperatorTok{!=} \VariableTok{None}\NormalTok{:}
+\NormalTok{            betterline }\OperatorTok{=}\NormalTok{ line.replace(}\StringTok{"Organism:}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{,}\StringTok{""}\NormalTok{)}
+\NormalTok{            bestline }\OperatorTok{=}\NormalTok{ betterline.replace(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}\StringTok{""}\NormalTok{)}
+\NormalTok{            list_organism.append(bestline)}
+        \ControlFlowTok{if}\NormalTok{ pattern_GSE.search(line) }\OperatorTok{!=} \VariableTok{None}\NormalTok{:}
+\NormalTok{            GSE }\OperatorTok{=}\NormalTok{ line.split(}\StringTok{"Series: "}\NormalTok{)[}\DecValTok{1}\NormalTok{].rsplit()[}\DecValTok{0}\NormalTok{]}
+\NormalTok{            list_GSE.append(GSE)}
+\NormalTok{            Platform }\OperatorTok{=}\NormalTok{ line.split(}\StringTok{"Platform: "}\NormalTok{)[}\DecValTok{1}\NormalTok{].rsplit()[}\DecValTok{0}\NormalTok{]}
+\NormalTok{            list_platform.append(Platform)}
+\NormalTok{list_of_lists }\OperatorTok{=}\NormalTok{ [list_GSE, list_organism, list_platform]}
+\NormalTok{df_of_lists }\OperatorTok{=}\NormalTok{ pd.DataFrame(list_of_lists).transpose()}
+\NormalTok{df_of_lists.columns }\OperatorTok{=}\NormalTok{ [}\StringTok{"GSE"}\NormalTok{,}\StringTok{"Organism"}\NormalTok{,}\StringTok{"Platform"}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(df_of_lists)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           GSE      Organism Platform
+## 0    GSE71868  Mus musculus  GPL6885
+## 1    GSE65927  Mus musculus  GPL1261
+## 2    GSE62173  Mus musculus  GPL1261
+## 3    GSE65063  Mus musculus  GPL7202
+## 4    GSE52509  Mus musculus  GPL6885
+## ..        ...           ...      ...
+## 216    GSE459  Mus musculus    GPL76
+## 217    GSE459  Mus musculus    GPL75
+## 218    GSE362  Homo sapiens    GPL97
+## 219    GSE362  Homo sapiens    GPL96
+## 220     GSE80  Homo sapiens    GPL91
+## 
+## [221 rows x 3 columns]
+\end{verbatim}
+
+\hypertarget{dataset-management-manual}{%
+\section{2. Dataset Management
+(Manual)}\label{dataset-management-manual}}
+
+Each of the 221 candidate datasets are manually reviewed. {[}IN
+PROGRESS{]}
+
+Datasets were excluded if two adult age-sets are not available, such as
+if the study is investigating a developmental process in the embryonic,
+postnatal, or juvenile period. Specifically, humans under 18yo, rats
+under 6mo, and mice under 3mo were considered juvenile and avoided in
+this analysis. Exceptions: Study GSE5666 compared 4mo and 28mo old rats
+in rarely obtainable tissue types (heart and white adipose tissue), so
+this study was included.
+
+When more than two age-sets were available -- such as ``young,''
+``middle,'' and ``old'' -- comparisons between ``middle'' and ``old''
+were prioritized. When a continuous set of ages were available, buffer
+regions were implemented, e.g.~human age 30yo-60yo vs 70yo-90yo with
+61-69yo excluded as a buffer region.
+
+Other, less common reasons were exclusion included datasets where
+control/untreated/wild-type groups were not available or when
+``age-sets'' were actually time-points in short time-course experiments.
+
+For all remaining datasets, the samples were categorized as young (0),
+old (1), or excluded (X) for the purposes of further processing. In
+addition, the tissue type under study was manually noted.
+
+\hypertarget{calculate-degs-in-each-dataset-r}{%
+\section{3. Calculate DEGs in each Dataset
+(R)}\label{calculate-degs-in-each-dataset-r}}
+
+\hypertarget{set-functions}{%
+\subsection{3.1 Set Functions}\label{set-functions}}
+
+GEO2R Function
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GEO2R <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(GSE_number,platform_code,group_binaries,outputs)\{}
+  \CommentTok{# load series and platform data from GEO}
+\NormalTok{  gset <-}\StringTok{ }\KeywordTok{getGEO}\NormalTok{(GSE_number, }\DataTypeTok{GSEMatrix =}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{AnnotGPL=}\OtherTok{TRUE}\NormalTok{)}
+  \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{length}\NormalTok{(gset) }\OperatorTok{>}\StringTok{ }\DecValTok{1}\NormalTok{) idx <-}\StringTok{ }\KeywordTok{grep}\NormalTok{(platform_code, }\KeywordTok{attr}\NormalTok{(gset, }\StringTok{"names"}\NormalTok{)) }\ControlFlowTok{else}\NormalTok{ idx <-}\StringTok{ }\DecValTok{1}
+\NormalTok{  gset <-}\StringTok{ }\NormalTok{gset[[idx]]}
+  
+  \CommentTok{# make proper column names to match toptable }
+  \KeywordTok{fvarLabels}\NormalTok{(gset) <-}\StringTok{ }\KeywordTok{make.names}\NormalTok{(}\KeywordTok{fvarLabels}\NormalTok{(gset))}
+  
+  \CommentTok{# group membership for all samples}
+\NormalTok{  gsms <-}\StringTok{ }\NormalTok{group_binaries}
+\NormalTok{  sml <-}\StringTok{ }\KeywordTok{strsplit}\NormalTok{(gsms, }\DataTypeTok{split=}\StringTok{""}\NormalTok{)[[}\DecValTok{1}\NormalTok{]]}
+  
+  \CommentTok{# filter out excluded samples (marked as "X")}
+\NormalTok{  sel <-}\StringTok{ }\KeywordTok{which}\NormalTok{(sml }\OperatorTok{!=}\StringTok{ "X"}\NormalTok{)}
+\NormalTok{  sml <-}\StringTok{ }\NormalTok{sml[sel]}
+\NormalTok{  gset <-}\StringTok{ }\NormalTok{gset[ ,sel]}
+  
+  \CommentTok{# log2 transformation}
+\NormalTok{  ex <-}\StringTok{ }\KeywordTok{exprs}\NormalTok{(gset)}
+\NormalTok{  qx <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{quantile}\NormalTok{(ex, }\KeywordTok{c}\NormalTok{(}\FloatTok{0.}\NormalTok{, }\FloatTok{0.25}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.75}\NormalTok{, }\FloatTok{0.99}\NormalTok{, }\FloatTok{1.0}\NormalTok{), }\DataTypeTok{na.rm=}\NormalTok{T))}
+\NormalTok{  LogC <-}\StringTok{ }\NormalTok{(qx[}\DecValTok{5}\NormalTok{] }\OperatorTok{>}\StringTok{ }\DecValTok{100}\NormalTok{) }\OperatorTok{||}
+\StringTok{            }\NormalTok{(qx[}\DecValTok{6}\NormalTok{]}\OperatorTok{-}\NormalTok{qx[}\DecValTok{1}\NormalTok{] }\OperatorTok{>}\StringTok{ }\DecValTok{50} \OperatorTok{&&}\StringTok{ }\NormalTok{qx[}\DecValTok{2}\NormalTok{] }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{)}
+  \ControlFlowTok{if}\NormalTok{ (LogC) \{ ex[}\KeywordTok{which}\NormalTok{(ex }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{)] <-}\StringTok{ }\OtherTok{NaN}
+    \KeywordTok{exprs}\NormalTok{(gset) <-}\StringTok{ }\KeywordTok{log2}\NormalTok{(ex) \}}
+  
+  \CommentTok{# assign samples to groups and set up design matrix}
+\NormalTok{  gs <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(sml)}
+\NormalTok{  groups <-}\StringTok{ }\KeywordTok{make.names}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"young"}\NormalTok{,}\StringTok{"old"}\NormalTok{))}
+  \KeywordTok{levels}\NormalTok{(gs) <-}\StringTok{ }\NormalTok{groups}
+\NormalTok{  gset}\OperatorTok{$}\NormalTok{group <-}\StringTok{ }\NormalTok{gs}
+\NormalTok{  design <-}\StringTok{ }\KeywordTok{model.matrix}\NormalTok{(}\OperatorTok{~}\NormalTok{group }\OperatorTok{+}\StringTok{ }\DecValTok{0}\NormalTok{, gset)}
+  \KeywordTok{colnames}\NormalTok{(design) <-}\StringTok{ }\KeywordTok{levels}\NormalTok{(gs)}
+  
+\NormalTok{  fit <-}\StringTok{ }\KeywordTok{lmFit}\NormalTok{(gset, design)  }\CommentTok{# fit linear model}
+  
+  \CommentTok{# set up contrasts of interest and recalculate model coefficients}
+\NormalTok{  cts <-}\StringTok{ }\KeywordTok{paste}\NormalTok{(groups[}\DecValTok{1}\NormalTok{], groups[}\DecValTok{2}\NormalTok{], }\DataTypeTok{sep=}\StringTok{"-"}\NormalTok{)}
+\NormalTok{  cont.matrix <-}\StringTok{ }\KeywordTok{makeContrasts}\NormalTok{(}\DataTypeTok{contrasts=}\NormalTok{cts, }\DataTypeTok{levels=}\NormalTok{design)}
+\NormalTok{  fit2 <-}\StringTok{ }\KeywordTok{contrasts.fit}\NormalTok{(fit, cont.matrix)}
+  
+  \CommentTok{# compute statistics and table of top significant genes}
+\NormalTok{  fit2 <-}\StringTok{ }\KeywordTok{eBayes}\NormalTok{(fit2, }\FloatTok{0.01}\NormalTok{)}
+\NormalTok{  tT <-}\StringTok{ }\KeywordTok{topTable}\NormalTok{(fit2, }\DataTypeTok{adjust=}\StringTok{"fdr"}\NormalTok{, }\DataTypeTok{sort.by=}\StringTok{"B"}\NormalTok{, }\DataTypeTok{number=}\NormalTok{outputs)}
+  
+\NormalTok{  tT <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(tT, }\DataTypeTok{select=}\KeywordTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{,}\StringTok{"adj.P.Val"}\NormalTok{,}\StringTok{"P.Value"}\NormalTok{,}\StringTok{"t"}\NormalTok{,}\StringTok{"B"}\NormalTok{,}\StringTok{"logFC"}\NormalTok{,}\StringTok{"Gene.symbol"}\NormalTok{,}\StringTok{"Gene.title"}\NormalTok{))}
+  \KeywordTok{return}\NormalTok{(tT)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Function compounded to filter results by specified p value
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GEO2R_pFiltered <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(GSE_number,platform_code,group_binaries,outputs)\{}
+\NormalTok{  tempTable <-}\StringTok{ }\KeywordTok{GEO2R}\NormalTok{(GSE_number,platform_code,group_binaries,outputs)}
+\NormalTok{  filtTable <-}\StringTok{ }\NormalTok{tempTable[tempTable}\OperatorTok{$}\NormalTok{adj.P.Val}\OperatorTok{<}\FloatTok{0.1}\NormalTok{,]}
+\NormalTok{  dupTable <-}\StringTok{ }\NormalTok{filtTable[}\OperatorTok{!}\KeywordTok{duplicated}\NormalTok{(filtTable}\OperatorTok{$}\NormalTok{Gene.symbol),]}
+  \KeywordTok{return}\NormalTok{(dupTable)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{import-datasets}{%
+\subsection{3.2 Import Datasets}\label{import-datasets}}
+
+\textbf{DATASET CONTROL ZONE 1 OF 4} \emph{(These zones must be updated
+if adding datasets.)}
+
+Execute functions on human datasets (Note that a few data-sets have more
+than 1000 p\textless0.01)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#tT007 <- GEO2R_pFiltered("GSE58015","GPL571","000011111",1000)}
+\NormalTok{tT009 <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE53890"}\NormalTok{,}\StringTok{"GPL570"}\NormalTok{,}\StringTok{"XXXXXXXX00000000000XX11111111111XXXXXXXXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT023 <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE38718"}\NormalTok{,}\StringTok{"GPL570"}\NormalTok{,}\StringTok{"0000000000000011111111"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT036 <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE28422"}\NormalTok{,}\StringTok{"GPL570"}\NormalTok{,}\StringTok{"00000000XXXXXXXXXXXXXXXXXXXXXXXX111111XXXXXXXXXXXXXXXXXX0000000XXXXXXXXXXXXXXXXXXXXXXX111111XXXXXXXXXXXXXXXXXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT037 <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE28392"}\NormalTok{,}\StringTok{"GPL570"}\NormalTok{,}\StringTok{"00000XXXXXXXXXXXXXXXX1111XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT038 <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE25941"}\NormalTok{,}\StringTok{"GPL570"}\NormalTok{,}\StringTok{"000000001111111111100000001111111111"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT044 <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE32719"}\NormalTok{,}\StringTok{"GPL570"}\NormalTok{,}\StringTok{"XXXXXXXXXXXXXX0000011111111"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Execute function on mouse datasets
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tT000M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE71868"}\NormalTok{,}\StringTok{"GPL6885"}\NormalTok{,}\StringTok{"11110000"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT008M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE50821"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"00000XXXX11111"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT011M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE55162"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"11110000"}\NormalTok{,}\DecValTok{100}\NormalTok{)}
+\NormalTok{tT014M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE46646"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"XXXXXX000111"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT020M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE49543"}\NormalTok{,}\StringTok{"GPL339"}\NormalTok{,}\StringTok{"XXXXXXXXX00000000000000000111111111111111"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+More mouse datasets
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tT043aM <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE25905"}\NormalTok{,}\StringTok{"GPL6246"}\NormalTok{,}\StringTok{"000XXXXXXXXX111XXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT043bM <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE25905"}\NormalTok{,}\StringTok{"GPL6246"}\NormalTok{,}\StringTok{"XXX000XXXXXXXXX111"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT057M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE27686"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"111XXXXXX000XXXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT081M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE19677"}\NormalTok{,}\StringTok{"GPL6333"}\NormalTok{,}\StringTok{"0000XXXXX1111XXXXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT082M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE19677"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"XXXX00001X1XX1XXX1"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT133M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE6323"}\NormalTok{,}\StringTok{"GPL339"}\NormalTok{,}\StringTok{"0000011111XXXXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+More mouse datasets:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tT097M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE11667"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"11110000XXXXXXXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT112M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE8150"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"0000011111XXXXXXXXXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT113M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE8146"}\NormalTok{,}\StringTok{"GPL81"}\NormalTok{,}\StringTok{"0000011111XXXXXXXXXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Non-mouse, non-human datasets:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tT058X <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE24515"}\NormalTok{,}\StringTok{"GPL1355"}\NormalTok{,}\StringTok{"000000111111"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT088X <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE9990"}\NormalTok{,}\StringTok{"GPL341"}\NormalTok{,}\StringTok{"XXXXXXXXXXXXXXXXXXXXXXXXXXX0000000001111111111111"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT092X <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE12502"}\NormalTok{,}\StringTok{"GPL3979"}\NormalTok{,}\StringTok{"111111000000"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+
+\NormalTok{tT108aX <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE6718"}\NormalTok{,}\StringTok{"GPL1355"}\NormalTok{,}\StringTok{"1111111000000XXXXXXXXXXXXXXXXXXXXXXXXXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT108bX <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE6718"}\NormalTok{,}\StringTok{"GPL1355"}\NormalTok{,}\StringTok{"XXXXXXXXXXXXXXXXXXXXXX11000X00XXX11100X"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT132X <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE4270"}\NormalTok{,}\StringTok{"GPL890"}\NormalTok{,}\StringTok{"XXXXXXXXXXXXXXX00000000001111111111111"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{non-human-gene-conversions}{%
+\subsection{3.3 Non-human gene
+conversions}\label{non-human-gene-conversions}}
+
+Convert non-human gene symbols to human gene symbols
+
+Function for mouse:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{M2H <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(mouse_tT)\{}
+\NormalTok{  MouseSymbols =}\StringTok{ }\NormalTok{mouse_tT[,}\DecValTok{7}\NormalTok{]}
+\NormalTok{  M2H_Symbols =}\StringTok{ }\KeywordTok{mouse2human}\NormalTok{(MouseSymbols)}
+\NormalTok{  tTMerge =}\StringTok{ }\KeywordTok{merge}\NormalTok{(mouse_tT,M2H_Symbols,}\DataTypeTok{by.x =} \StringTok{"Gene.symbol"}\NormalTok{,}\DataTypeTok{by.y =} \StringTok{"mouseGene"}\NormalTok{)}
+\NormalTok{  tTReordered =}\StringTok{ }\NormalTok{tTMerge[,}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{1}\NormalTok{)]}
+  \KeywordTok{return}\NormalTok{(tTReordered)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Function for non-mouse:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X2H <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(animal_tT,TaxID)\{}
+\NormalTok{  AnimalSymbols =}\StringTok{ }\NormalTok{animal_tT[,}\DecValTok{7}\NormalTok{]}
+\NormalTok{  X2H_Symbols =}\StringTok{ }\KeywordTok{homologene}\NormalTok{(AnimalSymbols, }\DataTypeTok{inTax =}\NormalTok{ TaxID, }\DataTypeTok{outTax =} \DecValTok{9606}\NormalTok{)}
+\NormalTok{  taxonomy =}\StringTok{ }\KeywordTok{toString}\NormalTok{(TaxID)}
+\NormalTok{  tTMerge =}\StringTok{ }\KeywordTok{merge}\NormalTok{(animal_tT,X2H_Symbols,}\DataTypeTok{by.x =} \StringTok{"Gene.symbol"}\NormalTok{,}\DataTypeTok{by.y =}\NormalTok{ taxonomy)}
+\NormalTok{  tTReordered =}\StringTok{ }\NormalTok{tTMerge[,}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{1}\NormalTok{)]}
+  \KeywordTok{return}\NormalTok{(tTReordered)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{DATASET CONTROL ZONE 2 OF 4 (NONHUMAN ONLY)} Execution for
+mouse:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tT000 <-}\StringTok{ }\KeywordTok{M2H}\NormalTok{(tT000M)}
+\NormalTok{tT008 <-}\StringTok{ }\KeywordTok{M2H}\NormalTok{(tT008M)}
+\NormalTok{tT011 <-}\StringTok{ }\KeywordTok{M2H}\NormalTok{(tT011M)}
+\NormalTok{tT014 <-}\StringTok{ }\KeywordTok{M2H}\NormalTok{(tT014M)}
+\NormalTok{tT020 <-}\StringTok{ }\KeywordTok{M2H}\NormalTok{(tT020M)}
+\NormalTok{tT043a <-}\StringTok{ }\KeywordTok{M2H}\NormalTok{(tT043aM)}
+\NormalTok{tT043b <-}\StringTok{ }\KeywordTok{M2H}\NormalTok{(tT043bM)}
+\NormalTok{tT057 <-}\StringTok{ }\KeywordTok{M2H}\NormalTok{(tT057M)}
+\NormalTok{tT081 <-}\StringTok{ }\KeywordTok{M2H}\NormalTok{(tT081M)}
+\NormalTok{tT082 <-}\StringTok{ }\KeywordTok{M2H}\NormalTok{(tT082M)}
+\NormalTok{tT097 <-}\StringTok{ }\KeywordTok{M2H}\NormalTok{(tT097M)}
+\NormalTok{tT112 <-}\StringTok{ }\KeywordTok{M2H}\NormalTok{(tT112M)}
+\NormalTok{tT113 <-}\StringTok{ }\KeywordTok{M2H}\NormalTok{(tT113M)}
+\NormalTok{tT133 <-}\StringTok{ }\KeywordTok{M2H}\NormalTok{(tT133M)}
+\end{Highlighting}
+\end{Shaded}
+
+Execution for non-mouse:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tT058 <-}\StringTok{ }\KeywordTok{X2H}\NormalTok{(tT058X,}\DecValTok{10116}\NormalTok{)}
+\NormalTok{tT088 <-}\StringTok{ }\KeywordTok{X2H}\NormalTok{(tT088X,}\DecValTok{10116}\NormalTok{)}
+\NormalTok{tT092 <-}\StringTok{ }\KeywordTok{X2H}\NormalTok{(tT092X,}\DecValTok{9615}\NormalTok{)}
+
+\NormalTok{tT108a <-}\StringTok{ }\KeywordTok{X2H}\NormalTok{(tT108aX,}\DecValTok{10116}\NormalTok{)}
+\NormalTok{tT108b <-}\StringTok{ }\KeywordTok{X2H}\NormalTok{(tT108bX,}\DecValTok{10116}\NormalTok{)}
+\NormalTok{tT132 <-}\StringTok{ }\KeywordTok{X2H}\NormalTok{(tT132X,}\DecValTok{10116}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Note: Some gene IDs appear in the results as
+GeneName1///GeneName2///GeneName3///. I noticed these were not
+successfully converted to human genes. I performed a test on one such
+gene where I ran each GeneName individually, and no results were found
+either, so I conclude homologous genes are not available for those
+entries regardless of any formatting issue. Record of this Test:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{M1Test =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"LOC100503923"}\NormalTok{,}\StringTok{"Gm15433"}\NormalTok{,}\StringTok{"LOC100041903"}\NormalTok{,}\StringTok{"Gm2666"}\NormalTok{,}\StringTok{"Gm7609"}\NormalTok{,}\StringTok{"Csprs"}\NormalTok{)}
+\NormalTok{M1Test}
+\NormalTok{dfM1Test =}\StringTok{ }\KeywordTok{mouse2human}\NormalTok{(M1Test)}
+\NormalTok{dfM1Test }\CommentTok{#0 Results}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{export-results}{%
+\subsection{3.4 Export Results}\label{export-results}}
+
+\textbf{DATASET CONTROL ZONE 3 OF 4} Write to files
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Human:}
+\KeywordTok{write.table}\NormalTok{(tT009, }\DataTypeTok{file=}\StringTok{"tT009.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT023, }\DataTypeTok{file=}\StringTok{"tT023.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT036, }\DataTypeTok{file=}\StringTok{"tT036.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT037, }\DataTypeTok{file=}\StringTok{"tT037.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT038, }\DataTypeTok{file=}\StringTok{"tT038.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT044, }\DataTypeTok{file=}\StringTok{"tT044.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\CommentTok{#Mouse:}
+\KeywordTok{write.table}\NormalTok{(tT000, }\DataTypeTok{file=}\StringTok{"tT000.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT008, }\DataTypeTok{file=}\StringTok{"tT008.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT011, }\DataTypeTok{file=}\StringTok{"tT011.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT014, }\DataTypeTok{file=}\StringTok{"tT014.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT020, }\DataTypeTok{file=}\StringTok{"tT020.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT043a, }\DataTypeTok{file=}\StringTok{"tT043a.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT043b, }\DataTypeTok{file=}\StringTok{"tT043b.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT057, }\DataTypeTok{file=}\StringTok{"tT057.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT081, }\DataTypeTok{file=}\StringTok{"tT081.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT082, }\DataTypeTok{file=}\StringTok{"tT082.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT097, }\DataTypeTok{file=}\StringTok{"tT097.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT112, }\DataTypeTok{file=}\StringTok{"tT112.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT113, }\DataTypeTok{file=}\StringTok{"tT113.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT133, }\DataTypeTok{file=}\StringTok{"tT133.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\CommentTok{#Other:}
+\KeywordTok{write.table}\NormalTok{(tT058, }\DataTypeTok{file=}\StringTok{"tT058.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT088, }\DataTypeTok{file=}\StringTok{"tT088.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT092, }\DataTypeTok{file=}\StringTok{"tT092.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT108a, }\DataTypeTok{file=}\StringTok{"tT108a.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT108b, }\DataTypeTok{file=}\StringTok{"tT108b.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{write.table}\NormalTok{(tT132, }\DataTypeTok{file=}\StringTok{"tT132.txt"}\NormalTok{, }\DataTypeTok{row.names=}\NormalTok{F, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{calculate-scores-across-datasets-python}{%
+\section{4. Calculate Scores Across Datasets
+(Python)}\label{calculate-scores-across-datasets-python}}
+
+\hypertarget{a.-compute-scores}{%
+\subsection{4A. Compute Scores}\label{a.-compute-scores}}
+
+Define Reader Function
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ file_to_dict(file_name):}
+    \BuiltInTok{file} \OperatorTok{=} \BuiltInTok{open}\NormalTok{(file_name)}
+\NormalTok{    header }\OperatorTok{=} \BuiltInTok{file}\NormalTok{.readline()}
+    \ControlFlowTok{for}\NormalTok{ line }\KeywordTok{in} \BuiltInTok{file}\NormalTok{:}
+\NormalTok{      row }\OperatorTok{=}\NormalTok{ line.strip().replace(}\StringTok{'"'}\NormalTok{, }\StringTok{''}\NormalTok{).split(}\StringTok{'}\CharTok{\textbackslash{}t}\StringTok{'}\NormalTok{)}
+\NormalTok{      logFC }\OperatorTok{=} \BuiltInTok{float}\NormalTok{(row[}\DecValTok{5}\NormalTok{])}
+\NormalTok{      geneID }\OperatorTok{=}\NormalTok{ row[}\DecValTok{6}\NormalTok{]}
+      \ControlFlowTok{if}\NormalTok{ logFC }\OperatorTok{>} \DecValTok{0}\NormalTok{:}
+        \ControlFlowTok{if}\NormalTok{ geneID }\KeywordTok{in}\NormalTok{ young_dict:}
+\NormalTok{          young_dict[geneID] }\OperatorTok{+=} \DecValTok{1}
+\NormalTok{          total_dict[geneID] }\OperatorTok{+=} \DecValTok{1}
+        \ControlFlowTok{elif}\NormalTok{ geneID }\KeywordTok{in}\NormalTok{ total_dict:}
+\NormalTok{          total_dict[geneID] }\OperatorTok{+=} \DecValTok{1}
+\NormalTok{          young_dict[geneID] }\OperatorTok{=} \DecValTok{1}
+        \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{          young_dict[geneID] }\OperatorTok{=} \DecValTok{1}
+\NormalTok{          total_dict[geneID] }\OperatorTok{=} \DecValTok{1}
+      \ControlFlowTok{if}\NormalTok{ logFC }\OperatorTok{<} \DecValTok{0}\NormalTok{:}
+        \ControlFlowTok{if}\NormalTok{ geneID }\KeywordTok{in}\NormalTok{ old_dict:}
+\NormalTok{          old_dict[geneID] }\OperatorTok{+=} \DecValTok{1}
+\NormalTok{          total_dict[geneID] }\OperatorTok{+=}\NormalTok{ (}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+        \ControlFlowTok{elif}\NormalTok{ geneID }\KeywordTok{in}\NormalTok{ total_dict:}
+\NormalTok{          total_dict[geneID] }\OperatorTok{+=}\NormalTok{ (}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+\NormalTok{          old_dict[geneID] }\OperatorTok{=} \DecValTok{1}
+        \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{          old_dict[geneID] }\OperatorTok{=} \DecValTok{1}
+\NormalTok{          total_dict[geneID] }\OperatorTok{=} \DecValTok{-1}
+    \BuiltInTok{file}\NormalTok{.close()}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{DATASET CONTROL ZONE 4 OF 4} \emph{(Exclude datasets from counts
+by commenting out here.)} Execute Reader Function
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{young_dict }\OperatorTok{=}\NormalTok{ \{\}}
+\NormalTok{old_dict }\OperatorTok{=}\NormalTok{ \{\}}
+\NormalTok{total_dict }\OperatorTok{=}\NormalTok{ \{\}}
+
+\CommentTok{#Human}
+\NormalTok{file_to_dict(}\StringTok{'tT009.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT023.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT036.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT037.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT038.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT044.txt'}\NormalTok{)}
+
+\CommentTok{#Mouse}
+\NormalTok{file_to_dict(}\StringTok{'tT000.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT008.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT011.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT014.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT020.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT043a.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT043b.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT057.txt'}\NormalTok{)}
+\CommentTok{#file_to_dict('tT081.txt') excluded as a repeat}
+\NormalTok{file_to_dict(}\StringTok{'tT082.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT097.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT112.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT113.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT133.txt'}\NormalTok{)}
+
+\CommentTok{#Other:}
+\NormalTok{file_to_dict(}\StringTok{'tT058.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT088.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT092.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT108a.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT108b.txt'}\NormalTok{)}
+\NormalTok{file_to_dict(}\StringTok{'tT132.txt'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{RESULTS} Convert count dictionary to ordered dataframe
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{total_df }\OperatorTok{=}\NormalTok{ pd.DataFrame.from_dict(total_dict, orient}\OperatorTok{=}\StringTok{'index'}\NormalTok{)}
+\NormalTok{ordered_df }\OperatorTok{=}\NormalTok{ total_df.sort_values(by}\OperatorTok{=}\DecValTok{0}\NormalTok{, ascending}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+\NormalTok{ordered_df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           0
+## NREP      4
+## IDH3A     4
+## RALBP1    4
+## CS        4
+## EIF4E3    4
+## ...      ..
+## C3       -5
+## GCNT2    -5
+## SLC44A1  -5
+## LYZ     -10
+## HLA-A   -11
+## 
+## [7130 rows x 1 columns]
+\end{verbatim}
+
+Record dataframes for separate young and old counts too
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{young_df }\OperatorTok{=}\NormalTok{ pd.DataFrame.from_dict(young_dict, orient}\OperatorTok{=}\StringTok{'index'}\NormalTok{)}
+\NormalTok{young_counts }\OperatorTok{=}\NormalTok{ young_df.sort_values(by}\OperatorTok{=}\DecValTok{0}\NormalTok{, ascending}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+\NormalTok{young_counts}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          0
+## NREP     5
+## IDH3A    5
+## ISCA1    4
+## CLMN     4
+## KIF22    4
+## ...     ..
+## AATF     1
+## ACKR3    1
+## ACYP2    1
+## ADARB1   1
+## ZNF354A  1
+## 
+## [3908 rows x 1 columns]
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{old_df }\OperatorTok{=}\NormalTok{ pd.DataFrame.from_dict(old_dict, orient}\OperatorTok{=}\StringTok{'index'}\NormalTok{)}
+\NormalTok{old_counts }\OperatorTok{=}\NormalTok{ old_df.sort_values(by}\OperatorTok{=}\DecValTok{0}\NormalTok{, ascending}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+\NormalTok{old_counts}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            0
+## HLA-A     11
+## LYZ       10
+## SERPINA3   6
+## GCNT2      6
+## LITAF      5
+## ...       ..
+## LPGAT1     1
+## LRRN4CL    1
+## LSAMP      1
+## LTBP1      1
+## ZNRF2      1
+## 
+## [4377 rows x 1 columns]
+\end{verbatim}
+
+\hypertarget{b.-show-dataset-characteristics-for-each-high-scoring-gene}{%
+\subsection{4B. Show dataset characteristics for each high-scoring
+gene}\label{b.-show-dataset-characteristics-for-each-high-scoring-gene}}
+
+Show genes with high scores
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{subset_counts }\OperatorTok{=}\NormalTok{ ordered_df[(ordered_df[}\DecValTok{0}\NormalTok{]}\OperatorTok{>}\DecValTok{3}\NormalTok{) }\OperatorTok{|}\NormalTok{ (ordered_df[}\DecValTok{0}\NormalTok{]}\OperatorTok{<-}\DecValTok{3}\NormalTok{)]}
+\NormalTok{subset_counts}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            0
+## NREP       4
+## IDH3A      4
+## RALBP1     4
+## CS         4
+## EIF4E3     4
+## CLN6       4
+## KIF22      4
+## PDHB       4
+## DLAT       4
+## VLDLR      4
+## ISCA1      4
+## CDC20      4
+## SUCLA2     4
+## OXCT1     -4
+## GDA       -4
+## ITGB2     -4
+## TRPS1     -4
+## GPRC5B    -4
+## IL6ST     -4
+## CNP       -4
+## S100A4    -4
+## LGALS3    -4
+## S100A6    -4
+## PLEKHB1   -4
+## C1QB      -4
+## SFRP1     -4
+## PLTP      -4
+## ICAM1     -4
+## SKAP2     -4
+## SLC6A6    -4
+## GREB1L    -4
+## PHF20     -4
+## SLC43A2   -4
+## SLPI      -4
+## PTEN      -4
+## FAM46A    -4
+## GSN       -4
+## IL13RA1   -4
+## FCGR2B    -4
+## LITAF     -4
+## TMEM176A  -5
+## GBP4      -5
+## CLEC7A    -5
+## SERPINA3  -5
+## C3        -5
+## GCNT2     -5
+## SLC44A1   -5
+## LYZ      -10
+## HLA-A    -11
+\end{verbatim}
+
+Create gene index
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gene_index }\OperatorTok{=}\NormalTok{ subset_counts.index}
+\NormalTok{gene_index }\OperatorTok{=} \BuiltInTok{list}\NormalTok{(gene_index)}
+\end{Highlighting}
+\end{Shaded}
+
+Create indices for dataset characteristics
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{file} \OperatorTok{=} \BuiltInTok{open}\NormalTok{(}\StringTok{"221_Datasets.csv"}\NormalTok{)}
+\NormalTok{header }\OperatorTok{=} \BuiltInTok{file}\NormalTok{.readline()}
+\NormalTok{indices }\OperatorTok{=}\NormalTok{ [] }\CommentTok{#0}
+\NormalTok{animals }\OperatorTok{=}\NormalTok{ [] }\CommentTok{#2}
+\NormalTok{tissues }\OperatorTok{=}\NormalTok{ [] }\CommentTok{#6}
+\ControlFlowTok{for}\NormalTok{ line }\KeywordTok{in} \BuiltInTok{file}\NormalTok{:}
+\NormalTok{  row }\OperatorTok{=}\NormalTok{ line.strip().split(}\StringTok{','}\NormalTok{)}
+\NormalTok{  index }\OperatorTok{=}\NormalTok{ row[}\DecValTok{0}\NormalTok{]}
+\NormalTok{  animal }\OperatorTok{=}\NormalTok{ row[}\DecValTok{2}\NormalTok{]}
+\NormalTok{  tissue }\OperatorTok{=}\NormalTok{ row[}\DecValTok{6}\NormalTok{]}
+\NormalTok{  indices.append(index)}
+\NormalTok{  animals.append(animal)}
+\NormalTok{  tissues.append(tissue)}
+\BuiltInTok{file}\NormalTok{.close()}
+\end{Highlighting}
+\end{Shaded}
+
+Define function to list all datasets (and their characteristics)
+contributing to each high-scoring gene:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ tissues_for_hits(file_name):}
+\NormalTok{  file_index }\OperatorTok{=}\NormalTok{ file_name.strip(}\StringTok{"tT"}\NormalTok{).strip(}\StringTok{".tx"}\NormalTok{)}
+  
+  \ControlFlowTok{if}\NormalTok{ file_index }\OperatorTok{==} \StringTok{'043a'}\NormalTok{:}
+\NormalTok{    file_index }\OperatorTok{=} \DecValTok{43}
+  \ControlFlowTok{elif}\NormalTok{ file_index }\OperatorTok{==} \StringTok{'043b'}\NormalTok{:}
+\NormalTok{    file_index }\OperatorTok{=} \DecValTok{44}
+  \ControlFlowTok{elif}\NormalTok{ file_index }\OperatorTok{==} \StringTok{'108a'}\NormalTok{:}
+\NormalTok{    file_index }\OperatorTok{=} \DecValTok{109}
+  \ControlFlowTok{elif}\NormalTok{ file_index }\OperatorTok{==} \StringTok{'108b'}\NormalTok{:}
+\NormalTok{    file_index }\OperatorTok{=} \DecValTok{110}
+  \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{    file_index }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(file_index)}
+    \ControlFlowTok{if}\NormalTok{ file_index }\OperatorTok{>} \DecValTok{108}\NormalTok{:}
+\NormalTok{      file_index }\OperatorTok{=}\NormalTok{ file_index }\OperatorTok{+} \DecValTok{2}
+    \ControlFlowTok{elif}\NormalTok{ file_index }\OperatorTok{>} \DecValTok{43} \KeywordTok{and}\NormalTok{ file_index }\OperatorTok{<} \DecValTok{108}\NormalTok{:}
+\NormalTok{      file_index }\OperatorTok{=}\NormalTok{ file_index }\OperatorTok{+} \DecValTok{1}
+
+  \BuiltInTok{file} \OperatorTok{=} \BuiltInTok{open}\NormalTok{(file_name)}
+\NormalTok{  header }\OperatorTok{=} \BuiltInTok{file}\NormalTok{.readline()}
+\NormalTok{  geneIDs }\OperatorTok{=}\NormalTok{ []}
+  \ControlFlowTok{for}\NormalTok{ line }\KeywordTok{in} \BuiltInTok{file}\NormalTok{:}
+\NormalTok{    row }\OperatorTok{=}\NormalTok{ line.strip().replace(}\StringTok{'"'}\NormalTok{,}\StringTok{''}\NormalTok{).split(}\StringTok{'}\CharTok{\textbackslash{}t}\StringTok{'}\NormalTok{)}
+\NormalTok{    geneID }\OperatorTok{=}\NormalTok{ row[}\DecValTok{6}\NormalTok{]}
+\NormalTok{    geneIDs.append(geneID)}
+  \ControlFlowTok{for}\NormalTok{ gene }\KeywordTok{in}\NormalTok{ gene_index:}
+    \ControlFlowTok{if}\NormalTok{ gene }\KeywordTok{in}\NormalTok{ geneIDs }\KeywordTok{and}\NormalTok{ gene }\KeywordTok{not} \KeywordTok{in}\NormalTok{ gene_complex_dictionary:}
+\NormalTok{      gene_complex_dictionary[gene] }\OperatorTok{=}\NormalTok{ \{}\StringTok{'index'}\NormalTok{:[indices[file_index]],}\StringTok{'tissue'}\NormalTok{:[tissues[file_index]],}\StringTok{'animal'}\NormalTok{:[animals[file_index]]\}}
+
+    \ControlFlowTok{elif}\NormalTok{ gene }\KeywordTok{in}\NormalTok{ geneIDs }\KeywordTok{and}\NormalTok{ gene }\KeywordTok{in}\NormalTok{ gene_complex_dictionary:}
+\NormalTok{      gene_complex_dictionary[gene][}\StringTok{'index'}\NormalTok{] }\OperatorTok{+=}\NormalTok{ [indices[file_index]]}
+\NormalTok{      gene_complex_dictionary[gene][}\StringTok{'tissue'}\NormalTok{] }\OperatorTok{+=}\NormalTok{ [tissues[file_index]]}
+\NormalTok{      gene_complex_dictionary[gene][}\StringTok{'animal'}\NormalTok{] }\OperatorTok{+=}\NormalTok{ [animals[file_index]]}
+  \BuiltInTok{file}\NormalTok{.close()}
+\end{Highlighting}
+\end{Shaded}
+
+Execute function and print results:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gene_complex_dictionary }\OperatorTok{=}\NormalTok{ \{\}}
+
+\CommentTok{#Human}
+\NormalTok{tissues_for_hits(}\StringTok{'tT009.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT023.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT036.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT037.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT038.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT044.txt'}\NormalTok{)}
+
+\CommentTok{#Mouse}
+\NormalTok{tissues_for_hits(}\StringTok{'tT000.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT008.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT011.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT014.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT020.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT043a.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT043b.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT057.txt'}\NormalTok{)}
+\CommentTok{#tissues_for_hits('tT081.txt') excluded as a repeat}
+\NormalTok{tissues_for_hits(}\StringTok{'tT082.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT097.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT112.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT113.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT133.txt'}\NormalTok{)}
+
+\CommentTok{#Other:}
+\NormalTok{tissues_for_hits(}\StringTok{'tT058.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT088.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT092.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT108a.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT108b.txt'}\NormalTok{)}
+\NormalTok{tissues_for_hits(}\StringTok{'tT132.txt'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Visualizing gene by tissue heatmap preparation
+
+\textbf{ALERT} If brand new tissue type is added, make sure to add to
+dictionary below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{simpleGCD }\OperatorTok{=}\NormalTok{ \{\}}
+\ControlFlowTok{for}\NormalTok{ key }\KeywordTok{in}\NormalTok{ gene_complex_dictionary:}
+\NormalTok{  simpleGCD[key] }\OperatorTok{=}\NormalTok{ gene_complex_dictionary[key][}\StringTok{'tissue'}\NormalTok{]}
+
+\NormalTok{simpleGCD2 }\OperatorTok{=}\NormalTok{ \{\}}
+\ControlFlowTok{for}\NormalTok{ key }\KeywordTok{in}\NormalTok{ simpleGCD:}
+\NormalTok{  new_dict }\OperatorTok{=}\NormalTok{ \{}
+  \StringTok{'Trachea'}\NormalTok{:}\DecValTok{0}\NormalTok{,}\StringTok{'Reproduction'}\NormalTok{:}\DecValTok{0}\NormalTok{,}\StringTok{'Muscle'}\NormalTok{:}\DecValTok{0}\NormalTok{,}\StringTok{'Liver'}\NormalTok{:}\DecValTok{0}\NormalTok{,}\StringTok{'Immune'}\NormalTok{:}\DecValTok{0}\NormalTok{,}\StringTok{'Heart'}\NormalTok{:}\DecValTok{0}\NormalTok{,}\StringTok{'Fat'}\NormalTok{:}\DecValTok{0}\NormalTok{,}\StringTok{'Cochlea'}\NormalTok{:}\DecValTok{0}\NormalTok{,}\StringTok{'Brain'}\NormalTok{:}\DecValTok{0}
+\NormalTok{  \}}
+  \ControlFlowTok{for}\NormalTok{ item }\KeywordTok{in}\NormalTok{ simpleGCD[key]:}
+\NormalTok{    new_dict[item] }\OperatorTok{+=} \DecValTok{1}
+\NormalTok{  simpleGCD2[key] }\OperatorTok{=}\NormalTok{ new_dict}
+
+\NormalTok{simpleGCD_df }\OperatorTok{=}\NormalTok{ pd.DataFrame.from_dict(simpleGCD2,orient}\OperatorTok{=}\StringTok{'index'}\NormalTok{)}
+\NormalTok{simpleGCD_df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Trachea  Reproduction  Muscle  Liver  ...  Heart  Fat  Cochlea  Brain
+## NREP            0             0       1      0  ...      2    0        1      1
+## EIF4E3          0             0       1      0  ...      0    0        0      2
+## PDHB            0             0       2      0  ...      1    0        0      1
+## DLAT            0             0       2      1  ...      0    0        0      1
+## VLDLR           0             0       1      1  ...      1    0        0      1
+## ISCA1           0             0       1      0  ...      0    1        1      1
+## SUCLA2          0             0       1      0  ...      1    1        0      1
+## GDA             0             0       3      0  ...      1    0        0      1
+## TRPS1           0             0       1      0  ...      1    0        0      2
+## GPRC5B          0             0       1      0  ...      0    0        0      2
+## CNP             0             0       0      1  ...      1    0        0      2
+## PLEKHB1         0             0       1      0  ...      1    0        0      2
+## SFRP1           0             0       1      0  ...      0    1        0      1
+## GSN             0             0       1      0  ...      0    0        0      3
+## LITAF           0             0       1      0  ...      1    1        0      2
+## SLC44A1         0             0       0      0  ...      1    0        0      3
+## IDH3A           0             0       2      1  ...      0    1        0      1
+## CS              0             0       1      1  ...      1    1        0      0
+## SLPI            0             0       3      0  ...      0    0        0      0
+## PTEN            0             0       1      1  ...      0    0        0      1
+## IL13RA1         0             0       3      1  ...      0    0        1      1
+## GCNT2           0             0       2      1  ...      0    2        0      1
+## C1QB            0             0       2      0  ...      0    1        1      1
+## SKAP2           0             0       2      0  ...      1    0        0      0
+## GREB1L          0             0       2      0  ...      0    0        0      1
+## SLC43A2         0             0       2      0  ...      0    0        0      1
+## RALBP1          0             0       2      0  ...      0    0        0      0
+## OXCT1           0             0       2      0  ...      1    0        0      0
+## IL6ST           0             0       1      1  ...      0    1        0      0
+## TMEM176A        0             0       2      0  ...      0    1        0      1
+## CLN6            0             0       0      2  ...      1    0        0      0
+## KIF22           0             0       0      1  ...      0    0        0      1
+## CDC20           0             0       1      1  ...      0    0        0      0
+## S100A4          0             0       1      0  ...      1    0        1      0
+## S100A6          0             0       1      0  ...      0    0        1      1
+## PLTP            0             0       1      0  ...      1    1        0      0
+## GBP4            0             0       1      0  ...      1    1        0      0
+## C3              0             0       2      0  ...      1    0        0      1
+## LYZ             0             0       1      0  ...      1    1        1      2
+## HLA-A           0             0       1      1  ...      0    0        1      2
+## LGALS3          0             0       1      0  ...      1    0        1      1
+## ICAM1           0             0       1      0  ...      1    0        1      1
+## FAM46A          0             0       1      2  ...      1    0        0      0
+## SERPINA3        0             0       1      1  ...      1    0        1      1
+## ITGB2           1             0       0      0  ...      0    1        1      1
+## FCGR2B          0             0       0      0  ...      1    1        1      1
+## CLEC7A          0             0       0      0  ...      1    1        1      2
+## SLC6A6          0             0       1      0  ...      1    1        0      0
+## PHF20           0             0       0      1  ...      0    1        0      1
+## 
+## [49 rows x 9 columns]
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pd.DataFrame.to_csv(simpleGCD_df,}\StringTok{"simpleGCD.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Visualizing gene by tissue heatmap
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ax }\OperatorTok{=}\NormalTok{ sns.heatmap(simpleGCD_df, cmap}\OperatorTok{=}\StringTok{"YlGnBu"}\NormalTok{, xticklabels}\OperatorTok{=}\VariableTok{True}\NormalTok{, yticklabels}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\NormalTok{ax}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-31-1.pdf}
+
+Export all counts to CSV files
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ordered_df.to_csv(}\StringTok{"Total_Counts.csv"}\NormalTok{)}
+\NormalTok{young_counts.to_csv(}\StringTok{"Young_Counts.csv"}\NormalTok{)}
+\NormalTok{old_counts.to_csv(}\StringTok{"Old_Counts.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{score-analysis-r}{%
+\section{5. Score Analysis (R)}\label{score-analysis-r}}
+
+Import counts data and arrange in various dataframes and lists
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TotalCounts_byGene <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"Total_Counts.csv"}\NormalTok{)}
+\KeywordTok{colnames}\NormalTok{(TotalCounts_byGene)<-}\KeywordTok{c}\NormalTok{(}\StringTok{"Gene"}\NormalTok{,}\StringTok{"Total_Count"}\NormalTok{)}
+\NormalTok{TotalCounts_numbers <-}\StringTok{ }\NormalTok{TotalCounts_byGene[,}\DecValTok{2}\NormalTok{]}
+
+\CommentTok{#ajust HERE to change the score limit moving forward}
+\NormalTok{TC2 <-}\StringTok{ }\NormalTok{TotalCounts_byGene[}\KeywordTok{which}\NormalTok{(TotalCounts_byGene}\OperatorTok{$}\NormalTok{Total_Count }\OperatorTok{>}\StringTok{ }\DecValTok{3} \OperatorTok{|}\StringTok{ }\NormalTok{TotalCounts_byGene}\OperatorTok{$}\NormalTok{Total_Count }\OperatorTok{<}\StringTok{ }\DecValTok{-3}\NormalTok{),]}
+
+\NormalTok{YoungCounts_byGene <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"Young_Counts.csv"}\NormalTok{)}
+\NormalTok{YoungCounts_numbers <-}\StringTok{ }\NormalTok{YoungCounts_byGene[,}\DecValTok{2}\NormalTok{]}
+\KeywordTok{colnames}\NormalTok{(YoungCounts_byGene)<-}\KeywordTok{c}\NormalTok{(}\StringTok{"Gene"}\NormalTok{,}\StringTok{"Young_Count"}\NormalTok{)}
+
+\CommentTok{#adjust HERE to change histogram left limit (1 of 2):}
+\NormalTok{YC2 <-}\StringTok{ }\NormalTok{YoungCounts_byGene[}\KeywordTok{which}\NormalTok{(YoungCounts_byGene}\OperatorTok{$}\NormalTok{Young_Count }\OperatorTok{>}\StringTok{ }\DecValTok{3}\NormalTok{),]}
+\NormalTok{YC2L <-}\StringTok{ }\NormalTok{YC2[,}\DecValTok{2}\NormalTok{]}
+
+\NormalTok{OldCounts_byGene <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"Old_Counts.csv"}\NormalTok{)}
+\NormalTok{OldCounts_numbers <-}\StringTok{ }\NormalTok{OldCounts_byGene[,}\DecValTok{2}\NormalTok{]}
+\KeywordTok{colnames}\NormalTok{(OldCounts_byGene)<-}\KeywordTok{c}\NormalTok{(}\StringTok{"Gene"}\NormalTok{,}\StringTok{"Old_Count"}\NormalTok{)}
+
+\CommentTok{#adjust HERE to change histogram left limit (2 of 2):}
+\NormalTok{OC2 <-}\StringTok{ }\NormalTok{OldCounts_byGene[}\KeywordTok{which}\NormalTok{(OldCounts_byGene}\OperatorTok{$}\NormalTok{Old_Count }\OperatorTok{>}\StringTok{ }\DecValTok{3}\NormalTok{),]}
+\NormalTok{OC2L <-}\StringTok{ }\NormalTok{OC2[,}\DecValTok{2}\NormalTok{]}
+
+\NormalTok{YC2}\OperatorTok{$}\NormalTok{Type <-}\StringTok{ "Young"}
+\NormalTok{OC2}\OperatorTok{$}\NormalTok{Type <-}\StringTok{ "Old"}
+\KeywordTok{colnames}\NormalTok{(YC2) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Gene"}\NormalTok{, }\StringTok{"Count"}\NormalTok{, }\StringTok{"Type"}\NormalTok{)}
+\KeywordTok{colnames}\NormalTok{(OC2) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Gene"}\NormalTok{, }\StringTok{"Count"}\NormalTok{, }\StringTok{"Type"}\NormalTok{)}
+\NormalTok{HistoCounts <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(YC2, OC2)}
+\end{Highlighting}
+\end{Shaded}
+
+Histogram of counts
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(HistoCounts, }\KeywordTok{aes}\NormalTok{(Count, }\DataTypeTok{fill =}\NormalTok{ Type)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{color =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{binwidth =} \DecValTok{1}\NormalTok{, }\DataTypeTok{position =} \StringTok{"identity"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{name =} \StringTok{"Score"}\NormalTok{, }\DataTypeTok{breaks =} \DecValTok{3}\OperatorTok{:}\DecValTok{15}\NormalTok{, }\DataTypeTok{minor_breaks =} \OtherTok{NULL}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{name =} \StringTok{"# DEGs Achieving Score"}\NormalTok{, }\DataTypeTok{minor_breaks =} \DecValTok{1}\OperatorTok{:}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-34-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ggplot}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## function (data = NULL, mapping = aes(), ..., environment = parent.frame()) 
+## {
+##     UseMethod("ggplot")
+## }
+## <bytecode: 0x000000002653a5d8>
+## <environment: namespace:ggplot2>
+\end{verbatim}
+
+\hypertarget{dataset-characteristics-r}{%
+\section{6. Dataset Characteristics
+(R)}\label{dataset-characteristics-r}}
+
+\textbf{NOTE} Before running these next sessions, it's necessary to
+manually fill in the \# DEGs column in the datasets csv file in excel.
+Can make this automatic in the future, but while the datasets are in
+flux, it is easier to manage this part manually.
+
+Number of DEGs per dataset (R)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DS <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"221_Datasets.csv"}\NormalTok{)}
+\KeywordTok{boxplot}\NormalTok{(DS}\OperatorTok{$}\NormalTok{DEGs, }\DataTypeTok{horizontal=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{main=}\StringTok{"Number of DEGs per Dataset"}\NormalTok{)}
+\KeywordTok{text}\NormalTok{(}\DataTypeTok{x=}\KeywordTok{fivenum}\NormalTok{(DS}\OperatorTok{$}\NormalTok{DEGs), }\DataTypeTok{labels =}\KeywordTok{fivenum}\NormalTok{(DS}\OperatorTok{$}\NormalTok{DEGs), }\DataTypeTok{y=}\FloatTok{1.25}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-35-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Note the middle value is median (50th percentile), not mean.}
+\CommentTok{#Lower hinge is 25th percentile, upper is 75th percentile}
+\end{Highlighting}
+\end{Shaded}
+
+Number of datasets evaluated (R)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DS_Progress =}\StringTok{ }\NormalTok{DS[}\KeywordTok{which}\NormalTok{(DS}\OperatorTok{$}\NormalTok{DEGs }\OperatorTok{>}\DecValTok{0}\NormalTok{),]}
+\KeywordTok{length}\NormalTok{(DS_Progress}\OperatorTok{$}\NormalTok{DEGs)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{write.csv}\NormalTok{(DS_Progress,}\StringTok{"DatasetsToDate.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Tissue counts (R)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{agg <-}\StringTok{ }\KeywordTok{count}\NormalTok{(DS_Progress,Tissue,Organism)}
+\KeywordTok{ggplot}\NormalTok{(agg) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Tissue, }\DataTypeTok{y =}\NormalTok{ n, }\DataTypeTok{fill =}\NormalTok{ Organism)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.text.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{angle =} \DecValTok{70}\NormalTok{, }\DataTypeTok{hjust=}\DecValTok{1}\NormalTok{))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{breaks =} \DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{minor_breaks =} \OtherTok{NULL}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{coord_flip}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-37-1.pdf}
+
+DEG counts (R)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DS_Progress }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Tissue) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{sum_DEGs =} \KeywordTok{sum}\NormalTok{(DEGs), }\DataTypeTok{mean_DEGs =} \KeywordTok{mean}\NormalTok{(DEGs))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 9 x 3
+##   Tissue       sum_DEGs mean_DEGs
+## * <chr>           <int>     <dbl>
+## 1 Brain            2227      445.
+## 2 Cochlea           196      196 
+## 3 Fat              1191      397 
+## 4 Heart             912      456 
+## 5 Immune           1908      636 
+## 6 Liver            1260      630 
+## 7 Muscle           2508      358.
+## 8 Reproduction       43       43 
+## 9 Trachea            59       59
+\end{verbatim}
+
+Graph of DEG counts (R)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DS_Progress }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Tissue) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{Sum_DEGs =} \KeywordTok{sum}\NormalTok{(DEGs), }\DataTypeTok{mean_DEGs =} \KeywordTok{mean}\NormalTok{(DEGs)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{Tissue, }\DataTypeTok{y =}\NormalTok{ Sum_DEGs, }\DataTypeTok{fill =}\NormalTok{ Tissue)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{stat=}\StringTok{"identity"}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.text.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{angle =} \DecValTok{90}\NormalTok{, }\DataTypeTok{hjust=}\DecValTok{1}\NormalTok{))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{""}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{guides}\NormalTok{(}\DataTypeTok{fill=}\OtherTok{FALSE}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{coord_flip}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-39-1.pdf}
+Graph of DEG counts (R)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(DS_Progress, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{Tissue,}\DataTypeTok{y=}\NormalTok{DEGs, }\DataTypeTok{fill=}\NormalTok{Organism))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_dotplot}\NormalTok{(}\DataTypeTok{binaxis =} \StringTok{'y'}\NormalTok{,}\DataTypeTok{stackdir =} \StringTok{'center'}\NormalTok{,}\DataTypeTok{dotsize=}\FloatTok{1.5}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.text.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{angle =} \DecValTok{90}\NormalTok{, }\DataTypeTok{hjust=}\DecValTok{1}\NormalTok{))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{coord_flip}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-40-1.pdf}
+
+\hypertarget{worm-orthologs}{%
+\section{7. Worm Orthologs}\label{worm-orthologs}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{OrthoList <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"ortholist_master.csv"}\NormalTok{)}
+\NormalTok{OrthoDEGs <-}\StringTok{ }\KeywordTok{merge}\NormalTok{(TotalCounts_byGene,OrthoList,}\DataTypeTok{by.x =} \StringTok{"Gene"}\NormalTok{, }\DataTypeTok{by.y =} \StringTok{"HGNC.Symbol"}\NormalTok{, }\DataTypeTok{all.x =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{subset_by_counts <-}\StringTok{ }\NormalTok{OrthoDEGs[}\KeywordTok{which}\NormalTok{(OrthoDEGs}\OperatorTok{$}\NormalTok{Total_Count }\OperatorTok{>}\StringTok{ }\DecValTok{3} \OperatorTok{|}\StringTok{ }\NormalTok{OrthoDEGs}\OperatorTok{$}\NormalTok{Total_Count }\OperatorTok{<}\StringTok{ }\DecValTok{-3}\NormalTok{),]}
+\NormalTok{DEG_Orthologs <-}\StringTok{ }\NormalTok{subset_by_counts[,}\KeywordTok{c}\NormalTok{(}\StringTok{"Gene"}\NormalTok{,}\StringTok{"Total_Count"}\NormalTok{,}\StringTok{"Locus.ID"}\NormalTok{,}\StringTok{"Common.Name"}\NormalTok{,}\StringTok{"No..of.Programs"}\NormalTok{,}\StringTok{"Ahringer.RNAi.Clone.Location"}\NormalTok{)]}
+\KeywordTok{colnames}\NormalTok{(DEG_Orthologs) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Human.Gene"}\NormalTok{,}\StringTok{"DE.Score"}\NormalTok{,}\StringTok{"Worm.Gene"}\NormalTok{,}\StringTok{"Name"}\NormalTok{,}\StringTok{"Programs"}\NormalTok{,}\StringTok{"RNAi"}\NormalTok{)}
+\NormalTok{DEG_Orthologs}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Human.Gene DE.Score  Worm.Gene     Name Programs                    RNAi
+## 1899        C1QB       -4       <NA>     <NA>       NA                    <NA>
+## 1914          C3       -5       <NA>     <NA>       NA                    <NA>
+## 2243       CDC20        4   ZK1307.6    fzr-1        1                II-10A17
+## 2244       CDC20        4    ZK177.6    fzy-1        1         II-4O16|II-4O18
+## 2551      CLEC7A       -5    C25B8.4 clec-266        1                  X-3D17
+## 2586        CLN6        4       <NA>     <NA>       NA                    <NA>
+## 2645         CNP       -4   F26A1.14                 1                III-2B13
+## 2942          CS        4    T20G5.2    cts-1        6                III-5O22
+## 3626        DLAT        4   F23B12.5   dlat-1        6                  V-9B17
+## 3950      EIF4E3        4       <NA>     <NA>       NA                    <NA>
+## 4218      FAM46A       -4   F55A12.9   pqn-44        4                  I-2M06
+## 4319      FCGR2B       -4       <NA>     <NA>       NA                    <NA>
+## 4606        GBP4       -5       <NA>     <NA>       NA                    <NA>
+## 4619       GCNT2       -5   F22D6.11   gly-18        4                  I-3B11
+## 4620       GCNT2       -5   F22D6.12   gly-19        4                  I-3B13
+## 4621       GCNT2       -5    F44F4.6    gly-1        4                 II-7F21
+## 4622       GCNT2       -5   C54C8.11   gly-15        4                  I-6E22
+## 4623       GCNT2       -5    T15D6.2   gly-16        4                  I-6A08
+## 4624       GCNT2       -5    T15D6.3   gly-17        4                  I-6A10
+## 4625       GCNT2       -5   T09E11.9                 1           I-6O23|I-9F14
+## 4626       GCNT2       -5    T27F6.1                 1                  I-6E24
+## 4627       GCNT2       -5    T28F3.9                 1                 IV-8C02
+## 4628       GCNT2       -5  Y51H4A.25                 1 IV-8A09|IV-8A13|IV-8A15
+## 4629       GCNT2       -5   ZK1225.2                 1                  I-6N23
+## 4630       GCNT2       -5   H41C03.3                 1        II-10G20|II-4P06
+## 4631       GCNT2       -5    R07C3.3                 1                 II-1F15
+## 4632       GCNT2       -5    T14B4.9                 1                 II-5O03
+## 4633       GCNT2       -5    F26D2.3                 1                 V-10P22
+## 4634       GCNT2       -5   F30A10.4                 1                  I-4N21
+## 4635       GCNT2       -5    F35H8.2                 1                        
+## 4636       GCNT2       -5    R07B7.6                 1                  V-8I05
+## 4637       GCNT2       -5   T09E11.6                 1                  I-9C07
+## 4638         GDA       -4   F38E11.3   cpin-1        1                 IV-4J24
+## 4853      GPRC5B       -4       <NA>     <NA>       NA                    <NA>
+## 4878      GREB1L       -4       <NA>     <NA>       NA                    <NA>
+## 4938         GSN       -4    K06A4.3   gsnl-1        3                  V-6L11
+## 5651       HLA-A      -11       <NA>     <NA>       NA                    <NA>
+## 5971       ICAM1       -4       <NA>     <NA>       NA                    <NA>
+## 5981       IDH3A        4    F43G9.1   idha-1        6                  I-4A14
+## 6056     IL13RA1       -4       <NA>     <NA>       NA                    <NA>
+## 6080       IL6ST       -4       <NA>     <NA>       NA                    <NA>
+## 6153       ISCA1        4   Y39B6A.3                 6                 V-12I14
+## 6175       ITGB2       -4   ZK1058.2    pat-3        3       III-1P02|III-8A17
+## 6424       KIF22        4       <NA>     <NA>       NA                    <NA>
+## 6626      LGALS3       -4    W09H1.6    lec-1        1                        
+## 6627      LGALS3       -4   W01A11.4   lec-10        1                  V-4D02
+## 6628      LGALS3       -4    F52H3.7    lec-2        1                 II-7I21
+## 6629      LGALS3       -4    C16H3.2    lec-9        1                  X-7J14
+## 6630      LGALS3       -4    R07B1.2    lec-7        1                  X-4J04
+## 6631      LGALS3       -4   R07B1.10    lec-8        1                  X-4J20
+## 6632      LGALS3       -4  ZK1248.16    lec-5        1        II-10A23|II-4N22
+## 6633      LGALS3       -4    C53D6.7                 1                 IV-4J09
+## 6634      LGALS3       -4    ZK892.1    lec-3        1                 II-7G19
+## 6635      LGALS3       -4    C44F1.3    lec-4        1                III-1L02
+## 6754       LITAF       -4   Y37D8A.8                 1                III-6M22
+## 6755       LITAF       -4  Y87G2A.18                 1                  I-6J06
+## 6756       LITAF       -4  Y87G2A.19                 1                        
+## 6757       LITAF       -4    F36G3.3                 4                  X-8O04
+## 6758       LITAF       -4    F16F9.1                 1                  X-4G08
+## 7012         LYZ      -10       <NA>     <NA>       NA                    <NA>
+## 8040        NREP        4       <NA>     <NA>       NA                    <NA>
+## 8233       OXCT1       -4   C05C10.3                 6                 II-7E19
+## 8433        PDHB        4    C04C3.3   pdhb-1        6                 IV-1F04
+## 8529       PHF20       -4       <NA>     <NA>       NA                    <NA>
+## 8658     PLEKHB1       -4       <NA>     <NA>       NA                    <NA>
+## 8729        PLTP       -4  F01G10.10                 1                 IV-5M20
+## 8730        PLTP       -4    F44A2.3                 1                  V-6F11
+## 8731        PLTP       -4    C55C3.1                 1                 IV-2P02
+## 8732        PLTP       -4   F10D11.6                 1           I-4K23|I-9B16
+## 9106        PTEN       -4    T07A9.6   daf-18        3                 IV-1I23
+## 9107        PTEN       -4                            1                  I-2F23
+## 9367      RALBP1        4   T23G11.5   rlbp-1        4           I-3F12|I-3F20
+## 9805      S100A4       -4       <NA>     <NA>       NA                    <NA>
+## 9806      S100A6       -4       <NA>     <NA>       NA                    <NA>
+## 10017   SERPINA3       -5    F20D6.3    srp-8        1                 V-14F19
+## 10018   SERPINA3       -5    F20D6.4    srp-7        1                 V-14F18
+## 10019   SERPINA3       -5   C03G6.19    srp-6        1                  V-5G14
+## 10020   SERPINA3       -5    C05E4.3    srp-1        1                  V-1M10
+## 10021   SERPINA3       -5    C05E4.1    srp-2        1                  V-1M06
+## 10022   SERPINA3       -5   Y32G9A.4    srp-3        1                 V-14F17
+## 10087      SFRP1       -4 Y73B6BL.21   sfrp-1        4                        
+## 10201      SKAP2       -4       <NA>     <NA>       NA                    <NA>
+## 10555    SLC43A2       -4       <NA>     <NA>       NA                    <NA>
+## 10556    SLC44A1       -5       <NA>     <NA>       NA                    <NA>
+## 10592     SLC6A6       -4    T03F7.1   snf-11        1                        
+## 10593     SLC6A6       -4    T13B5.1    snf-3        1                 II-1B02
+## 10674       SLPI       -4       <NA>     <NA>       NA                    <NA>
+## 11056     SUCLA2        4   F47B10.1   suca-1        6                  X-5C02
+## 11057     SUCLA2        4    C50F7.4   sucg-1        1                 IV-3L08
+## 11436   TMEM176A       -5       <NA>     <NA>       NA                    <NA>
+## 11825      TRPS1       -4    W09C2.1    elt-1        1                 IV-5A05
+## 11826      TRPS1       -4    F55A8.1   egl-18        1                 IV-1H19
+## 11827      TRPS1       -4   C39B10.6    elt-4        1                        
+## 11828      TRPS1       -4   F52C12.5    elt-6        1                 IV-1J07
+## 11829      TRPS1       -4    C33D3.1    elt-2        1                  X-5I11
+## 12261      VLDLR        4    T13C2.6                 6                 II-5A06
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{write.csv}\NormalTok{(DEG_Orthologs,}\StringTok{"DEG_Orthologs.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Percent of mammalian gene hits for which worm orthologs are available:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{no.hum<-}\KeywordTok{length}\NormalTok{(TC2}\OperatorTok{$}\NormalTok{Gene)}
+\KeywordTok{cat}\NormalTok{(}\StringTok{"Number of human genes queried:"}\NormalTok{,no.hum)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Number of human genes queried: 49
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{no.notworm <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(DEG_Orthologs}\OperatorTok{$}\NormalTok{Worm.Gene))}
+\KeywordTok{cat}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Number without orthologs:"}\NormalTok{,no.notworm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Number without orthologs: 24
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{no.worm <-}\StringTok{ }\NormalTok{no.hum }\OperatorTok{-}\StringTok{ }\NormalTok{no.notworm}
+\NormalTok{percent.worm <-}\StringTok{ }\NormalTok{no.worm}\OperatorTok{/}\NormalTok{no.hum}
+\KeywordTok{cat}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Fraction with orthologs:"}\NormalTok{,percent.worm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Fraction with orthologs: 0.5102041
+\end{verbatim}
+
+Pie Chart
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pie_slices <-}\StringTok{ }\KeywordTok{c}\NormalTok{(no.notworm,no.worm)}
+\NormalTok{pie_labels <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"No_Ortholog"}\NormalTok{,}\StringTok{"Has_Ortholog"}\NormalTok{)}
+\KeywordTok{pie}\NormalTok{(pie_slices,}\DataTypeTok{labels=}\NormalTok{pie_labels)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-43-1.pdf}
+
+Print human gene names for online searches:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{paste}\NormalTok{(DEG_Orthologs}\OperatorTok{$}\NormalTok{Human.Gene, }\DataTypeTok{collapse =} \StringTok{", "}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "C1QB, C3, CDC20, CDC20, CLEC7A, CLN6, CNP, CS, DLAT, EIF4E3, FAM46A, FCGR2B, GBP4, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GDA, GPRC5B, GREB1L, GSN, HLA-A, ICAM1, IDH3A, IL13RA1, IL6ST, ISCA1, ITGB2, KIF22, LGALS3, LGALS3, LGALS3, LGALS3, LGALS3, LGALS3, LGALS3, LGALS3, LGALS3, LGALS3, LITAF, LITAF, LITAF, LITAF, LITAF, LYZ, NREP, OXCT1, PDHB, PHF20, PLEKHB1, PLTP, PLTP, PLTP, PLTP, PTEN, PTEN, RALBP1, S100A4, S100A6, SERPINA3, SERPINA3, SERPINA3, SERPINA3, SERPINA3, SERPINA3, SFRP1, SKAP2, SLC43A2, SLC44A1, SLC6A6, SLC6A6, SLPI, SUCLA2, SUCLA2, TMEM176A, TRPS1, TRPS1, TRPS1, TRPS1, TRPS1, VLDLR"
+\end{verbatim}
+
+Print c.~elegans gene names for online searches:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{paste}\NormalTok{(DEG_Orthologs}\OperatorTok{$}\NormalTok{Name, }\DataTypeTok{collapse =} \StringTok{", "}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "NA, NA, fzr-1, fzy-1, clec-266, NA, , cts-1, dlat-1, NA, pqn-44, NA, NA, gly-18, gly-19, gly-1, gly-15, gly-16, gly-17, , , , , , , , , , , , , , cpin-1, NA, NA, gsnl-1, NA, NA, idha-1, NA, NA, , pat-3, NA, lec-1, lec-10, lec-2, lec-9, lec-7, lec-8, lec-5, , lec-3, lec-4, , , , , , NA, NA, , pdhb-1, NA, NA, , , , , daf-18, , rlbp-1, NA, NA, srp-8, srp-7, srp-6, srp-1, srp-2, srp-3, sfrp-1, NA, NA, NA, snf-11, snf-3, NA, suca-1, sucg-1, NA, elt-1, egl-18, elt-4, elt-6, elt-2, "
+\end{verbatim}
+
+\end{document}
