@@ -1,10 +1,10 @@
 ---
 title: "ThesisTesting_21.01"
 output:
-  pdf_document: default
   html_document:
     theme: darkly
     highlight: zenburn
+  pdf_document: default
 ---
 
 # Version info: R 3.2.3, Biobase 2.30.0, GEOquery 2.40.0, limma 3.26.8

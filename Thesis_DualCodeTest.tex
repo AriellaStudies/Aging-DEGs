@@ -304,16 +304,33 @@ GEO2R Function
 \end{Highlighting}
 \end{Shaded}
 
-Function compounded to filter results by specified p value
+Function compounded to filter results by specified p value (change p
+value here)
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{GEO2R_pFiltered <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(GSE_number,platform_code,group_binaries,outputs)\{}
 \NormalTok{  tempTable <-}\StringTok{ }\KeywordTok{GEO2R}\NormalTok{(GSE_number,platform_code,group_binaries,outputs)}
-\NormalTok{  filtTable <-}\StringTok{ }\NormalTok{tempTable[tempTable}\OperatorTok{$}\NormalTok{adj.P.Val}\OperatorTok{<}\FloatTok{0.1}\NormalTok{,]}
+\NormalTok{  filtTable <-}\StringTok{ }\NormalTok{tempTable[tempTable}\OperatorTok{$}\NormalTok{adj.P.Val}\OperatorTok{<}\FloatTok{0.25}\NormalTok{,]}
 \NormalTok{  dupTable <-}\StringTok{ }\NormalTok{filtTable[}\OperatorTok{!}\KeywordTok{duplicated}\NormalTok{(filtTable}\OperatorTok{$}\NormalTok{Gene.symbol),]}
   \KeywordTok{return}\NormalTok{(dupTable)}
 \NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Set global number of outputs here
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{num_outputs =}\StringTok{ }\DecValTok{5000}
+\end{Highlighting}
+\end{Shaded}
+
+To prevent a vroom error, run this line before analyzing the data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Sys.setenv}\NormalTok{(}\DataTypeTok{VROOM_CONNECTION_SIZE =} \DecValTok{500000}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -323,18 +340,17 @@ Function compounded to filter results by specified p value
 \textbf{DATASET CONTROL ZONE 1 OF 4} \emph{(These zones must be updated
 if adding datasets.)}
 
-Execute functions on human datasets (Note that a few data-sets have more
-than 1000 p\textless0.01)
+Execute functions on human datasets
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{#tT007 <- GEO2R_pFiltered("GSE58015","GPL571","000011111",1000)}
-\NormalTok{tT009 <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE53890"}\NormalTok{,}\StringTok{"GPL570"}\NormalTok{,}\StringTok{"XXXXXXXX00000000000XX11111111111XXXXXXXXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
-\NormalTok{tT023 <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE38718"}\NormalTok{,}\StringTok{"GPL570"}\NormalTok{,}\StringTok{"0000000000000011111111"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
-\NormalTok{tT036 <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE28422"}\NormalTok{,}\StringTok{"GPL570"}\NormalTok{,}\StringTok{"00000000XXXXXXXXXXXXXXXXXXXXXXXX111111XXXXXXXXXXXXXXXXXX0000000XXXXXXXXXXXXXXXXXXXXXXX111111XXXXXXXXXXXXXXXXXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT009 <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE53890"}\NormalTok{,}\StringTok{"GPL570"}\NormalTok{,}\StringTok{"XXXXXXXX00000000000XX11111111111XXXXXXXXX"}\NormalTok{,num_outputs)}
+\NormalTok{tT023 <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE38718"}\NormalTok{,}\StringTok{"GPL570"}\NormalTok{,}\StringTok{"0000000000000011111111"}\NormalTok{,num_outputs)}
+\NormalTok{tT036 <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE28422"}\NormalTok{,}\StringTok{"GPL570"}\NormalTok{,}\StringTok{"00000000XXXXXXXXXXXXXXXXXXXXXXXX111111XXXXXXXXXXXXXXXXXX0000000XXXXXXXXXXXXXXXXXXXXXXX111111XXXXXXXXXXXXXXXXXX"}\NormalTok{,num_outputs)}
 \NormalTok{tT037 <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE28392"}\NormalTok{,}\StringTok{"GPL570"}\NormalTok{,}\StringTok{"00000XXXXXXXXXXXXXXXX1111XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
-\NormalTok{tT038 <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE25941"}\NormalTok{,}\StringTok{"GPL570"}\NormalTok{,}\StringTok{"000000001111111111100000001111111111"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
-\NormalTok{tT044 <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE32719"}\NormalTok{,}\StringTok{"GPL570"}\NormalTok{,}\StringTok{"XXXXXXXXXXXXXX0000011111111"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT038 <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE25941"}\NormalTok{,}\StringTok{"GPL570"}\NormalTok{,}\StringTok{"000000001111111111100000001111111111"}\NormalTok{,num_outputs)}
+\NormalTok{tT044 <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE32719"}\NormalTok{,}\StringTok{"GPL570"}\NormalTok{,}\StringTok{"XXXXXXXXXXXXXX0000011111111"}\NormalTok{,num_outputs)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -342,11 +358,11 @@ Execute function on mouse datasets
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{tT000M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE71868"}\NormalTok{,}\StringTok{"GPL6885"}\NormalTok{,}\StringTok{"11110000"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
-\NormalTok{tT008M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE50821"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"00000XXXX11111"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
-\NormalTok{tT011M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE55162"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"11110000"}\NormalTok{,}\DecValTok{100}\NormalTok{)}
-\NormalTok{tT014M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE46646"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"XXXXXX000111"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
-\NormalTok{tT020M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE49543"}\NormalTok{,}\StringTok{"GPL339"}\NormalTok{,}\StringTok{"XXXXXXXXX00000000000000000111111111111111"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT000M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE71868"}\NormalTok{,}\StringTok{"GPL6885"}\NormalTok{,}\StringTok{"11110000"}\NormalTok{,num_outputs)}
+\NormalTok{tT008M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE50821"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"00000XXXX11111"}\NormalTok{,num_outputs)}
+\NormalTok{tT011M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE55162"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"11110000"}\NormalTok{,num_outputs)}
+\NormalTok{tT014M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE46646"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"XXXXXX000111"}\NormalTok{,num_outputs)}
+\NormalTok{tT020M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE49543"}\NormalTok{,}\StringTok{"GPL339"}\NormalTok{,}\StringTok{"XXXXXXXXX00000000000000000111111111111111"}\NormalTok{,num_outputs)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -354,12 +370,12 @@ More mouse datasets
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{tT043aM <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE25905"}\NormalTok{,}\StringTok{"GPL6246"}\NormalTok{,}\StringTok{"000XXXXXXXXX111XXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
-\NormalTok{tT043bM <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE25905"}\NormalTok{,}\StringTok{"GPL6246"}\NormalTok{,}\StringTok{"XXX000XXXXXXXXX111"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
-\NormalTok{tT057M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE27686"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"111XXXXXX000XXXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
-\NormalTok{tT081M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE19677"}\NormalTok{,}\StringTok{"GPL6333"}\NormalTok{,}\StringTok{"0000XXXXX1111XXXXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
-\NormalTok{tT082M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE19677"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"XXXX00001X1XX1XXX1"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
-\NormalTok{tT133M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE6323"}\NormalTok{,}\StringTok{"GPL339"}\NormalTok{,}\StringTok{"0000011111XXXXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT043aM <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE25905"}\NormalTok{,}\StringTok{"GPL6246"}\NormalTok{,}\StringTok{"000XXXXXXXXX111XXX"}\NormalTok{,num_outputs)}
+\NormalTok{tT043bM <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE25905"}\NormalTok{,}\StringTok{"GPL6246"}\NormalTok{,}\StringTok{"XXX000XXXXXXXXX111"}\NormalTok{,num_outputs)}
+\NormalTok{tT057M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE27686"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"111XXXXXX000XXXX"}\NormalTok{,num_outputs)}
+\NormalTok{tT081M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE19677"}\NormalTok{,}\StringTok{"GPL6333"}\NormalTok{,}\StringTok{"0000XXXXX1111XXXXX"}\NormalTok{,num_outputs)}
+\NormalTok{tT082M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE19677"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"XXXX00001X1XX1XXX1"}\NormalTok{,num_outputs)}
+\NormalTok{tT133M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE6323"}\NormalTok{,}\StringTok{"GPL339"}\NormalTok{,}\StringTok{"0000011111XXXXX"}\NormalTok{,num_outputs)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -367,9 +383,9 @@ More mouse datasets:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{tT097M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE11667"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"11110000XXXXXXXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
-\NormalTok{tT112M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE8150"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"0000011111XXXXXXXXXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
-\NormalTok{tT113M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE8146"}\NormalTok{,}\StringTok{"GPL81"}\NormalTok{,}\StringTok{"0000011111XXXXXXXXXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT097M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE11667"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"11110000XXXXXXXX"}\NormalTok{,num_outputs)}
+\NormalTok{tT112M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE8150"}\NormalTok{,}\StringTok{"GPL1261"}\NormalTok{,}\StringTok{"0000011111XXXXXXXXXX"}\NormalTok{,num_outputs)}
+\NormalTok{tT113M <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE8146"}\NormalTok{,}\StringTok{"GPL81"}\NormalTok{,}\StringTok{"0000011111XXXXXXXXXX"}\NormalTok{,num_outputs)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -377,13 +393,13 @@ Non-mouse, non-human datasets:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{tT058X <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE24515"}\NormalTok{,}\StringTok{"GPL1355"}\NormalTok{,}\StringTok{"000000111111"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
-\NormalTok{tT088X <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE9990"}\NormalTok{,}\StringTok{"GPL341"}\NormalTok{,}\StringTok{"XXXXXXXXXXXXXXXXXXXXXXXXXXX0000000001111111111111"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
-\NormalTok{tT092X <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE12502"}\NormalTok{,}\StringTok{"GPL3979"}\NormalTok{,}\StringTok{"111111000000"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT058X <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE24515"}\NormalTok{,}\StringTok{"GPL1355"}\NormalTok{,}\StringTok{"000000111111"}\NormalTok{,num_outputs)}
+\NormalTok{tT088X <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE9990"}\NormalTok{,}\StringTok{"GPL341"}\NormalTok{,}\StringTok{"XXXXXXXXXXXXXXXXXXXXXXXXXXX0000000001111111111111"}\NormalTok{,num_outputs)}
+\NormalTok{tT092X <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE12502"}\NormalTok{,}\StringTok{"GPL3979"}\NormalTok{,}\StringTok{"111111000000"}\NormalTok{,num_outputs)}
 
-\NormalTok{tT108aX <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE6718"}\NormalTok{,}\StringTok{"GPL1355"}\NormalTok{,}\StringTok{"1111111000000XXXXXXXXXXXXXXXXXXXXXXXXXX"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
-\NormalTok{tT108bX <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE6718"}\NormalTok{,}\StringTok{"GPL1355"}\NormalTok{,}\StringTok{"XXXXXXXXXXXXXXXXXXXXXX11000X00XXX11100X"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
-\NormalTok{tT132X <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE4270"}\NormalTok{,}\StringTok{"GPL890"}\NormalTok{,}\StringTok{"XXXXXXXXXXXXXXX00000000001111111111111"}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\NormalTok{tT108aX <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE6718"}\NormalTok{,}\StringTok{"GPL1355"}\NormalTok{,}\StringTok{"1111111000000XXXXXXXXXXXXXXXXXXXXXXXXXX"}\NormalTok{,num_outputs)}
+\NormalTok{tT108bX <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE6718"}\NormalTok{,}\StringTok{"GPL1355"}\NormalTok{,}\StringTok{"XXXXXXXXXXXXXXXXXXXXXX11000X00XXX11100X"}\NormalTok{,num_outputs)}
+\NormalTok{tT132X <-}\StringTok{ }\KeywordTok{GEO2R_pFiltered}\NormalTok{(}\StringTok{"GSE4270"}\NormalTok{,}\StringTok{"GPL890"}\NormalTok{,}\StringTok{"XXXXXXXXXXXXXXX00000000001111111111111"}\NormalTok{,num_outputs)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -401,7 +417,8 @@ Function for mouse:
 \NormalTok{  MouseSymbols =}\StringTok{ }\NormalTok{mouse_tT[,}\DecValTok{7}\NormalTok{]}
 \NormalTok{  M2H_Symbols =}\StringTok{ }\KeywordTok{mouse2human}\NormalTok{(MouseSymbols)}
 \NormalTok{  tTMerge =}\StringTok{ }\KeywordTok{merge}\NormalTok{(mouse_tT,M2H_Symbols,}\DataTypeTok{by.x =} \StringTok{"Gene.symbol"}\NormalTok{,}\DataTypeTok{by.y =} \StringTok{"mouseGene"}\NormalTok{)}
-\NormalTok{  tTReordered =}\StringTok{ }\NormalTok{tTMerge[,}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{1}\NormalTok{)]}
+\NormalTok{  tTReordered.dup =}\StringTok{ }\NormalTok{tTMerge[,}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{1}\NormalTok{)]}
+\NormalTok{  tTReordered <-}\StringTok{ }\NormalTok{tTReordered.dup[}\OperatorTok{!}\KeywordTok{duplicated}\NormalTok{(tTReordered.dup}\OperatorTok{$}\NormalTok{humanGene),]}
   \KeywordTok{return}\NormalTok{(tTReordered)}
 \NormalTok{\}}
 \end{Highlighting}
@@ -416,7 +433,8 @@ Function for non-mouse:
 \NormalTok{  X2H_Symbols =}\StringTok{ }\KeywordTok{homologene}\NormalTok{(AnimalSymbols, }\DataTypeTok{inTax =}\NormalTok{ TaxID, }\DataTypeTok{outTax =} \DecValTok{9606}\NormalTok{)}
 \NormalTok{  taxonomy =}\StringTok{ }\KeywordTok{toString}\NormalTok{(TaxID)}
 \NormalTok{  tTMerge =}\StringTok{ }\KeywordTok{merge}\NormalTok{(animal_tT,X2H_Symbols,}\DataTypeTok{by.x =} \StringTok{"Gene.symbol"}\NormalTok{,}\DataTypeTok{by.y =}\NormalTok{ taxonomy)}
-\NormalTok{  tTReordered =}\StringTok{ }\NormalTok{tTMerge[,}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{1}\NormalTok{)]}
+\NormalTok{  tTReordered.dup =}\StringTok{ }\NormalTok{tTMerge[,}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{1}\NormalTok{)]}
+\NormalTok{  tTReordered <-}\StringTok{ }\NormalTok{tTReordered.dup[}\OperatorTok{!}\KeywordTok{duplicated}\NormalTok{(tTReordered.dup}\OperatorTok{$}\StringTok{'9606'}\NormalTok{),]}
   \KeywordTok{return}\NormalTok{(tTReordered)}
 \NormalTok{\}}
 \end{Highlighting}
@@ -609,20 +627,20 @@ by commenting out here.)} Execute Reader Function
 \end{Shaded}
 
 \begin{verbatim}
-##           0
-## NREP      4
-## IDH3A     4
-## RALBP1    4
-## CS        4
-## EIF4E3    4
-## ...      ..
-## C3       -5
-## GCNT2    -5
-## SLC44A1  -5
-## LYZ     -10
-## HLA-A   -11
+##            0
+## CA4        8
+## UQCR10     8
+## SPARC      8
+## SIAH2      8
+## RTN4IP1    7
+## ...       ..
+## ARAP2     -8
+## HLA-A     -9
+## CP        -9
+## TMEM176A -11
+## EFEMP1   -11
 ## 
-## [7130 rows x 1 columns]
+## [15495 rows x 1 columns]
 \end{verbatim}
 
 Record dataframes for separate young and old counts too
@@ -636,20 +654,20 @@ Record dataframes for separate young and old counts too
 \end{Shaded}
 
 \begin{verbatim}
-##          0
-## NREP     5
-## IDH3A    5
-## ISCA1    4
-## CLMN     4
-## KIF22    4
-## ...     ..
-## AATF     1
-## ACKR3    1
-## ACYP2    1
-## ADARB1   1
-## ZNF354A  1
+##           0
+## SPARC     9
+## NREP      9
+## UQCR10    8
+## SIAH2     8
+## CA4       8
+## ...      ..
+## SHOX2     1
+## SGTA      1
+## SFTPD     1
+## SFTPC     1
+## ZMPSTE24  1
 ## 
-## [3908 rows x 1 columns]
+## [11498 rows x 1 columns]
 \end{verbatim}
 
 \begin{Shaded}
@@ -662,20 +680,33 @@ Record dataframes for separate young and old counts too
 
 \begin{verbatim}
 ##            0
-## HLA-A     11
-## LYZ       10
-## SERPINA3   6
-## GCNT2      6
-## LITAF      5
+## EFEMP1    11
+## TMEM176A  11
+## CP        10
+## HLA-A     10
+## GCNT2     10
 ## ...       ..
-## LPGAT1     1
-## LRRN4CL    1
-## LSAMP      1
-## LTBP1      1
-## ZNRF2      1
+## CAMLG      1
+## FDXR       1
+## ZNF709     1
+## BRF2       1
+## ZFR        1
 ## 
-## [4377 rows x 1 columns]
+## [11872 rows x 1 columns]
 \end{verbatim}
+
+Export all counts to CSV files
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ordered_df.to_csv(}\StringTok{"Total_Counts.csv"}\NormalTok{)}
+\NormalTok{young_counts.to_csv(}\StringTok{"Young_Counts.csv"}\NormalTok{)}
+\NormalTok{old_counts.to_csv(}\StringTok{"Old_Counts.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Note: Can skip down to section 5 from here if wanting to fast forward to
+histogram.
 
 \hypertarget{b.-show-dataset-characteristics-for-each-high-scoring-gene}{%
 \subsection{4B. Show dataset characteristics for each high-scoring
@@ -685,62 +716,58 @@ Show genes with high scores
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{subset_counts }\OperatorTok{=}\NormalTok{ ordered_df[(ordered_df[}\DecValTok{0}\NormalTok{]}\OperatorTok{>}\DecValTok{3}\NormalTok{) }\OperatorTok{|}\NormalTok{ (ordered_df[}\DecValTok{0}\NormalTok{]}\OperatorTok{<-}\DecValTok{3}\NormalTok{)]}
+\NormalTok{subset_counts }\OperatorTok{=}\NormalTok{ ordered_df[(ordered_df[}\DecValTok{0}\NormalTok{]}\OperatorTok{>}\DecValTok{6}\NormalTok{) }\OperatorTok{|}\NormalTok{ (ordered_df[}\DecValTok{0}\NormalTok{]}\OperatorTok{<-}\DecValTok{6}\NormalTok{)]}
 \NormalTok{subset_counts}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ##            0
-## NREP       4
-## IDH3A      4
-## RALBP1     4
-## CS         4
-## EIF4E3     4
-## CLN6       4
-## KIF22      4
-## PDHB       4
-## DLAT       4
-## VLDLR      4
-## ISCA1      4
-## CDC20      4
-## SUCLA2     4
-## OXCT1     -4
-## GDA       -4
-## ITGB2     -4
-## TRPS1     -4
-## GPRC5B    -4
-## IL6ST     -4
-## CNP       -4
-## S100A4    -4
-## LGALS3    -4
-## S100A6    -4
-## PLEKHB1   -4
-## C1QB      -4
-## SFRP1     -4
-## PLTP      -4
-## ICAM1     -4
-## SKAP2     -4
-## SLC6A6    -4
-## GREB1L    -4
-## PHF20     -4
-## SLC43A2   -4
-## SLPI      -4
-## PTEN      -4
-## FAM46A    -4
-## GSN       -4
-## IL13RA1   -4
-## FCGR2B    -4
-## LITAF     -4
-## TMEM176A  -5
-## GBP4      -5
-## CLEC7A    -5
-## SERPINA3  -5
-## C3        -5
-## GCNT2     -5
-## SLC44A1   -5
-## LYZ      -10
-## HLA-A    -11
+## CA4        8
+## UQCR10     8
+## SPARC      8
+## SIAH2      8
+## RTN4IP1    7
+## BRD3       7
+## DIRC2      7
+## VLDLR      7
+## EIF2D      7
+## BRWD1      7
+## AR         7
+## NREP       7
+## KIFAP3     7
+## SMYD1      7
+## CDC20      7
+## EIF4EBP1   7
+## SKAP2     -7
+## TMEM123   -7
+## CASP1     -7
+## SLC44A1   -7
+## FYB       -7
+## CFLAR     -7
+## SERPINB6  -7
+## CTSS      -7
+## CTNNA1    -7
+## FST       -7
+## LYST      -7
+## RSRC1     -7
+## EHD4      -7
+## PJA2      -7
+## C1QC      -7
+## RNF145    -7
+## GCNT2     -8
+## NPC2      -8
+## SFRP1     -8
+## PRNP      -8
+## PTPRC     -8
+## MGST1     -8
+## APOE      -8
+## ANXA4     -8
+## ARAP2     -8
+## HLA-A     -9
+## CP        -9
+## TMEM176A -11
+## EFEMP1   -11
 \end{verbatim}
 
 Create gene index
@@ -882,57 +909,53 @@ dictionary below.
 
 \begin{verbatim}
 ##           Trachea  Reproduction  Muscle  Liver  ...  Heart  Fat  Cochlea  Brain
-## NREP            0             0       1      0  ...      2    0        1      1
-## EIF4E3          0             0       1      0  ...      0    0        0      2
-## PDHB            0             0       2      0  ...      1    0        0      1
-## DLAT            0             0       2      1  ...      0    0        0      1
-## VLDLR           0             0       1      1  ...      1    0        0      1
-## ISCA1           0             0       1      0  ...      0    1        1      1
-## SUCLA2          0             0       1      0  ...      1    1        0      1
-## GDA             0             0       3      0  ...      1    0        0      1
-## TRPS1           0             0       1      0  ...      1    0        0      2
-## GPRC5B          0             0       1      0  ...      0    0        0      2
-## CNP             0             0       0      1  ...      1    0        0      2
-## PLEKHB1         0             0       1      0  ...      1    0        0      2
-## SFRP1           0             0       1      0  ...      0    1        0      1
-## GSN             0             0       1      0  ...      0    0        0      3
-## LITAF           0             0       1      0  ...      1    1        0      2
-## SLC44A1         0             0       0      0  ...      1    0        0      3
-## IDH3A           0             0       2      1  ...      0    1        0      1
-## CS              0             0       1      1  ...      1    1        0      0
-## SLPI            0             0       3      0  ...      0    0        0      0
-## PTEN            0             0       1      1  ...      0    0        0      1
-## IL13RA1         0             0       3      1  ...      0    0        1      1
-## GCNT2           0             0       2      1  ...      0    2        0      1
-## C1QB            0             0       2      0  ...      0    1        1      1
-## SKAP2           0             0       2      0  ...      1    0        0      0
-## GREB1L          0             0       2      0  ...      0    0        0      1
-## SLC43A2         0             0       2      0  ...      0    0        0      1
-## RALBP1          0             0       2      0  ...      0    0        0      0
-## OXCT1           0             0       2      0  ...      1    0        0      0
-## IL6ST           0             0       1      1  ...      0    1        0      0
-## TMEM176A        0             0       2      0  ...      0    1        0      1
-## CLN6            0             0       0      2  ...      1    0        0      0
-## KIF22           0             0       0      1  ...      0    0        0      1
-## CDC20           0             0       1      1  ...      0    0        0      0
-## S100A4          0             0       1      0  ...      1    0        1      0
-## S100A6          0             0       1      0  ...      0    0        1      1
-## PLTP            0             0       1      0  ...      1    1        0      0
-## GBP4            0             0       1      0  ...      1    1        0      0
-## C3              0             0       2      0  ...      1    0        0      1
-## LYZ             0             0       1      0  ...      1    1        1      2
-## HLA-A           0             0       1      1  ...      0    0        1      2
-## LGALS3          0             0       1      0  ...      1    0        1      1
-## ICAM1           0             0       1      0  ...      1    0        1      1
-## FAM46A          0             0       1      2  ...      1    0        0      0
-## SERPINA3        0             0       1      1  ...      1    0        1      1
-## ITGB2           1             0       0      0  ...      0    1        1      1
-## FCGR2B          0             0       0      0  ...      1    1        1      1
-## CLEC7A          0             0       0      0  ...      1    1        1      2
-## SLC6A6          0             0       1      0  ...      1    1        0      0
-## PHF20           0             0       0      1  ...      0    1        0      1
+## CA4             0             0       2      1  ...      1    1        0      2
+## UQCR10          0             0       4      0  ...      0    1        0      1
+## SIAH2           0             0       2      1  ...      0    1        1      2
+## RTN4IP1         0             0       4      0  ...      1    0        0      2
+## VLDLR           0             0       2      1  ...      2    1        0      1
+## BRWD1           0             1       1      0  ...      0    1        1      3
+## NREP            1             1       2      0  ...      2    1        1      2
+## KIFAP3          0             0       1      2  ...      0    1        0      2
+## SKAP2           0             0       3      0  ...      2    0        0      3
+## TMEM123         0             0       1      1  ...      1    1        0      2
+## SLC44A1         0             0       1      0  ...      1    2        0      3
+## FYB             1             0       1      0  ...      1    1        1      2
+## CFLAR           0             0       3      1  ...      1    2        0      3
+## SERPINB6        0             0       1      0  ...      0    2        0      2
+## CTNNA1          0             0       2      0  ...      0    1        0      3
+## RSRC1           0             0       1      1  ...      0    2        0      3
+## NPC2            0             0       1      0  ...      1    0        0      5
+## SFRP1           0             0       3      0  ...      1    1        0      2
+## PRNP            0             0       3      1  ...      1    2        0      1
+## PTPRC           1             0       0      1  ...      1    1        1      2
+## MGST1           0             0       4      1  ...      1    0        0      3
+## APOE            0             0       2      1  ...      1    1        0      3
+## ANXA4           0             0       1      0  ...      1    1        0      3
+## ARAP2           1             0       3      0  ...      0    1        0      2
+## CP              1             0       5      1  ...      1    1        0      1
+## EFEMP1          0             0       4      1  ...      1    1        0      3
+## BRD3            0             0       2      1  ...      1    0        0      2
+## DIRC2           1             0       3      1  ...      1    1        0      0
+## AR              0             0       2      2  ...      0    2        0      1
+## EIF4EBP1        0             0       3      1  ...      1    1        0      1
+## LYST            0             0       2      1  ...      1    2        0      2
+## PJA2            0             0       1      1  ...      0    1        0      2
+## GCNT2           0             1       3      2  ...      0    3        0      2
+## FST             0             0       5      0  ...      2    1        0      1
+## SPARC           1             0       4      1  ...      1    2        0      0
+## CASP1           1             0       1      1  ...      1    2        1      0
+## CTSS            1             0       2      0  ...      1    2        1      2
+## C1QC            1             1       1      0  ...      1    1        1      2
+## RNF145          0             0       1      1  ...      1    1        0      1
+## TMEM176A        0             0       3      0  ...      1    2        0      3
+## SMYD1           0             0       2      0  ...      2    1        0      1
+## EIF2D           0             0       1      1  ...      1    0        0      2
+## CDC20           0             0       2      2  ...      0    0        0      1
+## EHD4            0             0       2      1  ...      0    1        0      1
+## HLA-A           0             0       1      2  ...      2    1        1      2
 ## 
-## [49 rows x 9 columns]
+## [45 rows x 9 columns]
 \end{verbatim}
 
 \begin{Shaded}
@@ -950,17 +973,7 @@ Visualizing gene by tissue heatmap
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-31-1.pdf}
-
-Export all counts to CSV files
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ordered_df.to_csv(}\StringTok{"Total_Counts.csv"}\NormalTok{)}
-\NormalTok{young_counts.to_csv(}\StringTok{"Young_Counts.csv"}\NormalTok{)}
-\NormalTok{old_counts.to_csv(}\StringTok{"Old_Counts.csv"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-34-1.pdf}
 
 \hypertarget{score-analysis-r}{%
 \section{5. Score Analysis (R)}\label{score-analysis-r}}
@@ -973,15 +986,17 @@ Import counts data and arrange in various dataframes and lists
 \KeywordTok{colnames}\NormalTok{(TotalCounts_byGene)<-}\KeywordTok{c}\NormalTok{(}\StringTok{"Gene"}\NormalTok{,}\StringTok{"Total_Count"}\NormalTok{)}
 \NormalTok{TotalCounts_numbers <-}\StringTok{ }\NormalTok{TotalCounts_byGene[,}\DecValTok{2}\NormalTok{]}
 
-\CommentTok{#ajust HERE to change the score limit moving forward}
-\NormalTok{TC2 <-}\StringTok{ }\NormalTok{TotalCounts_byGene[}\KeywordTok{which}\NormalTok{(TotalCounts_byGene}\OperatorTok{$}\NormalTok{Total_Count }\OperatorTok{>}\StringTok{ }\DecValTok{3} \OperatorTok{|}\StringTok{ }\NormalTok{TotalCounts_byGene}\OperatorTok{$}\NormalTok{Total_Count }\OperatorTok{<}\StringTok{ }\DecValTok{-3}\NormalTok{),]}
+\CommentTok{#adjust HERE to change the score limit moving forward}
+\NormalTok{score_limit =}\StringTok{ }\DecValTok{6}
+
+\NormalTok{TC2 <-}\StringTok{ }\NormalTok{TotalCounts_byGene[}\KeywordTok{which}\NormalTok{(TotalCounts_byGene}\OperatorTok{$}\NormalTok{Total_Count }\OperatorTok{>}\StringTok{ }\NormalTok{score_limit }\OperatorTok{|}\StringTok{ }\NormalTok{TotalCounts_byGene}\OperatorTok{$}\NormalTok{Total_Count }\OperatorTok{<}\StringTok{ }\OperatorTok{-}\NormalTok{(score_limit)),]}
 
 \NormalTok{YoungCounts_byGene <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"Young_Counts.csv"}\NormalTok{)}
 \NormalTok{YoungCounts_numbers <-}\StringTok{ }\NormalTok{YoungCounts_byGene[,}\DecValTok{2}\NormalTok{]}
 \KeywordTok{colnames}\NormalTok{(YoungCounts_byGene)<-}\KeywordTok{c}\NormalTok{(}\StringTok{"Gene"}\NormalTok{,}\StringTok{"Young_Count"}\NormalTok{)}
 
 \CommentTok{#adjust HERE to change histogram left limit (1 of 2):}
-\NormalTok{YC2 <-}\StringTok{ }\NormalTok{YoungCounts_byGene[}\KeywordTok{which}\NormalTok{(YoungCounts_byGene}\OperatorTok{$}\NormalTok{Young_Count }\OperatorTok{>}\StringTok{ }\DecValTok{3}\NormalTok{),]}
+\NormalTok{YC2 <-}\StringTok{ }\NormalTok{YoungCounts_byGene[}\KeywordTok{which}\NormalTok{(YoungCounts_byGene}\OperatorTok{$}\NormalTok{Young_Count }\OperatorTok{>}\StringTok{ }\NormalTok{score_limit),]}
 \NormalTok{YC2L <-}\StringTok{ }\NormalTok{YC2[,}\DecValTok{2}\NormalTok{]}
 
 \NormalTok{OldCounts_byGene <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"Old_Counts.csv"}\NormalTok{)}
@@ -989,7 +1004,7 @@ Import counts data and arrange in various dataframes and lists
 \KeywordTok{colnames}\NormalTok{(OldCounts_byGene)<-}\KeywordTok{c}\NormalTok{(}\StringTok{"Gene"}\NormalTok{,}\StringTok{"Old_Count"}\NormalTok{)}
 
 \CommentTok{#adjust HERE to change histogram left limit (2 of 2):}
-\NormalTok{OC2 <-}\StringTok{ }\NormalTok{OldCounts_byGene[}\KeywordTok{which}\NormalTok{(OldCounts_byGene}\OperatorTok{$}\NormalTok{Old_Count }\OperatorTok{>}\StringTok{ }\DecValTok{3}\NormalTok{),]}
+\NormalTok{OC2 <-}\StringTok{ }\NormalTok{OldCounts_byGene[}\KeywordTok{which}\NormalTok{(OldCounts_byGene}\OperatorTok{$}\NormalTok{Old_Count }\OperatorTok{>}\StringTok{ }\NormalTok{score_limit),]}
 \NormalTok{OC2L <-}\StringTok{ }\NormalTok{OC2[,}\DecValTok{2}\NormalTok{]}
 
 \NormalTok{YC2}\OperatorTok{$}\NormalTok{Type <-}\StringTok{ "Young"}
@@ -1012,7 +1027,7 @@ Histogram of counts
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-34-1.pdf}
+\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-36-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1025,7 +1040,7 @@ Histogram of counts
 ## {
 ##     UseMethod("ggplot")
 ## }
-## <bytecode: 0x000000002653a5d8>
+## <bytecode: 0x0000000020bfacb8>
 ## <environment: namespace:ggplot2>
 \end{verbatim}
 
@@ -1048,7 +1063,7 @@ Number of DEGs per dataset (R)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-35-1.pdf}
+\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-37-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1090,7 +1105,7 @@ Tissue counts (R)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-37-1.pdf}
+\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-39-1.pdf}
 
 DEG counts (R)
 
@@ -1105,7 +1120,7 @@ DEG counts (R)
 \begin{verbatim}
 ## # A tibble: 9 x 3
 ##   Tissue       sum_DEGs mean_DEGs
-## * <chr>           <int>     <dbl>
+##   <chr>           <int>     <dbl>
 ## 1 Brain            2227      445.
 ## 2 Cochlea           196      196 
 ## 3 Fat              1191      397 
@@ -1134,7 +1149,12 @@ Graph of DEG counts (R)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-39-1.pdf}
+\begin{verbatim}
+## Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> =
+## "none")` instead.
+\end{verbatim}
+
+\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-41-1.pdf}
 Graph of DEG counts (R)
 
 \begin{Shaded}
@@ -1148,19 +1168,22 @@ Graph of DEG counts (R)
 \end{Shaded}
 
 \begin{verbatim}
-## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
+## Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-40-1.pdf}
+\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-42-1.pdf}
 
 \hypertarget{worm-orthologs}{%
 \section{7. Worm Orthologs}\label{worm-orthologs}}
+
+Note: score\_limit variable carried over from histogram section. Can
+replace it with a number here if needed (on line 3 below)
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{OrthoList <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"ortholist_master.csv"}\NormalTok{)}
 \NormalTok{OrthoDEGs <-}\StringTok{ }\KeywordTok{merge}\NormalTok{(TotalCounts_byGene,OrthoList,}\DataTypeTok{by.x =} \StringTok{"Gene"}\NormalTok{, }\DataTypeTok{by.y =} \StringTok{"HGNC.Symbol"}\NormalTok{, }\DataTypeTok{all.x =} \OtherTok{TRUE}\NormalTok{)}
-\NormalTok{subset_by_counts <-}\StringTok{ }\NormalTok{OrthoDEGs[}\KeywordTok{which}\NormalTok{(OrthoDEGs}\OperatorTok{$}\NormalTok{Total_Count }\OperatorTok{>}\StringTok{ }\DecValTok{3} \OperatorTok{|}\StringTok{ }\NormalTok{OrthoDEGs}\OperatorTok{$}\NormalTok{Total_Count }\OperatorTok{<}\StringTok{ }\DecValTok{-3}\NormalTok{),]}
+\NormalTok{subset_by_counts <-}\StringTok{ }\NormalTok{OrthoDEGs[}\KeywordTok{which}\NormalTok{(OrthoDEGs}\OperatorTok{$}\NormalTok{Total_Count }\OperatorTok{>}\StringTok{ }\NormalTok{score_limit }\OperatorTok{|}\StringTok{ }\NormalTok{OrthoDEGs}\OperatorTok{$}\NormalTok{Total_Count }\OperatorTok{<}\StringTok{ }\OperatorTok{-}\NormalTok{score_limit),]}
 \NormalTok{DEG_Orthologs <-}\StringTok{ }\NormalTok{subset_by_counts[,}\KeywordTok{c}\NormalTok{(}\StringTok{"Gene"}\NormalTok{,}\StringTok{"Total_Count"}\NormalTok{,}\StringTok{"Locus.ID"}\NormalTok{,}\StringTok{"Common.Name"}\NormalTok{,}\StringTok{"No..of.Programs"}\NormalTok{,}\StringTok{"Ahringer.RNAi.Clone.Location"}\NormalTok{)]}
 \KeywordTok{colnames}\NormalTok{(DEG_Orthologs) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Human.Gene"}\NormalTok{,}\StringTok{"DE.Score"}\NormalTok{,}\StringTok{"Worm.Gene"}\NormalTok{,}\StringTok{"Name"}\NormalTok{,}\StringTok{"Programs"}\NormalTok{,}\StringTok{"RNAi"}\NormalTok{)}
 \NormalTok{DEG_Orthologs}
@@ -1168,103 +1191,93 @@ Graph of DEG counts (R)
 \end{Shaded}
 
 \begin{verbatim}
-##       Human.Gene DE.Score  Worm.Gene     Name Programs                    RNAi
-## 1899        C1QB       -4       <NA>     <NA>       NA                    <NA>
-## 1914          C3       -5       <NA>     <NA>       NA                    <NA>
-## 2243       CDC20        4   ZK1307.6    fzr-1        1                II-10A17
-## 2244       CDC20        4    ZK177.6    fzy-1        1         II-4O16|II-4O18
-## 2551      CLEC7A       -5    C25B8.4 clec-266        1                  X-3D17
-## 2586        CLN6        4       <NA>     <NA>       NA                    <NA>
-## 2645         CNP       -4   F26A1.14                 1                III-2B13
-## 2942          CS        4    T20G5.2    cts-1        6                III-5O22
-## 3626        DLAT        4   F23B12.5   dlat-1        6                  V-9B17
-## 3950      EIF4E3        4       <NA>     <NA>       NA                    <NA>
-## 4218      FAM46A       -4   F55A12.9   pqn-44        4                  I-2M06
-## 4319      FCGR2B       -4       <NA>     <NA>       NA                    <NA>
-## 4606        GBP4       -5       <NA>     <NA>       NA                    <NA>
-## 4619       GCNT2       -5   F22D6.11   gly-18        4                  I-3B11
-## 4620       GCNT2       -5   F22D6.12   gly-19        4                  I-3B13
-## 4621       GCNT2       -5    F44F4.6    gly-1        4                 II-7F21
-## 4622       GCNT2       -5   C54C8.11   gly-15        4                  I-6E22
-## 4623       GCNT2       -5    T15D6.2   gly-16        4                  I-6A08
-## 4624       GCNT2       -5    T15D6.3   gly-17        4                  I-6A10
-## 4625       GCNT2       -5   T09E11.9                 1           I-6O23|I-9F14
-## 4626       GCNT2       -5    T27F6.1                 1                  I-6E24
-## 4627       GCNT2       -5    T28F3.9                 1                 IV-8C02
-## 4628       GCNT2       -5  Y51H4A.25                 1 IV-8A09|IV-8A13|IV-8A15
-## 4629       GCNT2       -5   ZK1225.2                 1                  I-6N23
-## 4630       GCNT2       -5   H41C03.3                 1        II-10G20|II-4P06
-## 4631       GCNT2       -5    R07C3.3                 1                 II-1F15
-## 4632       GCNT2       -5    T14B4.9                 1                 II-5O03
-## 4633       GCNT2       -5    F26D2.3                 1                 V-10P22
-## 4634       GCNT2       -5   F30A10.4                 1                  I-4N21
-## 4635       GCNT2       -5    F35H8.2                 1                        
-## 4636       GCNT2       -5    R07B7.6                 1                  V-8I05
-## 4637       GCNT2       -5   T09E11.6                 1                  I-9C07
-## 4638         GDA       -4   F38E11.3   cpin-1        1                 IV-4J24
-## 4853      GPRC5B       -4       <NA>     <NA>       NA                    <NA>
-## 4878      GREB1L       -4       <NA>     <NA>       NA                    <NA>
-## 4938         GSN       -4    K06A4.3   gsnl-1        3                  V-6L11
-## 5651       HLA-A      -11       <NA>     <NA>       NA                    <NA>
-## 5971       ICAM1       -4       <NA>     <NA>       NA                    <NA>
-## 5981       IDH3A        4    F43G9.1   idha-1        6                  I-4A14
-## 6056     IL13RA1       -4       <NA>     <NA>       NA                    <NA>
-## 6080       IL6ST       -4       <NA>     <NA>       NA                    <NA>
-## 6153       ISCA1        4   Y39B6A.3                 6                 V-12I14
-## 6175       ITGB2       -4   ZK1058.2    pat-3        3       III-1P02|III-8A17
-## 6424       KIF22        4       <NA>     <NA>       NA                    <NA>
-## 6626      LGALS3       -4    W09H1.6    lec-1        1                        
-## 6627      LGALS3       -4   W01A11.4   lec-10        1                  V-4D02
-## 6628      LGALS3       -4    F52H3.7    lec-2        1                 II-7I21
-## 6629      LGALS3       -4    C16H3.2    lec-9        1                  X-7J14
-## 6630      LGALS3       -4    R07B1.2    lec-7        1                  X-4J04
-## 6631      LGALS3       -4   R07B1.10    lec-8        1                  X-4J20
-## 6632      LGALS3       -4  ZK1248.16    lec-5        1        II-10A23|II-4N22
-## 6633      LGALS3       -4    C53D6.7                 1                 IV-4J09
-## 6634      LGALS3       -4    ZK892.1    lec-3        1                 II-7G19
-## 6635      LGALS3       -4    C44F1.3    lec-4        1                III-1L02
-## 6754       LITAF       -4   Y37D8A.8                 1                III-6M22
-## 6755       LITAF       -4  Y87G2A.18                 1                  I-6J06
-## 6756       LITAF       -4  Y87G2A.19                 1                        
-## 6757       LITAF       -4    F36G3.3                 4                  X-8O04
-## 6758       LITAF       -4    F16F9.1                 1                  X-4G08
-## 7012         LYZ      -10       <NA>     <NA>       NA                    <NA>
-## 8040        NREP        4       <NA>     <NA>       NA                    <NA>
-## 8233       OXCT1       -4   C05C10.3                 6                 II-7E19
-## 8433        PDHB        4    C04C3.3   pdhb-1        6                 IV-1F04
-## 8529       PHF20       -4       <NA>     <NA>       NA                    <NA>
-## 8658     PLEKHB1       -4       <NA>     <NA>       NA                    <NA>
-## 8729        PLTP       -4  F01G10.10                 1                 IV-5M20
-## 8730        PLTP       -4    F44A2.3                 1                  V-6F11
-## 8731        PLTP       -4    C55C3.1                 1                 IV-2P02
-## 8732        PLTP       -4   F10D11.6                 1           I-4K23|I-9B16
-## 9106        PTEN       -4    T07A9.6   daf-18        3                 IV-1I23
-## 9107        PTEN       -4                            1                  I-2F23
-## 9367      RALBP1        4   T23G11.5   rlbp-1        4           I-3F12|I-3F20
-## 9805      S100A4       -4       <NA>     <NA>       NA                    <NA>
-## 9806      S100A6       -4       <NA>     <NA>       NA                    <NA>
-## 10017   SERPINA3       -5    F20D6.3    srp-8        1                 V-14F19
-## 10018   SERPINA3       -5    F20D6.4    srp-7        1                 V-14F18
-## 10019   SERPINA3       -5   C03G6.19    srp-6        1                  V-5G14
-## 10020   SERPINA3       -5    C05E4.3    srp-1        1                  V-1M10
-## 10021   SERPINA3       -5    C05E4.1    srp-2        1                  V-1M06
-## 10022   SERPINA3       -5   Y32G9A.4    srp-3        1                 V-14F17
-## 10087      SFRP1       -4 Y73B6BL.21   sfrp-1        4                        
-## 10201      SKAP2       -4       <NA>     <NA>       NA                    <NA>
-## 10555    SLC43A2       -4       <NA>     <NA>       NA                    <NA>
-## 10556    SLC44A1       -5       <NA>     <NA>       NA                    <NA>
-## 10592     SLC6A6       -4    T03F7.1   snf-11        1                        
-## 10593     SLC6A6       -4    T13B5.1    snf-3        1                 II-1B02
-## 10674       SLPI       -4       <NA>     <NA>       NA                    <NA>
-## 11056     SUCLA2        4   F47B10.1   suca-1        6                  X-5C02
-## 11057     SUCLA2        4    C50F7.4   sucg-1        1                 IV-3L08
-## 11436   TMEM176A       -5       <NA>     <NA>       NA                    <NA>
-## 11825      TRPS1       -4    W09C2.1    elt-1        1                 IV-5A05
-## 11826      TRPS1       -4    F55A8.1   egl-18        1                 IV-1H19
-## 11827      TRPS1       -4   C39B10.6    elt-4        1                        
-## 11828      TRPS1       -4   F52C12.5    elt-6        1                 IV-1J07
-## 11829      TRPS1       -4    C33D3.1    elt-2        1                  X-5I11
-## 12261      VLDLR        4    T13C2.6                 6                 II-5A06
+##       Human.Gene DE.Score  Worm.Gene    Name Programs                    RNAi
+## 1867       ANXA4       -8    T07C4.9   nex-2        3       III-5F15|III-8O24
+## 1868       ANXA4       -8    ZC155.1   nex-1        1                III-2P15
+## 1965        APOE       -8       <NA>    <NA>       NA                    <NA>
+## 2008          AR        7       <NA>    <NA>       NA                    <NA>
+## 2011       ARAP2       -8   F23H11.4                3                III-1G04
+## 3086        BRD3        7  Y119C1B.8   bet-1        5                  I-9E23
+## 3087        BRD3        7    F57C7.1   bet-2        2                  X-8B17
+## 3088        BRD3        7    F59F5.7                1                  X-5K11
+## 3121       BRWD1        7       <NA>    <NA>       NA                    <NA>
+## 3338        C1QC       -7       <NA>    <NA>       NA                    <NA>
+## 3517         CA4        8    K05G3.3   cah-3        1                  X-7M16
+## 3518         CA4        8     R173.1   cah-5        1                  X-8I08
+## 3713       CASP1       -7  Y73B6BL.7   csp-2        1                        
+## 3714       CASP1       -7    C48D1.2   ced-3        1                 IV-9F04
+## 3715       CASP1       -7   Y47H9C.6   csp-3        1                  I-5P02
+## 3716       CASP1       -7  Y48E1B.13   csp-1        2                II-10A10
+## 4089       CDC20        7   ZK1307.6   fzr-1        1                II-10A17
+## 4090       CDC20        7    ZK177.6   fzy-1        1         II-4O16|II-4O18
+## 4378       CFLAR       -7       <NA>    <NA>       NA                    <NA>
+## 5195          CP       -9       <NA>    <NA>       NA                    <NA>
+## 5622      CTNNA1       -7    R13H4.4   hmp-1        5                        
+## 5701        CTSS       -7   R09F10.1                1                  X-4A20
+## 5702        CTSS       -7    F41E6.6 tag-196        1                  V-6K19
+## 5703        CTSS       -7    T03E6.7   cpl-1        2                 V-11I07
+## 6744       DIRC2        7    C05G5.1                1                  X-6H18
+## 6745       DIRC2        7    C42C1.8                1                 IV-6D23
+## 6746       DIRC2        7    B0416.5                1                  X-4N07
+## 7265      EFEMP1      -11   F56H11.1   fbl-1        1         IV-4N18|IV-4P14
+## 7314        EHD4       -7    W06H8.1   rme-1        4                 V-14F01
+## 7350       EIF2D        7    C25H3.4                6        II-10E20|II-4H08
+## 7383    EIF4EBP1        7       <NA>    <NA>       NA                    <NA>
+## 8593         FST       -7       <NA>    <NA>       NA                    <NA>
+## 8653         FYB       -7       <NA>    <NA>       NA                    <NA>
+## 8967       GCNT2       -8   F22D6.11  gly-18        4                  I-3B11
+## 8968       GCNT2       -8   F22D6.12  gly-19        4                  I-3B13
+## 8969       GCNT2       -8    T15D6.2  gly-16        4                  I-6A08
+## 8970       GCNT2       -8    R07C3.3                1                 II-1F15
+## 8971       GCNT2       -8    T27F6.1                1                  I-6E24
+## 8972       GCNT2       -8    F44F4.6   gly-1        4                 II-7F21
+## 8973       GCNT2       -8  Y51H4A.25                1 IV-8A09|IV-8A13|IV-8A15
+## 8974       GCNT2       -8   ZK1225.2                1                  I-6N23
+## 8975       GCNT2       -8    T15D6.3  gly-17        4                  I-6A10
+## 8976       GCNT2       -8    R07B7.6                1                  V-8I05
+## 8977       GCNT2       -8   C54C8.11  gly-15        4                  I-6E22
+## 8978       GCNT2       -8    T14B4.9                1                 II-5O03
+## 8979       GCNT2       -8   T09E11.6                1                  I-9C07
+## 8980       GCNT2       -8   T09E11.9                1           I-6O23|I-9F14
+## 8981       GCNT2       -8   H41C03.3                1        II-10G20|II-4P06
+## 8982       GCNT2       -8    T28F3.9                1                 IV-8C02
+## 8983       GCNT2       -8    F26D2.3                1                 V-10P22
+## 8984       GCNT2       -8   F30A10.4                1                  I-4N21
+## 8985       GCNT2       -8    F35H8.2                1                        
+## 10813      HLA-A       -9       <NA>    <NA>       NA                    <NA>
+## 12394     KIFAP3        7    F08F8.3   kap-1        6                III-3N14
+## 13751       LYST       -7   T01H10.8  lyst-1        1                  X-5F04
+## 14440      MGST1       -8       <NA>    <NA>       NA                    <NA>
+## 15838       NPC2       -8     R148.6   heh-1        1                III-1P05
+## 15947       NREP        7       <NA>    <NA>       NA                    <NA>
+## 17402       PJA2       -7 Y54E10BR.3                1                  I-7N18
+## 18146       PRNP       -8       <NA>    <NA>       NA                    <NA>
+## 18585      PTPRC       -8    F56D1.4   clr-1        1                 II-4M08
+## 19399     RNF145       -7  Y119C1B.5                5                  I-9E22
+## 19676      RSRC1       -7   C10G11.9  spch-2        1                  I-3C03
+## 19677      RSRC1       -7    C04G2.8  spch-1        1                 IV-5E06
+## 19678      RSRC1       -7  Y57G11C.9                0                 IV-9C17
+## 19679      RSRC1       -7    T27A3.4  spch-3        1                  I-2J16
+## 19692    RTN4IP1        7    F56H1.6   rad-8        6                  I-9F05
+## 20202   SERPINB6       -7   Y32G9A.4   srp-3        1                 V-14F17
+## 20203   SERPINB6       -7    C05E4.1   srp-2        2                  V-1M06
+## 20204   SERPINB6       -7    F20D6.3   srp-8        1                 V-14F19
+## 20205   SERPINB6       -7    C05E4.3   srp-1        2                  V-1M10
+## 20206   SERPINB6       -7   C03G6.19   srp-6        3                  V-5G14
+## 20207   SERPINB6       -7    F20D6.4   srp-7        3                 V-14F18
+## 20318      SFRP1       -8 Y73B6BL.21  sfrp-1        4                        
+## 20551      SIAH2        8 Y37E11AR.2  siah-1        4                 IV-8K18
+## 20612      SKAP2       -7       <NA>    <NA>       NA                    <NA>
+## 21261    SLC44A1       -7       <NA>    <NA>       NA                    <NA>
+## 21636      SMYD1        7    T22A3.4  set-18        3                  I-5G16
+## 21637      SMYD1        7      ZC8.3  set-30        2           X-2L08|X-2L10
+## 21638      SMYD1        7    F33H2.7  set-10        1                  I-7M22
+## 21639      SMYD1        7    R06F6.4  set-14        3                 II-7D01
+## 21851      SPARC        8   C44B12.2   ost-1        5                 IV-9H03
+## 23082    TMEM123       -7       <NA>    <NA>       NA                    <NA>
+## 23136   TMEM176A      -11       <NA>    <NA>       NA                    <NA>
+## 24949     UQCR10        8       <NA>    <NA>       NA                    <NA>
+## 25145      VLDLR        7    T13C2.6                6                 II-5A06
 \end{verbatim}
 
 \begin{Shaded}
@@ -1283,7 +1296,7 @@ Percent of mammalian gene hits for which worm orthologs are available:
 \end{Shaded}
 
 \begin{verbatim}
-## Number of human genes queried: 49
+## Number of human genes queried: 45
 \end{verbatim}
 
 \begin{Shaded}
@@ -1295,7 +1308,7 @@ Percent of mammalian gene hits for which worm orthologs are available:
 
 \begin{verbatim}
 ## 
-## Number without orthologs: 24
+## Number without orthologs: 18
 \end{verbatim}
 
 \begin{Shaded}
@@ -1308,7 +1321,7 @@ Percent of mammalian gene hits for which worm orthologs are available:
 
 \begin{verbatim}
 ## 
-## Fraction with orthologs: 0.5102041
+## Fraction with orthologs: 0.6
 \end{verbatim}
 
 Pie Chart
@@ -1321,7 +1334,7 @@ Pie Chart
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-43-1.pdf}
+\includegraphics{Thesis_DualCodeTest_files/figure-latex/unnamed-chunk-45-1.pdf}
 
 Print human gene names for online searches:
 
@@ -1332,7 +1345,7 @@ Print human gene names for online searches:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "C1QB, C3, CDC20, CDC20, CLEC7A, CLN6, CNP, CS, DLAT, EIF4E3, FAM46A, FCGR2B, GBP4, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GDA, GPRC5B, GREB1L, GSN, HLA-A, ICAM1, IDH3A, IL13RA1, IL6ST, ISCA1, ITGB2, KIF22, LGALS3, LGALS3, LGALS3, LGALS3, LGALS3, LGALS3, LGALS3, LGALS3, LGALS3, LGALS3, LITAF, LITAF, LITAF, LITAF, LITAF, LYZ, NREP, OXCT1, PDHB, PHF20, PLEKHB1, PLTP, PLTP, PLTP, PLTP, PTEN, PTEN, RALBP1, S100A4, S100A6, SERPINA3, SERPINA3, SERPINA3, SERPINA3, SERPINA3, SERPINA3, SFRP1, SKAP2, SLC43A2, SLC44A1, SLC6A6, SLC6A6, SLPI, SUCLA2, SUCLA2, TMEM176A, TRPS1, TRPS1, TRPS1, TRPS1, TRPS1, VLDLR"
+## [1] "ANXA4, ANXA4, APOE, AR, ARAP2, BRD3, BRD3, BRD3, BRWD1, C1QC, CA4, CA4, CASP1, CASP1, CASP1, CASP1, CDC20, CDC20, CFLAR, CP, CTNNA1, CTSS, CTSS, CTSS, DIRC2, DIRC2, DIRC2, EFEMP1, EHD4, EIF2D, EIF4EBP1, FST, FYB, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, GCNT2, HLA-A, KIFAP3, LYST, MGST1, NPC2, NREP, PJA2, PRNP, PTPRC, RNF145, RSRC1, RSRC1, RSRC1, RSRC1, RTN4IP1, SERPINB6, SERPINB6, SERPINB6, SERPINB6, SERPINB6, SERPINB6, SFRP1, SIAH2, SKAP2, SLC44A1, SMYD1, SMYD1, SMYD1, SMYD1, SPARC, TMEM123, TMEM176A, UQCR10, VLDLR"
 \end{verbatim}
 
 Print c.~elegans gene names for online searches:
@@ -1344,7 +1357,7 @@ Print c.~elegans gene names for online searches:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "NA, NA, fzr-1, fzy-1, clec-266, NA, , cts-1, dlat-1, NA, pqn-44, NA, NA, gly-18, gly-19, gly-1, gly-15, gly-16, gly-17, , , , , , , , , , , , , , cpin-1, NA, NA, gsnl-1, NA, NA, idha-1, NA, NA, , pat-3, NA, lec-1, lec-10, lec-2, lec-9, lec-7, lec-8, lec-5, , lec-3, lec-4, , , , , , NA, NA, , pdhb-1, NA, NA, , , , , daf-18, , rlbp-1, NA, NA, srp-8, srp-7, srp-6, srp-1, srp-2, srp-3, sfrp-1, NA, NA, NA, snf-11, snf-3, NA, suca-1, sucg-1, NA, elt-1, egl-18, elt-4, elt-6, elt-2, "
+## [1] "nex-2, nex-1, NA, NA, , bet-1, bet-2, , NA, NA, cah-3, cah-5, csp-2, ced-3, csp-3, csp-1, fzr-1, fzy-1, NA, NA, hmp-1, , tag-196, cpl-1, , , , fbl-1, rme-1, , NA, NA, NA, gly-18, gly-19, gly-16, , , gly-1, , , gly-17, , gly-15, , , , , , , , , NA, kap-1, lyst-1, NA, heh-1, NA, , NA, clr-1, , spch-2, spch-1, , spch-3, rad-8, srp-3, srp-2, srp-8, srp-1, srp-6, srp-7, sfrp-1, siah-1, NA, NA, set-18, set-30, set-10, set-14, ost-1, NA, NA, NA, "
 \end{verbatim}
 
 \end{document}
