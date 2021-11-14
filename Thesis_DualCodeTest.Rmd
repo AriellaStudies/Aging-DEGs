@@ -234,7 +234,8 @@ M2H <- function(mouse_tT){
   MouseSymbols = mouse_tT[,7]
   M2H_Symbols = mouse2human(MouseSymbols)
   tTMerge = merge(mouse_tT,M2H_Symbols,by.x = "Gene.symbol",by.y = "mouseGene")
-  tTReordered = tTMerge[,c(2,3,4,5,6,7,9,8,1)]
+  tTReordered.dup = tTMerge[,c(2,3,4,5,6,7,9,8,1)]
+  tTReordered <- tTReordered.dup[!duplicated(tTReordered.dup$humanGene),]
   return(tTReordered)
 }
 ```
@@ -246,7 +247,8 @@ X2H <- function(animal_tT,TaxID){
   X2H_Symbols = homologene(AnimalSymbols, inTax = TaxID, outTax = 9606)
   taxonomy = toString(TaxID)
   tTMerge = merge(animal_tT,X2H_Symbols,by.x = "Gene.symbol",by.y = taxonomy)
-  tTReordered = tTMerge[,c(2,3,4,5,6,7,9,8,1)]
+  tTReordered.dup = tTMerge[,c(2,3,4,5,6,7,9,8,1)]
+  tTReordered <- tTReordered.dup[!duplicated(tTReordered.dup$'9606'),]
   return(tTReordered)
 }
 ```
@@ -432,7 +434,7 @@ Note: Can skip down to section 5 from here if wanting to fast forward to histogr
 ## 4B. Show dataset characteristics for each high-scoring gene
 Show genes with high scores
 ```{python}
-subset_counts = ordered_df[(ordered_df[0]>5) | (ordered_df[0]<-5)]
+subset_counts = ordered_df[(ordered_df[0]>6) | (ordered_df[0]<-6)]
 subset_counts
 ```
 Create gene index
