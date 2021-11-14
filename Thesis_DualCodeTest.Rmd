@@ -165,6 +165,12 @@ Set global number of outputs here
 num_outputs = 5000
 ```
 
+To prevent a vroom error, run this line before analyzing the data:
+```{r}
+Sys.setenv(VROOM_CONNECTION_SIZE = 500000)
+```
+
+
 ## 3.2 Import Datasets
 
 **DATASET CONTROL ZONE 1 OF 4**
