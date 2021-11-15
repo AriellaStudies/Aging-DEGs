@@ -173,7 +173,7 @@ Sys.setenv(VROOM_CONNECTION_SIZE = 500000)
 
 ## 3.2 Import Datasets
 
-**DATASET CONTROL ZONE 1 OF 4**
+**DATASET CONTROL ZONE 1 OF 5**
 *(These zones must be updated if adding datasets.)*
 
 Execute functions on human datasets
@@ -254,7 +254,7 @@ X2H <- function(animal_tT,TaxID){
 ```
 
 
-**DATASET CONTROL ZONE 2 OF 4 (NONHUMAN ONLY)**
+**DATASET CONTROL ZONE 2 OF 5 (NONHUMAN ONLY)**
 Execution for mouse:
 ```{r message = FALSE, warning = FALSE}
 tT000 <- M2H(tT000M)
@@ -296,7 +296,7 @@ dfM1Test #0 Results
 
 ## 3.4 Export Results
 
-**DATASET CONTROL ZONE 3 OF 4**
+**DATASET CONTROL ZONE 3 OF 5**
 Write to files
 ```{r message = FALSE, warning=FALSE}
 #Human:
@@ -364,7 +364,7 @@ def file_to_dict(file_name):
     file.close()
 ```
 
-**DATASET CONTROL ZONE 4 OF 4**
+**DATASET CONTROL ZONE 4 OF 5**
 *(Exclude datasets from counts by commenting out here.)*
 Execute Reader Function
 ```{python}
@@ -610,11 +610,64 @@ ggplot
 ```
 
 # 6. Dataset Characteristics (R)
-**NOTE** Before running these next sessions, it's necessary to manually fill in the # DEGs column in the datasets csv file in excel. Can make this automatic in the future, but while the datasets are in flux, it is easier to manage this part manually.
+**NOTE** Before running these next sessions, it was necessary to manually fill in the # DEGs column in the datasets csv file in excel. Here I am adding two new chunks to update the #DEGs column internally to a dataframe called DS.
+
+**DATASET CONTROL ZONE 5 OF 5**
+*(Exclude datasets from counts by commenting out here.)*
+First create the DS dataframe by reading in the 221 datasets file, and modify the index numbers to clear up issues where the same dataset was used for two different analyses because it contained data from two different tissue types.
+```{r}
+DS <- read.csv("221_Datasets.csv")
+
+DS[44,1]<-"43a"
+DS[45,1]<-"43b"
+DS[110,1]<-"108a"
+DS[111,1]<-"108b"
+```
+
+Second, run a function to replace the DEG counts in the DS dataframe with counts corresponding to the length of each DEG dataset (all the tT objects).
+```{r}
+DSS_Function <- function(dataset_df,index_char){
+  new_DEG_count<-length(dataset_df[,1])
+  DS[which(DS$Index==index_char),9]<-new_DEG_count
+  DSS_Output <- DS
+  return(DSS_Output)
+}
+
+#Human:
+DS<-DSS_Function(tT009,"9")
+DS<-DSS_Function(tT023,"23")
+DS<-DSS_Function(tT036,"36")
+DS<-DSS_Function(tT037,"37") 
+DS<-DSS_Function(tT038,"38")
+DS<-DSS_Function(tT044,"44")
+#Mouse:
+DS<-DSS_Function(tT000,"0")
+DS<-DSS_Function(tT008,"8")
+DS<-DSS_Function(tT011,"11")
+DS<-DSS_Function(tT014,"14")
+DS<-DSS_Function(tT020,"20")
+DS<-DSS_Function(tT043a,"43a")
+DS<-DSS_Function(tT043b,"43b")
+DS<-DSS_Function(tT057,"57")
+#DS<-DSS_Function(tT081,"81") excluded as repeat
+DS<-DSS_Function(tT082,"82")
+DS<-DSS_Function(tT097,"97")
+DS<-DSS_Function(tT112,"112")
+DS<-DSS_Function(tT113,"113")
+DS<-DSS_Function(tT133,"133")
+#Other:
+DS<-DSS_Function(tT058,"58")
+DS<-DSS_Function(tT088,"88")
+DS<-DSS_Function(tT092,"92")
+DS<-DSS_Function(tT108a,"108a")
+DS<-DSS_Function(tT108b,"108b")
+DS<-DSS_Function(tT132,"132")
+```
+
+Now the same analyses should be able to proceed as before, but with automatically updated DEG counts:
 
 Number of DEGs per dataset (R)
 ```{r}
-DS <- read.csv("221_Datasets.csv")
 boxplot(DS$DEGs, horizontal=TRUE, main="Number of DEGs per Dataset")
 text(x=fivenum(DS$DEGs), labels =fivenum(DS$DEGs), y=1.25)
 #Note the middle value is median (50th percentile), not mean.
