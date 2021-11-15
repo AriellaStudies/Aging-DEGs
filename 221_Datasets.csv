@@ -6,7 +6,7 @@ Index,GSE,Organism,Platform,Samples,Exclusion,Tissue,Subtype,DEGs,Notes
 4,GSE52509,Mus musculus,GPL6885,NA,Time_Course,,,,
 5,GSE58315,Homo sapiens,GPL11532,NA,Developmental,,,,
 6,GSE56323,Mus musculus,GPL6885,NA,Developmental,,,,
-7,GSE58015,Homo sapiens,GPL571,11111,Zero_DEGs,,,,Monocyte-derived dendritic cells
+7,GSE58015,Homo sapiens,GPL571,"""000011111""",NA,Immune,Dendritic cells,2,Monocyte-derived dendritic cells; good candidate for top 100 iteration bc many have p=0.253 just past wide-net threshold
 8,GSE50821,Mus musculus,GPL1261,00000XXXX11111,NA,Muscle,Purified skeletal muscle satellite cells,667,"Young vs. old, excluded small middle-age group"
 9,GSE53890,Homo sapiens,GPL570,XXXXXXXX00000000000XX11111111111XXXXXXXXX,NA,Brain,Frontal Cortex,793,Continuous i.e. Can choose individual ages; Decided on 30-60 vs 70-90 (excluded 61-69)
 10,GSE49346,Mus musculus,GPL1261,NA,Developmental,,,,

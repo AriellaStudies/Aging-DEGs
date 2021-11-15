@@ -173,12 +173,12 @@ Sys.setenv(VROOM_CONNECTION_SIZE = 500000)
 
 ## 3.2 Import Datasets
 
-**DATASET CONTROL ZONE 1 OF 5**
+**DATASET CONTROL ZONE 1 OF 6**
 *(These zones must be updated if adding datasets.)*
 
 Execute functions on human datasets
 ```{r message = FALSE, warning=FALSE}
-#tT007 <- GEO2R_pFiltered("GSE58015","GPL571","000011111",1000)
+tT007 <- GEO2R_pFiltered("GSE58015","GPL571","000011111",1000)
 tT009 <- GEO2R_pFiltered("GSE53890","GPL570","XXXXXXXX00000000000XX11111111111XXXXXXXXX",num_outputs)
 tT023 <- GEO2R_pFiltered("GSE38718","GPL570","0000000000000011111111",num_outputs)
 tT036 <- GEO2R_pFiltered("GSE28422","GPL570","00000000XXXXXXXXXXXXXXXXXXXXXXXX111111XXXXXXXXXXXXXXXXXX0000000XXXXXXXXXXXXXXXXXXXXXXX111111XXXXXXXXXXXXXXXXXX",num_outputs)
@@ -254,7 +254,7 @@ X2H <- function(animal_tT,TaxID){
 ```
 
 
-**DATASET CONTROL ZONE 2 OF 5 (NONHUMAN ONLY)**
+**DATASET CONTROL ZONE 2 OF 6 (NONHUMAN ONLY)**
 Execution for mouse:
 ```{r message = FALSE, warning = FALSE}
 tT000 <- M2H(tT000M)
@@ -296,10 +296,11 @@ dfM1Test #0 Results
 
 ## 3.4 Export Results
 
-**DATASET CONTROL ZONE 3 OF 5**
+**DATASET CONTROL ZONE 3 OF 6**
 Write to files
 ```{r message = FALSE, warning=FALSE}
 #Human:
+write.table(tT007, file="tT007.txt", row.names=F, sep="\t")
 write.table(tT009, file="tT009.txt", row.names=F, sep="\t")
 write.table(tT023, file="tT023.txt", row.names=F, sep="\t")
 write.table(tT036, file="tT036.txt", row.names=F, sep="\t")
@@ -364,7 +365,7 @@ def file_to_dict(file_name):
     file.close()
 ```
 
-**DATASET CONTROL ZONE 4 OF 5**
+**DATASET CONTROL ZONE 4 OF 6**
 *(Exclude datasets from counts by commenting out here.)*
 Execute Reader Function
 ```{python}
@@ -373,6 +374,7 @@ old_dict = {}
 total_dict = {}
 
 #Human
+file_to_dict('tT007.txt')
 file_to_dict('tT009.txt')
 file_to_dict('tT023.txt')
 file_to_dict('tT036.txt')
@@ -433,6 +435,7 @@ Note: Can skip down to section 5 from here if wanting to fast forward to histogr
 
 ## 4B. Show dataset characteristics for each high-scoring gene
 Show genes with high scores
+*Note: adjust HERE to change the score limit for section 4B*
 ```{python}
 subset_counts = ordered_df[(ordered_df[0]>6) | (ordered_df[0]<-6)]
 subset_counts
@@ -498,12 +501,13 @@ def tissues_for_hits(file_name):
   file.close()
 ```
 
-
+**DATASET CONTROL ZONE 5 OF 6**
 Execute function and print results:
 ```{python}
 gene_complex_dictionary = {}
 
 #Human
+tissues_for_hits('tT007.txt')
 tissues_for_hits('tT009.txt')
 tissues_for_hits('tT023.txt')
 tissues_for_hits('tT036.txt')
@@ -612,7 +616,6 @@ ggplot
 # 6. Dataset Characteristics (R)
 **NOTE** Before running these next sessions, it was necessary to manually fill in the # DEGs column in the datasets csv file in excel. Here I am adding two new chunks to update the #DEGs column internally to a dataframe called DS.
 
-**DATASET CONTROL ZONE 5 OF 5**
 *(Exclude datasets from counts by commenting out here.)*
 First create the DS dataframe by reading in the 221 datasets file, and modify the index numbers to clear up issues where the same dataset was used for two different analyses because it contained data from two different tissue types.
 ```{r}
@@ -625,6 +628,7 @@ DS[111,1]<-"108b"
 ```
 
 Second, run a function to replace the DEG counts in the DS dataframe with counts corresponding to the length of each DEG dataset (all the tT objects).
+**DATASET CONTROL ZONE 6 OF 6**
 ```{r}
 DSS_Function <- function(dataset_df,index_char){
   new_DEG_count<-length(dataset_df[,1])
@@ -634,6 +638,7 @@ DSS_Function <- function(dataset_df,index_char){
 }
 
 #Human:
+DS<-DSS_Function(tT007,"7")
 DS<-DSS_Function(tT009,"9")
 DS<-DSS_Function(tT023,"23")
 DS<-DSS_Function(tT036,"36")
