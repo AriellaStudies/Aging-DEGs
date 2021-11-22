@@ -53,6 +53,7 @@ Python Packages
 import pandas as pd
 import regex as re
 import seaborn as sns
+import matplotlib.pyplot as plt
 ```
 
 # 1. Dataset Management (Python)
@@ -563,9 +564,19 @@ pd.DataFrame.to_csv(simpleGCD_df,"simpleGCD.csv")
 Visualizing gene by tissue heatmap
 ```{python}
 ax = sns.heatmap(simpleGCD_df, cmap="YlGnBu", xticklabels=True, yticklabels=True)
+ax.figure.tight_layout()
 ax
-```
 
+```
+Visualizing gene by tissue heatmap - listed alphabetically and high-res?
+```{python}
+simpleGCD_df_alpha = pd.DataFrame.sort_index(simpleGCD_df)
+plt.figure(figsize = (6,8),dpi=600)
+ax = sns.heatmap(simpleGCD_df_alpha, cmap="YlGnBu", xticklabels=True, yticklabels=True)
+ax.figure.tight_layout()
+ax
+
+```
 
 # 5. Score Analysis (R)
 Import counts data and arrange in various dataframes and lists
