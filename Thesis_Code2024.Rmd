@@ -29,15 +29,15 @@ install.packages('dplyr')
 install.packages('svglite')
 ```
 Open Libraries
-```{r include=FALSE}
-library(GEOquery)
-library(limma)
-library(umap)
-library(reticulate)
-library(knitr)
-library(homologene)
-library(ggplot2)
-library(dplyr)
+```{r setup, include=FALSE}
+library(GEOquery); print("Loaded GEOquery")
+library(limma); print("Loaded limma")
+library(umap); print("Loaded umap")
+library(reticulate); print("Loaded reticulate")
+library(knitr); print("Loaded knitr")
+library(homologene); print("Loaded homologene")
+library(ggplot2); print("Loaded ggplot2")
+library(dplyr); print("Loaded dplyr")
 ```
 
 Use Correct Python Interpreter
@@ -65,6 +65,16 @@ import matplotlib.pyplot as plt
 print("Pandas version:", pd.__version__)
 print("Seaborn version:", sns.__version__)
 ```
+Set Working Directories
+```{r setup, include=FALSE}
+setwd("C:/Users/ariel/OneDrive/Documents/GitHub/Aging-DEGs")
+```
+
+```{python}
+import os
+print("Current Working Directory:", os.getcwd())
+```
+
 
 # 1. Dataset Management (Python)
 NCBI GEO was searched for expression datasets on 03/02/2021, filtered to mammalian species with age sets, with 221 results. Results were exported as a detailed text file, then parsed into a dataframe using Python below.
@@ -347,6 +357,7 @@ write.table(tT132, file="tT132.txt", row.names=F, sep="\t")
 Define Reader Function
 ```{python}
 def file_to_dict(file_name):
+  try:
     file = open(file_name)
     header = file.readline()
     for line in file:
@@ -374,6 +385,8 @@ def file_to_dict(file_name):
           old_dict[geneID] = 1
           total_dict[geneID] = -1
     file.close()
+  except Exception as e:
+        print(f"Error processing file {file_name}: {str(e)}")
 ```
 
 **DATASET CONTROL ZONE 4 OF 6**
@@ -430,12 +443,12 @@ Record dataframes for separate young and old counts too
 young_df = pd.DataFrame.from_dict(young_dict, orient='index')
 young_counts = young_df.sort_values(by=0, ascending=False)
 young_counts
+print(young_counts.head())
 
 old_df = pd.DataFrame.from_dict(old_dict, orient='index')
 old_counts = old_df.sort_values(by=0, ascending=False)
 old_counts
 ```
-
 Export all counts to CSV files
 ```{python }
 ordered_df.to_csv("Total_Counts.csv")
@@ -444,9 +457,37 @@ old_counts.to_csv("Old_Counts.csv")
 ```
 Note: Can skip down to section 5 from here if wanting to fast forward to histogram.
 
-## 4B. Show dataset characteristics for each high-scoring gene
+## 4B. Querying Individual DEG Scores
+TEMP: Tests Interrogate Individual Rows
+```{python}
+ordered_df.head()
+print(ordered_df.head())
+print(ordered_df.loc['SPARC'])
+```
+Set Function
+```{python}
+def print_gene_scores(gene_name):
+    try:
+        # Retrieve and print the score from each dataframe
+        print(f"Scores for {gene_name}:")
+        print(f"Ordered Score: {ordered_df.loc[gene_name].item()}")
+        print(f"Old Count Score: {old_counts.loc[gene_name].item()}")
+        print(f"Young Count Score: {young_counts.loc[gene_name].item()}")
+    except KeyError:
+        # This block executes if the gene_name is not found in one of the dataframes
+        print(f"Gene {gene_name} not found in one or more dataframes.")
+
+```
+
+Try Function
+```{python}
+print_gene_scores('SPARC')
+print_gene_scores('EFEMP1')
+```
+
+## 4C. Show dataset characteristics for each high-scoring gene
 Show genes with high scores
-*Note: adjust HERE to change the score limit for section 4B*
+*Note: adjust HERE to change the score limit for section 4C*
 ```{python}
 subset_counts = ordered_df[(ordered_df[0]>6) | (ordered_df[0]<-6)]
 subset_counts
@@ -456,23 +497,32 @@ Create gene index
 gene_index = subset_counts.index
 gene_index = list(gene_index)
 ```
+
 Create indices for dataset characteristics
+(Adding encoding to deal with new encoding errors)
 ```{python}
-file = open("221_Datasets.csv")
-header = file.readline()
-indices = [] #0
-animals = [] #2
-tissues = [] #6
-for line in file:
-  row = line.strip().split(',')
-  index = row[0]
-  animal = row[2]
-  tissue = row[6]
-  indices.append(index)
-  animals.append(animal)
-  tissues.append(tissue)
-file.close()
+try:
+    # Try opening with 'cp1252', which is common in Windows and might resolve the issue
+    file = open("221_Datasets.csv", "r", encoding='cp1252')
+    header = file.readline()
+    indices = [] #0
+    animals = [] #2
+    tissues = [] #6
+    for line in file:
+      row = line.strip().split(',')
+      index = row[0]
+      animal = row[2]
+      tissue = row[6]
+      indices.append(index)
+      animals.append(animal)
+      tissues.append(tissue)
+    file.close()
+except UnicodeDecodeError as e:
+    print(f"Failed to read file with cp1252 encoding due to: {e}")
+
 ```
+
+
 Define function to list all datasets (and their characteristics) contributing to each high-scoring gene:
 ```{python}
 def tissues_for_hits(file_name):
@@ -576,7 +626,7 @@ Visualizing gene by tissue heatmap
 ax = sns.heatmap(simpleGCD_df, cmap="YlGnBu", xticklabels=True, yticklabels=True)
 ax.figure.tight_layout()
 ax
-
+plt.show()
 ```
 Visualizing gene by tissue heatmap - listed alphabetically and high-res?
 ```{python}
@@ -586,7 +636,35 @@ ax = sns.heatmap(simpleGCD_df_alpha, cmap="YlGnBu", xticklabels=True, yticklabel
 ax.figure.tight_layout()
 plt.savefig('heatmaptest.svg')
 ax
+plt.show()
 ```
+Add a subset plot for the final 6 genes
+```{python}
+# List of genes of interest
+genes_of_interest = ['SPARC', 'CDC20', 'RSRC1', 'CA4', 'CASP1', 'DIRC2']
+
+# Assuming 'simpleGCD_df' is your DataFrame and gene names are the index
+# Filter the DataFrame to include only your genes of interest
+filtered_df = simpleGCD_df.loc[genes_of_interest]
+
+# Sort the DataFrame by index in case the gene order is important
+filtered_df_alpha = filtered_df.sort_index()
+
+# Create the heatmap
+plt.figure(figsize=(6, 8), dpi=600)
+ax = sns.heatmap(filtered_df_alpha, cmap="YlGnBu", xticklabels=True, yticklabels=True)
+
+# Use tight_layout to adjust subplot params
+ax.figure.tight_layout()
+
+# Save the figure if needed
+plt.savefig('heatmap_specific_genes.svg')
+
+# Display the plot
+plt.show()
+```
+
+
 
 # 5. Score Analysis (R)
 Import counts data and arrange in various dataframes and lists
