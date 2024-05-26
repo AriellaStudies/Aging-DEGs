@@ -457,7 +457,66 @@ old_counts.to_csv("Old_Counts.csv")
 ```
 Note: Can skip down to section 5 from here if wanting to fast forward to histogram.
 
-## 4B. Querying Individual DEG Scores
+## 4B. Trial: Enhanced version of section 4A function for use in later analysis
+
+Enhanced Reader Function
+```{python}
+def enhanced_file_to_dict(file_name, young_dict_ext, old_dict_ext, total_dict_ext):
+    try:
+        file = open(file_name)
+        header = file.readline()
+        for line in file:
+            row = line.strip().replace('"', '').split('\t')
+            logFC = float(row[5])
+            geneID = row[6]
+            dataset_id = file_name  # Assuming file_name effectively represents the dataset ID
+
+            # Update the young dictionary for overexpression
+            if logFC > 0:
+                if geneID not in young_dict_ext:
+                    young_dict_ext[geneID] = {'count': 0, 'datasets': []}
+                young_dict_ext[geneID]['count'] += 1
+                young_dict_ext[geneID]['datasets'].append(dataset_id)
+
+            # Update the old dictionary for underexpression
+            if logFC < 0:
+                if geneID not in old_dict_ext:
+                    old_dict_ext[geneID] = {'count': 0, 'datasets': []}
+                old_dict_ext[geneID]['count'] += 1
+                old_dict_ext[geneID]['datasets'].append(dataset_id)
+
+            # Update the total dictionary for total counts
+            if geneID not in total_dict_ext:
+                total_dict_ext[geneID] = {'count': 0, 'datasets': []}
+            total_dict_ext[geneID]['count'] += 1
+            total_dict_ext[geneID]['datasets'].append(dataset_id)
+
+        file.close()
+    except Exception as e:
+        print(f"Error processing file {file_name}: {str(e)}")
+
+
+```
+
+Executing Enhanced Reader Function
+```{python}
+# New dictionaries to store extended information
+young_dict_ext = {}
+old_dict_ext = {}
+total_dict_ext = {}
+
+# List of file names if they are not sequentially named
+file_list = ['tT007.txt', 'tT009.txt', 'tT023.txt', 'tT036.txt', 'tT037.txt', 'tT038.txt', 'tT044.txt',
+             'tT000.txt', 'tT008.txt', 'tT011.txt', 'tT014.txt', 'tT020.txt', 'tT043a.txt', 'tT043b.txt',
+             'tT057.txt', 'tT082.txt', 'tT097.txt', 'tT112.txt', 'tT113.txt', 'tT133.txt',
+             'tT058.txt', 'tT088.txt', 'tT092.txt', 'tT108a.txt', 'tT108b.txt', 'tT132.txt']
+
+for file_name in file_list:
+    enhanced_file_to_dict(file_name, young_dict_ext, old_dict_ext, total_dict_ext)
+
+```
+
+## 4C. Querying Individual DEG Scores
 TEMP: Tests Interrogate Individual Rows
 ```{python}
 ordered_df.head()
@@ -485,9 +544,9 @@ print_gene_scores('SPARC')
 print_gene_scores('EFEMP1')
 ```
 
-## 4C. Show dataset characteristics for each high-scoring gene
+## 4D. Show dataset characteristics for each high-scoring gene
 Show genes with high scores
-*Note: adjust HERE to change the score limit for section 4C*
+*Note: adjust HERE to change the score limit for section 4D*
 ```{python}
 subset_counts = ordered_df[(ordered_df[0]>6) | (ordered_df[0]<-6)]
 subset_counts
@@ -663,7 +722,259 @@ plt.savefig('heatmap_specific_genes.svg')
 # Display the plot
 plt.show()
 ```
+## 4E. WIP: GPT Assisted Split Up/Down Analysis and Viz Based on 4B
 
+```{python}
+def populate_gene_complex_details_new(file_name, indices, tissues, animals, young_dict_ext, old_dict_ext):
+    gene_complex_dictionary_new = {}  # Initialize a new dictionary
+
+    # Normalize the file_index based on your specific rules
+    file_index = file_name.strip("tT").strip(".txt")
+  
+    if file_index == '043a':
+        file_index = 43
+    elif file_index == '043b':
+        file_index = 44
+    elif file_index == '108a':
+        file_index = 109
+    elif file_index == '108b':
+        file_index = 110
+    else:
+        file_index = int(file_index)
+        if file_index > 108:
+            file_index += 2  # Adjust indices after 108
+        elif 43 < file_index < 108:
+            file_index += 1  # Adjust indices after 43 and before 108
+
+    # Use the adjusted file_index to access indices, tissues, and animals
+    try:
+        file = open(file_name)
+        header = file.readline()
+        geneIDs = []
+        for line in file:
+            row = line.strip().replace('"', '').split('\t')
+            geneID = row[6]
+            geneIDs.append(geneID)
+        file.close()
+
+        # Use geneIDs to populate the new dictionary with detailed dataset characteristics
+        for gene in geneIDs:
+            if gene in young_dict_ext and file_name in young_dict_ext[gene]['datasets']:  # Check if this gene is listed as upregulated in this dataset
+                if gene not in gene_complex_dictionary_new:
+                    gene_complex_dictionary_new[gene] = {'upregulated_datasets': [], 'downregulated_datasets': []}
+                gene_complex_dictionary_new[gene]['upregulated_datasets'].append({
+                    'index': indices[file_index],
+                    'tissue': tissues[file_index],
+                    'animal': animals[file_index]
+                })
+            if gene in old_dict_ext and file_name in old_dict_ext[gene]['datasets']:  # Check if this gene is listed as downregulated in this dataset
+                if gene not in gene_complex_dictionary_new:
+                    gene_complex_dictionary_new[gene] = {'upregulated_datasets': [], 'downregulated_datasets': []}
+                gene_complex_dictionary_new[gene]['downregulated_datasets'].append({
+                    'index': indices[file_index],
+                    'tissue': tissues[file_index],
+                    'animal': animals[file_index]
+                })
+    except Exception as e:
+        print(f"Error processing file {file_name}: {str(e)}")
+
+    return gene_complex_dictionary_new  # Return the newly populated dictionary
+
+```
+
+Apply the function
+```{python}
+# List of all dataset files
+file_list = ['tT007.txt', 'tT009.txt', 'tT023.txt', 'tT036.txt', 'tT037.txt', 'tT038.txt', 'tT044.txt',
+             'tT000.txt', 'tT008.txt', 'tT011.txt', 'tT014.txt', 'tT020.txt', 'tT043a.txt', 'tT043b.txt',
+             'tT057.txt', 'tT082.txt', 'tT097.txt', 'tT112.txt', 'tT113.txt', 'tT133.txt',
+             'tT058.txt', 'tT088.txt', 'tT092.txt', 'tT108a.txt', 'tT108b.txt', 'tT132.txt']
+
+# Initialize the main dictionary to accumulate all results
+accumulated_gene_details = {}
+
+# Loop through each file in the list
+for file_name in file_list:
+    # Execute the function and get the dictionary for the current file
+    current_gene_details = populate_gene_complex_details_new(file_name, indices, tissues, animals, young_dict_ext, old_dict_ext)
+
+    # Merge the current dictionary with the accumulated dictionary
+    for gene, details in current_gene_details.items():
+        if gene not in accumulated_gene_details:
+            accumulated_gene_details[gene] = details
+        else:
+            # Combine the lists of datasets, tissues, and animals
+            accumulated_gene_details[gene]['upregulated_datasets'].extend(details['upregulated_datasets'])
+            accumulated_gene_details[gene]['downregulated_datasets'].extend(details['downregulated_datasets'])
+
+# Now 'accumulated_gene_details' contains combined details from all files
+
+```
+
+Check it
+```{python}
+# Print details for the first few genes in the dictionary
+for gene, details in list(accumulated_gene_details.items())[:5]:  # Adjust the number to print more or fewer genes
+    print(f"Gene: {gene}")
+    print("Upregulated in Datasets:")
+    for dataset in details['upregulated_datasets']:
+        print(f"  - Index: {dataset['index']}, Tissue: {dataset['tissue']}, Animal: {dataset['animal']}")
+    print("Downregulated in Datasets:")
+    for dataset in details['downregulated_datasets']:
+        print(f"  - Index: {dataset['index']}, Tissue: {dataset['tissue']}, Animal: {dataset['animal']}")
+    print("\n")  # Adds a newline for better separation between entries
+
+```
+Apply it to genes of interest specifically
+```{python}
+# List of your specific genes of interest
+genes_of_interest = ['SPARC', 'DIRC2', 'CA4', 'CDC20', 'RSRC1', 'CASP1']
+
+# Print details for each of the specified genes
+for gene in genes_of_interest:
+    if gene in accumulated_gene_details:
+        details = accumulated_gene_details[gene]
+        print(f"Gene: {gene}")
+        print("Upregulated in Datasets:")
+        for dataset in details['upregulated_datasets']:
+            print(f"  - Index: {dataset['index']}, Tissue: {dataset['tissue']}, Animal: {dataset['animal']}")
+        print("Downregulated in Datasets:")
+        for dataset in details['downregulated_datasets']:
+            print(f"  - Index: {dataset['index']}, Tissue: {dataset['tissue']}, Animal: {dataset['animal']}")
+        print("\n")  # Adds a newline for better separation between entries
+    else:
+        print(f"Gene: {gene} - No data available")
+
+```
+
+Prepare for a small heatmap
+```{python}
+
+# List of your specific genes of interest
+genes_of_interest = ['SPARC', 'DIRC2', 'CA4', 'CDC20', 'RSRC1', 'CASP1']
+
+# Initialize a dictionary to hold the data
+heatmap_data = {gene: {'upregulated': {}, 'downregulated': {}} for gene in genes_of_interest}
+
+# Populate the dictionary with data from accumulated_gene_details
+for gene in genes_of_interest:
+    if gene in accumulated_gene_details:
+        for dataset in accumulated_gene_details[gene]['upregulated_datasets']:
+            tissue = dataset['tissue']
+            if tissue not in heatmap_data[gene]['upregulated']:
+                heatmap_data[gene]['upregulated'][tissue] = 0
+            heatmap_data[gene]['upregulated'][tissue] += 1
+
+        for dataset in accumulated_gene_details[gene]['downregulated_datasets']:
+            tissue = dataset['tissue']
+            if tissue not in heatmap_data[gene]['downregulated']:
+                heatmap_data[gene]['downregulated'][tissue] = 0
+            heatmap_data[gene]['downregulated'][tissue] += 1
+
+# Convert the dictionary to a DataFrame for easier manipulation and visualization
+df_upregulated = pd.DataFrame({gene: heatmap_data[gene]['upregulated'] for gene in genes_of_interest}).fillna(0)
+df_downregulated = pd.DataFrame({gene: heatmap_data[gene]['downregulated'] for gene in genes_of_interest}).fillna(0)
+
+# Combine upregulated and downregulated counts in a single DataFrame
+# Assign positive values for upregulated and negative values for downregulated
+for gene in genes_of_interest:
+    df_upregulated[gene] *= 1   # Optional: Use actual counts if needed
+    df_downregulated[gene] *= -1
+
+heatmap_df = df_upregulated + df_downregulated
+
+```
+
+Execute small heatmap
+```{python}
+plt.figure(figsize=(10, 6))
+ax = sns.heatmap(heatmap_df, cmap="coolwarm", annot=True, fmt=".0f", linewidths=.5)
+plt.title('Gene Expression Over/Under Regulation by Tissue')
+plt.xlabel('Genes')
+plt.ylabel('Tissues')
+plt.show()
+
+```
+Necessary revisions (flipped scores, white zeroes, and eliminating empty rows)
+```{python}
+# Assuming heatmap_df is already created and filled with the correct data
+# Flip the sign of the upregulated and downregulated data to align with new conventions
+heatmap_df = -1 * heatmap_df
+
+# Eliminate rows with all zeros (completely empty tissues)
+heatmap_df = heatmap_df.loc[(heatmap_df != 0).any(axis=1)]
+
+# Create the heatmap
+plt.figure(figsize=(12, 8))
+cmap = sns.diverging_palette(220, 20, as_cmap=True, center="light")  # Using a diverging palette, set zero to a neutral color
+ax = sns.heatmap(heatmap_df, cmap=cmap, annot=True, fmt=".0f", center=0, linewidths=.5, linecolor='grey')
+plt.title('Gene Expression Over/Under Regulation by Tissue (Corrected)')
+plt.xlabel('Genes')
+plt.ylabel('Tissues')
+plt.show()
+```
+Next round of revisions (y axis adjustment)
+```{python}
+# Assuming heatmap_df is already created and filled with the correct data
+# Create the heatmap with adjusted label orientation and margin
+plt.figure(figsize=(12, 8))  # Adjust figure size as needed
+cmap = sns.diverging_palette(220, 20, as_cmap=True, center="light")  # Using a diverging palette, set zero to a neutral color
+ax = sns.heatmap(heatmap_df, cmap=cmap, annot=True, fmt=".0f", center=0, linewidths=.5, linecolor='grey')
+
+# Rotate y-axis labels to horizontal
+plt.yticks(rotation=0)  # Rotate y-axis labels to be horizontal
+
+# Increase the left margin
+plt.subplots_adjust(left=0.3)  # Adjust this value as needed to give more space for tissue names
+
+plt.title('Gene Expression Over/Under Regulation by Tissue (Corrected)')
+plt.xlabel('Genes')
+plt.ylabel('Tissues')
+plt.show()
+```
+Next Revisions
+```{python}
+# Assuming heatmap_df is the DataFrame that combines the upregulated and downregulated counts
+
+# Fill NaN values with 0 to ensure that empty entries are treated as zeros
+heatmap_df = heatmap_df.fillna(0)
+
+# Remove rows where all values are zero (after ensuring all NaNs are replaced by zeros)
+heatmap_df = heatmap_df.loc[(heatmap_df != 0).any(axis=1)]
+
+# Proceed to create the heatmap
+plt.figure(figsize=(12, 8))
+cmap = sns.diverging_palette(220, 20, as_cmap=True, center="light")  # Using a diverging palette, set zero to a neutral color
+ax = sns.heatmap(heatmap_df, cmap=cmap, annot=True, fmt=".0f", center=0, linewidths=.5, linecolor='grey')
+plt.yticks(rotation=0)  # Rotate y-axis labels to be horizontal
+plt.subplots_adjust(left=0.3)  # Adjust this value as needed to give more space for tissue names
+
+plt.title('Gene Expression Over/Under Regulation by Tissue (Corrected)')
+plt.xlabel('Genes')
+plt.ylabel('Tissues')
+plt.show()
+```
+Version with color-scale only, no numbers inside the graph
+```{python}
+# Assuming heatmap_df is the DataFrame that combines the upregulated and downregulated counts
+# Fill NaN values with 0 to ensure that empty entries are treated as zeros
+heatmap_df = heatmap_df.fillna(0)
+
+# Remove rows where all values are zero (after ensuring all NaNs are replaced by zeros)
+heatmap_df = heatmap_df.loc[(heatmap_df != 0).any(axis=1)]
+
+# Proceed to create the heatmap without annotations
+plt.figure(figsize=(12, 8))
+cmap = sns.diverging_palette(220, 20, as_cmap=True, center="light")  # Using a diverging palette, set zero to a neutral color
+ax = sns.heatmap(heatmap_df, cmap=cmap, annot=False, center=0, linewidths=.5, linecolor='grey')  # `annot=False` removes the numbers
+plt.yticks(rotation=0)  # Rotate y-axis labels to be horizontal
+plt.subplots_adjust(left=0.3)  # Adjust this value as needed to give more space for tissue names
+
+plt.title('Gene Expression Over/Under Regulation by Tissue (Corrected)')
+plt.xlabel('Genes')
+plt.ylabel('Tissues')
+plt.show()
+```
 
 
 # 5. Score Analysis (R)
