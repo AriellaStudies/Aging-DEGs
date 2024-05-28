@@ -1,5 +1,6 @@
 "","Index","GSE","Organism","Platform","Samples","Exclusion","Tissue","Subtype","DEGs","Notes"
 "1","0","GSE71868","Mus musculus","GPL6885","11110000",NA,"Immune","Pulmonary CDC11c+ Cells",3344,""
+"8","7","GSE58015","Homo sapiens","GPL571","11111","Zero_DEGs","","",2,"Monocyte-derived dendritic cells"
 "9","8","GSE50821","Mus musculus","GPL1261","00000XXXX11111",NA,"Muscle","Purified skeletal muscle satellite cells",1509,"Young vs. old, excluded small middle-age group"
 "10","9","GSE53890","Homo sapiens","GPL570","XXXXXXXX00000000000XX11111111111XXXXXXXXX",NA,"Brain","Frontal Cortex",3556,"Continuous i.e. Can choose individual ages; Decided on 30-60 vs 70-90 (excluded 61-69)"
 "12","11","GSE55162","Mus musculus","GPL1261","11110000",NA,"Trachea",NA,688,"28 DEGs before seeking homologs"
