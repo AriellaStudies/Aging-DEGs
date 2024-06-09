@@ -880,64 +880,19 @@ for gene in genes_of_interest:
 
 heatmap_df = df_upregulated + df_downregulated
 
-```
-
-Execute small heatmap
-```{python}
-plt.figure(figsize=(10, 6))
-ax = sns.heatmap(heatmap_df, cmap="coolwarm", annot=True, fmt=".0f", linewidths=.5)
-plt.title('Gene Expression Over/Under Regulation by Tissue')
-plt.xlabel('Genes')
-plt.ylabel('Tissues')
-plt.show()
-
-```
-Necessary revisions (flipped scores, white zeroes, and eliminating empty rows)
-```{python}
-# Assuming heatmap_df is already created and filled with the correct data
 # Flip the sign of the upregulated and downregulated data to align with new conventions
 heatmap_df = -1 * heatmap_df
-
-# Eliminate rows with all zeros (completely empty tissues)
-heatmap_df = heatmap_df.loc[(heatmap_df != 0).any(axis=1)]
-
-# Create the heatmap
-plt.figure(figsize=(12, 8))
-cmap = sns.diverging_palette(220, 20, as_cmap=True, center="light")  # Using a diverging palette, set zero to a neutral color
-ax = sns.heatmap(heatmap_df, cmap=cmap, annot=True, fmt=".0f", center=0, linewidths=.5, linecolor='grey')
-plt.title('Gene Expression Over/Under Regulation by Tissue (Corrected)')
-plt.xlabel('Genes')
-plt.ylabel('Tissues')
-plt.show()
-```
-Next round of revisions (y axis adjustment)
-```{python}
-# Assuming heatmap_df is already created and filled with the correct data
-# Create the heatmap with adjusted label orientation and margin
-plt.figure(figsize=(12, 8))  # Adjust figure size as needed
-cmap = sns.diverging_palette(220, 20, as_cmap=True, center="light")  # Using a diverging palette, set zero to a neutral color
-ax = sns.heatmap(heatmap_df, cmap=cmap, annot=True, fmt=".0f", center=0, linewidths=.5, linecolor='grey')
-
-# Rotate y-axis labels to horizontal
-plt.yticks(rotation=0)  # Rotate y-axis labels to be horizontal
-
-# Increase the left margin
-plt.subplots_adjust(left=0.3)  # Adjust this value as needed to give more space for tissue names
-
-plt.title('Gene Expression Over/Under Regulation by Tissue (Corrected)')
-plt.xlabel('Genes')
-plt.ylabel('Tissues')
-plt.show()
-```
-Next Revisions
-```{python}
-# Assuming heatmap_df is the DataFrame that combines the upregulated and downregulated counts
 
 # Fill NaN values with 0 to ensure that empty entries are treated as zeros
 heatmap_df = heatmap_df.fillna(0)
 
 # Remove rows where all values are zero (after ensuring all NaNs are replaced by zeros)
 heatmap_df = heatmap_df.loc[(heatmap_df != 0).any(axis=1)]
+
+```
+Create the heatmap
+```{python}
+# Assuming heatmap_df is the DataFrame that combines the upregulated and downregulated counts
 
 # Proceed to create the heatmap
 plt.figure(figsize=(12, 8))
@@ -972,6 +927,8 @@ plt.xlabel('Genes')
 plt.ylabel('Tissues')
 plt.show()
 ```
+
+
 Try using a similar process to execute a similar heatmap for all high-ranking genes
 ```{python}
 
@@ -1013,126 +970,19 @@ for gene in genes_of_interest:
 
 heatmap_df = df_upregulated + df_downregulated
 heatmap_df = heatmap_df.T  # Transpose the DataFrame to switch genes to y-axis and tissues to x-axis
-
+# Flip the sign of the upregulated and downregulated data to align with new conventions
+heatmap_df = -1 * heatmap_df
 ```
+
+
 ```{python}
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 # Reset default parameters
 sns.reset_orig()
 plt.rcdefaults()
 
-# Set the style and context for more readable plots
-sns.set(style="white", context="talk")
-
-# Create the heatmap
-plt.figure(figsize=(6, 10),dpi=300)  # This should now reflect correctly in the output
-cmap = sns.diverging_palette(220, 20, as_cmap=True, center="light")
-ax = sns.heatmap(heatmap_df, cmap=cmap, annot=False, center=0, linewidths=.5, linecolor='grey')
-
-# Ensure the whole heatmap is visible and labels are not cut off
-plt.xticks(rotation=90)  # Rotate x-axis labels for better readability
-plt.yticks(rotation=0)
-plt.subplots_adjust(left=0.3, bottom=0.1)  # Adjust spacing to ensure everything fits within the plot area
-plt.title('Comprehensive Gene Expression Over/Under Regulation by Tissue')
-plt.xlabel('Tissues')
-plt.ylabel('Genes')
-plt.tight_layout()
-plt.show()
-plt.savefig('comprehensive_heatmap.svg')
-
-```
-```{python}
-import seaborn as sns
-import matplotlib.pyplot as plt
-import matplotlib as mpl
-
-# Reset to default settings to clear any previous customizations
-sns.reset_orig()
-mpl.rcParams.update(mpl.rcParamsDefault)
-
-# Set figure size and DPI
-plt.figure(figsize=(6, 10), dpi=300)
-
-# Define Seaborn style
-sns.set(style="white", context="talk")
-
-# Create the heatmap
-cmap = sns.diverging_palette(220, 20, as_cmap=True, center="light")
-ax = sns.heatmap(heatmap_df, cmap=cmap, annot=False, center=0, linewidths=.5, linecolor='grey')
-
-# Rotate labels for better readability
-plt.xticks(rotation=90)
-plt.yticks(rotation=0)
-
-# Ensure the whole heatmap is visible and labels are not cut off
-plt.subplots_adjust(left=0.3, bottom=0.1, top=0.9, right=0.95)  # Fine-tune these parameters
-
-# Reduce font size by about 30-40%
-title_fontsize = 16 * 0.7  # reduce title font size by 30%
-label_fontsize = 14 * 0.7  # reduce axis labels font size by 30%
-tick_fontsize = 12 * 0.7  # reduce tick labels font size by 30%
-
-# Set title and labels with explicit size to ensure they fit and are readable
-ax.set_title('Comprehensive Gene Expression Over/Under Regulation by Tissue', fontsize=16)
-ax.set_xlabel('Tissues', fontsize=14)
-ax.set_ylabel('Genes', fontsize=14)
-
-# Manually adjust tick parameters if automatic adjustment fails
-ax.tick_params(axis='both', which='major', labelsize=12)
-
-# Use tight layout to ensure that all plot components fit within the figure area
-plt.tight_layout()
-
-# Save and show the plot
-plt.savefig('comprehensive_heatmap.svg')
-plt.show()
-
-```
-```{python}
-import seaborn as sns
-import matplotlib.pyplot as plt
-import matplotlib as mpl
-
-# Reset to default settings to clear any previous customizations
-sns.reset_orig()
-mpl.rcParams.update(mpl.rcParamsDefault)
-
-# Set the style for readability
-sns.set(style="white", context="talk")
-
-# Define figure and DPI with adjusted height
-plt.figure(figsize=(6, 20), dpi=300)  # Increased vertical size to accommodate labels
-
-# Create the heatmap with adjusted font sizes
-cmap = sns.diverging_palette(220, 20, as_cmap=True, center="light")
-ax = sns.heatmap(heatmap_df, cmap=cmap, annot=False, center=0, linewidths=.5, linecolor='grey')
-
-# Rotate x-axis labels for better readability
-plt.xticks(rotation=90)
-
-# Set custom y-ticks to ensure all labels are shown
-ax.set_yticks(range(len(heatmap_df.index)))
-ax.set_yticklabels(heatmap_df.index, rotation=0)  # Ensure labels are horizontal
-
-# Adjust font sizes for better visibility and fit
-plt.title('Comprehensive Gene Expression Over/Under Regulation by Tissue', fontsize=14)
-plt.xlabel('Tissues', fontsize=12)
-plt.ylabel('Genes', fontsize=12)
-ax.tick_params(axis='both', which='major', labelsize=10)
-
-# Adjust layout padding to avoid cutting off elements and to handle squishing
-plt.subplots_adjust(left=0.3, bottom=0.1, top=0.95, right=0.95)
-
-# Show and save the plot
-plt.show()
-plt.savefig('comprehensive_heatmap.svg')
-
-
-
-```
-
-```{python}
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 # Explicitly define the figure and axes for better control
 fig, ax = plt.subplots(figsize=(12, 20))
@@ -1206,6 +1056,8 @@ df_normalized_upregulated *= 1
 df_normalized_downregulated *= -1
 normalized_heatmap_df = df_normalized_upregulated + df_normalized_downregulated
 normalized_heatmap_df = normalized_heatmap_df.T  # Transpose if necessary
+# Flip the sign of the upregulated and downregulated data to align with new conventions
+normalized_heatmap_df = -1 * normalized_heatmap_df
 ```
 
 Let's try making the heatmap again the same way as previously but with this new data
@@ -1319,7 +1171,8 @@ df_normalized_upregulated *= 1
 df_normalized_downregulated *= -1
 normalized_heatmap_df = df_normalized_upregulated + df_normalized_downregulated
 normalized_heatmap_df = normalized_heatmap_df.T  # Transpose if necessary
-
+# Flip the sign of the upregulated and downregulated data to align with new conventions
+normalized_heatmap_df = -1 * normalized_heatmap_df
 
 
 ```
@@ -1331,7 +1184,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Explicitly define the figure and axes for better control
-fig, ax = plt.subplots(figsize=(12, 6))
+fig, ax = plt.subplots(figsize=(12, 8))
 
 sns.set(style="white", context="talk")
 cmap = sns.diverging_palette(220, 20, as_cmap=True, center="light")
@@ -1351,7 +1204,7 @@ plt.xticks(rotation=45)
 plt.yticks(rotation=0)
 
 # Adjust subplot parameters manually without using tight_layout
-fig.subplots_adjust(left=0.3, right=0.95, top=0.95, bottom=0.1)
+fig.subplots_adjust(left=0.15, right=0.95, top=0.85, bottom=0.2)
 
 # Save the figure in different formats
 plt.savefig('normalSMOLheatmap.svg', format='svg', dpi=300)  # Specify format and dpi for SVG
