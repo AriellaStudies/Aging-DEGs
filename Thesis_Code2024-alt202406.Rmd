@@ -1,0 +1,1529 @@
+---
+title: "ThesisTesting_21.01"
+output:
+  html_document:
+    theme: darkly
+    highlight: zenburn
+  pdf_document: default
+---
+
+# Version info: R 3.2.3, Biobase 2.30.0, GEOquery 2.40.0, limma 3.26.8
+################################################################
+# 0. Setup
+
+Special GEOquery package
+```{r eval=FALSE}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("GEOquery")
+```
+Other Packages
+```{r eval=FALSE}
+install.packages('limma')
+install.packages('umap')
+install.packages("reticulate")
+install.packages("homologene")
+install.packages('ggplot2')
+install.packages('dplyr')
+install.packages('svglite')
+```
+Open Libraries
+```{r setup, include=FALSE}
+library(GEOquery); print("Loaded GEOquery")
+library(limma); print("Loaded limma")
+library(umap); print("Loaded umap")
+library(reticulate); print("Loaded reticulate")
+library(knitr); print("Loaded knitr")
+library(homologene); print("Loaded homologene")
+library(ggplot2); print("Loaded ggplot2")
+library(dplyr); print("Loaded dplyr")
+
+use_python("C:/Users/ariel/anaconda3/python.exe", required = TRUE)
+py_config()
+```
+
+Install Python Packages (DO NOT RE-RUN -- only when setting up a new environment)
+```{r cache=TRUE, eval=FALSE}
+py_install("pandas")
+py_install("regex")
+py_install("seaborn")
+```
+Global Options (not in use)
+```{r include=FALSE}
+knitr::opts_chunk$set(class.source = "bg-info")
+```
+Python Packages
+```{python}
+import pandas as pd
+import regex as re
+import seaborn as sns
+import matplotlib.pyplot as plt
+print("Pandas version:", pd.__version__)
+print("Seaborn version:", sns.__version__)
+```
+Set Working Directories
+```{r setup, include=FALSE}
+setwd("C:/Users/ariel/OneDrive/Documents/GitHub/Aging-DEGs")
+```
+
+```{python}
+import os
+print("Current Working Directory:", os.getcwd())
+```
+
+
+# 1. Dataset Management (Python)
+NCBI GEO was searched for expression datasets on 03/02/2021, filtered to mammalian species with age sets, with 221 results. Results were exported as a detailed text file, then parsed into a dataframe using Python below.
+```{python message = FALSE, warning=FALSE}
+pattern_organism = re.compile(r"\bOrganism\w*\b")
+pattern_GSE = re.compile(r"\bPlatform\w*\b")
+
+list_organism = []
+list_GSE = []
+list_platform = []
+with open("gds_result.txt","rt") as myfile:
+    for line in myfile:
+        if pattern_organism.search(line) != None:
+            betterline = line.replace("Organism:\t","")
+            bestline = betterline.replace("\n","")
+            list_organism.append(bestline)
+        if pattern_GSE.search(line) != None:
+            GSE = line.split("Series: ")[1].rsplit()[0]
+            list_GSE.append(GSE)
+            Platform = line.split("Platform: ")[1].rsplit()[0]
+            list_platform.append(Platform)
+list_of_lists = [list_GSE, list_organism, list_platform]
+df_of_lists = pd.DataFrame(list_of_lists).transpose()
+df_of_lists.columns = ["GSE","Organism","Platform"]
+print(df_of_lists)
+```
+# 2. Dataset Management (Manual)
+
+Each of the 221 candidate datasets are manually reviewed.
+[IN PROGRESS] 
+
+Datasets were excluded if two adult age-sets are not available, such as if the study is investigating a developmental process in the embryonic, postnatal, or juvenile period. Specifically, humans under 18yo, rats under 6mo, and mice under 3mo were considered juvenile and avoided in this analysis. Exceptions: Study GSE5666 compared 4mo and 28mo old rats in rarely obtainable tissue types (heart and white adipose tissue), so this study was included.
+
+When more than two age-sets were available -- such as "young," "middle," and "old" -- comparisons between "middle" and "old" were prioritized. When a continuous set of ages were available, buffer regions were implemented, e.g. human age 30yo-60yo vs 70yo-90yo with 61-69yo excluded as a buffer region. 
+
+Other, less common reasons were exclusion included datasets where control/untreated/wild-type groups were not available or when "age-sets" were actually time-points in short time-course experiments.
+
+For all remaining datasets, the samples were categorized as young (0), old (1), or excluded (X) for the purposes of further processing. In addition, the tissue type under study was manually noted.
+
+# 3. Calculate DEGs in each Dataset (R)
+
+## 3.1 Set Functions
+
+GEO2R Function
+```{r }
+GEO2R <- function(GSE_number,platform_code,group_binaries,outputs){
+  # load series and platform data from GEO
+  gset <- getGEO(GSE_number, GSEMatrix =TRUE, AnnotGPL=TRUE)
+  if (length(gset) > 1) idx <- grep(platform_code, attr(gset, "names")) else idx <- 1
+  gset <- gset[[idx]]
+  
+  # make proper column names to match toptable 
+  fvarLabels(gset) <- make.names(fvarLabels(gset))
+  
+  # group membership for all samples
+  gsms <- group_binaries
+  sml <- strsplit(gsms, split="")[[1]]
+  
+  # filter out excluded samples (marked as "X")
+  sel <- which(sml != "X")
+  sml <- sml[sel]
+  gset <- gset[ ,sel]
+  
+  # log2 transformation
+  ex <- exprs(gset)
+  qx <- as.numeric(quantile(ex, c(0., 0.25, 0.5, 0.75, 0.99, 1.0), na.rm=T))
+  LogC <- (qx[5] > 100) ||
+            (qx[6]-qx[1] > 50 && qx[2] > 0)
+  if (LogC) { ex[which(ex <= 0)] <- NaN
+    exprs(gset) <- log2(ex) }
+  
+  # assign samples to groups and set up design matrix
+  gs <- factor(sml)
+  groups <- make.names(c("young","old"))
+  levels(gs) <- groups
+  gset$group <- gs
+  design <- model.matrix(~group + 0, gset)
+  colnames(design) <- levels(gs)
+  
+  fit <- lmFit(gset, design)  # fit linear model
+  
+  # set up contrasts of interest and recalculate model coefficients
+  cts <- paste(groups[1], groups[2], sep="-")
+  cont.matrix <- makeContrasts(contrasts=cts, levels=design)
+  fit2 <- contrasts.fit(fit, cont.matrix)
+  
+  # compute statistics and table of top significant genes
+  fit2 <- eBayes(fit2, 0.01)
+  tT <- topTable(fit2, adjust="fdr", sort.by="B", number=outputs)
+  
+  tT <- subset(tT, select=c("ID","adj.P.Val","P.Value","t","B","logFC","Gene.symbol","Gene.title"))
+  return(tT)
+}
+```
+
+Function compounded to filter results by specified p value
+(change p value here)
+```{r}
+GEO2R_pFiltered <- function(GSE_number,platform_code,group_binaries,outputs){
+  tempTable <- GEO2R(GSE_number,platform_code,group_binaries,outputs)
+  filtTable <- tempTable[tempTable$adj.P.Val<0.25,]
+  dupTable <- filtTable[!duplicated(filtTable$Gene.symbol),]
+  return(dupTable)
+}
+```
+
+Set global number of outputs here
+```{r}
+num_outputs = 5000
+```
+
+To prevent a vroom error, run this line before analyzing the data:
+```{r}
+Sys.setenv(VROOM_CONNECTION_SIZE = 500000)
+```
+
+
+## 3.2 Import Datasets
+
+**DATASET CONTROL ZONE 1 OF 6**
+*(These zones must be updated if adding datasets.)*
+
+Execute functions on human datasets
+```{r message = FALSE, warning=FALSE}
+tT007 <- GEO2R_pFiltered("GSE58015","GPL571","000011111",num_outputs)
+tT009 <- GEO2R_pFiltered("GSE53890","GPL570","XXXXXXXX00000000000XX11111111111XXXXXXXXX",num_outputs)
+tT023 <- GEO2R_pFiltered("GSE38718","GPL570","0000000000000011111111",num_outputs)
+tT036 <- GEO2R_pFiltered("GSE28422","GPL570","00000000XXXXXXXXXXXXXXXXXXXXXXXX111111XXXXXXXXXXXXXXXXXX0000000XXXXXXXXXXXXXXXXXXXXXXX111111XXXXXXXXXXXXXXXXXX",num_outputs)
+tT037 <- GEO2R_pFiltered("GSE28392","GPL570","00000XXXXXXXXXXXXXXXX1111XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",num_outputs)
+tT038 <- GEO2R_pFiltered("GSE25941","GPL570","000000001111111111100000001111111111",num_outputs)
+tT044 <- GEO2R_pFiltered("GSE32719","GPL570","XXXXXXXXXXXXXX0000011111111",num_outputs)
+```
+
+Execute function on mouse datasets
+```{r message = FALSE, warning=FALSE}
+tT000M <- GEO2R_pFiltered("GSE71868","GPL6885","11110000",num_outputs)
+tT008M <- GEO2R_pFiltered("GSE50821","GPL1261","00000XXXX11111",num_outputs)
+tT011M <- GEO2R_pFiltered("GSE55162","GPL1261","11110000",num_outputs)
+tT014M <- GEO2R_pFiltered("GSE46646","GPL1261","XXXXXX000111",num_outputs)
+tT020M <- GEO2R_pFiltered("GSE49543","GPL339","XXXXXXXXX00000000000000000111111111111111",num_outputs)
+```
+
+More mouse datasets
+```{r message = FALSE, warning=FALSE}
+tT043aM <- GEO2R_pFiltered("GSE25905","GPL6246","000XXXXXXXXX111XXX",num_outputs)
+tT043bM <- GEO2R_pFiltered("GSE25905","GPL6246","XXX000XXXXXXXXX111",num_outputs)
+tT057M <- GEO2R_pFiltered("GSE27686","GPL1261","111XXXXXX000XXXX",num_outputs)
+tT081M <- GEO2R_pFiltered("GSE19677","GPL6333","0000XXXXX1111XXXXX",num_outputs)
+tT082M <- GEO2R_pFiltered("GSE19677","GPL1261","XXXX00001X1XX1XXX1",num_outputs)
+tT133M <- GEO2R_pFiltered("GSE6323","GPL339","0000011111XXXXX",num_outputs)
+```
+
+More mouse datasets:
+```{r message = FALSE, warning=FALSE}
+tT097M <- GEO2R_pFiltered("GSE11667","GPL1261","11110000XXXXXXXX",num_outputs)
+tT112M <- GEO2R_pFiltered("GSE8150","GPL1261","0000011111XXXXXXXXXX",num_outputs)
+tT113M <- GEO2R_pFiltered("GSE8146","GPL81","0000011111XXXXXXXXXX",num_outputs)
+```
+
+Non-mouse, non-human datasets:
+```{r message = FALSE, warning=FALSE}
+tT058X <- GEO2R_pFiltered("GSE24515","GPL1355","000000111111",num_outputs)
+tT088X <- GEO2R_pFiltered("GSE9990","GPL341","XXXXXXXXXXXXXXXXXXXXXXXXXXX0000000001111111111111",num_outputs)
+tT092X <- GEO2R_pFiltered("GSE12502","GPL3979","111111000000",num_outputs)
+
+tT108aX <- GEO2R_pFiltered("GSE6718","GPL1355","1111111000000XXXXXXXXXXXXXXXXXXXXXXXXXX",num_outputs)
+tT108bX <- GEO2R_pFiltered("GSE6718","GPL1355","XXXXXXXXXXXXXXXXXXXXXX11000X00XXX11100X",num_outputs)
+tT132X <- GEO2R_pFiltered("GSE4270","GPL890","XXXXXXXXXXXXXXX00000000001111111111111",num_outputs)
+```
+
+## 3.3 Non-human gene conversions
+
+Convert non-human gene symbols to human gene symbols
+
+Function for mouse:
+```{r}
+M2H <- function(mouse_tT){
+  MouseSymbols = mouse_tT[,7]
+  M2H_Symbols = mouse2human(MouseSymbols)
+  tTMerge = merge(mouse_tT,M2H_Symbols,by.x = "Gene.symbol",by.y = "mouseGene")
+  tTReordered.dup = tTMerge[,c(2,3,4,5,6,7,9,8,1)]
+  tTReordered <- tTReordered.dup[!duplicated(tTReordered.dup$humanGene),]
+  return(tTReordered)
+}
+```
+
+Function for non-mouse:
+```{r}
+X2H <- function(animal_tT,TaxID){
+  AnimalSymbols = animal_tT[,7]
+  X2H_Symbols = homologene(AnimalSymbols, inTax = TaxID, outTax = 9606)
+  taxonomy = toString(TaxID)
+  tTMerge = merge(animal_tT,X2H_Symbols,by.x = "Gene.symbol",by.y = taxonomy)
+  tTReordered.dup = tTMerge[,c(2,3,4,5,6,7,9,8,1)]
+  tTReordered <- tTReordered.dup[!duplicated(tTReordered.dup$'9606'),]
+  return(tTReordered)
+}
+```
+
+
+**DATASET CONTROL ZONE 2 OF 6 (NONHUMAN ONLY)**
+Execution for mouse:
+```{r message = FALSE, warning = FALSE}
+tT000 <- M2H(tT000M)
+tT008 <- M2H(tT008M)
+tT011 <- M2H(tT011M)
+tT014 <- M2H(tT014M)
+tT020 <- M2H(tT020M)
+tT043a <- M2H(tT043aM)
+tT043b <- M2H(tT043bM)
+tT057 <- M2H(tT057M)
+tT081 <- M2H(tT081M)
+tT082 <- M2H(tT082M)
+tT097 <- M2H(tT097M)
+tT112 <- M2H(tT112M)
+tT113 <- M2H(tT113M)
+tT133 <- M2H(tT133M)
+```
+
+Execution for non-mouse:
+```{r message = FALSE, warning = FALSE}
+tT058 <- X2H(tT058X,10116)
+tT088 <- X2H(tT088X,10116)
+tT092 <- X2H(tT092X,9615)
+
+tT108a <- X2H(tT108aX,10116)
+tT108b <- X2H(tT108bX,10116)
+tT132 <- X2H(tT132X,10116)
+```
+
+
+Note: Some gene IDs appear in the results as GeneName1///GeneName2///GeneName3///. I noticed these were not successfully converted to human genes. I performed a test on one such gene where I ran each GeneName individually, and no results were found either, so I conclude homologous genes are not available for those entries regardless of any formatting issue.
+Record of this Test:
+```{r eval=FALSE}
+M1Test = c("LOC100503923","Gm15433","LOC100041903","Gm2666","Gm7609","Csprs")
+M1Test
+dfM1Test = mouse2human(M1Test)
+dfM1Test #0 Results
+```
+
+## 3.4 Export Results
+
+**DATASET CONTROL ZONE 3 OF 6**
+Write to files
+```{r message = FALSE, warning=FALSE}
+#Human:
+write.table(tT007, file="tT007.txt", row.names=F, sep="\t")
+write.table(tT009, file="tT009.txt", row.names=F, sep="\t")
+write.table(tT023, file="tT023.txt", row.names=F, sep="\t")
+write.table(tT036, file="tT036.txt", row.names=F, sep="\t")
+write.table(tT037, file="tT037.txt", row.names=F, sep="\t")
+write.table(tT038, file="tT038.txt", row.names=F, sep="\t")
+write.table(tT044, file="tT044.txt", row.names=F, sep="\t")
+#Mouse:
+write.table(tT000, file="tT000.txt", row.names=F, sep="\t")
+write.table(tT008, file="tT008.txt", row.names=F, sep="\t")
+write.table(tT011, file="tT011.txt", row.names=F, sep="\t")
+write.table(tT014, file="tT014.txt", row.names=F, sep="\t")
+write.table(tT020, file="tT020.txt", row.names=F, sep="\t")
+write.table(tT043a, file="tT043a.txt", row.names=F, sep="\t")
+write.table(tT043b, file="tT043b.txt", row.names=F, sep="\t")
+write.table(tT057, file="tT057.txt", row.names=F, sep="\t")
+write.table(tT081, file="tT081.txt", row.names=F, sep="\t")
+write.table(tT082, file="tT082.txt", row.names=F, sep="\t")
+write.table(tT097, file="tT097.txt", row.names=F, sep="\t")
+write.table(tT112, file="tT112.txt", row.names=F, sep="\t")
+write.table(tT113, file="tT113.txt", row.names=F, sep="\t")
+write.table(tT133, file="tT133.txt", row.names=F, sep="\t")
+#Other:
+write.table(tT058, file="tT058.txt", row.names=F, sep="\t")
+write.table(tT088, file="tT088.txt", row.names=F, sep="\t")
+write.table(tT092, file="tT092.txt", row.names=F, sep="\t")
+write.table(tT108a, file="tT108a.txt", row.names=F, sep="\t")
+write.table(tT108b, file="tT108b.txt", row.names=F, sep="\t")
+write.table(tT132, file="tT132.txt", row.names=F, sep="\t")
+```
+
+# 4. Calculate Scores Across Datasets (Python)
+## 4A. Compute Scores
+Define Reader Function
+```{python}
+def file_to_dict(file_name):
+  try:
+    file = open(file_name)
+    header = file.readline()
+    for line in file:
+      row = line.strip().replace('"', '').split('\t')
+      logFC = float(row[5])
+      geneID = row[6]
+      if logFC > 0:
+        if geneID in young_dict:
+          young_dict[geneID] += 1
+          total_dict[geneID] += 1
+        elif geneID in total_dict:
+          total_dict[geneID] += 1
+          young_dict[geneID] = 1
+        else:
+          young_dict[geneID] = 1
+          total_dict[geneID] = 1
+      if logFC < 0:
+        if geneID in old_dict:
+          old_dict[geneID] += 1
+          total_dict[geneID] += (-1)
+        elif geneID in total_dict:
+          total_dict[geneID] += (-1)
+          old_dict[geneID] = 1
+        else:
+          old_dict[geneID] = 1
+          total_dict[geneID] = -1
+    file.close()
+  except Exception as e:
+        print(f"Error processing file {file_name}: {str(e)}")
+```
+
+**DATASET CONTROL ZONE 4 OF 6**
+*(Exclude datasets from counts by commenting out here.)*
+Execute Reader Function
+```{python}
+young_dict = {}
+old_dict = {}
+total_dict = {}
+
+#Human
+file_to_dict('tT007.txt')
+file_to_dict('tT009.txt')
+file_to_dict('tT023.txt')
+file_to_dict('tT036.txt')
+file_to_dict('tT037.txt')
+file_to_dict('tT038.txt')
+file_to_dict('tT044.txt')
+
+#Mouse
+file_to_dict('tT000.txt')
+file_to_dict('tT008.txt')
+file_to_dict('tT011.txt')
+file_to_dict('tT014.txt')
+file_to_dict('tT020.txt')
+file_to_dict('tT043a.txt')
+file_to_dict('tT043b.txt')
+file_to_dict('tT057.txt')
+#file_to_dict('tT081.txt') excluded as a repeat
+file_to_dict('tT082.txt')
+file_to_dict('tT097.txt')
+file_to_dict('tT112.txt')
+file_to_dict('tT113.txt')
+file_to_dict('tT133.txt')
+
+#Other:
+file_to_dict('tT058.txt')
+file_to_dict('tT088.txt')
+file_to_dict('tT092.txt')
+file_to_dict('tT108a.txt')
+file_to_dict('tT108b.txt')
+file_to_dict('tT132.txt')
+
+```
+**RESULTS**
+Convert count dictionary to ordered dataframe
+```{python}
+total_df = pd.DataFrame.from_dict(total_dict, orient='index')
+ordered_df = total_df.sort_values(by=0, ascending=False)
+ordered_df
+```
+Record dataframes for separate young and old counts too
+```{python}
+young_df = pd.DataFrame.from_dict(young_dict, orient='index')
+young_counts = young_df.sort_values(by=0, ascending=False)
+young_counts
+print(young_counts.head())
+
+old_df = pd.DataFrame.from_dict(old_dict, orient='index')
+old_counts = old_df.sort_values(by=0, ascending=False)
+old_counts
+```
+Export all counts to CSV files
+```{python }
+ordered_df.to_csv("Total_Counts.csv")
+young_counts.to_csv("Young_Counts.csv")
+old_counts.to_csv("Old_Counts.csv")
+```
+Note: Can skip down to section 5 from here if wanting to fast forward to histogram.
+
+Print a few quick counts for results section
+```{python}
+old7 = old_counts[old_counts.iloc[:, 0] >= 7]
+total7plus = ordered_df[ordered_df.iloc[:,0]<=-7]
+young7 = young_counts[young_counts.iloc[:,0]>=7]
+total7minus = ordered_df[ordered_df.iloc[:,0]>=7]
+
+print(f"The # of genes with an upregulation score of at least 7 was {len(old7)}.")
+print(f"The # of upregulated genes with a total rank of at least 7 was {len(total7plus)}.")
+
+print(f"The # of genes with a downregulation score of at least 7 was {len(young7)}.")
+print(f"The # of downregulated genes with a total rank of at least 7 was {len(total7minus)}.")
+
+```
+
+```{python}
+old6 = old_counts[old_counts.iloc[:, 0] >= 6]
+total6plus = ordered_df[ordered_df.iloc[:,0]<=-6]
+young6 = young_counts[young_counts.iloc[:,0]>=6]
+total6minus = ordered_df[ordered_df.iloc[:,0]>=6]
+
+print(f"The # of genes with an upregulation score of at least 6 was {len(old6)}.")
+print(f"The # of upregulated genes with a total rank of at least 6 was {len(total6plus)}.")
+
+print(f"The # of genes with a downregulation score of at least 6 was {len(young6)}.")
+print(f"The # of downregulated genes with a total rank of at least 6 was {len(total6minus)}.")
+```
+```{python}
+total6 = len(total6plus) + len(total6minus)
+
+total7 = len(total7plus) + len(total7minus)
+
+print(f"The total for rank 6 is {total6}, and the total for rank 7 is {total7}")
+```
+
+
+## 4B. Trial: Enhanced version of section 4A function for use in later analysis
+
+Enhanced Reader Function
+```{python}
+def enhanced_file_to_dict(file_name, young_dict_ext, old_dict_ext, total_dict_ext):
+    try:
+        file = open(file_name)
+        header = file.readline()
+        for line in file:
+            row = line.strip().replace('"', '').split('\t')
+            logFC = float(row[5])
+            geneID = row[6]
+            dataset_id = file_name  # Assuming file_name effectively represents the dataset ID
+
+            # Update the young dictionary for overexpression
+            if logFC > 0:
+                if geneID not in young_dict_ext:
+                    young_dict_ext[geneID] = {'count': 0, 'datasets': []}
+                young_dict_ext[geneID]['count'] += 1
+                young_dict_ext[geneID]['datasets'].append(dataset_id)
+
+            # Update the old dictionary for underexpression
+            if logFC < 0:
+                if geneID not in old_dict_ext:
+                    old_dict_ext[geneID] = {'count': 0, 'datasets': []}
+                old_dict_ext[geneID]['count'] += 1
+                old_dict_ext[geneID]['datasets'].append(dataset_id)
+
+            # Update the total dictionary for total counts
+            if geneID not in total_dict_ext:
+                total_dict_ext[geneID] = {'count': 0, 'datasets': []}
+            total_dict_ext[geneID]['count'] += 1
+            total_dict_ext[geneID]['datasets'].append(dataset_id)
+
+        file.close()
+    except Exception as e:
+        print(f"Error processing file {file_name}: {str(e)}")
+
+
+```
+
+Executing Enhanced Reader Function
+```{python}
+# New dictionaries to store extended information
+young_dict_ext = {}
+old_dict_ext = {}
+total_dict_ext = {}
+
+# List of file names if they are not sequentially named
+file_list = ['tT007.txt', 'tT009.txt', 'tT023.txt', 'tT036.txt', 'tT037.txt', 'tT038.txt', 'tT044.txt',
+             'tT000.txt', 'tT008.txt', 'tT011.txt', 'tT014.txt', 'tT020.txt', 'tT043a.txt', 'tT043b.txt',
+             'tT057.txt', 'tT082.txt', 'tT097.txt', 'tT112.txt', 'tT113.txt', 'tT133.txt',
+             'tT058.txt', 'tT088.txt', 'tT092.txt', 'tT108a.txt', 'tT108b.txt', 'tT132.txt']
+
+for file_name in file_list:
+    enhanced_file_to_dict(file_name, young_dict_ext, old_dict_ext, total_dict_ext)
+
+```
+
+## 4C. Querying Individual DEG Scores
+TEMP: Tests Interrogate Individual Rows
+```{python}
+ordered_df.head()
+print(ordered_df.head())
+print(ordered_df.loc['SPARC'])
+```
+Set Function
+```{python}
+def print_gene_scores(gene_name):
+    try:
+        # Retrieve and print the score from each dataframe
+        print(f"Scores for {gene_name}:")
+        print(f"Ordered Score: {ordered_df.loc[gene_name].item()}")
+        print(f"Old Count Score: {old_counts.loc[gene_name].item()}")
+        print(f"Young Count Score: {young_counts.loc[gene_name].item()}")
+    except KeyError:
+        # This block executes if the gene_name is not found in one of the dataframes
+        print(f"Gene {gene_name} not found in one or more dataframes.")
+
+```
+
+Try Function
+```{python}
+print_gene_scores('SPARC')
+print_gene_scores('EFEMP1')
+```
+
+## 4D. Show dataset characteristics for each high-scoring gene
+Show genes with high scores
+*Note: adjust HERE to change the score limit for section 4D*
+```{python}
+subset_counts = ordered_df[(ordered_df[0]>6) | (ordered_df[0]<-6)]
+subset_counts
+```
+Create gene index
+```{python}
+gene_index = subset_counts.index
+gene_index = list(gene_index)
+```
+
+Create indices for dataset characteristics
+(Adding encoding to deal with new encoding errors)
+```{python}
+try:
+    # Try opening with 'cp1252', which is common in Windows and might resolve the issue
+    file = open("221_Datasets.csv", "r", encoding='cp1252')
+    header = file.readline()
+    indices = [] #0
+    animals = [] #2
+    tissues = [] #6
+    for line in file:
+      row = line.strip().split(',')
+      index = row[0]
+      animal = row[2]
+      tissue = row[6]
+      indices.append(index)
+      animals.append(animal)
+      tissues.append(tissue)
+    file.close()
+except UnicodeDecodeError as e:
+    print(f"Failed to read file with cp1252 encoding due to: {e}")
+
+```
+
+
+Define function to list all datasets (and their characteristics) contributing to each high-scoring gene:
+```{python}
+def tissues_for_hits(file_name):
+  file_index = file_name.strip("tT").strip(".tx")
+  
+  if file_index == '043a':
+    file_index = 43
+  elif file_index == '043b':
+    file_index = 44
+  elif file_index == '108a':
+    file_index = 109
+  elif file_index == '108b':
+    file_index = 110
+  else:
+    file_index = int(file_index)
+    if file_index > 108:
+      file_index = file_index + 2
+    elif file_index > 43 and file_index < 108:
+      file_index = file_index + 1
+
+  file = open(file_name)
+  header = file.readline()
+  geneIDs = []
+  for line in file:
+    row = line.strip().replace('"','').split('\t')
+    geneID = row[6]
+    geneIDs.append(geneID)
+  for gene in gene_index:
+    if gene in geneIDs and gene not in gene_complex_dictionary:
+      gene_complex_dictionary[gene] = {'index':[indices[file_index]],'tissue':[tissues[file_index]],'animal':[animals[file_index]]}
+
+
+    elif gene in geneIDs and gene in gene_complex_dictionary:
+      gene_complex_dictionary[gene]['index'] += [indices[file_index]]
+      gene_complex_dictionary[gene]['tissue'] += [tissues[file_index]]
+      gene_complex_dictionary[gene]['animal'] += [animals[file_index]]
+  file.close()
+```
+
+**DATASET CONTROL ZONE 5 OF 6**
+Execute function and print results:
+```{python}
+gene_complex_dictionary = {}
+
+#Human
+tissues_for_hits('tT007.txt')
+tissues_for_hits('tT009.txt')
+tissues_for_hits('tT023.txt')
+tissues_for_hits('tT036.txt')
+tissues_for_hits('tT037.txt')
+tissues_for_hits('tT038.txt')
+tissues_for_hits('tT044.txt')
+
+#Mouse
+tissues_for_hits('tT000.txt')
+tissues_for_hits('tT008.txt')
+tissues_for_hits('tT011.txt')
+tissues_for_hits('tT014.txt')
+tissues_for_hits('tT020.txt')
+tissues_for_hits('tT043a.txt')
+tissues_for_hits('tT043b.txt')
+tissues_for_hits('tT057.txt')
+#tissues_for_hits('tT081.txt') excluded as a repeat
+tissues_for_hits('tT082.txt')
+tissues_for_hits('tT097.txt')
+tissues_for_hits('tT112.txt')
+tissues_for_hits('tT113.txt')
+tissues_for_hits('tT133.txt')
+
+#Other:
+tissues_for_hits('tT058.txt')
+tissues_for_hits('tT088.txt')
+tissues_for_hits('tT092.txt')
+tissues_for_hits('tT108a.txt')
+tissues_for_hits('tT108b.txt')
+tissues_for_hits('tT132.txt')
+```
+Visualizing gene by tissue heatmap preparation
+
+**ALERT** If brand new tissue type is added, make sure to add to dictionary below.
+```{python}
+simpleGCD = {}
+for key in gene_complex_dictionary:
+  simpleGCD[key] = gene_complex_dictionary[key]['tissue']
+
+simpleGCD2 = {}
+for key in simpleGCD:
+  new_dict = {
+  'Trachea':0,'Reproduction':0,'Muscle':0,'Liver':0,'Immune':0,'Heart':0,'Fat':0,'Cochlea':0,'Brain':0
+  }
+  for item in simpleGCD[key]:
+    new_dict[item] += 1
+  simpleGCD2[key] = new_dict
+
+simpleGCD_df = pd.DataFrame.from_dict(simpleGCD2,orient='index')
+simpleGCD_df
+pd.DataFrame.to_csv(simpleGCD_df,"simpleGCD.csv")
+```
+Visualizing gene by tissue heatmap
+```{python}
+ax = sns.heatmap(simpleGCD_df, cmap="YlGnBu", xticklabels=True, yticklabels=True)
+ax.figure.tight_layout()
+ax
+plt.show()
+```
+Visualizing gene by tissue heatmap - listed alphabetically and high-res?
+```{python}
+simpleGCD_df_alpha = pd.DataFrame.sort_index(simpleGCD_df)
+plt.figure(figsize = (6,8),dpi=600)
+ax = sns.heatmap(simpleGCD_df_alpha, cmap="YlGnBu", xticklabels=True, yticklabels=True)
+ax.figure.tight_layout()
+plt.savefig('heatmaptest.svg')
+ax
+plt.show()
+```
+Add a subset plot for the final 6 genes
+```{python}
+# List of genes of interest
+genes_of_interest = ['SPARC', 'CDC20', 'RSRC1', 'CA4', 'CASP1', 'DIRC2']
+
+# Assuming 'simpleGCD_df' is your DataFrame and gene names are the index
+# Filter the DataFrame to include only your genes of interest
+filtered_df = simpleGCD_df.loc[genes_of_interest]
+
+# Sort the DataFrame by index in case the gene order is important
+filtered_df_alpha = filtered_df.sort_index()
+
+# Create the heatmap
+plt.figure(figsize=(6, 8), dpi=600)
+ax = sns.heatmap(filtered_df_alpha, cmap="YlGnBu", xticklabels=True, yticklabels=True)
+
+# Use tight_layout to adjust subplot params
+ax.figure.tight_layout()
+
+# Save the figure if needed
+plt.savefig('heatmap_specific_genes.svg')
+
+# Display the plot
+plt.show()
+```
+## 4E. WIP: GPT Assisted Split Up/Down Analysis and Viz Based on 4B
+
+```{python}
+def populate_gene_complex_details_new(file_name, indices, tissues, animals, young_dict_ext, old_dict_ext):
+    gene_complex_dictionary_new = {}  # Initialize a new dictionary
+
+    # Normalize the file_index based on your specific rules
+    file_index = file_name.strip("tT").strip(".txt")
+  
+    if file_index == '043a':
+        file_index = 43
+    elif file_index == '043b':
+        file_index = 44
+    elif file_index == '108a':
+        file_index = 109
+    elif file_index == '108b':
+        file_index = 110
+    else:
+        file_index = int(file_index)
+        if file_index > 108:
+            file_index += 2  # Adjust indices after 108
+        elif 43 < file_index < 108:
+            file_index += 1  # Adjust indices after 43 and before 108
+
+    # Use the adjusted file_index to access indices, tissues, and animals
+    try:
+        file = open(file_name)
+        header = file.readline()
+        geneIDs = []
+        for line in file:
+            row = line.strip().replace('"', '').split('\t')
+            geneID = row[6]
+            geneIDs.append(geneID)
+        file.close()
+
+        # Use geneIDs to populate the new dictionary with detailed dataset characteristics
+        for gene in geneIDs:
+            if gene in young_dict_ext and file_name in young_dict_ext[gene]['datasets']:  # Check if this gene is listed as upregulated in this dataset
+                if gene not in gene_complex_dictionary_new:
+                    gene_complex_dictionary_new[gene] = {'upregulated_datasets': [], 'downregulated_datasets': []}
+                gene_complex_dictionary_new[gene]['upregulated_datasets'].append({
+                    'index': indices[file_index],
+                    'tissue': tissues[file_index],
+                    'animal': animals[file_index]
+                })
+            if gene in old_dict_ext and file_name in old_dict_ext[gene]['datasets']:  # Check if this gene is listed as downregulated in this dataset
+                if gene not in gene_complex_dictionary_new:
+                    gene_complex_dictionary_new[gene] = {'upregulated_datasets': [], 'downregulated_datasets': []}
+                gene_complex_dictionary_new[gene]['downregulated_datasets'].append({
+                    'index': indices[file_index],
+                    'tissue': tissues[file_index],
+                    'animal': animals[file_index]
+                })
+    except Exception as e:
+        print(f"Error processing file {file_name}: {str(e)}")
+
+    return gene_complex_dictionary_new  # Return the newly populated dictionary
+
+```
+
+Apply the function
+```{python}
+# List of all dataset files
+file_list = ['tT007.txt', 'tT009.txt', 'tT023.txt', 'tT036.txt', 'tT037.txt', 'tT038.txt', 'tT044.txt',
+             'tT000.txt', 'tT008.txt', 'tT011.txt', 'tT014.txt', 'tT020.txt', 'tT043a.txt', 'tT043b.txt',
+             'tT057.txt', 'tT082.txt', 'tT097.txt', 'tT112.txt', 'tT113.txt', 'tT133.txt',
+             'tT058.txt', 'tT088.txt', 'tT092.txt', 'tT108a.txt', 'tT108b.txt', 'tT132.txt']
+
+# Initialize the main dictionary to accumulate all results
+accumulated_gene_details = {}
+
+# Loop through each file in the list
+for file_name in file_list:
+    # Execute the function and get the dictionary for the current file
+    current_gene_details = populate_gene_complex_details_new(file_name, indices, tissues, animals, young_dict_ext, old_dict_ext)
+
+    # Merge the current dictionary with the accumulated dictionary
+    for gene, details in current_gene_details.items():
+        if gene not in accumulated_gene_details:
+            accumulated_gene_details[gene] = details
+        else:
+            # Combine the lists of datasets, tissues, and animals
+            accumulated_gene_details[gene]['upregulated_datasets'].extend(details['upregulated_datasets'])
+            accumulated_gene_details[gene]['downregulated_datasets'].extend(details['downregulated_datasets'])
+
+# Now 'accumulated_gene_details' contains combined details from all files
+
+```
+
+Check it
+```{python}
+# Print details for the first few genes in the dictionary
+for gene, details in list(accumulated_gene_details.items())[:5]:  # Adjust the number to print more or fewer genes
+    print(f"Gene: {gene}")
+    print("Upregulated in Datasets:")
+    for dataset in details['upregulated_datasets']:
+        print(f"  - Index: {dataset['index']}, Tissue: {dataset['tissue']}, Animal: {dataset['animal']}")
+    print("Downregulated in Datasets:")
+    for dataset in details['downregulated_datasets']:
+        print(f"  - Index: {dataset['index']}, Tissue: {dataset['tissue']}, Animal: {dataset['animal']}")
+    print("\n")  # Adds a newline for better separation between entries
+
+```
+Apply it to genes of interest specifically
+```{python}
+# List of your specific genes of interest
+genes_of_interest = ['SPARC', 'DIRC2', 'CA4', 'CDC20', 'RSRC1', 'CASP1']
+
+# Print details for each of the specified genes
+for gene in genes_of_interest:
+    if gene in accumulated_gene_details:
+        details = accumulated_gene_details[gene]
+        print(f"Gene: {gene}")
+        print("Upregulated in Datasets:")
+        for dataset in details['upregulated_datasets']:
+            print(f"  - Index: {dataset['index']}, Tissue: {dataset['tissue']}, Animal: {dataset['animal']}")
+        print("Downregulated in Datasets:")
+        for dataset in details['downregulated_datasets']:
+            print(f"  - Index: {dataset['index']}, Tissue: {dataset['tissue']}, Animal: {dataset['animal']}")
+        print("\n")  # Adds a newline for better separation between entries
+    else:
+        print(f"Gene: {gene} - No data available")
+
+```
+
+Prepare for a small heatmap
+```{python}
+
+# List of your specific genes of interest
+genes_of_interest = ['SPARC', 'DIRC2', 'CA4', 'CDC20', 'RSRC1', 'CASP1']
+
+# Initialize a dictionary to hold the data
+heatmap_data = {gene: {'upregulated': {}, 'downregulated': {}} for gene in genes_of_interest}
+
+# Populate the dictionary with data from accumulated_gene_details
+for gene in genes_of_interest:
+    if gene in accumulated_gene_details:
+        for dataset in accumulated_gene_details[gene]['upregulated_datasets']:
+            tissue = dataset['tissue']
+            if tissue not in heatmap_data[gene]['upregulated']:
+                heatmap_data[gene]['upregulated'][tissue] = 0
+            heatmap_data[gene]['upregulated'][tissue] += 1
+
+        for dataset in accumulated_gene_details[gene]['downregulated_datasets']:
+            tissue = dataset['tissue']
+            if tissue not in heatmap_data[gene]['downregulated']:
+                heatmap_data[gene]['downregulated'][tissue] = 0
+            heatmap_data[gene]['downregulated'][tissue] += 1
+
+# Convert the dictionary to a DataFrame for easier manipulation and visualization
+df_upregulated = pd.DataFrame({gene: heatmap_data[gene]['upregulated'] for gene in genes_of_interest}).fillna(0)
+df_downregulated = pd.DataFrame({gene: heatmap_data[gene]['downregulated'] for gene in genes_of_interest}).fillna(0)
+
+# Combine upregulated and downregulated counts in a single DataFrame
+# Assign positive values for upregulated and negative values for downregulated
+for gene in genes_of_interest:
+    df_upregulated[gene] *= 1   # Optional: Use actual counts if needed
+    df_downregulated[gene] *= -1
+
+heatmap_df = df_upregulated + df_downregulated
+
+# Flip the sign of the upregulated and downregulated data to align with new conventions
+heatmap_df = -1 * heatmap_df
+
+# Fill NaN values with 0 to ensure that empty entries are treated as zeros
+heatmap_df = heatmap_df.fillna(0)
+
+# Remove rows where all values are zero (after ensuring all NaNs are replaced by zeros)
+heatmap_df = heatmap_df.loc[(heatmap_df != 0).any(axis=1)]
+
+```
+Create the heatmap
+```{python}
+# Assuming heatmap_df is the DataFrame that combines the upregulated and downregulated counts
+
+# Proceed to create the heatmap
+plt.figure(figsize=(12, 8))
+cmap = sns.diverging_palette(220, 20, as_cmap=True, center="light")  # Using a diverging palette, set zero to a neutral color
+ax = sns.heatmap(heatmap_df, cmap=cmap, annot=True, fmt=".0f", center=0, linewidths=.5, linecolor='grey')
+plt.yticks(rotation=0)  # Rotate y-axis labels to be horizontal
+plt.subplots_adjust(left=0.3)  # Adjust this value as needed to give more space for tissue names
+
+plt.title('Gene Expression Over/Under Regulation by Tissue (Corrected)')
+plt.xlabel('Genes')
+plt.ylabel('Tissues')
+plt.show()
+```
+Version with color-scale only, no numbers inside the graph
+```{python}
+# Assuming heatmap_df is the DataFrame that combines the upregulated and downregulated counts
+# Fill NaN values with 0 to ensure that empty entries are treated as zeros
+heatmap_df = heatmap_df.fillna(0)
+
+# Remove rows where all values are zero (after ensuring all NaNs are replaced by zeros)
+heatmap_df = heatmap_df.loc[(heatmap_df != 0).any(axis=1)]
+
+# Proceed to create the heatmap without annotations
+plt.figure(figsize=(12, 8))
+cmap = sns.diverging_palette(220, 20, as_cmap=True, center="light")  # Using a diverging palette, set zero to a neutral color
+ax = sns.heatmap(heatmap_df, cmap=cmap, annot=False, center=0, linewidths=.5, linecolor='grey')  # `annot=False` removes the numbers
+plt.yticks(rotation=0)  # Rotate y-axis labels to be horizontal
+plt.subplots_adjust(left=0.3)  # Adjust this value as needed to give more space for tissue names
+
+plt.title('Gene Expression Over/Under Regulation by Tissue (Corrected)')
+plt.xlabel('Genes')
+plt.ylabel('Tissues')
+plt.show()
+```
+
+
+Try using a similar process to execute a similar heatmap for all high-ranking genes
+```{python}
+
+# List of all 45 genes from your meta-analysis
+genes_of_interest = [
+    "UQCR10", "SIAH2", "CA4", "SPARC", "BRWD1", "BRD3", "SMYD1", "EIF4EBP1", "CDC20", "AR", "VLDLR", "DIRC2",
+    "KIFAP3", "EIF2D", "NREP", "RTN4IP1", "CASP1", "CTSS", "RSRC1", "FST", "SLC44A1", "CTNNA1", "C1QC", "PJA2",
+    "LYST", "FYB", "SKAP2", "RNF145", "EHD4", "CFLAR", "TMEM123", "SERPINB6", "MGST1", "NPC2", "SFRP1",
+    "APOE", "ARAP2", "PTPRC", "ANXA4", "GCNT2", "PRNP", "HLA-A", "CP", "TMEM176A", "EFEMP1"
+]
+
+# Initialize a dictionary to hold the data for upregulated and downregulated datasets
+heatmap_data = {gene: {'upregulated': {}, 'downregulated': {}} for gene in genes_of_interest}
+
+# Populate the dictionary with data from accumulated_gene_details
+for gene in genes_of_interest:
+    if gene in accumulated_gene_details:
+        for dataset in accumulated_gene_details[gene]['upregulated_datasets']:
+            tissue = dataset['tissue']
+            if tissue not in heatmap_data[gene]['upregulated']:
+                heatmap_data[gene]['upregulated'][tissue] = 0
+            heatmap_data[gene]['upregulated'][tissue] += 1
+
+        for dataset in accumulated_gene_details[gene]['downregulated_datasets']:
+            tissue = dataset['tissue']
+            if tissue not in heatmap_data[gene]['downregulated']:
+                heatmap_data[gene]['downregulated'][tissue] = 0
+            heatmap_data[gene]['downregulated'][tissue] += 1
+
+# Convert the dictionary to DataFrames for upregulated and downregulated data
+df_upregulated = pd.DataFrame({gene: heatmap_data[gene]['upregulated'] for gene in genes_of_interest}).fillna(0)
+df_downregulated = pd.DataFrame({gene: heatmap_data[gene]['downregulated'] for gene in genes_of_interest}).fillna(0)
+
+# Combine upregulated and downregulated counts in a single DataFrame
+# Assign positive values for upregulated and negative values for downregulated
+for gene in genes_of_interest:
+    df_upregulated[gene] *= 1   # Optional: Use actual counts if needed
+    df_downregulated[gene] *= -1
+
+heatmap_df = df_upregulated + df_downregulated
+heatmap_df = heatmap_df.T  # Transpose the DataFrame to switch genes to y-axis and tissues to x-axis
+# Flip the sign of the upregulated and downregulated data to align with new conventions
+heatmap_df = -1 * heatmap_df
+```
+
+
+```{python}
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Reset default parameters
+sns.reset_orig()
+plt.rcdefaults()
+
+
+# Explicitly define the figure and axes for better control
+fig, ax = plt.subplots(figsize=(12, 20))
+
+sns.set(style="white", context="talk")
+cmap = sns.diverging_palette(220, 20, as_cmap=True, center="light")
+
+# Create the heatmap
+sns.heatmap(heatmap_df, ax=ax, cmap=cmap, annot=False, center=0, linewidths=.5, linecolor='grey')
+
+# Set y-ticks more explicitly and adjust alignment
+ax.set_yticks(range(len(heatmap_df.index)))
+ax.set_yticklabels(heatmap_df.index, fontsize=12, va='center', ha='right')  # Adjust font size and alignment
+
+ax.set_title('DEGs by Tissue Type')
+ax.set_xlabel('Tissues')
+ax.set_ylabel('Genes')
+
+plt.xticks(rotation=45)
+plt.yticks(rotation=0)
+
+# Adjust subplot parameters to ensure no clipping
+fig.subplots_adjust(left=0.3, right=0.95, top=0.95, bottom=0.1)
+
+# Use tight layout with padding to make sure everything fits without overlap
+fig.tight_layout(pad=3.0)
+
+plt.savefig('heatmapZ2.png', dpi=300)
+plt.show()
+
+
+```
+Let's try normalizing to total number datasets
+```{python}
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Define the total datasets per tissue based on your data
+total_datasets_per_tissue = {
+    'Brain': 5,
+    'Cochlea': 1,
+    'Fat': 3,
+    'Heart': 2,
+    'Immune': 4,
+    'Liver': 2,
+    'Muscle': 7,
+    'Reproduction': 1,
+    'Trachea': 1
+}
+
+# Normalize the data
+normalized_data = {gene: {'upregulated': {}, 'downregulated': {}} for gene in genes_of_interest}
+for gene in genes_of_interest:
+    if gene in accumulated_gene_details:
+        for tissue in heatmap_data[gene]['upregulated']:
+            if tissue in total_datasets_per_tissue:
+                normalized_value = heatmap_data[gene]['upregulated'][tissue] / total_datasets_per_tissue[tissue]
+                normalized_data[gene]['upregulated'][tissue] = normalized_value
+        for tissue in heatmap_data[gene]['downregulated']:
+            if tissue in total_datasets_per_tissue:
+                normalized_value = heatmap_data[gene]['downregulated'][tissue] / total_datasets_per_tissue[tissue]
+                normalized_data[gene]['downregulated'][tissue] = normalized_value
+
+# Convert the normalized dictionary to DataFrame for visualization
+df_normalized_upregulated = pd.DataFrame({gene: normalized_data[gene]['upregulated'] for gene in genes_of_interest}).fillna(0)
+df_normalized_downregulated = pd.DataFrame({gene: normalized_data[gene]['downregulated'] for gene in genes_of_interest}).fillna(0)
+
+# Combine normalized upregulated and downregulated counts
+df_normalized_upregulated *= 1
+df_normalized_downregulated *= -1
+normalized_heatmap_df = df_normalized_upregulated + df_normalized_downregulated
+normalized_heatmap_df = normalized_heatmap_df.T  # Transpose if necessary
+# Flip the sign of the upregulated and downregulated data to align with new conventions
+normalized_heatmap_df = -1 * normalized_heatmap_df
+```
+
+Let's try making the heatmap again the same way as previously but with this new data
+```{python}
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Explicitly define the figure and axes for better control
+fig, ax = plt.subplots(figsize=(12, 20))
+
+sns.set(style="white", context="talk")
+cmap = sns.diverging_palette(220, 20, as_cmap=True, center="light")
+
+# Create the heatmap
+sns.heatmap(normalized_heatmap_df, ax=ax, cmap=cmap, annot=False, center=0, linewidths=.5, linecolor='grey')
+
+# Set y-ticks more explicitly and adjust alignment
+ax.set_yticks(range(len(normalized_heatmap_df.index)))
+ax.set_yticklabels(normalized_heatmap_df.index, fontsize=12, va='center', ha='right')  # Adjust font size and alignment
+
+ax.set_title('DEGs by Tissue Type')
+ax.set_xlabel('Tissues')
+ax.set_ylabel('Genes')
+
+plt.xticks(rotation=45)
+plt.yticks(rotation=0)
+
+# Adjust subplot parameters to ensure no clipping
+fig.subplots_adjust(left=0.3, right=0.95, top=0.95, bottom=0.1)
+
+# Use tight layout with padding to make sure everything fits without overlap
+fig.tight_layout(pad=3.0)
+
+plt.savefig('normalheatmapZ2.png', dpi=300)
+plt.show()
+```
+Try a different format for SVG export
+```{python}
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Explicitly define the figure and axes for better control
+fig, ax = plt.subplots(figsize=(12, 20))
+
+sns.set(style="white", context="talk")
+cmap = sns.diverging_palette(220, 20, as_cmap=True, center="light")
+
+# Create the heatmap
+sns.heatmap(normalized_heatmap_df, ax=ax, cmap=cmap, annot=False, center=0, linewidths=.5, linecolor='grey')
+
+# Set y-ticks more explicitly and adjust alignment
+ax.set_yticks(range(len(normalized_heatmap_df.index)))
+ax.set_yticklabels(normalized_heatmap_df.index, fontsize=12, va='center', ha='right')
+
+ax.set_title('DEGs by Tissue Type')
+ax.set_xlabel('Tissues')
+ax.set_ylabel('Genes')
+
+plt.xticks(rotation=45)
+plt.yticks(rotation=0)
+
+# Adjust subplot parameters manually without using tight_layout
+fig.subplots_adjust(left=0.3, right=0.95, top=0.95, bottom=0.1)
+
+# Save the figure in different formats
+plt.savefig('normalheatmapZ2.svg', format='svg', dpi=300)  # Specify format and dpi for SVG
+plt.show()
+
+```
+Let's try normalizing the small one now:
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Define the total datasets per tissue based on your data
+total_datasets_per_tissue = {
+    'Brain': 5,
+    'Cochlea': 1,
+    'Fat': 3,
+    'Heart': 2,
+    'Immune': 4,
+    'Liver': 2,
+    'Muscle': 7,
+    'Reproduction': 1,
+    'Trachea': 1
+}
+
+# List of your specific genes of interest
+genes_of_interest = ['SPARC', 'DIRC2', 'CA4', 'CDC20', 'RSRC1', 'CASP1']
+
+# Normalize the data
+normalized_data = {gene: {'upregulated': {}, 'downregulated': {}} for gene in genes_of_interest}
+for gene in genes_of_interest:
+    if gene in accumulated_gene_details:
+        for tissue in heatmap_data[gene]['upregulated']:
+            if tissue in total_datasets_per_tissue:
+                normalized_value = heatmap_data[gene]['upregulated'][tissue] / total_datasets_per_tissue[tissue]
+                normalized_data[gene]['upregulated'][tissue] = normalized_value
+        for tissue in heatmap_data[gene]['downregulated']:
+            if tissue in total_datasets_per_tissue:
+                normalized_value = heatmap_data[gene]['downregulated'][tissue] / total_datasets_per_tissue[tissue]
+                normalized_data[gene]['downregulated'][tissue] = normalized_value
+
+# Convert the normalized dictionary to DataFrame for visualization
+df_normalized_upregulated = pd.DataFrame({gene: normalized_data[gene]['upregulated'] for gene in genes_of_interest}).fillna(0)
+df_normalized_downregulated = pd.DataFrame({gene: normalized_data[gene]['downregulated'] for gene in genes_of_interest}).fillna(0)
+
+# Combine normalized upregulated and downregulated counts
+df_normalized_upregulated *= 1
+df_normalized_downregulated *= -1
+normalized_heatmap_df = df_normalized_upregulated + df_normalized_downregulated
+normalized_heatmap_df = normalized_heatmap_df.T  # Transpose if necessary
+# Flip the sign of the upregulated and downregulated data to align with new conventions
+normalized_heatmap_df = -1 * normalized_heatmap_df
+
+
+```
+...and plotting it
+```{python}
+# Plotting the heatmap
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Explicitly define the figure and axes for better control
+fig, ax = plt.subplots(figsize=(12, 8))
+
+sns.set(style="white", context="talk")
+cmap = sns.diverging_palette(220, 20, as_cmap=True, center="light")
+
+# Create the heatmap
+sns.heatmap(normalized_heatmap_df, ax=ax, cmap=cmap, annot=False, center=0, linewidths=.5, linecolor='grey')
+
+# Set y-ticks more explicitly and adjust alignment
+ax.set_yticks(range(len(normalized_heatmap_df.index)))
+ax.set_yticklabels(normalized_heatmap_df.index, fontsize=12, va='center', ha='right')
+
+ax.set_title('DEGs by Tissue Type')
+ax.set_xlabel('Tissues')
+ax.set_ylabel('Genes')
+
+plt.xticks(rotation=45)
+plt.yticks(rotation=0)
+
+# Adjust subplot parameters manually without using tight_layout
+fig.subplots_adjust(left=0.15, right=0.95, top=0.85, bottom=0.2)
+
+# Save the figure in different formats
+plt.savefig('normalSMOLheatmap.svg', format='svg', dpi=300)  # Specify format and dpi for SVG
+plt.show()
+```
+Let's try visualizing by species now
+```{python}
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+total_datasets_per_species = {
+    "Homo sapiens": 6,
+    "Mus musculus": 13,
+    "Rattus norvegicus": 5,
+    "Canis lupus familiaris": 1
+}
+
+# List of all 45 genes from your meta-analysis
+genes_of_interest = [
+    "UQCR10", "SIAH2", "CA4", "SPARC", "BRWD1", "BRD3", "SMYD1", "EIF4EBP1", "CDC20", "AR", "VLDLR", "DIRC2",
+    "KIFAP3", "EIF2D", "NREP", "RTN4IP1", "CASP1", "CTSS", "RSRC1", "FST", "SLC44A1", "CTNNA1", "C1QC", "PJA2",
+    "LYST", "FYB", "SKAP2", "RNF145", "EHD4", "CFLAR", "TMEM123", "SERPINB6", "MGST1", "NPC2", "SFRP1",
+    "APOE", "ARAP2", "PTPRC", "ANXA4", "GCNT2", "PRNP", "HLA-A", "CP", "TMEM176A", "EFEMP1"
+]
+#OR
+# List of your specific genes of interest
+#genes_of_interest = ['SPARC', 'DIRC2', 'CA4', 'CDC20', 'RSRC1', 'CASP1']
+
+# Initialize a dictionary to hold the data for upregulated and downregulated datasets by animal
+heatmap_data = {gene: {'upregulated': {}, 'downregulated': {}} for gene in genes_of_interest}
+
+# Populate the dictionary with data from accumulated_gene_details focusing on animals 
+for gene in genes_of_interest:
+    if gene in accumulated_gene_details:
+        for dataset in accumulated_gene_details[gene]['upregulated_datasets']:
+            animal = dataset['animal']
+            if animal not in heatmap_data[gene]['upregulated']:
+                heatmap_data[gene]['upregulated'][animal] = 0
+            heatmap_data[gene]['upregulated'][animal] += 1
+
+        for dataset in accumulated_gene_details[gene]['downregulated_datasets']:
+            animal = dataset['animal']
+            if animal not in heatmap_data[gene]['downregulated']:
+                heatmap_data[gene]['downregulated'][animal] = 0
+            heatmap_data[gene]['downregulated'][animal] += 1
+
+#ADD THIS FOR NORMALIZATION OR COMMENT OUT FOR UNNORMALIZED DATA:
+for gene in genes_of_interest:
+    for animal in total_datasets_per_species:
+        if animal in heatmap_data[gene]['upregulated']:
+            heatmap_data[gene]['upregulated'][animal] /= total_datasets_per_species[animal]
+        if animal in heatmap_data[gene]['downregulated']:
+            heatmap_data[gene]['downregulated'][animal] /= total_datasets_per_species[animal]
+
+
+# Convert the dictionary to DataFrames for upregulated and downregulated data by animal
+df_upregulated = pd.DataFrame({gene: heatmap_data[gene]['upregulated'] for gene in genes_of_interest}).fillna(0)
+df_downregulated = pd.DataFrame({gene: heatmap_data[gene]['downregulated'] for gene in genes_of_interest}).fillna(0)
+
+# Combine upregulated and downregulated counts in a single DataFrame
+# Assign positive values for upregulated and negative values for downregulated
+df_upregulated *= -1   # Optional: Use actual counts if needed
+df_downregulated *= 1
+heatmap_df = df_upregulated + df_downregulated
+heatmap_df = heatmap_df.T  # Transpose the DataFrame to switch genes to y-axis and animals to x-axis
+
+```
+
+```{python}
+# Create the heatmap
+plt.figure(figsize=(4, 8))
+cmap = sns.diverging_palette(220, 20, as_cmap=True, center="light")
+ax = sns.heatmap(heatmap_df, cmap=cmap, annot=False, center=0, linewidths=.5, linecolor='grey')
+plt.xticks(rotation=45)
+plt.yticks(rotation=0)
+plt.subplots_adjust(left=0.2, bottom=0.1)
+plt.title('Gene Expression Over/Under Regulation by Animal Type')
+plt.xlabel('Animals')
+plt.ylabel('Genes')
+plt.show()
+```
+
+
+# 5. Score Analysis (R)
+Import counts data and arrange in various dataframes and lists
+```{r}
+TotalCounts_byGene <- read.csv("Total_Counts.csv")
+colnames(TotalCounts_byGene)<-c("Gene","Total_Count")
+TotalCounts_numbers <- TotalCounts_byGene[,2]
+
+#adjust HERE to change the score limit moving forward
+score_limit = 6
+
+TC2 <- TotalCounts_byGene[which(TotalCounts_byGene$Total_Count > score_limit | TotalCounts_byGene$Total_Count < -(score_limit)),]
+
+YoungCounts_byGene <- read.csv("Young_Counts.csv")
+YoungCounts_numbers <- YoungCounts_byGene[,2]
+colnames(YoungCounts_byGene)<-c("Gene","Young_Count")
+
+#adjust HERE to change histogram left limit (1 of 2):
+YC2 <- YoungCounts_byGene[which(YoungCounts_byGene$Young_Count > score_limit),]
+YC2L <- YC2[,2]
+
+OldCounts_byGene <- read.csv("Old_Counts.csv")
+OldCounts_numbers <- OldCounts_byGene[,2]
+colnames(OldCounts_byGene)<-c("Gene","Old_Count")
+
+#adjust HERE to change histogram left limit (2 of 2):
+OC2 <- OldCounts_byGene[which(OldCounts_byGene$Old_Count > score_limit),]
+OC2L <- OC2[,2]
+
+YC2$Type <- "Young"
+OC2$Type <- "Old"
+colnames(YC2) <- c("Gene", "Count", "Type")
+colnames(OC2) <- c("Gene", "Count", "Type")
+HistoCounts <- rbind(YC2, OC2)
+```
+
+Histogram of counts
+```{r}
+ggplot(HistoCounts, aes(Count, fill = Type)) +
+  geom_histogram(alpha = 0.5, color = "black", binwidth = 1, position = "identity") +
+  theme_minimal() +
+  scale_x_continuous(name = "Score", breaks = 3:15, minor_breaks = NULL) +
+  scale_y_continuous(name = "# DEGs Achieving Score", minor_breaks = 1:100)
+
+ggsave(file="histoscorestest.svg")
+ggplot
+```
+
+# 6. Dataset Characteristics (R)
+**NOTE** Before running these next sessions, it was necessary to manually fill in the # DEGs column in the datasets csv file in excel. Here I am adding two new chunks to update the #DEGs column internally to a dataframe called DS.
+
+*(Exclude datasets from counts by commenting out here.)*
+First create the DS dataframe by reading in the 221 datasets file, and modify the index numbers to clear up issues where the same dataset was used for two different analyses because it contained data from two different tissue types.
+```{r}
+DS <- read.csv("221_Datasets.csv")
+
+DS[44,1]<-"43a"
+DS[45,1]<-"43b"
+DS[110,1]<-"108a"
+DS[111,1]<-"108b"
+```
+
+Second, run a function to replace the DEG counts in the DS dataframe with counts corresponding to the length of each DEG dataset (all the tT objects).
+**DATASET CONTROL ZONE 6 OF 6**
+```{r}
+DSS_Function <- function(dataset_df,index_char){
+  new_DEG_count<-length(dataset_df[,1])
+  DS[which(DS$Index==index_char),9]<-new_DEG_count
+  DSS_Output <- DS
+  return(DSS_Output)
+}
+
+#Human:
+#DS<-DSS_Function(tT007,"7") try excluding since it's only 2 genes that didn't pan out anyway and this will make even 25 (GSE58015)
+DS<-DSS_Function(tT009,"9")
+DS<-DSS_Function(tT023,"23")
+DS<-DSS_Function(tT036,"36")
+DS<-DSS_Function(tT037,"37") 
+DS<-DSS_Function(tT038,"38")
+DS<-DSS_Function(tT044,"44")
+#Mouse:
+DS<-DSS_Function(tT000,"0")
+DS<-DSS_Function(tT008,"8")
+DS<-DSS_Function(tT011,"11")
+DS<-DSS_Function(tT014,"14")
+DS<-DSS_Function(tT020,"20")
+DS<-DSS_Function(tT043a,"43a")
+DS<-DSS_Function(tT043b,"43b")
+DS<-DSS_Function(tT057,"57")
+#DS<-DSS_Function(tT081,"81") excluded as repeat
+DS<-DSS_Function(tT082,"82")
+DS<-DSS_Function(tT097,"97")
+DS<-DSS_Function(tT112,"112")
+DS<-DSS_Function(tT113,"113")
+DS<-DSS_Function(tT133,"133")
+#Other:
+DS<-DSS_Function(tT058,"58")
+DS<-DSS_Function(tT088,"88")
+DS<-DSS_Function(tT092,"92")
+DS<-DSS_Function(tT108a,"108a")
+DS<-DSS_Function(tT108b,"108b")
+DS<-DSS_Function(tT132,"132")
+```
+
+Now the same analyses should be able to proceed as before, but with automatically updated DEG counts:
+
+Number of DEGs per dataset (R)
+```{r}
+boxplot(DS$DEGs, horizontal=TRUE, main="Number of DEGs per Dataset")
+text(x=fivenum(DS$DEGs), labels =fivenum(DS$DEGs), y=1.25)
+#Note the middle value is median (50th percentile), not mean.
+#Lower hinge is 25th percentile, upper is 75th percentile
+
+```
+Number of datasets evaluated (R)
+```{r}
+DS_Progress = DS[which(DS$DEGs >0),]
+length(DS_Progress$DEGs)
+write.csv(DS_Progress,"DatasetsToDate.csv")
+```
+Tissue counts (R)
+```{r}
+agg <- count(DS_Progress,Tissue,Organism)
+ggplot(agg) +
+  geom_col(aes(x = Tissue, y = n, fill = Organism)) +
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 70, hjust=1))+
+  scale_y_continuous(breaks = 1:10, minor_breaks = NULL)+
+  coord_flip()
+ggsave(file="datasetstats.svg")
+```
+
+DEG counts (R)
+```{r}
+DS_Progress %>%
+  group_by(Tissue) %>%
+  summarise(sum_DEGs = sum(DEGs), mean_DEGs = mean(DEGs))
+```
+Graph of DEG counts (R)
+```{r}
+DS_Progress %>%
+  group_by(Tissue) %>%
+  summarise(Sum_DEGs = sum(DEGs), mean_DEGs = mean(DEGs)) %>%
+  ggplot(aes(x=Tissue, y = Sum_DEGs, fill = Tissue)) +
+  geom_bar(stat="identity")+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 90, hjust=1))+
+  xlab("")+
+  guides(fill=FALSE)+
+  coord_flip()
+```
+Graph of DEG counts (R)
+```{r}
+ggplot(DS_Progress, aes(x=Tissue,y=DEGs, fill=Organism))+
+  geom_dotplot(binaxis = 'y',stackdir = 'center',dotsize=1.5)+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 90, hjust=1))+
+  coord_flip()
+```
+
+# 7. Worm Orthologs
+Note: score_limit variable carried over from histogram section.
+Can replace it with a number here if needed (on line 3 below)
+```{r}
+OrthoList <- read.csv("ortholist_master.csv")
+OrthoDEGs <- merge(TotalCounts_byGene,OrthoList,by.x = "Gene", by.y = "HGNC.Symbol", all.x = TRUE)
+subset_by_counts <- OrthoDEGs[which(OrthoDEGs$Total_Count > score_limit | OrthoDEGs$Total_Count < -score_limit),]
+DEG_Orthologs <- subset_by_counts[,c("Gene","Total_Count","Locus.ID","Common.Name","No..of.Programs","Ahringer.RNAi.Clone.Location")]
+colnames(DEG_Orthologs) <- c("Human.Gene","DE.Score","Worm.Gene","Name","Programs","RNAi")
+DEG_Orthologs
+write.csv(DEG_Orthologs,"DEG_Orthologs.csv")
+```
+
+Percent of mammalian gene hits for which worm orthologs are available:
+```{r}
+no.hum<-length(TC2$Gene)
+cat("Number of human genes queried:",no.hum)
+
+no.notworm <- sum(is.na(DEG_Orthologs$Worm.Gene))
+cat("\nNumber without orthologs:",no.notworm)
+
+no.worm <- no.hum - no.notworm
+percent.worm <- no.worm/no.hum
+cat("\nFraction with orthologs:",percent.worm)
+```
+
+Pie Chart
+```{r}
+pie_slices <- c(no.notworm,no.worm)
+pie_labels <- c("No_Ortholog","Has_Ortholog")
+pie(pie_slices,labels=pie_labels)
+```
+
+
+Print human gene names for online searches:
+```{r}
+paste(DEG_Orthologs$Human.Gene, collapse = ", ")
+```
+
+Print c. elegans gene names for online searches:
+```{r}
+paste(DEG_Orthologs$Name, collapse = ", ")
+```
