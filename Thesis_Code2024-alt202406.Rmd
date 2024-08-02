@@ -103,7 +103,7 @@ print(df_of_lists)
 Each of the 221 candidate datasets are manually reviewed.
 [IN PROGRESS] 
 
-Datasets were excluded if two adult age-sets are not available, such as if the study is investigating a developmental process in the embryonic, postnatal, or juvenile period. Specifically, humans under 18yo, rats under 6mo, and mice under 3mo were considered juvenile and avoided in this analysis. Exceptions: Study GSE5666 compared 4mo and 28mo old rats in rarely obtainable tissue types (heart and white adipose tissue), so this study was included.
+Datasets were excluded if two adult age-sets are not available, such as if the study is investigating a developmental process in the embryonic, postnatal, or juvenile period. Specifically, humans under 18yo, rats under 6mo, and mice under 3mo were considered juvenile and avoided in this analysis. Exceptions: Study GSE6718 compared 4mo and 28mo old rats in rarely obtainable tissue types (heart and white adipose tissue), so this study was included.
 
 When more than two age-sets were available -- such as "young," "middle," and "old" -- comparisons between "middle" and "old" were prioritized. When a continuous set of ages were available, buffer regions were implemented, e.g. human age 30yo-60yo vs 70yo-90yo with 61-69yo excluded as a buffer region. 
 

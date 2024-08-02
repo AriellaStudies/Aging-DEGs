@@ -97,7 +97,7 @@ print(df_of_lists)
 Each of the 221 candidate datasets are manually reviewed.
 [IN PROGRESS] 
 
-Datasets were excluded if two adult age-sets are not available, such as if the study is investigating a developmental process in the embryonic, postnatal, or juvenile period. Specifically, humans under 18yo, rats under 6mo, and mice under 3mo were considered juvenile and avoided in this analysis. Exceptions: Study GSE5666 compared 4mo and 28mo old rats in rarely obtainable tissue types (heart and white adipose tissue), so this study was included.
+Datasets were excluded if two adult age-sets are not available, such as if the study is investigating a developmental process in the embryonic, postnatal, or juvenile period. Specifically, humans under 18yo, rats under 6mo, and mice under 3mo were considered juvenile and avoided in this analysis. Exceptions: Study GSE6718 compared 4mo and 28mo old rats in rarely obtainable tissue types (heart and white adipose tissue), so this study was included.
 
 When more than two age-sets were available -- such as "young," "middle," and "old" -- comparisons between "middle" and "old" were prioritized. When a continuous set of ages were available, buffer regions were implemented, e.g. human age 30yo-60yo vs 70yo-90yo with 61-69yo excluded as a buffer region. 
 
@@ -434,7 +434,6 @@ Record dataframes for separate young and old counts too
 young_df = pd.DataFrame.from_dict(young_dict, orient='index')
 young_counts = young_df.sort_values(by=0, ascending=False)
 young_counts
-print(young_counts.head())
 
 old_df = pd.DataFrame.from_dict(old_dict, orient='index')
 old_counts = old_df.sort_values(by=0, ascending=False)
@@ -488,6 +487,35 @@ total7 = len(total7plus) + len(total7minus)
 
 print(f"The total for rank 6 is {total6}, and the total for rank 7 is {total7}")
 ```
+ 
+ Trying a binomial statistical test with chatGPT's help (but I don't really think this was that helpful)
+```{python}
+# Import necessary libraries
+from scipy.stats import binom
+
+# Initialize the parameters
+n_datasets = 25  # total number of datasets you analyzed
+p = 0.05  # traditional baseline probability for a single hypothesis test
+
+# Initialize the dictionary to store significant genes
+significant_genes = {}
+
+# Conduct the binomial test on each gene in the total_dict
+for gene, count in total_dict.items():
+    # Calculate the p-value using the binomial distribution
+    p_value = 1 - binom.cdf(count - 1, n_datasets, p)
+    
+    # Check if the p-value is less than the significance level
+    if p_value < 0.05:
+        # If significant, store the gene with its count and p-value
+        significant_genes[gene] = (count, p_value)
+
+# Output the significant genes and their details
+for gene, details in significant_genes.items():
+    print(f"Gene: {gene}, Count: {details[0]}, P-value: {details[1]:.4f}")
+
+```
+ 
 
 ## 4B. Trial: Enhanced version of section 4A function for use in later analysis
 
@@ -881,10 +909,10 @@ for tissue in total_datasets_per_tissue:
 SKIPPABLE: Apply it to genes of interest specifically
 ```{python}
 # List of your specific genes of interest
-#genes_of_interest = ['SPARC', 'DIRC2', 'CA4', 'CDC20', 'RSRC1', 'CASP1']
+genes_of_interest = ['SPARC', 'DIRC2', 'CA4', 'CDC20', 'RSRC1', 'CASP1']
 #genes_of_interest = ['PTPRC','APOE','CASP1', 'RTN4IP1','SKAP2']
 #genes_of_interest = ['HLA-A','BRWD1','EIF4EBP1','CTSS','RTN4IP1','NPC2','SERPINB6','SFRP1','TMEM176A','ANXA4','ARAP2','UQCR10','NREP']
-genes_of_interest = ['EFEMP1','TMEM176A']
+#genes_of_interest = ['EFEMP1','TMEM176A']
 
 # Print details for each of the specified genes
 for gene in genes_of_interest:
