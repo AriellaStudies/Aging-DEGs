@@ -1,0 +1,388 @@
+---
+title: "MetaAnalysisEssentials"
+author: "Ariella Coler-Reilly"
+date: "2024-08-02"
+output: html_document
+---
+
+# 1. Dataset Management (Python)
+NCBI GEO was searched for expression datasets on 03/02/2021, filtered to mammalian species with age sets, with 221 results. Results were exported as a detailed text file, then parsed into a dataframe using Python below.
+```{python message = FALSE, warning=FALSE}
+pattern_organism = re.compile(r"\bOrganism\w*\b")
+pattern_GSE = re.compile(r"\bPlatform\w*\b")
+
+list_organism = []
+list_GSE = []
+list_platform = []
+with open("gds_result.txt","rt") as myfile:
+    for line in myfile:
+        if pattern_organism.search(line) != None:
+            betterline = line.replace("Organism:\t","")
+            bestline = betterline.replace("\n","")
+            list_organism.append(bestline)
+        if pattern_GSE.search(line) != None:
+            GSE = line.split("Series: ")[1].rsplit()[0]
+            list_GSE.append(GSE)
+            Platform = line.split("Platform: ")[1].rsplit()[0]
+            list_platform.append(Platform)
+list_of_lists = [list_GSE, list_organism, list_platform]
+df_of_lists = pd.DataFrame(list_of_lists).transpose()
+df_of_lists.columns = ["GSE","Organism","Platform"]
+print(df_of_lists)
+```
+
+# 2. Dataset Management (Manual)
+
+Each of the 221 candidate datasets are manually reviewed.
+[IN PROGRESS] 
+
+Datasets were excluded if two adult age-sets are not available, such as if the study is investigating a developmental process in the embryonic, postnatal, or juvenile period. Specifically, humans under 18yo, rats under 6mo, and mice under 3mo were considered juvenile and avoided in this analysis. Exceptions: Study GSE6718 compared 4mo and 28mo old rats in rarely obtainable tissue types (heart and white adipose tissue), so this study was included.
+
+When more than two age-sets were available -- such as "young," "middle," and "old" -- comparisons between "middle" and "old" were prioritized. When a continuous set of ages were available, buffer regions were implemented, e.g. human age 30yo-60yo vs 70yo-90yo with 61-69yo excluded as a buffer region. 
+
+Other, less common reasons were exclusion included datasets where control/untreated/wild-type groups were not available or when "age-sets" were actually time-points in short time-course experiments.
+
+For all remaining datasets, the samples were categorized as young (0), old (1), or excluded (X) for the purposes of further processing. In addition, the tissue type under study was manually noted.
+
+# 3. Calculate DEGs in each Dataset (R)
+
+## 3.1 Set Functions
+
+GEO2R Function
+```{r }
+GEO2R <- function(GSE_number,platform_code,group_binaries,outputs){
+  # load series and platform data from GEO
+  gset <- getGEO(GSE_number, GSEMatrix =TRUE, AnnotGPL=TRUE)
+  if (length(gset) > 1) idx <- grep(platform_code, attr(gset, "names")) else idx <- 1
+  gset <- gset[[idx]]
+  
+  # make proper column names to match toptable 
+  fvarLabels(gset) <- make.names(fvarLabels(gset))
+  
+  # group membership for all samples
+  gsms <- group_binaries
+  sml <- strsplit(gsms, split="")[[1]]
+  
+  # filter out excluded samples (marked as "X")
+  sel <- which(sml != "X")
+  sml <- sml[sel]
+  gset <- gset[ ,sel]
+  
+  # log2 transformation
+  ex <- exprs(gset)
+  qx <- as.numeric(quantile(ex, c(0., 0.25, 0.5, 0.75, 0.99, 1.0), na.rm=T))
+  LogC <- (qx[5] > 100) ||
+            (qx[6]-qx[1] > 50 && qx[2] > 0)
+  if (LogC) { ex[which(ex <= 0)] <- NaN
+    exprs(gset) <- log2(ex) }
+  
+  # assign samples to groups and set up design matrix
+  gs <- factor(sml)
+  groups <- make.names(c("young","old"))
+  levels(gs) <- groups
+  gset$group <- gs
+  design <- model.matrix(~group + 0, gset)
+  colnames(design) <- levels(gs)
+  
+  fit <- lmFit(gset, design)  # fit linear model
+  
+  # set up contrasts of interest and recalculate model coefficients
+  cts <- paste(groups[1], groups[2], sep="-")
+  cont.matrix <- makeContrasts(contrasts=cts, levels=design)
+  fit2 <- contrasts.fit(fit, cont.matrix)
+  
+  # compute statistics and table of top significant genes
+  fit2 <- eBayes(fit2, 0.01)
+  tT <- topTable(fit2, adjust="fdr", sort.by="B", number=outputs)
+  
+  tT <- subset(tT, select=c("ID","adj.P.Val","P.Value","t","B","logFC","Gene.symbol","Gene.title"))
+  return(tT)
+}
+```
+
+Function compounded to filter results by specified p value
+(change p value here)
+```{r}
+GEO2R_pFiltered <- function(GSE_number,platform_code,group_binaries,outputs){
+  tempTable <- GEO2R(GSE_number,platform_code,group_binaries,outputs)
+  filtTable <- tempTable[tempTable$adj.P.Val<0.25,]
+  dupTable <- filtTable[!duplicated(filtTable$Gene.symbol),]
+  return(dupTable)
+}
+```
+
+Set global number of outputs here
+```{r}
+num_outputs = 5000
+```
+
+To prevent a vroom error, run this line before analyzing the data:
+```{r}
+Sys.setenv(VROOM_CONNECTION_SIZE = 500000)
+```
+
+
+## 3.2 Import Datasets
+
+**DATASET CONTROL ZONE 1 OF 6**
+*(These zones must be updated if adding datasets.)*
+
+Execute functions on human datasets
+```{r message = FALSE, warning=FALSE}
+tT007 <- GEO2R_pFiltered("GSE58015","GPL571","000011111",num_outputs)
+tT009 <- GEO2R_pFiltered("GSE53890","GPL570","XXXXXXXX00000000000XX11111111111XXXXXXXXX",num_outputs)
+tT023 <- GEO2R_pFiltered("GSE38718","GPL570","0000000000000011111111",num_outputs)
+tT036 <- GEO2R_pFiltered("GSE28422","GPL570","00000000XXXXXXXXXXXXXXXXXXXXXXXX111111XXXXXXXXXXXXXXXXXX0000000XXXXXXXXXXXXXXXXXXXXXXX111111XXXXXXXXXXXXXXXXXX",num_outputs)
+tT037 <- GEO2R_pFiltered("GSE28392","GPL570","00000XXXXXXXXXXXXXXXX1111XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",num_outputs)
+tT038 <- GEO2R_pFiltered("GSE25941","GPL570","000000001111111111100000001111111111",num_outputs)
+tT044 <- GEO2R_pFiltered("GSE32719","GPL570","XXXXXXXXXXXXXX0000011111111",num_outputs)
+```
+
+Execute function on mouse datasets
+```{r message = FALSE, warning=FALSE}
+tT000M <- GEO2R_pFiltered("GSE71868","GPL6885","11110000",num_outputs)
+tT008M <- GEO2R_pFiltered("GSE50821","GPL1261","00000XXXX11111",num_outputs)
+tT011M <- GEO2R_pFiltered("GSE55162","GPL1261","11110000",num_outputs)
+tT014M <- GEO2R_pFiltered("GSE46646","GPL1261","XXXXXX000111",num_outputs)
+tT020M <- GEO2R_pFiltered("GSE49543","GPL339","XXXXXXXXX00000000000000000111111111111111",num_outputs)
+```
+
+More mouse datasets
+```{r message = FALSE, warning=FALSE}
+tT043aM <- GEO2R_pFiltered("GSE25905","GPL6246","000XXXXXXXXX111XXX",num_outputs)
+tT043bM <- GEO2R_pFiltered("GSE25905","GPL6246","XXX000XXXXXXXXX111",num_outputs)
+tT057M <- GEO2R_pFiltered("GSE27686","GPL1261","111XXXXXX000XXXX",num_outputs)
+tT081M <- GEO2R_pFiltered("GSE19677","GPL6333","0000XXXXX1111XXXXX",num_outputs)
+tT082M <- GEO2R_pFiltered("GSE19677","GPL1261","XXXX00001X1XX1XXX1",num_outputs)
+tT133M <- GEO2R_pFiltered("GSE6323","GPL339","0000011111XXXXX",num_outputs)
+```
+
+More mouse datasets:
+```{r message = FALSE, warning=FALSE}
+tT097M <- GEO2R_pFiltered("GSE11667","GPL1261","11110000XXXXXXXX",num_outputs)
+tT112M <- GEO2R_pFiltered("GSE8150","GPL1261","0000011111XXXXXXXXXX",num_outputs)
+tT113M <- GEO2R_pFiltered("GSE8146","GPL81","0000011111XXXXXXXXXX",num_outputs)
+```
+
+Non-mouse, non-human datasets:
+```{r message = FALSE, warning=FALSE}
+tT058X <- GEO2R_pFiltered("GSE24515","GPL1355","000000111111",num_outputs)
+tT088X <- GEO2R_pFiltered("GSE9990","GPL341","XXXXXXXXXXXXXXXXXXXXXXXXXXX0000000001111111111111",num_outputs)
+tT092X <- GEO2R_pFiltered("GSE12502","GPL3979","111111000000",num_outputs)
+
+tT108aX <- GEO2R_pFiltered("GSE6718","GPL1355","1111111000000XXXXXXXXXXXXXXXXXXXXXXXXXX",num_outputs)
+tT108bX <- GEO2R_pFiltered("GSE6718","GPL1355","XXXXXXXXXXXXXXXXXXXXXX11000X00XXX11100X",num_outputs)
+tT132X <- GEO2R_pFiltered("GSE4270","GPL890","XXXXXXXXXXXXXXX00000000001111111111111",num_outputs)
+```
+
+## 3.3 Non-human gene conversions
+
+Convert non-human gene symbols to human gene symbols
+
+Function for mouse:
+```{r}
+M2H <- function(mouse_tT){
+  MouseSymbols = mouse_tT[,7]
+  M2H_Symbols = mouse2human(MouseSymbols)
+  tTMerge = merge(mouse_tT,M2H_Symbols,by.x = "Gene.symbol",by.y = "mouseGene")
+  tTReordered.dup = tTMerge[,c(2,3,4,5,6,7,9,8,1)]
+  tTReordered <- tTReordered.dup[!duplicated(tTReordered.dup$humanGene),]
+  return(tTReordered)
+}
+```
+
+Function for non-mouse:
+```{r}
+X2H <- function(animal_tT,TaxID){
+  AnimalSymbols = animal_tT[,7]
+  X2H_Symbols = homologene(AnimalSymbols, inTax = TaxID, outTax = 9606)
+  taxonomy = toString(TaxID)
+  tTMerge = merge(animal_tT,X2H_Symbols,by.x = "Gene.symbol",by.y = taxonomy)
+  tTReordered.dup = tTMerge[,c(2,3,4,5,6,7,9,8,1)]
+  tTReordered <- tTReordered.dup[!duplicated(tTReordered.dup$'9606'),]
+  return(tTReordered)
+}
+```
+
+
+**DATASET CONTROL ZONE 2 OF 6 (NONHUMAN ONLY)**
+Execution for mouse:
+```{r message = FALSE, warning = FALSE}
+tT000 <- M2H(tT000M)
+tT008 <- M2H(tT008M)
+tT011 <- M2H(tT011M)
+tT014 <- M2H(tT014M)
+tT020 <- M2H(tT020M)
+tT043a <- M2H(tT043aM)
+tT043b <- M2H(tT043bM)
+tT057 <- M2H(tT057M)
+tT081 <- M2H(tT081M)
+tT082 <- M2H(tT082M)
+tT097 <- M2H(tT097M)
+tT112 <- M2H(tT112M)
+tT113 <- M2H(tT113M)
+tT133 <- M2H(tT133M)
+```
+
+Execution for non-mouse:
+```{r message = FALSE, warning = FALSE}
+tT058 <- X2H(tT058X,10116)
+tT088 <- X2H(tT088X,10116)
+tT092 <- X2H(tT092X,9615)
+
+tT108a <- X2H(tT108aX,10116)
+tT108b <- X2H(tT108bX,10116)
+tT132 <- X2H(tT132X,10116)
+```
+
+
+Note: Some gene IDs appear in the results as GeneName1///GeneName2///GeneName3///. I noticed these were not successfully converted to human genes. I performed a test on one such gene where I ran each GeneName individually, and no results were found either, so I conclude homologous genes are not available for those entries regardless of any formatting issue.
+Record of this Test:
+```{r eval=FALSE}
+M1Test = c("LOC100503923","Gm15433","LOC100041903","Gm2666","Gm7609","Csprs")
+M1Test
+dfM1Test = mouse2human(M1Test)
+dfM1Test #0 Results
+```
+
+## 3.4 Export Results
+
+**DATASET CONTROL ZONE 3 OF 6**
+Write to files
+```{r message = FALSE, warning=FALSE}
+#Human:
+write.table(tT007, file="tT007.txt", row.names=F, sep="\t")
+write.table(tT009, file="tT009.txt", row.names=F, sep="\t")
+write.table(tT023, file="tT023.txt", row.names=F, sep="\t")
+write.table(tT036, file="tT036.txt", row.names=F, sep="\t")
+write.table(tT037, file="tT037.txt", row.names=F, sep="\t")
+write.table(tT038, file="tT038.txt", row.names=F, sep="\t")
+write.table(tT044, file="tT044.txt", row.names=F, sep="\t")
+#Mouse:
+write.table(tT000, file="tT000.txt", row.names=F, sep="\t")
+write.table(tT008, file="tT008.txt", row.names=F, sep="\t")
+write.table(tT011, file="tT011.txt", row.names=F, sep="\t")
+write.table(tT014, file="tT014.txt", row.names=F, sep="\t")
+write.table(tT020, file="tT020.txt", row.names=F, sep="\t")
+write.table(tT043a, file="tT043a.txt", row.names=F, sep="\t")
+write.table(tT043b, file="tT043b.txt", row.names=F, sep="\t")
+write.table(tT057, file="tT057.txt", row.names=F, sep="\t")
+write.table(tT081, file="tT081.txt", row.names=F, sep="\t")
+write.table(tT082, file="tT082.txt", row.names=F, sep="\t")
+write.table(tT097, file="tT097.txt", row.names=F, sep="\t")
+write.table(tT112, file="tT112.txt", row.names=F, sep="\t")
+write.table(tT113, file="tT113.txt", row.names=F, sep="\t")
+write.table(tT133, file="tT133.txt", row.names=F, sep="\t")
+#Other:
+write.table(tT058, file="tT058.txt", row.names=F, sep="\t")
+write.table(tT088, file="tT088.txt", row.names=F, sep="\t")
+write.table(tT092, file="tT092.txt", row.names=F, sep="\t")
+write.table(tT108a, file="tT108a.txt", row.names=F, sep="\t")
+write.table(tT108b, file="tT108b.txt", row.names=F, sep="\t")
+write.table(tT132, file="tT132.txt", row.names=F, sep="\t")
+```
+
+# 4. Calculate Scores Across Datasets (Python)
+## 4A. Compute Scores
+Define Reader Function
+```{python}
+def file_to_dict(file_name):
+  try:
+    file = open(file_name)
+    header = file.readline()
+    for line in file:
+      row = line.strip().replace('"', '').split('\t')
+      logFC = float(row[5])
+      geneID = row[6]
+      if logFC > 0:
+        if geneID in young_dict:
+          young_dict[geneID] += 1
+          total_dict[geneID] += 1
+        elif geneID in total_dict:
+          total_dict[geneID] += 1
+          young_dict[geneID] = 1
+        else:
+          young_dict[geneID] = 1
+          total_dict[geneID] = 1
+      if logFC < 0:
+        if geneID in old_dict:
+          old_dict[geneID] += 1
+          total_dict[geneID] += (-1)
+        elif geneID in total_dict:
+          total_dict[geneID] += (-1)
+          old_dict[geneID] = 1
+        else:
+          old_dict[geneID] = 1
+          total_dict[geneID] = -1
+    file.close()
+  except Exception as e:
+        print(f"Error processing file {file_name}: {str(e)}")
+```
+
+**DATASET CONTROL ZONE 4 OF 6**
+*(Exclude datasets from counts by commenting out here.)*
+Execute Reader Function
+```{python}
+young_dict = {}
+old_dict = {}
+total_dict = {}
+
+#Human
+#file_to_dict('tT007.txt') excluded
+file_to_dict('tT009.txt')
+file_to_dict('tT023.txt')
+file_to_dict('tT036.txt')
+file_to_dict('tT037.txt')
+file_to_dict('tT038.txt')
+file_to_dict('tT044.txt')
+
+#Mouse
+file_to_dict('tT000.txt')
+file_to_dict('tT008.txt')
+file_to_dict('tT011.txt')
+file_to_dict('tT014.txt')
+file_to_dict('tT020.txt')
+file_to_dict('tT043a.txt')
+file_to_dict('tT043b.txt')
+file_to_dict('tT057.txt')
+#file_to_dict('tT081.txt') excluded as a repeat
+file_to_dict('tT082.txt')
+file_to_dict('tT097.txt')
+file_to_dict('tT112.txt')
+file_to_dict('tT113.txt')
+file_to_dict('tT133.txt')
+
+#Other:
+file_to_dict('tT058.txt')
+file_to_dict('tT088.txt')
+file_to_dict('tT092.txt')
+file_to_dict('tT108a.txt')
+file_to_dict('tT108b.txt')
+file_to_dict('tT132.txt')
+
+```
+**RESULTS**
+Convert count dictionary to ordered dataframe
+```{python}
+total_df = pd.DataFrame.from_dict(total_dict, orient='index')
+ordered_df = total_df.sort_values(by=0, ascending=False)
+ordered_df
+```
+
+Record dataframes for separate young and old counts too
+```{python}
+young_df = pd.DataFrame.from_dict(young_dict, orient='index')
+young_counts = young_df.sort_values(by=0, ascending=False)
+young_counts
+
+old_df = pd.DataFrame.from_dict(old_dict, orient='index')
+old_counts = old_df.sort_values(by=0, ascending=False)
+old_counts
+```
+
+Export all counts to CSV files
+```{python }
+ordered_df.to_csv("Total_Counts.csv")
+young_counts.to_csv("Young_Counts.csv")
+old_counts.to_csv("Old_Counts.csv")
+```
